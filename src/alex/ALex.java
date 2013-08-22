@@ -183,14 +183,6 @@ public class ALex {
 		}
 	}
 	
-	
-	/**
-	 * 
-	 * Internal Methods	   
-	 * 
-	 **/
-	
-	 
 	/**
 	 * intLiteral
 	 * @return
