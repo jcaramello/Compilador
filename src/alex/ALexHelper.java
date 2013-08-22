@@ -45,5 +45,14 @@ public class ALexHelper {
 	 */
 	public static boolean esCaracterIgnorado(int caracter) {
 		return (caracter==' ' || caracter=='\n' || caracter=='\t' || caracter=='\r');
-}
+	}
+	
+	/**
+	 * Retorna true para ,|;|.|(|)|[|]|{|}
+	 * @param caracter
+	 * @return
+	 */
+	public static boolean isPuntuationSymbol(int caracter){
+		return caracter==44 || caracter==59 || caracter==46 || caracter==40 || caracter==41 || caracter==91 || caracter==93 || caracter==123 || caracter==125;
+	}
 }

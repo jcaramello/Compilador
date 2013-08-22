@@ -88,46 +88,34 @@ public class ALex {
 				continue;
 			}
 			
-			if(ALexHelper.isLetter(last)) 
-				return e1(); 	
-			if(ALexHelper.isDigit(last))
-				return e2(); 							 			
+			//[a..z][A..Z]
+			if(ALexHelper.isLetter(last)) return e1(); 	
+			//[0..9]
+			if(ALexHelper.isDigit(last))return e2(); 							 			
 			// '
-			if(last==39) 
-				return e3();													
+			if(last==39) return e3();													
 			// "
-			if(last==34) 
-				return e6();													
+			if(last==34) return e6();													
 			// &
-			if(last==38) 
-				return e8();													
+			if(last==38) return e8();													
 			// |
-			if(last==124) 
-				return e9();													
+			if(last==124) return e9();													
 			// >
-			if(last==62) 
-				return e10();													
+			if(last==62) return e10();													
 			// <
-			if(last==60) 
-				return e11();													
+			if(last==60) return e11();													
 			// =
-			if(last==61) 
-				return e12();													
+			if(last==61) return e12();													
 			// %|*|^
-			if(last==37 || last==42 || last==94) 
-				return e13();							
+			if(last==37 || last==42 || last==94) return e13();							
 			// +|-
-			if(last==43 || last==45) 
-				return e14();										
+			if(last==43 || last==45) return e14();										
 			// /
-			if(last==47)
-				return e15();													
+			if(last==47) return e15();													
 			// ,|;|.|(|)|[|]|{|}
-			if(last==44 || last==59 || last==46 || last==40 || last==41 || last==91 || last==93 || last==123 || last==125)
-				return e16();														
+			if(ALexHelper.isPuntuationSymbol(last)) return e16();														
 			// !
-			if(last==33) 
-				return e17();													
+			if(last==33) return e17();													
 			
 			if(ALexHelper.isForbiddenOperator(last))									
 				throw new ForbiddenOperatorException((char)last+"",lineN);
