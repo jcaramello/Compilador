@@ -17,7 +17,7 @@ public class Main {
 	 */
 	public static void main(String args[])
 
-	{
+	{		
 		// Initialize global application variables
 		Application.Name = "ALex";
 		Application.isTesting = isTestingEnabled(args);
