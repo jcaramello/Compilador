@@ -36,7 +36,8 @@ public class Main {
 				Logger.log("+--------+----------------+--------------------------------------------------+");
 			}			
 		} catch (Exception e) {
-			Logger.log(e.getMessage());
+			Logger.log("Ups!, algo anda mal!");
+			Logger.verbose(e.getMessage());
 		}
 		finally{		
 			Logger.close();
@@ -48,7 +49,7 @@ public class Main {
 		
 		boolean valid = true;
 		if (args.length == 0) {
-			 Logger.log("Debe ingresarse al menos un parámetro. Modo de uso: ALex <Archivo_fuente> [<Archivo_destino>]");
+			 Logger.log("Debe ingresarse al menos un parámetro. Modo de uso: ALex <Archivo_fuente> [<Archivo_destino>] [-options] dondo options: v(Enable verbose mode) | t(Enabled testing Mode)");
 				valid = false;
 			}
 		return valid;
