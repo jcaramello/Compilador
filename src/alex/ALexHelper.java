@@ -52,7 +52,7 @@ public class ALexHelper {
 	 * @param caracter
 	 * @return
 	 */
-	public static boolean isPuntuationSymbol(int caracter){
+	public static boolean isPunctuationSymbol(int caracter){
 		return caracter==44 || caracter==59 || caracter==46 || caracter==40 || caracter==41 || caracter==91 || caracter==93 || caracter==123 || caracter==125;
 	}
 }

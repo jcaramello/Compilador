@@ -113,7 +113,7 @@ public class ALex {
 			// /
 			if(last==47) return e15();													
 			// ,|;|.|(|)|[|]|{|}
-			if(ALexHelper.isPuntuationSymbol(last)) return e16();														
+			if(ALexHelper.isPunctuationSymbol(last)) return e16();														
 			// !
 			if(last==33) return e17();													
 			
