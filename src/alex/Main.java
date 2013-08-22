@@ -1,10 +1,5 @@
 package alex;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-
-import com.sun.org.apache.xerces.internal.impl.dv.ValidatedInfo;
-
 import common.Application;
 import common.Logger;
 import enums.LogType;
@@ -67,7 +62,7 @@ public class Main {
 		boolean isTesting = false;
 		
 		for (int i = 2; i < args.length; i++) {
-			if(args[i] == Application.TESTING_PARAMETER){
+			if(args[i].equals(Application.TESTING_PARAMETER)){
 				isTesting = true;				
 				break;
 			}						
@@ -80,7 +75,7 @@ public class Main {
 		boolean isVerbose = false;
 		
 		for (int i = 2; i < args.length; i++) {
-			if(args[i] == Application.VERBOSE_PARAMETER){
+			if(args[i].equals(Application.VERBOSE_PARAMETER)){
 				isVerbose = true;
 				break;
 			}						
