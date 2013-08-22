@@ -3,56 +3,89 @@ package alex;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
+import com.sun.org.apache.xerces.internal.impl.dv.ValidatedInfo;
 
+import common.Application;
+import common.Logger;
+import enums.LogType;
+
+/**
+ * Main
+ * @author jcaramello, nechegoyen
+ *
+ */
 public class Main {
 	
+	/**
+	 * Main
+	 * @param args
+	 */
 	public static void main(String args[])
+
 	{
-		try {
+		// Initialize global application variables
+		Application.Name = "ALex";
+		Application.isTesting = isTestingEnabled(args);
+		Application.isVerbose = isVerboseEnabled(args);
+		Application.logType = (args.length > 1) ? LogType.File : LogType.Console;
+		Application.logFilePath = (args.length > 1) ? args[1] : null;
+		
+		try {				
 			
-			ALex analizador = null;
-			if (args.length == 0) {
-				System.err.println("Debe ingresarse al menos un parámetro. Modo de uso: ALex <Archivo_fuente> [<Archivo_destino>]");
-				return;
-			}
-			if (args.length == 1) {
-				analizador = new ALex(args[0], false);
+			if (validateInput(args)) {							
+				Logger.log("%-16s%-32s%-8s", "TOKEN", "LEXEMA", "LINEA");
 				
-				System.out.format("%-16s%-32s%-8s", "TOKEN", "LEXEMA", "LINEA");
-				System.out.println();
+				ALex alex = new ALex(args[0]);									
 				
-				Token t = null;
-				do {		
-					t = analizador.obtenerToken();
-					if(t!=null)
-						System.out.format("%-16s%-32s%-8s", t.getToken(), t.getLexema(), t.getLinea());
-						System.out.println();
-				} while(t!=null); // EOF
-			}
-			else {
-				analizador = new ALex(args[0], true);
-				
-				FileWriter fstream = new FileWriter(args[1]);
-				BufferedWriter out = new BufferedWriter(fstream);
-			
-				out.write(String.format("%-16s", "TOKEN")+String.format("%-32s", "LEXEMA")+String.format("%-8s", "LINEA"));
-				out.write("\r\n");
-				
-				Token t = null;
-				do {		
-					t = analizador.obtenerToken();		
-					if(t!=null) {
-						System.out.println("*** Encontrado token "+ t.getToken() + ": " + t.getLexema() +" en línea "+ t.getLinea()+ " ***");
-						out.write(String.format("%-16s", t.getToken())+String.format("%-32s",t.getLexema())+String.format("%-8s", t.getLinea()));
-						out.write("\r\n");
-					}
-				} while(t!=null); // EOF
-				out.close();	
+				Token t = alex.obtenerToken();
+				while(t != null)
+				{	
+					Logger.log("%-16s%-32s%-8s", t.getTokenType().toString(), t.getLexema(), t.getLinea()+"");
+					t = alex.obtenerToken();														
+				} 
 			}			
-			
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.log(e.getMessage());
+		}
+		finally{		
+			Logger.close();
 		}
 	
+	}
+
+	private static boolean validateInput(String args[]){
+		
+		boolean valid = true;
+		if (args.length == 0) {
+			 Logger.log("Debe ingresarse al menos un parámetro. Modo de uso: ALex <Archivo_fuente> [<Archivo_destino>]");
+				valid = false;
+			}
+		return valid;
+	}
+	
+	private static boolean isTestingEnabled(String args[]){
+		boolean isTesting = false;
+		
+		for (int i = 2; i < args.length; i++) {
+			if(args[i] == Application.TESTING_PARAMETER){
+				isTesting = true;				
+				break;
+			}						
+		}
+		
+		return isTesting;		
+	}
+	
+	private static boolean isVerboseEnabled(String args[]){
+		boolean isVerbose = false;
+		
+		for (int i = 2; i < args.length; i++) {
+			if(args[i] == Application.VERBOSE_PARAMETER){
+				isVerbose = true;
+				break;
+			}						
+		}
+		
+		return isVerbose;		
 	}
 }

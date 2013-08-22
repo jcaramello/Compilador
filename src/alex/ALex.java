@@ -4,25 +4,38 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import common.Application;
+import common.Logger;
+import enums.TokenType;
 import alex.exceptions.*;
 
-
+/**
+ * Analizador Lexico
+ * @author jcaramello, nechegoyen
+ *
+ */
 public class ALex {
 
 	protected BufferedReader inputStream;
-	protected String lexema = ""; // El lexema "en construcción"
-	protected int last = 0; // El último caracter leído. Lo mantengo como int porque necesito encontrar el -1 que devuelve BufferedReader.read() en EOF.
-	protected int lineN = 1, startLineN = 1; // Numero de línea actual, y número de línea al comenzar a buscar un token (para el caso "comentario sin cerrar")
+	// El lexema "en construcción"
+	protected String lexema = ""; 
+	// El último caracter leído. Lo mantengo como int porque necesito encontrar el -1 que devuelve BufferedReader.read() en EOF.
+	protected int last = 0; 
+	// Numero de línea actual, y número de línea al comenzar a buscar un token (para el caso "comentario sin cerrar")
+	protected int lineN = 1, startLineN = 1; 
 	
-	// Variables utilizadas en técnicas para facilitar el testing.
-	protected boolean testing = false; // False: se lee desde un archivo (operatoria normal); true: se lee desde un String, para testear más cómodamente. 
-	protected int caracterActual = 0; // Caracter a leer en la cadena de entrada.
-	protected String toTest; // Cadena a testear.
+	/**
+	 *  Variables utilizadas en técnicas para facilitar el testing.
+	 */		
+	// Caracter a leer en la cadena de entrada.
+	protected int caracterActual = 0; 
+	// Cadena a testear.
+	protected String toTest; 
 	
-	protected boolean verbose = false; // "True" activa los mensajes de información.
 	
 	protected final String[] keywordsList = {"boolean", "char", "class", "classDef", "else", "extends", "for", "if", 
 			"int", "new", "null", "return", "String", "super", "this", "void", "while"};
+	
 	protected final String[] forbiddenWordsList = {"abstract", "break", "byte", "byvalue", "case", "cast", "catch", 
 			"const", "continue", "default", "do", "double", "final", "finally", "future", "generic", "goto", 
 			"implements", "import", "inner", "instanceof", "interface", "long", "native", "none", "operator", "outer",
@@ -30,33 +43,36 @@ public class ALex {
 			"throws", "transient", "try", "var", "volatile"};
 	
 	
-	public ALex(String archivo, boolean verbose) throws InvalidIdentifierException, InvalidCharacterException, ForbiddenWordException, InvalidStringException, ForbiddenOperatorException, OutOfAlphabetException, UnclosedCommentException	{
+	/**
+	 * Constructor default
+	 * @param input
+	 * @param verbose
+	 * @throws InvalidIdentifierException
+	 * @throws InvalidCharacterException
+	 * @throws ForbiddenWordException
+	 * @throws InvalidStringException
+	 * @throws ForbiddenOperatorException
+	 * @throws OutOfAlphabetException
+	 * @throws UnclosedCommentException
+	 */
+	public ALex(String input) throws InvalidIdentifierException, InvalidCharacterException, ForbiddenWordException, InvalidStringException, ForbiddenOperatorException, OutOfAlphabetException, UnclosedCommentException	{
 		try {
-			this.verbose = verbose;
-			inputStream = new BufferedReader(new FileReader(archivo)); 
+			
+			if(Application.isTesting) 
+				toTest = input;						
+			else inputStream = new BufferedReader(new FileReader(input)); 
 		 	
 		}
 		catch (FileNotFoundException e) {
 			System.err.println("Archivo no encontrado.");
 			e.printStackTrace();
 		}
-		catch (IOException e)
+		catch (Exception e)
 		{
 			System.err.println("Excepción de E/S.");
 			e.printStackTrace();
 		}
-	}
-	
-	
-	// Constructor alternativo que lee directamente sobre un String en vez de sobre un archivo, utilizado para testing.
-	public ALex(String archivo, String entrada) throws InvalidIdentifierException, InvalidCharacterException, ForbiddenWordException, InvalidStringException, ForbiddenOperatorException, OutOfAlphabetException, UnclosedCommentException {
-		if(archivo.equals("test")) {
-			toTest = entrada;
-			testing = true;
-			verbose = true;
-		}	
-	}
-	
+	}	
 
 	/***  Estado inicial ***/
 	
@@ -67,30 +83,57 @@ public class ALex {
 		
 		while(last != -1) { // no EOF
 			startLineN = lineN; 
-			if(esCaracterIgnorado((char)last)) {
+			if(ALexHelper.esCaracterIgnorado(last)) {
 				last = obtenerCaracter();
 				continue;
 			}
-			if((last>=65 && last<=90)||(last>=97 && last<=122)||last==95) return e1(); 	// [a..z]|[A..Z]|_
-			if(last>=48 && last<=57) return e2(); 							 			// [0..9]
-			if(last==39) return e3();													// '
-			if(last==34) return e6();													// "
-			if(last==38) return e8();													// &
-			if(last==124) return e9();													// |
-			if(last==62) return e10();													// >
-			if(last==60) return e11();													// <
-			if(last==61) return e12();													// =
-			if(last==37 || last==42 || last==94) return e13();							// %|*|^
-			if(last==43 || last==45) return e14();										// +|- 
-			if(last==47) return e15();													// /
-			if(last==44 || last==59 || last==46 || last==40 || last==41 || 
-				last==91 || last==93 || last==123 || last==125)
-					return e16();														// ,|;|.|(|)|[|]|{|}
-			if(last==33) return e17();													// !
-			if(last==126 || last==63 || last==58)										// ~|?|:
-				throw new ForbiddenOperatorException((char)last+" no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN);
 			
-			throw new OutOfAlphabetException("El caracter leído no es válido en el alfabeto del lenguaje."); // Si llega acá, el caracter leído está fuera del alfabeto y se debe lanzar la excepción apropiada.
+			if(ALexHelper.isLetter(last)) 
+				return e1(); 	
+			if(ALexHelper.isDigit(last))
+				return e2(); 							 			
+			// '
+			if(last==39) 
+				return e3();													
+			// "
+			if(last==34) 
+				return e6();													
+			// &
+			if(last==38) 
+				return e8();													
+			// |
+			if(last==124) 
+				return e9();													
+			// >
+			if(last==62) 
+				return e10();													
+			// <
+			if(last==60) 
+				return e11();													
+			// =
+			if(last==61) 
+				return e12();													
+			// %|*|^
+			if(last==37 || last==42 || last==94) 
+				return e13();							
+			// +|-
+			if(last==43 || last==45) 
+				return e14();										
+			// /
+			if(last==47)
+				return e15();													
+			// ,|;|.|(|)|[|]|{|}
+			if(last==44 || last==59 || last==46 || last==40 || last==41 || last==91 || last==93 || last==123 || last==125)
+				return e16();														
+			// !
+			if(last==33) 
+				return e17();													
+			
+			if(ALexHelper.isForbiddenOperator(last))									
+				throw new ForbiddenOperatorException((char)last+"",lineN);
+
+			// Si llega acá, el caracter leído está fuera del alfabeto y se debe lanzar la excepción apropiada.
+			throw new OutOfAlphabetException((char)last, lineN); 
 		}
 		
 		return null; // No hay más tokens.
@@ -101,7 +144,7 @@ public class ALex {
 	// Encapsula BufferedReader.read() para contar las líneas del archivo.
 	protected int obtenerCaracter() throws IOException
 	{
-		if(testing) { // Modo testing
+		if(Application.isTesting) { // Modo testing
 			if (caracterActual >= toTest.length()) return -1;
 			if (toTest.charAt(caracterActual) == '\n') lineN++;
 			return (int)toTest.charAt(caracterActual++);
@@ -111,15 +154,9 @@ public class ALex {
 			int toRet = inputStream.read();
 			if (toRet=='\n') lineN++;
 			
-			if(verbose) System.out.println("Leído: "+(char)toRet);
+			Logger.verbose("Leído: %s",(char)toRet+"");
 			return toRet;
 		}
-	}
-	
-	/* Retorna true para los caracteres que estando fuera del lenguaje, igualmente se aceptan en el archivo para
-		mejorar su legibilidad */
-	private boolean esCaracterIgnorado(char cual) {
-		return (cual==' ' || cual=='\n' || cual=='\t' || cual=='\r');
 	}
 
 	
@@ -127,31 +164,30 @@ public class ALex {
 
 	// identifier
 	protected Token e1() throws IOException, ForbiddenWordException {
-		if(verbose) System.out.println("Buscando: identifier");
+		Logger.log("Buscando: identifier");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
-			
-		// [a..z]|[A..Z]|[0..9]|_ - Mientras haya más, sigue leyendo.
-		if((last>=65 && last<=90)||
-		   (last>=97 && last<=122)||
-		   (last>=48 && last<=57)||
-		   last==95) {
+				
+		if(ALexHelper.isLetter(last) || ALexHelper.isDigit(last)) {
 			return e1();
 		}
 		else {
-			String tokenType = "identifier"; 
+			TokenType tokenType = TokenType.Identifier; 
 			
-			// Optimizaciones
+			/** Optimizaciones **/
 			
-			for(int i=0; i<keywordsList.length; i++) // Si es una palabra clave, cambio el tipo de token.
-				if(keywordsList[i].equals(lexema)) tokenType = keywordsList[i];
+			 // Si es una palabra clave, cambio el tipo de token.
+			for(int i=0; i<keywordsList.length; i++)
+				if(keywordsList[i].equals(lexema)) tokenType =  TokenType.getValue(keywordsList[i]);
 			
 			for(int i=0; i<forbiddenWordsList.length; i++) // Si es una palabra prohibida, cambio el tipo de token.
-				if(forbiddenWordsList[i].equals(lexema)) throw new ForbiddenWordException("La palabra "+lexema+ " está prohibida en el lenguaje. Puede "+
-						"tratarse de una palabra Java prohibida por compatibilidad, o de una palabra reservada para futuras extensiones. Línea: "+lineN);
-				
-			if(lexema.equals("true") || lexema.equals("false")) tokenType = "boolLiteral"; // Si es un literal booleano, cambio el tipo de token.
+				if(forbiddenWordsList[i].equals(lexema)) 
+					throw new ForbiddenWordException(lexema, lineN);
+
+			// Si es un literal booleano, cambio el tipo de token.	
+			if(lexema.equals("true") || lexema.equals("false")) 
+				tokenType = TokenType.BoolLiteral; 
 			
 			Token toRet = new Token(tokenType, lexema, lineN);
 			lexema = "";
@@ -159,80 +195,122 @@ public class ALex {
 		}
 	}
 	
-	// intLiteral
+	
+	/**
+	 * 
+	 * Internal Methods	   
+	 * 
+	 **/
+	
+	 
+	/**
+	 * intLiteral
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidIdentifierException
+	 */
 	protected Token e2() throws IOException, InvalidIdentifierException {
-		if(verbose) System.out.println("Buscando: intLiteral");
+		Logger.verbose("Buscando: intLiteral");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
-		if(last>=48 && last<=57) // [0..9]
+		if(ALexHelper.isDigit(last))
 			return e2();
 		else {
-			if((last>=65 && last<=90)||(last>=97 && last<=122))  // Caso de error [a..z][A..Z], ej. 3asdf
-				throw new InvalidIdentifierException((lexema+(char)last) + " no es un identificador válido. Línea: "+lineN);
+			if(ALexHelper.isLetter(last))
+				throw new InvalidIdentifierException(lexema+(char)last,lineN);
 			
-			Token toRet = new Token("intLiteral", lexema, lineN);
+			Token toRet = new Token(TokenType.IntLiteral, lexema, lineN);
 			lexema = "";
 			return toRet;
 		}		
 	}
-	
-	// charLiteral
+		
+	/**
+	 * charLiteral
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidCharacterException
+	 */
 	protected Token e3() throws IOException, InvalidCharacterException {
-		if(verbose) System.out.println("Buscando: charLiteral");
+		Logger.verbose("Buscando: charLiteral");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
-		if(last!=39 && last!=92 && last!=13 && last!=10) return e4(); // ^[\\|\n|\r|']
+		// ^[\\|\n|\r|']
+		if(last!=39 && last!=92 && last!=13 && last!=10) return e4(); 
 		else if(last==92) return e5(); // Caso en que se encontró una "\"
-		else throw new InvalidCharacterException((char)last + " no es un caracter válido. Línea: "+lineN);
+		else throw new InvalidCharacterException((char)last,lineN);
 	}
 	
-	// charLiteral con caracter encontrado.
+	
+	/**
+	 * charLiteral con caracter encontrado.
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidCharacterException
+	 */
 	protected Token e4() throws IOException, InvalidCharacterException {
-		if(verbose) System.out.println("Buscando: charLiteral (esperando cierre de comilla)");
+		Logger.verbose("Buscando: charLiteral (esperando cierre de comilla)");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
-		
-		if(last==39) { // '
-			Token toRet = new Token("charLiteral", lexema+"'", lineN);
+
+		// '
+		if(last==39) { 
+			Token toRet = new Token(TokenType.CharLiteral, lexema+"'", lineN);
 			lexema = "";
-			last = 0; // En este caso salgo al leer la "'", no el siguiente caracter, por lo tanto debo indicar que hace falta leer uno nuevo.
+      	    // En este caso salgo al leer la "'", no el siguiente caracter, por lo tanto debo indicar que hace falta leer uno nuevo.
+			last = 0;
 			return toRet;
 		}
-		else throw new InvalidCharacterException((lexema+(char)last)+ " no forma un caracter válido. Se esperaba cierra de comillas simples. Línea: "+lineN);
+		else throw new InvalidCharacterException(lexema+(char)last, "Se esperaba cierra de comillas simples", lineN);
 	}
 		
-	// charLiteral habiendo leído barra.
+	
+	/**
+	 * charLiteral habiendo leído barra. 
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidCharacterException
+	 */
 	protected Token e5() throws IOException, InvalidCharacterException {
-		if(verbose) System.out.println("Buscando: charLiteral (caso caracter especial)");
+		Logger.verbose("Buscando: charLiteral (caso caracter especial)");
 
-			// <-- nótese que no agrego al lexema la barra leída anteriormente.
+		// <-- nótese que no agrego al lexema la barra leída anteriormente.
 		last = obtenerCaracter();
 			
 		if(last==110) last=(char)10; // \n: LF
 		if(last==116) last=(char)9;  // \t: TAB
 		if(last==114) last=(char)13; // \r: CR
-		if(last==39) throw new InvalidCharacterException("Caracter especial mal formado en línea "+lineN);
+		if(last==39) throw new InvalidCharacterException(""+((char)last), "Caracter especial mal formado", lineN);
 	    // De lo contrario, queda asignado a "last" el caracter leído interpretado literalmente, incluyendo otra barra.
 		
 		return e4();
 	}
 	
-	// stringLiteral
+	
+	/**
+	 * stringLiteral
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidStringException
+	 */
 	protected Token e6() throws IOException, InvalidStringException {
-		if(verbose) System.out.println("Buscando: stringLiteral");
+		Logger.verbose("Buscando: stringLiteral");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
-		if(last==10) throw new InvalidStringException("El caracter NL (new line) no puede aparecer en un string (ver Sintaxis 2.7.4.1). Línea: "+lineN); // NL
-		if(last==92) return e7(); // \
-		else if(last==34) { // "
-			Token toRet = new Token("stringLiteral", lexema+(char)last, lineN);
+		// NL
+		if(last==10) throw new InvalidStringException("El caracter NL (new line) no puede aparecer en un string (ver Sintaxis 2.7.4.1)",lineN); 
+		// \
+		if(last==92) return e7(); 
+		// "
+		else if(last==34) { 
+			Token toRet = new Token(TokenType.StringLiteral, lexema+(char)last, lineN);
 			lexema = "";
 			last = 0;
 			return toRet;
@@ -240,244 +318,358 @@ public class ALex {
 		else return e6();
 	}
 	
-	// stringLiteral habiendo leído barra.
+	
+	/**
+	 * stringLiteral habiendo leído barra. 
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidStringException
+	 */
 	protected Token e7() throws IOException, InvalidStringException {
-		if(verbose) System.out.println("Buscando: stringLiteral (caso caracter especial)");
+		Logger.verbose("Buscando: stringLiteral (caso caracter especial)");
 
-			// <-- nótese que no agrego al lexema la barra leída anteriormente.
+		// <-- nótese que no agrego al lexema la barra leída anteriormente.
 		last = obtenerCaracter();
 		
 		if(last==110) last=(char)10; // \n: LF
 		if(last==116) last=(char)9;  // \t: TAB
 		if(last==114) last=(char)13; // \r: CR
-		if(last==34) throw new InvalidStringException("Caracter especial mal formado en línea "+lineN);
+		if(last==34) throw new InvalidStringException("Caracter especial mal formado." ,lineN);
 	    // De lo contrario, queda asignado a "last" el caracter leído interpretado literalmente, incluyendo otra barra.
 		
 		return e6();	
 	}
 	
-	// Leído &
+	
+	/**
+	 * Leído &
+	 * @return
+	 * @throws IOException
+	 * @throws ForbiddenOperatorException
+	 */
 	protected Token e8() throws IOException, ForbiddenOperatorException {
-		if(verbose) System.out.println("Buscando: &&");
+		Logger.verbose("Buscando: &&");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
 		if(last==38) { // &
-			Token toRet = new Token("&&", lexema+(char)last, lineN);
+			Token toRet = new Token(TokenType.AndOperator, lexema+(char)last, lineN);
 			lexema = "";
 			last = 0;
 			return toRet;
 		}
-		else if(last==61) throw new ForbiddenOperatorException("&= no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN);
-		else throw new ForbiddenOperatorException("& no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN);
+		else if(last==61) throw new ForbiddenOperatorException("&=",lineN);
+		else throw new ForbiddenOperatorException("&",lineN);
 	}
 	
-	// Leído |
+	
+	/**
+	 * Leído |
+	 * @return
+	 * @throws IOException
+	 * @throws ForbiddenOperatorException
+	 */
 	protected Token e9() throws IOException, ForbiddenOperatorException {
-		if(verbose) System.out.println("Buscando: ||");
+		Logger.verbose("Buscando: ||");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
 		if(last==124) { // |
-			Token toRet = new Token("||", lexema+(char)last, lineN);
+			Token toRet = new Token(TokenType.OrOperator, lexema+(char)last, lineN);
 			lexema = "";
 			last = 0;
 			return toRet;
 		}
-		else if(last==61) throw new ForbiddenOperatorException("|= no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN);
-		else throw new ForbiddenOperatorException("| no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN);
+		else if(last==61) throw new ForbiddenOperatorException("|=",lineN);
+		else throw new ForbiddenOperatorException("|",lineN);
 	}
 	
-	// Leído >
+	
+	/**
+	 * Leído >
+	 * @return
+	 * @throws IOException
+	 * @throws ForbiddenOperatorException
+	 */
 	protected Token e10() throws IOException, ForbiddenOperatorException {
-		if(verbose) System.out.println("Buscando: > o >=");
+		Logger.verbose("Buscando: > o >=");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
 		if(last==61) { // =
-			Token toRet = new Token(">=", lexema+(char)last, lineN);
+			Token toRet = new Token(TokenType.GratherOrEqualOperator, lexema+(char)last, lineN);
 			lexema = "";
 			last = 0;
 			return toRet;
 		}
 		else if(last==62) // > 
-			throw new ForbiddenOperatorException(">> no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN);
+			throw new ForbiddenOperatorException(">>",lineN);
 		else {
-			Token toRet = new Token(">", lexema, lineN);
+			Token toRet = new Token(TokenType.GratherOperator, lexema, lineN);
 			lexema = "";
 			return toRet;
 		}
 	}
-	
-	// Leído <
+		
+	/**
+	 * Leído <
+	 * @return
+	 * @throws IOException
+	 * @throws ForbiddenOperatorException
+	 */
 	protected Token e11() throws IOException, ForbiddenOperatorException {
-		if(verbose) System.out.println("Buscando: < o <=");
+		Logger.verbose("Buscando: < o <=");
 		
 		lexema += (char)last;
-		last = obtenerCaracter();
+		last = obtenerCaracter();		
 		
 		if(last==61) { // =
-			Token toRet = new Token("<=", lexema+(char)last, lineN);
+			Token toRet = new Token(TokenType.LessOrEqualOperator, lexema+(char)last, lineN);
 			lexema = "";
 			last = 0;
 			return toRet;
 		}
 		else if(last==60) // < 
-			throw new ForbiddenOperatorException("<< no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN);
+			throw new ForbiddenOperatorException("<<",lineN);
 		else {
-			Token toRet = new Token("<", lexema, lineN);
+			Token toRet = new Token(TokenType.LessOperator, lexema, lineN);
 			lexema = "";
 			return toRet;
 		}
 	}
-	
-	// Leído =
+ 
+	/**
+	 * Leído =
+	 * @return
+	 * @throws IOException
+	 * @throws ForbiddenOperatorException
+	 */
 	protected Token e12() throws IOException, ForbiddenOperatorException {
-		if(verbose) System.out.println("Buscando: = o ==");
+		Logger.verbose("Buscando: = o ==");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
 		if(last==61) { // =
-			Token toRet = new Token("==", lexema+(char)last, lineN);
+			Token toRet = new Token(TokenType.EqualOperator, lexema+(char)last, lineN);
 			lexema = "";
 			last = 0;
 			return toRet;
 		}
 		else {
-			Token toRet = new Token("=", lexema, lineN);
+			Token toRet = new Token(TokenType.AssignOperator, lexema, lineN);
 			lexema = "";
 			return toRet;
 		}	
 	}
-	
-	// Hallado %|*|^
-	// Cada uno de estos operadores define su propio token en este diseño, pero aprovechando que todos se comportan de forma idéntica, utilizo este "meta-estado".
+		
+	/**
+	 * Hallado %|*|^
+	 * Cada uno de estos operadores define su propio token en este diseño, 
+	 * pero aprovechando que todos se comportan de forma idéntica, utilizo este "meta-estado".
+	 * @return
+	 * @throws IOException
+	 * @throws ForbiddenOperatorException
+	 */
 	protected Token e13() throws IOException, ForbiddenOperatorException {
-		if(verbose) System.out.println("Buscando: %, * o ^");
+		Logger.verbose("Buscando: %, * o ^");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
-		
-		if(last==61) throw new ForbiddenOperatorException(lexema+"= no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN); // Casos %=, *=, ^=
-		else {
-			Token toRet = new Token(lexema, lexema, lineN); // Puedo hacer esto por haber tomado la convención de que los tokens con patrón "unitario" utilicen el mismo nombre que su único lexema válido.
-			lexema = "";
-			return toRet;
-		}	
-	}
-	
-	// Hallado +|-
-	// Caso similar a e13(), pero también debo evitar ++|--. Separado por legibilidad.
-	protected Token e14() throws IOException, ForbiddenOperatorException {
-		if(verbose) System.out.println("Buscando: + o -");
-			
-		lexema += (char)last;
-		last = obtenerCaracter();
-		
-		if(last==61) throw new ForbiddenOperatorException(lexema+"= no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN); // Casos +=, -=
-		if(lexema.equals(""+(char)last)) throw new ForbiddenOperatorException(lexema+lexema+" no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN); // Casos ++, --
-		else {
-			Token toRet = new Token(lexema, lexema, lineN); // Puedo hacer esto por haber tomado la convención de que los tokens con patrón "unitario" utilicen el mismo nombre que su único lexema válido.
-			lexema = "";
-			return toRet;
-		}	
-	}
-	
-	// Hallado /
-	protected Token e15() throws IOException, ForbiddenOperatorException, InvalidIdentifierException, InvalidCharacterException, ForbiddenWordException, InvalidStringException, OutOfAlphabetException, UnclosedCommentException {
-		if(verbose) System.out.println("Buscando: / (división), // o /* (comentarios)");
-			
-		lexema += (char)last;
-		last = obtenerCaracter();
-			
-		if(last==61) throw new ForbiddenOperatorException("/= no es un operador valido de Decaf (ver Sintaxis 2.9). Línea: "+lineN); // Caso /=
-		if(last==47) return c1(); // Caso comentario de línea simple: //
-		if(last==42) return c2(); // Caso comentario multilínea: /*
-		else {
-			Token toRet = new Token("/", lexema, lineN);
-			lexema = "";
-			return toRet;
-		}	
-	}
 
-	// Puntuación (ver Sintaxis 2.8). Situación similar a e13(), acá se agrupan varios estados del autómata que se comportan idénticamente. Lo agrego por completitud, podría haber sido más prolijo hacer esto directamente en obtenerToken() 
-	protected Token e16() throws IOException {
-		if(verbose) System.out.println("Buscando: , ; . ( ) [ ] { }");
-		
+		// Casos %=, *=, ^=
+		if(last==61) throw new ForbiddenOperatorException(lexema+"=",lineN);
+		else {
+			// Puedo hacer esto por haber tomado la convención de que los tokens con patrón "unitario" 
+			// utilicen el mismo nombre que su único lexema válido.
+			Token toRet = new Token(TokenType.getValue(lexema), lexema, lineN); 
+			lexema = "";
+			return toRet;
+		}	
+	}
+	
+	/**
+	 * Hallado +|-
+	 * Caso similar a e13(), pero también debo evitar ++|--. Separado por legibilidad.
+	 * @return
+	 * @throws IOException
+	 * @throws ForbiddenOperatorException
+	 */
+	protected Token e14() throws IOException, ForbiddenOperatorException {
+		Logger.verbose("Buscando: + o -");
+			
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
-		Token toRet = new Token(lexema, lexema, lineN); // Puedo hacer esto por haber tomado la convención de que los tokens con patrón "unitario" utilicen el mismo nombre que su único lexema válido.
+		// Casos +=, -=
+		if(last==61) throw new ForbiddenOperatorException(lexema+"=",lineN); 
+		// Casos ++, --
+		if(lexema.equals(""+(char)last)) throw new ForbiddenOperatorException(lexema+lexema,lineN); 
+		else {
+			 // Puedo hacer esto por haber tomado la convención de que los tokens con patrón "unitario" 
+  			 // utilicen el mismo nombre que su único lexema válido.
+			Token toRet = new Token(TokenType.getValue(lexema), lexema, lineN);
+			lexema = "";
+			return toRet;
+		}	
+	}
+		
+	/**
+	 * Hallado /
+	 * @return
+	 * @throws IOException
+	 * @throws ForbiddenOperatorException
+	 * @throws InvalidIdentifierException
+	 * @throws InvalidCharacterException
+	 * @throws ForbiddenWordException
+	 * @throws InvalidStringException
+	 * @throws OutOfAlphabetException
+	 * @throws UnclosedCommentException
+	 */
+	protected Token e15() throws IOException, ForbiddenOperatorException, InvalidIdentifierException, InvalidCharacterException, ForbiddenWordException, InvalidStringException, OutOfAlphabetException, UnclosedCommentException {
+		Logger.verbose("Buscando: / (división), // o /* (comentarios)");
+			
+		lexema += (char)last;
+		last = obtenerCaracter();
+		
+		// Caso /=
+		if(last==61) throw new ForbiddenOperatorException("/=",lineN); 
+		// Caso comentario de línea simple: //
+		if(last==47) return c1(); 
+		// Caso comentario multilínea: /*
+		if(last==42) return c2(); 
+		else {
+			Token toRet = new Token(TokenType.DivisionOperator, lexema, lineN);
+			lexema = "";
+			return toRet;
+		}	
+	}
+ 
+	/**
+	 * Puntuación (ver Sintaxis 2.8). Situación similar a e13(), acá se agrupan varios estados del autómata que se comportan idénticamente. 
+	 * Lo agrego por completitud, podría haber sido más prolijo hacer esto directamente en obtenerToken()
+	 * @return
+	 * @throws IOException
+	 */
+	protected Token e16() throws IOException {
+		Logger.verbose("Buscando: , ; . ( ) [ ] { }");
+		
+		lexema += (char)last;
+		last = obtenerCaracter();
+		// Puedo hacer esto por haber tomado la convención de que los tokens con patrón "unitario" 
+		// utilicen el mismo nombre que su único lexema válido.
+		Token toRet = new Token(TokenType.getValue(lexema), lexema, lineN); 
 		lexema = "";
 		return toRet;
 	}
-	
-	// Leído !
+		
+	/**
+	 * Leído ! 
+	 * @return
+	 * @throws IOException
+	 */
 	protected Token e17() throws IOException {
-		if(verbose) System.out.println("Buscando: ! o !=");
+		Logger.verbose("Buscando: ! o !=");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
 		if(last==61) { // =
-			Token toRet = new Token("!=", lexema+(char)last, lineN);
+			Token toRet = new Token(TokenType.DistinctOperator, lexema+(char)last, lineN);
 			lexema = "";
 			last = 0;
 			return toRet;
 		}
 		else {
-			Token toRet = new Token("!", lexema, lineN);
+			Token toRet = new Token(TokenType.NotOperator, lexema, lineN);
 			lexema = "";
 			return toRet;
 		}	
 	}
 	
-	// Comentario de línea simple 
+	/**
+	 * Comentario de línea simple 
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidIdentifierException
+	 * @throws InvalidCharacterException
+	 * @throws ForbiddenWordException
+	 * @throws InvalidStringException
+	 * @throws ForbiddenOperatorException
+	 * @throws OutOfAlphabetException
+	 * @throws UnclosedCommentException
+	 */
 	protected Token c1() throws IOException, InvalidIdentifierException, InvalidCharacterException, ForbiddenWordException, InvalidStringException, ForbiddenOperatorException, OutOfAlphabetException, UnclosedCommentException {
-		if(verbose) System.out.println("Leyendo comentario de línea simple.");
+		Logger.verbose("Leyendo comentario de línea simple.");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
 		if(last==10 || last==-1) {
-			if(verbose) System.out.println("Fin de comentario de línea simple.");
+			Logger.verbose("Fin de comentario de línea simple.");
 			lexema = "";
-			return obtenerToken(); // Se encontró fin de línea (o fin de archivo), i.e. fin del comentario. Como se pide devolver un token pero el comentario se debe ignorar, llamo recursivamente a obtenerToken();
+			// Se encontró fin de línea (o fin de archivo), i.e. fin del comentario. 
+			// Como se pide devolver un token pero el comentario se debe ignorar, llamo recursivamente a obtenerToken();
+			return obtenerToken(); 
 		}
 		else return c1();
 	}
-	
-	// Comentario multilínea
+		
+	/**
+	 * Comentario multilínea
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidIdentifierException
+	 * @throws InvalidCharacterException
+	 * @throws ForbiddenWordException
+	 * @throws InvalidStringException
+	 * @throws ForbiddenOperatorException
+	 * @throws OutOfAlphabetException
+	 * @throws UnclosedCommentException
+	 */
 	protected Token c2() throws IOException, InvalidIdentifierException, InvalidCharacterException, ForbiddenWordException, InvalidStringException, ForbiddenOperatorException, OutOfAlphabetException, UnclosedCommentException {
-		if(verbose) System.out.println("Leyendo comentario multilínea.");
+		Logger.verbose("Leyendo comentario multilínea.");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
 		if(last==42) return c3(); // *
-		if(last==-1) throw new UnclosedCommentException("Se llegó al final del archivo sin encontrar el cierre de comentario. El comentario fue abierto en la línea "+startLineN);
+		if(last==-1) throw new UnclosedCommentException(startLineN);
 		else return c2();
 	}
-	
-	// Comentario multilínea habiendo encontrado asterisco (potencial cierre)
+		
+	/**
+	 * Comentario multilínea habiendo encontrado asterisco (potencial cierre)
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidIdentifierException
+	 * @throws InvalidCharacterException
+	 * @throws ForbiddenWordException
+	 * @throws InvalidStringException
+	 * @throws ForbiddenOperatorException
+	 * @throws OutOfAlphabetException
+	 * @throws UnclosedCommentException
+	 */
 	protected Token c3() throws IOException, InvalidIdentifierException, InvalidCharacterException, ForbiddenWordException, InvalidStringException, ForbiddenOperatorException, OutOfAlphabetException, UnclosedCommentException {
-		if(verbose) System.out.println("Leyendo comentario multilínea (encontrado *).");
+		Logger.verbose("Leyendo comentario multilínea (encontrado *).");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 		
 		if(last==47) {
-			if(verbose) System.out.println("Fin de comentario multilínea.");
+			Logger.verbose("Fin de comentario multilínea.");
 			lexema = "";
 			last = 0;
-			return obtenerToken(); // Se encontró fin del comentario. Como se pide devolver un token pero el comentario se debe ignorar, llamo recursivamente a obtenerToken();
+			// Se encontró fin del comentario. 
+			// Como se pide devolver un token pero el comentario se debe ignorar, llamo recursivamente a obtenerToken();
+			return obtenerToken(); 
 		}
-		if(last==-1) throw new UnclosedCommentException("Se llegó al final del archivo sin encontrar el cierre de comentario. El comentario fue abierto en la línea "+startLineN);
-		else return c2(); // Falsa alarma, era un asterisco parte del comentario.		
+		if(last==-1) throw new UnclosedCommentException(startLineN);
+		// Falsa alarma, era un asterisco parte del comentario.
+		else return c2(); 		
 	}
 	
 }

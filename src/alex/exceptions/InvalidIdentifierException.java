@@ -4,8 +4,8 @@ package alex.exceptions;
 
 public class InvalidIdentifierException extends ALexException {
 	private static final long serialVersionUID = 1L;
-
-	public InvalidIdentifierException(String msg) {
-		super(msg);
+	private static String message = "%s no es un identificador válido :: Línea: %s";
+	public InvalidIdentifierException(String lexema, int line) {
+		super(String.format(message, lexema, line));
 	}
 }

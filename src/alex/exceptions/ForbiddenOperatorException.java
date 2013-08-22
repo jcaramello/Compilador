@@ -4,7 +4,8 @@ package alex.exceptions;
 public class ForbiddenOperatorException extends ALexException {
 	private static final long serialVersionUID = 1L;
 
-	public ForbiddenOperatorException(String msg) {
-		super(msg);
+	private static String message = "%s no es un operador valido (ver Sintaxis 2.9) :: Linea %s";
+	public ForbiddenOperatorException(String operator, int linea) {
+		super(String.format(message, operator, linea));
 	}
 }

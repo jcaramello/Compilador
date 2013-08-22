@@ -2,8 +2,9 @@ package alex.exceptions;
 
 public class InvalidStringException extends ALexException {
 	private static final long serialVersionUID = 1L;
-
-	public InvalidStringException(String msg) {
-		super(msg);
+	
+	private static String message = "String invalido. %s. Linea :: %s";
+	public InvalidStringException(String addtionalInfo, int linea) {
+		super(String.format(message, addtionalInfo, linea));
 	}
 }
