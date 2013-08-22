@@ -64,13 +64,12 @@ public class ALex {
 		 	
 		}
 		catch (FileNotFoundException e) {
-			System.err.println("Archivo no encontrado.");
-			e.printStackTrace();
+			Logger.log("Archivo no encontrado.");
+			Logger.verbose(e);
 		}
 		catch (Exception e)
-		{
-			System.err.println("Excepción de E/S.");
-			e.printStackTrace();
+		{			
+			Logger.verbose(e);
 		}
 	}	
 

@@ -131,9 +131,7 @@ public class Logger {
 		Logger.log("Ups!, algo anda mal!");
 		if(Application.isVerbose){			
 			Logger.verbose(e.getMessage());
-			for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
-				Logger.verbose(ste.toString());
-			}									
+			e.printStackTrace();									
 		}
 	}
 	
