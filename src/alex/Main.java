@@ -32,11 +32,10 @@ public class Main {
 					Logger.log("|%-8s|%-16s|%-50s|", token.getLinea()+"",token.getTokenType().toString(), token.getLexema());
 					token = alex.obtenerToken();														
 				} 
-				Logger.log("+--------+----------------+--------------------------------------------------+");
+				Logger.log("+--------+----------------+--------------------------------------------------+");				
 			}			
-		} catch (Exception e) {
-			Logger.log("Ups!, algo anda mal!");
-			Logger.verbose(e.getMessage());
+		} catch (Exception e) {			
+			Logger.verbose(e);									
 		}
 		finally{		
 			Logger.close();

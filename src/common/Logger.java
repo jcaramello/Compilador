@@ -123,6 +123,21 @@ public class Logger {
 	}
 	
 	/**
+	 * Log a format message only in verbose mode
+	 * @param msg
+	 */
+	public static void verbose(Exception e)
+	{		
+		Logger.log("Ups!, algo anda mal!");
+		if(Application.isVerbose){			
+			Logger.verbose(e.getMessage());
+			for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
+				Logger.verbose(ste.toString());
+			}									
+		}
+	}
+	
+	/**
 	 * Close the buffer writer
 	 */
 	public static void close(){
