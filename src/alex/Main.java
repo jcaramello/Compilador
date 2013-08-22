@@ -2,7 +2,6 @@ package alex;
 
 import common.Application;
 import common.Logger;
-import enums.LogType;
 
 /**
  * Main
