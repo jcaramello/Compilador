@@ -28,17 +28,18 @@ public class Main {
 		try {				
 			
 			if (validateInput(args)) {							
-				Logger.log("%-16s | %-32s | %-8s", "TOKEN", "LEXEMA", "LINEA");
-				Logger.log("-------------------------------------------------------------");
+				Logger.log("+--------+----------------+--------------------------------------------------+");
+				Logger.log("|%-8s|%-16s|%-50s|","LINEA", "TOKEN", "LEXEMA");
+				Logger.log("+--------+----------------+--------------------------------------------------+");
 				
-				ALex alex = new ALex(args[0]);									
-				
-				Token t = alex.obtenerToken();
-				while(t != null)
+				ALex alex = new ALex(args[0]);													
+				Token token = alex.obtenerToken();
+				while(token != null)
 				{	
-					Logger.log("%-16s | %-32s | %-8s", t.getTokenType().toString(), t.getLexema(), t.getLinea()+"");
-					t = alex.obtenerToken();														
+					Logger.log("|%-8s|%-16s|%-50s|", token.getLinea()+"",token.getTokenType().toString(), token.getLexema());
+					token = alex.obtenerToken();														
 				} 
+				Logger.log("+--------+----------------+--------------------------------------------------+");
 			}			
 		} catch (Exception e) {
 			Logger.log(e.getMessage());
