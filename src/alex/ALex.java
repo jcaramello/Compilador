@@ -164,7 +164,7 @@ public class ALex {
 
 	// identifier
 	protected Token e1() throws IOException, ForbiddenWordException {
-		Logger.log("Buscando: identifier");
+		Logger.verbose("Buscando: identifier");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();

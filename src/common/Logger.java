@@ -1,6 +1,7 @@
 package common;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,6 +15,7 @@ import enums.LogType;
 public class Logger {
 	
 	
+	private static final String NEW_LINE = "\n"; 
 	private FileWriter fstream;
 	public BufferedWriter bufferedWriter;
 	
@@ -31,7 +33,8 @@ public class Logger {
 		{
 			String currentDir = System.getProperty("user.dir").replace("\\", System.getProperty("file.separator"));
 			String filePath = Application.logFilePath != null ? Application.logFilePath : (currentDir + Application.Name+".log");
-			fstream = new FileWriter(filePath);
+			File logFile = new File(filePath);			
+			fstream = new FileWriter(logFile, false);
 			bufferedWriter = new BufferedWriter(fstream);
 
 		}
@@ -64,6 +67,7 @@ public class Logger {
 				System.out.println(msg);
 			else {
 				getCurrentLogger().bufferedWriter.write(msg);
+				getCurrentLogger().bufferedWriter.write(NEW_LINE);
 			}
 		} catch (IOException e) {
 			if(Application.isVerbose){
@@ -85,6 +89,7 @@ public class Logger {
 				System.out.println(msg);
 			else {
 				getCurrentLogger().bufferedWriter.write(msg);
+				getCurrentLogger().bufferedWriter.write(NEW_LINE);
 			}
 		} catch (IOException e) {
 			if(Application.isVerbose){
@@ -106,6 +111,7 @@ public class Logger {
 					System.out.println(msg);
 				else {
 					getCurrentLogger().bufferedWriter.write(msg);
+					getCurrentLogger().bufferedWriter.write(NEW_LINE);
 				}
 			} catch (IOException e) {
 				if(Application.isVerbose){
@@ -129,6 +135,7 @@ public class Logger {
 					System.out.println(msg);
 				else {
 					getCurrentLogger().bufferedWriter.write(msg);
+					getCurrentLogger().bufferedWriter.write(NEW_LINE);
 				}
 			} catch (IOException e) {
 				if(Application.isVerbose){
