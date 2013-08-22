@@ -49,7 +49,7 @@ public class Main {
 		
 		boolean valid = true;
 		if (args.length == 0) {
-			 Logger.log("Debe ingresarse al menos un parámetro.\nModo de uso: ALex <Archivo_fuente> [<Archivo_destino>] [-options] \n\ndonde options: \n\t v: Enable verbose mode \n\t t: Enabled testing Mode");
+			 Logger.log("Debe ingresarse al menos un parámetro.\nModo de uso: ALex <Archivo_fuente> [<Archivo_destino>] [-options] \n\ndonde options: \n\t v: Enable verbose mode \n\t t: Enable testing Mode");
 				valid = false;
 			}
 		return valid;
