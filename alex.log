@@ -1,7 +1,8 @@
-TOKEN           LEXEMA                          LINEA   
-identifier      asd                             1       
-int             int                             2       
-identifier      a                               2       
-=               =                               2       
-intLiteral      8                               2       
-;               ;                               2       
+TOKEN            | LEXEMA                           | LINEA   
+-------------------------------------------------------------
+identifier       | asd                              | 1       
+int              | int                              | 2       
+identifier       | a                                | 2       
+=                | =                                | 2       
+intLiteral       | 8                                | 2       
+;                | ;                                | 2       

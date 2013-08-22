@@ -106,19 +106,7 @@ public class Logger {
 	public static void verbose(String msg)
 	{
 		if(Application.isVerbose){
-			try {
-				if(Application.logType == LogType.Console)
-					System.out.println(msg);
-				else {
-					getCurrentLogger().bufferedWriter.write(msg);
-					getCurrentLogger().bufferedWriter.write(NEW_LINE);
-				}
-			} catch (IOException e) {
-				if(Application.isVerbose){
-					System.out.println(e.getMessage());
-					e.printStackTrace();
-				}
-			}
+			System.out.println(msg);
 		}
 	}
 	
@@ -129,20 +117,8 @@ public class Logger {
 	public static void verbose(String format, String... args)
 	{		
 		if(Application.isVerbose){
-			String msg = String.format(format, args);
-			try {
-				if(Application.logType == LogType.Console)
-					System.out.println(msg);
-				else {
-					getCurrentLogger().bufferedWriter.write(msg);
-					getCurrentLogger().bufferedWriter.write(NEW_LINE);
-				}
-			} catch (IOException e) {
-				if(Application.isVerbose){
-					System.out.println(e.getMessage());
-					e.printStackTrace();
-				}
-			}
+			String msg = String.format(format, args);						
+			System.out.println(msg);										
 		}
 	}
 	
