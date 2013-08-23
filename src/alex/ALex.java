@@ -34,13 +34,13 @@ public class ALex {
 	
 	
 	protected final String[] keywordsList = {"boolean", "char", "class", "classDef", "else", "extends", "for", "if", 
-			"int", "new", "null", "return", "String", "super", "this", "void", "while"};
+			"int", "new", "null", "return", "String", "super", "this", "void", "while", "var","static", "dynamic"};
 	
 	protected final String[] forbiddenWordsList = {"abstract", "break", "byte", "byvalue", "case", "cast", "catch", 
 			"const", "continue", "default", "do", "double", "final", "finally", "future", "generic", "goto", 
 			"implements", "import", "inner", "instanceof", "interface", "long", "native", "none", "operator", "outer",
-			"package", "private", "protected", "public", "rest", "short", "static", "switch", "synchronized", "throw",
-			"throws", "transient", "try", "var", "volatile"};
+			"package", "private", "protected", "public", "rest", "short", "switch", "synchronized", "throw",
+			"throws", "transient", "try", "volatile"};
 	
 	
 	/**

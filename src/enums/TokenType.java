@@ -7,8 +7,11 @@ package enums;
  */
 public enum TokenType {
 
+	//Special Case
 	NotSet,
+	//Identifier
 	Identifier,
+	//Reserved Words
 	Boolean,
 	Char, 
 	Class, 
@@ -26,10 +29,15 @@ public enum TokenType {
 	This, 
 	Void, 
 	While,
+	Var,
+	Static,
+	Dynamic,
+	//Literals
 	BoolLiteral,
 	IntLiteral,
 	CharLiteral,
 	StringLiteral,
+	//Operators
 	AndOperator,
 	OrOperator,
 	GratherOrEqualOperator,
@@ -45,6 +53,7 @@ public enum TokenType {
 	DistinctOperator,
 	NotOperator,
 	ModOperator,
+	//Symbols
 	ComaSymbol,
 	SemicolonSymbol,
 	PointSymbol,
@@ -53,7 +62,7 @@ public enum TokenType {
 	OpenKeySymbol,
 	ClosedKeySymbol,
 	OpenParenthesisSymbol,
-	ClosedParenthesisSymbol
+	ClosedParenthesisSymbol,	
 	;
 	
 	@Override
