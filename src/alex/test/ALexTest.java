@@ -275,6 +275,18 @@ public class ALexTest {
 		Token t = tester.obtenerToken();	
 	}
 	
+	@Test(expected = ForbiddenOperatorException.class)
+	public void testInvalidOperator5() throws Exception {
+		ALex tester = new ALex("^");
+		Token t = tester.obtenerToken();	
+	}
+	
+	@Test(expected = ForbiddenOperatorException.class)
+	public void testInvalidOperator6() throws Exception {
+		ALex tester = new ALex("^=");
+		Token t = tester.obtenerToken();	
+	}
+	
 	@Test
 	public void testComment1() throws Exception {
 		ALex tester = new ALex("//asdasd");
@@ -332,5 +344,5 @@ public class ALexTest {
 		Token t = tester.obtenerToken();	
 	}
 	
-		
+
 }

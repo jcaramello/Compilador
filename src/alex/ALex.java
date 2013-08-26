@@ -106,7 +106,7 @@ public class ALex {
 			// =
 			if(last==61) return e12();													
 			// %|*|^
-			if(last==37 || last==42 || last==94) return e13();							
+			if(last==37 || last==42) return e13();							
 			// +|-
 			if(last==43 || last==45) return e14();										
 			// /
@@ -454,12 +454,12 @@ public class ALex {
 	 * @throws ForbiddenOperatorException
 	 */
 	protected Token e13() throws IOException, ForbiddenOperatorException {
-		Logger.verbose("Buscando: %, * o ^");
+		Logger.verbose("Buscando: % o *");
 		
 		lexema += (char)last;
 		last = obtenerCaracter();
 
-		// Casos %=, *=, ^=
+		// Casos %=, *=
 		if(last==61) throw new ForbiddenOperatorException(lexema+"=",lineN);
 		else {
 			// Puedo hacer esto por haber tomado la convención de que los tokens con patrón "unitario" 

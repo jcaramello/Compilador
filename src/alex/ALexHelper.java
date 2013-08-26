@@ -34,7 +34,7 @@ public class ALexHelper {
 	 * @return
 	 */
 	public static boolean isForbiddenOperator(int caracter){
-		return caracter==126 || caracter==63 || caracter==58;
+		return caracter==126 || caracter==63 || caracter==58 || caracter==94;
 	}
 	
 	/**
