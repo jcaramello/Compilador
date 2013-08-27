@@ -1,5 +1,6 @@
 package alex;
 
+import alex.exceptions.ALexException;
 import common.Application;
 import common.Logger;
 
@@ -34,7 +35,9 @@ public class Main {
 				} 
 				Logger.log("+--------+----------------+--------------------------------------------------+");				
 			}			
-		} catch (Exception e) {			
+		}catch(ALexException al){
+			Logger.log(al.getMessage());
+		}catch (Exception e) {			
 			Logger.verbose(e);									
 		}
 		finally{		
