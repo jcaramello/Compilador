@@ -294,6 +294,8 @@ public class ALex {
 			last = 0;
 			return toRet;
 		}
+		else if(last == -1)
+			throw new InvalidStringException("String mal formado", lineN);
 		else return e6();
 	}
 	
