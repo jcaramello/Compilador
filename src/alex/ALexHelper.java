@@ -15,7 +15,7 @@ public class ALexHelper {
 	 * @param caracter
 	 * @return true si es una letra
 	 */
-	public static boolean isLetter(int caracter){
+	public static boolean isLetterOrUnderscore(int caracter){
 		return (caracter>=65 && caracter<=90)||(caracter>=97 && caracter<=122)||caracter==95;
 	}
 

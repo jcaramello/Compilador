@@ -27,11 +27,11 @@ public class Main {
 				Logger.log("+--------+-------------------------+--------------------------------------------------+");
 				
 				ALex alex = new ALex(args[0]);													
-				Token token = alex.obtenerToken();
+				Token token = alex.getToken();
 				while(token != null)
 				{	
 					Logger.log("|%-8s|%-25s|%-50s|", token.getLinea()+"",token.getTokenType().toString(), token.getLexema());
-					token = alex.obtenerToken();														
+					token = alex.getToken();														
 				} 
 				Logger.log("+--------+-------------------------+--------------------------------------------------+");				
 			}			
