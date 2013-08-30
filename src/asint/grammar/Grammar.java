@@ -67,19 +67,18 @@ public class Grammar {
 		Grammar grammar = getCurrent();
 		
 		grammar.Productions.add(new Production("StmtFor", new Object[][]{
-														{SymbolType.Terminal,"for"},
-														{SymbolType.Terminal, "("},
-														{SymbolType.NonTerminal, "Expr"},
-														{SymbolType.Terminal, ";"},
-														{SymbolType.NonTerminal, "Expr"},
-														{SymbolType.Terminal, ";"},
-														{SymbolType.NonTerminal, "Expr"},
-														{SymbolType.Terminal, ";"},
-														{SymbolType.Terminal, ")"},
-														{SymbolType.Terminal, "{"},
-														{SymbolType.NonTerminal, "Stmt"},
-														{SymbolType.Terminal, "}"}														
-												}));
+											   {SymbolType.Terminal,"for"},
+											   {SymbolType.Terminal, "("},
+											   {SymbolType.NonTerminal, "Expr"},
+											   {SymbolType.Terminal, ";"},
+											   {SymbolType.NonTerminal, "Expr"},
+											   {SymbolType.Terminal, ";"},
+											   {SymbolType.NonTerminal, "Expr"},
+											   {SymbolType.Terminal, ";"},
+											   {SymbolType.Terminal, ")"},
+											   {SymbolType.Terminal, "{"},
+											   {SymbolType.NonTerminal, "Stmt"},
+											   {SymbolType.Terminal, "}"}}));
 		
 		// El resto de las producciones de la gramaticas
 	}
