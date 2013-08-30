@@ -33,8 +33,8 @@ public class ALex {
 	protected String toTest; 
 	
 	
-	protected static final String[] keywordsList = {"boolean", "char", "class", "classDef", "else", "extends", "for", "if", 
-			"int", "new", "null", "return", "String", "super", "this", "void", "while", "var","static", "dynamic"};
+	protected static final String[] keywordsList = {"boolean", "char", "class", "else", "extends", "for", "if", 
+			"int", "new", "null", "return", "String", "this", "void", "while", "var","static", "dynamic"};
 	
 	protected static final String[] forbiddenWordsList = {"abstract", "break", "byte", "byvalue", "case", "cast", "catch", 
 			"const", "continue", "default", "do", "double", "final", "finally", "future", "generic", "goto", 
