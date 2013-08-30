@@ -124,4 +124,13 @@ public class Grammar {
 	public static boolean match(String x){
 		return true;		
 	}
+	
+	/**
+	 * Get the grammar's productions
+	 * @return
+	 */
+	public static List<Production> getProductions(){
+		return getCurrent().Productions;
+	}
+	
 }
