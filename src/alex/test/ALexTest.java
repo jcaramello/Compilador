@@ -20,7 +20,11 @@ import alex.exceptions.InvalidStringException;
 import alex.exceptions.OutOfAlphabetException;
 import alex.exceptions.UnclosedCommentException;
 
-
+/**
+ * Test Class for ALex Module
+ * @author jcaramello, nechegoyen
+ *
+ */
 public class ALexTest {
 
 	/**
@@ -70,14 +74,6 @@ public class ALexTest {
 	public void testIdentifierInvalido() throws Exception {
 		ALex tester = new ALex("3asd");
 		Token t = tester.obtenerToken();		
-	}
-	
-	@Test
-	public void testPalabraReservada() throws Exception {
-		ALex tester = new ALex("classDef");
-		Token t = tester.obtenerToken();		
-		assertEquals("Result", TokenType.ClassDef, t.getTokenType());
-		assertEquals("Result", "classDef", t.getLexema());	
 	}
 	
 	@Test(expected = ForbiddenWordException.class)  

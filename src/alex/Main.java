@@ -22,18 +22,18 @@ public class Main {
 		try {				
 			
 			if (validateInput(args)) {							
-				Logger.log("+--------+----------------+--------------------------------------------------+");
-				Logger.log("|%-8s|%-16s|%-50s|","LINEA", "TOKEN", "LEXEMA");
-				Logger.log("+--------+----------------+--------------------------------------------------+");
+				Logger.log("+--------+-------------------------+--------------------------------------------------+");
+				Logger.log("|%-8s|%-25s|%-50s|","LINEA", "TOKEN TYPE", "LEXEMA");
+				Logger.log("+--------+-------------------------+--------------------------------------------------+");
 				
 				ALex alex = new ALex(args[0]);													
 				Token token = alex.obtenerToken();
 				while(token != null)
 				{	
-					Logger.log("|%-8s|%-16s|%-50s|", token.getLinea()+"",token.getTokenType().toString(), token.getLexema());
+					Logger.log("|%-8s|%-25s|%-50s|", token.getLinea()+"",token.getTokenType().toString(), token.getLexema());
 					token = alex.obtenerToken();														
 				} 
-				Logger.log("+--------+----------------+--------------------------------------------------+");				
+				Logger.log("+--------+-------------------------+--------------------------------------------------+");				
 			}			
 		}catch(ALexException al){
 			Logger.log(al.getMessage());

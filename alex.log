@@ -1,8 +1,167 @@
-TOKEN            | LEXEMA                           | LINEA   
--------------------------------------------------------------
-identifier       | asd                              | 1       
-int              | int                              | 2       
-identifier       | a                                | 2       
-=                | =                                | 2       
-intLiteral       | 8                                | 2       
-;                | ;                                | 2       
++--------+-------------------------+--------------------------------------------------+
+|LINEA   |TOKEN TYPE               |LEXEMA                                            |
++--------+-------------------------+--------------------------------------------------+
+|1       |ClassKeyword    |class                                             |
+|1       |Identifier      |alexTest                                          |
+|1       |ExtendsKeyword  |extends                                           |
+|1       |Identifier      |testBase                                          |
+|1       |OpenKeySymbol   |{                                                 |
+|5       |BooleanKeyword  |boolean                                           |
+|5       |Identifier      |_property1                                        |
+|5       |SemicolonSymbol |;                                                 |
+|6       |CharKeyword     |char                                              |
+|6       |Identifier      |c                                                 |
+|6       |AssignOperator  |=                                                 |
+|6       |CharLiteral     |'a'                                               |
+|6       |SemicolonSymbol |;                                                 |
+|9       |IntKeyword      |int                                               |
+|9       |Identifier      |property2                                         |
+|9       |SemicolonSymbol |;                                                 |
+|10      |StringKeyword   |String                                            |
+|10      |Identifier      |property3                                         |
+|10      |SemicolonSymbol |;                                                 |
+|11      |CharKeyword     |char                                              |
+|11      |Identifier      |property4                                         |
+|11      |SemicolonSymbol |;                                                 |
+|14      |StaticKeyword   |static                                            |
+|14      |VoidKeyword     |void                                              |
+|14      |Identifier      |method1                                           |
+|14      |OpenParenthesisSymbol|(                                                 |
+|14      |ClosedParenthesisSymbol|)                                                 |
+|14      |OpenKeySymbol   |{                                                 |
+|15      |ReturnKeyword   |return                                            |
+|15      |Identifier      |property1                                         |
+|15      |SemicolonSymbol |;                                                 |
+|16      |Identifier      |property4                                         |
+|16      |AssignOperator  |=                                                 |
+|16      |CharLiteral     |'c'                                               |
+|16      |SemicolonSymbol |;                                                 |
+|17      |IntLiteral      |3                                                 |
+|17      |PlusOperator    |+                                                 |
+|17      |IntLiteral      |4                                                 |
+|17      |SemicolonSymbol |;                                                 |
+|18      |IntLiteral      |4                                                 |
+|18      |RestOperator    |-                                                 |
+|18      |IntLiteral      |5                                                 |
+|18      |SemicolonSymbol |;                                                 |
+|19      |IntLiteral      |5                                                 |
+|19      |ModOperator     |%                                                 |
+|19      |IntLiteral      |5                                                 |
+|19      |SemicolonSymbol |;                                                 |
+|20      |IntLiteral      |5                                                 |
+|20      |DivisionOperator|/                                                 |
+|20      |IntLiteral      |7                                                 |
+|20      |SemicolonSymbol |;                                                 |
+|21      |IntLiteral      |2                                                 |
+|21      |LessOperator    |<                                                 |
+|21      |IntLiteral      |0                                                 |
+|21      |SemicolonSymbol |;                                                 |
+|22      |IntLiteral      |1                                                 |
+|22      |DistinctOperator|!=                                                |
+|22      |IntLiteral      |9                                                 |
+|22      |SemicolonSymbol |;                                                 |
+|23      |IntLiteral      |3                                                 |
+|23      |EqualOperator   |==                                                |
+|23      |IntLiteral      |0                                                 |
+|23      |SemicolonSymbol |;                                                 |
+|24      |IntLiteral      |3                                                 |
+|24      |LessOrEqualOperator|<=                                                |
+|24      |IntLiteral      |9                                                 |
+|24      |SemicolonSymbol |;                                                 |
+|25      |IntLiteral      |5                                                 |
+|25      |GratherOperator |>                                                 |
+|25      |IntLiteral      |9                                                 |
+|25      |SemicolonSymbol |;                                                 |
+|26      |IntLiteral      |7                                                 |
+|26      |GratherOrEqualOperator|>=                                                |
+|26      |IntLiteral      |9                                                 |
+|26      |SemicolonSymbol |;                                                 |
+|27      |BoolLiteral     |true                                              |
+|27      |AndOperator     |&&                                                |
+|27      |BoolLiteral     |false                                             |
+|27      |SemicolonSymbol |;                                                 |
+|28      |BoolLiteral     |false                                             |
+|28      |OrOperator      |||                                                |
+|28      |BoolLiteral     |true                                              |
+|28      |SemicolonSymbol |;                                                 |
+|30      |ClosedKeySymbol |}                                                 |
+|32      |DynamicKeyword  |dynamic                                           |
+|32      |StringKeyword   |String                                            |
+|32      |Identifier      |method2                                           |
+|32      |OpenParenthesisSymbol|(                                                 |
+|32      |ClosedParenthesisSymbol|)                                                 |
+|32      |OpenKeySymbol   |{                                                 |
+|33      |IfKeyword       |if                                                |
+|33      |OpenParenthesisSymbol|(                                                 |
+|33      |Identifier      |property1                                         |
+|33      |ClosedParenthesisSymbol|)                                                 |
+|33      |OpenKeySymbol   |{                                                 |
+|34      |ReturnKeyword   |return                                            |
+|34      |StringLiteral   |"Sarasa"                                          |
+|34      |SemicolonSymbol |;                                                 |
+|35      |ClosedKeySymbol |}                                                 |
+|36      |ElseKeyword     |else                                              |
+|36      |ReturnKeyword   |return                                            |
+|36      |StringLiteral   |"Sarasa Sarasa"                                   |
+|36      |SemicolonSymbol |;                                                 |
+|37      |ClosedKeySymbol |}                                                 |
+|39      |VoidKeyword     |void                                              |
+|39      |Identifier      |main                                              |
+|39      |OpenParenthesisSymbol|(                                                 |
+|39      |Identifier      |args                                              |
+|39      |Identifier      |args                                              |
+|39      |OpenClaspSymbol |[                                                 |
+|39      |ClosedClaspSymbol|]                                                 |
+|39      |ClosedParenthesisSymbol|)                                                 |
+|40      |VarKeyword      |var                                               |
+|40      |StringKeyword   |String                                            |
+|40      |Identifier      |string                                            |
+|40      |AssignOperator  |=                                                 |
+|40      |NullKeyword     |null                                              |
+|40      |SemicolonSymbol |;                                                 |
+|41      |VarKeyword      |var                                               |
+|41      |BooleanKeyword  |boolean                                           |
+|41      |Identifier      |seguir                                            |
+|41      |AssignOperator  |=                                                 |
+|41      |BoolLiteral     |true                                              |
+|41      |SemicolonSymbol |;                                                 |
+|42      |OpenKeySymbol   |{                                                 |
+|44      |WhileKeyword    |while                                             |
+|44      |OpenParenthesisSymbol|(                                                 |
+|44      |Identifier      |seguir                                            |
+|44      |ClosedParenthesisSymbol|)                                                 |
+|44      |OpenKeySymbol   |{                                                 |
+|46      |ForKeyword      |for                                               |
+|46      |OpenParenthesisSymbol|(                                                 |
+|46      |IntKeyword      |int                                               |
+|46      |Identifier      |i                                                 |
+|46      |AssignOperator  |=                                                 |
+|46      |IntLiteral      |0                                                 |
+|46      |SemicolonSymbol |;                                                 |
+|46      |Identifier      |i                                                 |
+|46      |LessOperator    |<                                                 |
+|46      |IntLiteral      |4                                                 |
+|46      |SemicolonSymbol |;                                                 |
+|46      |Identifier      |i                                                 |
+|46      |AssignOperator  |=                                                 |
+|46      |Identifier      |i                                                 |
+|46      |PlusOperator    |+                                                 |
+|46      |IntLiteral      |1                                                 |
+|46      |ClosedParenthesisSymbol|)                                                 |
+|47      |OpenKeySymbol   |{                                                 |
+|48      |Identifier      |string                                            |
+|48      |AssignOperator  |=                                                 |
+|48      |NewKeyword      |new                                               |
+|48      |StringKeyword   |String                                            |
+|48      |OpenParenthesisSymbol|(                                                 |
+|48      |ClosedParenthesisSymbol|)                                                 |
+|48      |SemicolonSymbol |;                                                 |
+|50      |ClosedKeySymbol |}                                                 |
+|51      |Identifier      |seguir                                            |
+|51      |AssignOperator  |=                                                 |
+|51      |BoolLiteral     |false                                             |
+|51      |SemicolonSymbol |;                                                 |
+|52      |ClosedKeySymbol |}                                                 |
+|53      |ClosedKeySymbol |}                                                 |
+|54      |ClosedKeySymbol |}                                                 |
++--------+-------------------------+--------------------------------------------------+
