@@ -58,13 +58,13 @@ public class ALex {
 	 * @throws ForbiddenWordException
 	 * @throws InvalidStringException
 	 * @throws ForbiddenOperatorException
-	 * @throws OutOfAlphabetException
+	 * @throws ForbiddenCharacterException
 	 * @throws UnclosedCommentException
 	 */
 	public ALex(String input) throws InvalidIdentifierException,
 			InvalidCharacterException, ForbiddenWordException,
 			InvalidStringException, ForbiddenOperatorException,
-			OutOfAlphabetException, UnclosedCommentException {
+			ForbiddenCharacterException, UnclosedCommentException {
 		try {
 
 			if (Application.isTesting)
@@ -91,14 +91,14 @@ public class ALex {
 	 * @throws ForbiddenWordException
 	 * @throws InvalidStringException
 	 * @throws ForbiddenOperatorException
-	 * @throws OutOfAlphabetException
+	 * @throws ForbiddenCharacterException
 	 * @throws UnclosedCommentException
 	 */
 	@org.junit.Test
 	public Token getToken() throws IOException, InvalidIdentifierException,
 			InvalidCharacterException, ForbiddenWordException,
 			InvalidStringException, ForbiddenOperatorException,
-			OutOfAlphabetException, UnclosedCommentException {
+			ForbiddenCharacterException, UnclosedCommentException {
 
 		if (last == 0)
 			last = getNextCharacter(); // Para la primera invocación.
@@ -159,7 +159,7 @@ public class ALex {
 
 			// Si llega acá, el caracter leído está fuera del alfabeto y se debe
 			// lanzar la excepción apropiada.
-			throw new OutOfAlphabetException((char) last, lineN);
+			throw new ForbiddenCharacterException((char) last, lineN);
 		}
 
 		return null; // No hay más tokens.
@@ -569,13 +569,13 @@ public class ALex {
 	 * @throws InvalidCharacterException
 	 * @throws ForbiddenWordException
 	 * @throws InvalidStringException
-	 * @throws OutOfAlphabetException
+	 * @throws ForbiddenCharacterException
 	 * @throws UnclosedCommentException
 	 */
 	protected Token e15() throws IOException, ForbiddenOperatorException,
 			InvalidIdentifierException, InvalidCharacterException,
 			ForbiddenWordException, InvalidStringException,
-			OutOfAlphabetException, UnclosedCommentException {
+			ForbiddenCharacterException, UnclosedCommentException {
 		Logger.verbose("Buscando: / (división), // o /* (comentarios)");
 
 		lexema += (char) last;
@@ -651,13 +651,13 @@ public class ALex {
 	 * @throws ForbiddenWordException
 	 * @throws InvalidStringException
 	 * @throws ForbiddenOperatorException
-	 * @throws OutOfAlphabetException
+	 * @throws ForbiddenCharacterException
 	 * @throws UnclosedCommentException
 	 */
 	protected Token c1() throws IOException, InvalidIdentifierException,
 			InvalidCharacterException, ForbiddenWordException,
 			InvalidStringException, ForbiddenOperatorException,
-			OutOfAlphabetException, UnclosedCommentException {
+			ForbiddenCharacterException, UnclosedCommentException {
 		Logger.verbose("Leyendo comentario de línea simple.");
 
 		lexema += (char) last;
@@ -685,13 +685,13 @@ public class ALex {
 	 * @throws ForbiddenWordException
 	 * @throws InvalidStringException
 	 * @throws ForbiddenOperatorException
-	 * @throws OutOfAlphabetException
+	 * @throws ForbiddenCharacterException
 	 * @throws UnclosedCommentException
 	 */
 	protected Token c2() throws IOException, InvalidIdentifierException,
 			InvalidCharacterException, ForbiddenWordException,
 			InvalidStringException, ForbiddenOperatorException,
-			OutOfAlphabetException, UnclosedCommentException {
+			ForbiddenCharacterException, UnclosedCommentException {
 		Logger.verbose("Leyendo comentario multilínea.");
 
 		lexema += (char) last;
@@ -715,13 +715,13 @@ public class ALex {
 	 * @throws ForbiddenWordException
 	 * @throws InvalidStringException
 	 * @throws ForbiddenOperatorException
-	 * @throws OutOfAlphabetException
+	 * @throws ForbiddenCharacterException
 	 * @throws UnclosedCommentException
 	 */
 	protected Token c3() throws IOException, InvalidIdentifierException,
 			InvalidCharacterException, ForbiddenWordException,
 			InvalidStringException, ForbiddenOperatorException,
-			OutOfAlphabetException, UnclosedCommentException {
+			ForbiddenCharacterException, UnclosedCommentException {
 		Logger.verbose("Leyendo comentario multilínea (encontrado *).");
 
 		lexema += (char) last;

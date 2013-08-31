@@ -17,7 +17,7 @@ import alex.exceptions.ForbiddenWordException;
 import alex.exceptions.InvalidCharacterException;
 import alex.exceptions.InvalidIdentifierException;
 import alex.exceptions.InvalidStringException;
-import alex.exceptions.OutOfAlphabetException;
+import alex.exceptions.ForbiddenCharacterException;
 import alex.exceptions.UnclosedCommentException;
 
 /**
@@ -328,7 +328,7 @@ public class ALexTest {
 		assertEquals("Result", null, t);
 	}
 	
-	@Test(expected = OutOfAlphabetException.class)
+	@Test(expected = ForbiddenCharacterException.class)
 	public void testInvalidInput() throws Exception {
 		ALex tester = new ALex("ñ");
 		Token t = tester.getToken();	
