@@ -271,7 +271,7 @@ public class ALex {
 	protected Token e3() throws IOException, InvalidCharacterException {
 		Logger.verbose("Buscando: charLiteral");
 
-		lexema += (char) last;
+		lexema += (char)last;
 		last = getNextCharacter();
 
 		// ^[\\|\n|\r|']
@@ -292,8 +292,8 @@ public class ALex {
 	 */
 	protected Token e4() throws IOException, InvalidCharacterException {
 		Logger.verbose("Buscando: charLiteral (esperando cierre de comilla)");
-
-		lexema += (char) last;
+			
+		lexema += (char) last;		
 		last = getNextCharacter();
 
 		// '
@@ -318,15 +318,18 @@ public class ALex {
 	protected Token e5() throws IOException, InvalidCharacterException {
 		Logger.verbose("Buscando: charLiteral (caso caracter especial)");
 
-		// <-- nótese que no agrego al lexema la barra leída anteriormente.
+		// <-- nótese que no agrego al lexema la barra leída anteriormente.		
 		last = getNextCharacter();
-
-		if (last == 110)
+		
+		if (last == 110){			
 			last = (char) 10; // \n: LF
-		if (last == 116)
+		}
+		if (last == 116){			
 			last = (char) 9; // \t: TAB
-		if (last == 114)
+		}
+		if (last == 114){			
 			last = (char) 13; // \r: CR
+		}
 
 		return e4();
 	}
