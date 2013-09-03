@@ -106,6 +106,14 @@ public class ALexTest {
 		assertEquals("Result", "'\t'", t.getLexema());	
 	}
 	
+	@Test
+	public void testCharLiteral3() throws Exception {
+		ALex tester = new ALex("'\\''");
+		Token t = tester.getToken();		
+		assertEquals("Result", TokenType.CharLiteral, t.getTokenType());
+		assertEquals("Result", "'''", t.getLexema());	
+	}
+	
 	@Test(expected = InvalidCharacterException.class)
 	public void testInvalidCharLiteral1() throws Exception {
 		ALex tester = new ALex("'\'");

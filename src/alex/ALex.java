@@ -746,4 +746,10 @@ public class ALex {
 			return c2();
 	}
 
+	
+
+	public int getLineN() {
+		return lineN;
+	}
+
 }
