@@ -321,7 +321,7 @@ public class ASint {
 	
 	private void listaArgsFormalesQ() throws UnexpectedTokenException {
 		depth++;
-		Logger.log(depth + "-> Iniciando <ListaArgsFormalesQ>");
+		Logger.log(depth + "-> Iniciando <ListaArgsFormales?>");
 		
 		getToken(); 
 		reuseToken();
@@ -337,7 +337,7 @@ public class ASint {
 		else if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
 			listaArgsFormales();
 		
-		Logger.log("<-" + depth + " Fin <ListaArgsFormalesQ>");
+		Logger.log("<-" + depth + " Fin <ListaArgsFormales?>");
 		depth--;	
 	}
 
@@ -454,13 +454,6 @@ public class ASint {
 	}
 
 
-
-	private void sentenciaStar() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	private void ctor() throws UnexpectedTokenException {
 		depth++;
 		Logger.log(depth + "-> Iniciando <Ctor>");
@@ -478,7 +471,7 @@ public class ASint {
 
 	private void atributoStar() throws UnexpectedTokenException {
 		depth++;
-		Logger.log(depth + "-> Iniciando <AtributoStar>");
+		Logger.log(depth + "-> Iniciando <Atributo*>");
 		
 		getToken(); 
 		reuseToken();
@@ -488,7 +481,7 @@ public class ASint {
 		}
 		// else lambda
 		
-		Logger.log("<-" + depth + " Fin <AtributoStar>");	
+		Logger.log("<-" + depth + " Fin <Atributo*>");	
 	    depth--;
 	}
 
@@ -605,6 +598,68 @@ public class ASint {
 	    depth--;			
 	}
 	
+
+	private void sentenciaStar() throws UnexpectedTokenException {
+		depth++;
+		Logger.log(depth + "-> Iniciando <Sentencia*>");
+		
+		getToken(); 
+		reuseToken();
+		if(curr.getTokenType() != TokenType.ClosedKeySymbol) { // Follow(Sentencia*)
+			sentencia();
+			sentenciaStar();
+		}
+		
+		Logger.log("<-" + depth + " Fin <Sentencia*>");	
+	    depth--;	
+	}
+
+
+	private void sentencia() throws UnexpectedTokenException {
+		depth++;
+		Logger.log(depth + "-> Iniciando <Sentencia>");
+		
+		getToken(); 
+
+		if(curr.getTokenType() == TokenType.SemicolonSymbol) {
+
+		}
+		else if(curr.getTokenType() == TokenType.Identifier) {
+			reuseToken();
+			asignacion();
+			
+			getToken();
+			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
+				throw new UnexpectedTokenException("(!) Error, se esperaba ; después de asignación en línea " + curr.getLinea());			
+			}
+		}
+		else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol) {
+			reuseToken();
+			sentenciaSimple();
+			
+			getToken();
+			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
+				throw new UnexpectedTokenException("(!) Error, se esperaba ; después de sentencia simple en línea " + curr.getLinea());			
+			}
+		}
+		// (sigue...)
+		
+		Logger.log("<-" + depth + " Fin <Sentencia>");	
+	    depth--;			
+	}
+
+
+	private void sentenciaSimple() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private void asignacion() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	public static void main(String args[])
 	{		
