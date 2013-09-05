@@ -31,11 +31,13 @@ public class ASint {
 	private int depth; // Profundidad de llamadas
 	
 	
-	public ASint(String archivo)
+	public ASint(String archivo) throws UnexpectedTokenException
 	{
 		depth = 0;
 		
 		try {
+			Logger.log("\n\n*** Iniciando " + archivo + " ***");
+			
 			alex = new ALex(archivo);
 			
 			inicial();			
@@ -43,11 +45,7 @@ public class ASint {
 		} // Atrapo las excepciones previamente definidas en el analizador lexico
 		  catch (ALexException e) {
 			Logger.log("\n"+e.getMessage());
-		} // De aqui en adelante, excepciones correspondientes al analizador sintactico
-		  catch (Exception e) {
-			//  e.printStackTrace();
-			System.out.println("\n"+e.getMessage());
-		}
+		} 
 	}
 	
 	
@@ -802,6 +800,11 @@ public class ASint {
 	{		
 		Application.Initialize(args);
 		
-		new ASint("C:\\prueba.txt");
+		try {
+			new ASint("C:\\prueba.txt");
+		} catch (UnexpectedTokenException e) {
+			Logger.log(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 }
