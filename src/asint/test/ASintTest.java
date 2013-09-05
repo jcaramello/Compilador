@@ -42,9 +42,10 @@ public class ASintTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
+			   { "correcto_full.test", null },
 			   { "correcto1.test", null },
 			   { "correcto2.test", null },
-			   { "incorrecto1.test", "(!) Error, se esperaba identificador en línea 1" }
+			   { "incorrecto_classSinNombre.test", "(!) Error, se esperaba identificador en línea 3" }
 	   });
 	}
 	

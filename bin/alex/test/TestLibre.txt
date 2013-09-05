@@ -1,7 +1,0 @@
-asd 123
-null boolean int
-true ; ( ] { xcvxcvxcv != 32
-{ bloque = - * //nada
-}; /* no_es_un_identificador */ este_si
-3^5-123126368*(pom)%return.super.prueba[];
-if x then y else z;
