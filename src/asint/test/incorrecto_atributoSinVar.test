@@ -1,0 +1,5 @@
+// Atributo de clase sin especificar "var"
+
+class a {
+	int b;
+}

@@ -1,0 +1,9 @@
+// Método sin modificador (static o dynamic)
+
+class a {
+	
+	char asd(int a) 
+	var String b; 
+	{ }
+	
+}

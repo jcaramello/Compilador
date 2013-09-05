@@ -1,0 +1,6 @@
+// Atributo de clase sin punto y coma
+
+class a {
+	var int a
+	var String b;
+}

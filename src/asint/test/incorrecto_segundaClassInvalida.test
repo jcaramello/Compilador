@@ -1,0 +1,8 @@
+// Segunda clase no válida (i.e. se espera otro class)
+
+class a {
+var int b;
+
+}
+
+void // ?!

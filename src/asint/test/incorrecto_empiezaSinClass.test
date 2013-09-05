@@ -1,0 +1,4 @@
+// Archivo que empieza sin un token class
+
+int
+class x { }

@@ -1,0 +1,5 @@
+// Lista de atributos de clase mal formada
+
+class a {
+	var int a ,, b;
+}

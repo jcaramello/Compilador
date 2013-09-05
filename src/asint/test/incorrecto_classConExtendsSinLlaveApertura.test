@@ -1,0 +1,4 @@
+// Clase con palabra clave extends, sin llave de apertura
+
+class a extends b
+var int c;

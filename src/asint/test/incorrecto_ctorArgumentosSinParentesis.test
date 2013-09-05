@@ -1,0 +1,5 @@
+// Constructor sin abrir paréntesis para indicar argumentos
+
+class a {
+	ctor int a, int b { }
+}

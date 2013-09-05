@@ -752,7 +752,7 @@ public class ASint {
 		}
 		
 		getToken();
-		if(curr.getTokenType() != TokenType.EqualOperator) {
+		if(curr.getTokenType() != TokenType.AssignOperator) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba = en asignación, en línea " + curr.getLinea());					
 		}
 		

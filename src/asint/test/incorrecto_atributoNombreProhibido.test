@@ -1,0 +1,5 @@
+// Atributo de clase con nombre prohibido
+
+class a {
+	var int class; 
+}

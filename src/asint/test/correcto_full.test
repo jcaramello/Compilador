@@ -1,0 +1,37 @@
+class clase1 extends clase2 { 
+	var int varClase1, varClase2;
+	var String varClase3;
+	var boolean varClase4;
+	var char varClase5;
+	var tipo varClase6;
+	
+	ctor () { }
+	
+	ctor (persona x) 
+	var char local1;
+	{ 
+		// bloque
+	}
+	
+	static int met(int a, String b)
+		var char c;
+		var type b, d, e;
+		{
+			;
+			asd = ;  // faltan expresiones
+			( ); 
+			if( ) a = ; 
+			if( ) a = ; else ( );
+			while( ) { asd = ; }
+			
+			for ( b = ; ; ) {
+				;
+				( );
+				if( ) b = ;
+				for (c = ; ; ) { }
+			} 
+			 
+		}
+}
+
+class clase3 { }
