@@ -1,0 +1,5 @@
+// Lista de atributos de clase mal formada: intentando usar una palabra prohibida como segundo atributo
+
+class a {
+	var int a , boolean;
+}

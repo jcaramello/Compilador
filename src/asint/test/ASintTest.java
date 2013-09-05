@@ -54,6 +54,7 @@ public class ASintTest {
 			   { "incorrecto_atributoNombreProhibido.test", "(!) Error, se esperaba identificador (nombre de variable), en línea 4" },
 			   { "incorrecto_atributoSinPuntoYComa.test", "(!) Error, se esperaba , o ; en línea 5" },
 			   { "incorrecto_listaAtributosMalFormada.test", "(!) Error, se esperaba identificador (nombre de variable) en línea 4" },
+			   { "incorrecto_listaAtributosMalFormada2.test", "(!) Error, se esperaba identificador (nombre de variable) en línea 4" }, 
 			   { "incorrecto_ctorArgumentosSinParentesis.test", "(!) Error, se esperaba ( abriendo lista de argumentos formales en línea 4" },
 			   { "incorrecto_ctorArgumentosSinTipo.test", "(!) Error, se esperaba identificador (nombre de argumento formal), en línea 4" }, // Obviamente interpreta el supuesto nombre de la variable como tipo no primitivo
 			   { "incorrecto_variableLocalSinVar.test", "(!) Error, se esperaba var (para variables locales) o { para apertura de bloque en línea 5" }, 
@@ -61,6 +62,11 @@ public class ASintTest {
 			   { "incorrecto_metodoSinBloque.test", "(!) Error, se esperaba var en línea 8" }, 
 			   { "incorrecto_metodoSinMod.test", "(!) Error, se esperaba atributo, constructor, método o } en línea 5" }, 
 			   { "incorrecto_segundaClassInvalida.test", "(!) Error, se esperaba class en línea 8" }, 
+			   { "incorrecto_tokenInvalidoEnClass.test", "(!) Error, se esperaba atributo, constructor, método o } en línea 5" },
+			   { "incorrecto_variableVoid.test", "(!) Error, se esperaba boolean, int, char, String o identificador de tipo después de var, en línea 4" },
+			   { "incorrecto_metodoSinNada.test", "(!) Error, se esperaba var (para variables locales) o { para apertura de bloque en línea 7" },
+			  
+				 
 			   
 	   });
 	}

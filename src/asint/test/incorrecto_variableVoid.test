@@ -1,0 +1,5 @@
+// Variable de tipo void
+
+class a {
+	var void a;
+}

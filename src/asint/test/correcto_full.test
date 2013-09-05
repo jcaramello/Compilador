@@ -32,6 +32,10 @@ class clase1 extends clase2 {
 			} 
 			 
 		}
+		
+	dynamic void met2()
+	{
+	}
 }
 
 class clase3 { }

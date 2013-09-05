@@ -1,0 +1,7 @@
+// Método sin variables locales ni bloque
+
+class a {
+	
+	dynamic void a() 
+	
+}

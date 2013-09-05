@@ -1,0 +1,7 @@
+// Token inválido dentro de class
+
+class a {
+
+	; // inválido
+	var int a;
+}

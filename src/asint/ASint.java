@@ -236,7 +236,7 @@ public class ASint {
 		
 		getToken();
 		reuseToken();
-		if(curr.getTokenType() != TokenType.StaticKeyword &&
+		if(curr.getTokenType() != TokenType.StaticKeyword &&		// Nunca salta
 				curr.getTokenType() != TokenType.DynamicKeyword)
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba modificador de método (static o dynamic) en línea " + curr.getLinea());
