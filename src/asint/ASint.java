@@ -784,16 +784,215 @@ public class ASint {
 	}
 
 	
-	private void expressionQ() {
-		// TODO Auto-generated method stub
+	private void expressionQ() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <Expression?>");			
+				
+		expressionOr();
+		expressionAux();		
 		
+		Logger.log("<-" + depth + " Fin <Expression?>");	
+	    depth--;
+	}
+	
+	private void expression() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <Expression?>");			
+				
+		expressionOr();
+		expressionAux();		
+		
+		Logger.log("<-" + depth + " Fin <Expression?>");	
+	    depth--;
+	}
+	
+	private void expressionAux() throws UnexpectedTokenException{
+		depth++	;
+		Logger.log(depth + "-> Iniciando <ExpressionAux>");
+		 
+		getToken();			
+		
+		if(curr.getTokenType() == TokenType.OrOperator){
+			expressionOr();
+			expressionAux();
+		}
+		else throw new UnexpectedTokenException("(!) Error, se esperaba || en línea " + curr.getLinea());
+		
+		Logger.log("<-" + depth + " Fin <ExpressionAux>");	
+	    depth--;
+	}
+	
+	private void expressionOr() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <ExpressionAux>");
+			
+		expressionAnd();
+		expressionOrAux();	
+		
+		Logger.log("<-" + depth + " Fin <ExpressionAux>");	
+	    depth--;
+	}
+	
+	private void expressionOrAux()throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <ExpressionOrAux>");
+		 
+		getToken();
+		
+		if(curr.getTokenType() == TokenType.AndOperator){
+			expressionAnd();
+			expressionOrAux();
+		}
+		else throw new UnexpectedTokenException("(!) Error, se esperaba && en línea " + curr.getLinea());
+		
+		Logger.log("<-" + depth + " Fin <ExpressionOrAux>");	
+	    depth--;
+	}
+	
+	private void expressionAnd(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <ExpressionAnd>");
+		 	
+		expressionComp();
+		expressionAndAux();		
+		
+		Logger.log("<-" + depth + " Fin <ExpressionAnd>");	
+	    depth--;
+	}	
+	
+	private void expressionAndAux(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <ExpressionAndAux>");
+		 	
+		getToken();
+		if(curr.getTokenType() == TokenType.DistinctOperator || curr.getTokenType() == TokenType.EqualOperator ){
+			expressionComp();
+			expressionAndAux();
+		}				
+		
+		Logger.log("<-" + depth + " Fin <ExpressionAndAux>");	
+	    depth--;
+	}
+	
+	private void expressionComp(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <ExpressionComp>");
+		
+		expressionSR();
+		expressionCompAux();
+		
+		Logger.log("<-" + depth + " Fin <ExpressionComp>");	
+	    depth--;
+	}
+	
+	private void expressionCompAux(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <ExpressionCompAux>");
+	
+		getToken();
+		
+		if(curr.getTokenType() == TokenType.GratherOrEqualOperator ||
+		   curr.getTokenType() == TokenType.LessOrEqualOperator ||
+		   curr.getTokenType() == TokenType.GratherOperator ||
+		   curr.getTokenType() == TokenType.LessOperator){
+			
+			expressionSR();
+			expressionCompAux();
+		}
+		
+		Logger.log("<-" + depth + " Fin <ExpressionCompAux>");	
+	    depth--;
+	}		
+	
+	private void expressionSR(){		
+		depth++;
+		Logger.log(depth + "-> Iniciando <ExpressionSR>");
+	
+		termino();
+		expressionSRAux();
+		
+		Logger.log("<-" + depth + " Fin <ExpressionSR>");	
+	    depth--;
+	}
+	
+	private void expressionSRAux(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <ExpressionSRAux>");
+	
+		getToken();
+		if(curr.getTokenType() == TokenType.PlusOperator ||
+		   curr.getTokenType() == TokenType.RestOperator){
+			termino();
+			expressionSRAux();
+		}
+		
+		Logger.log("<-" + depth + " Fin <ExpressionSRAux>");	
+	    depth--;
+	}
+	
+	private void termino(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <Termino>");
+	
+		factor();
+		terminoAux();
+		
+		Logger.log("<-" + depth + " Fin <Termino>");	
+	    depth--;
 	}
 
-	private void expression() {
-		// TODO Auto-generated method stub
+	private void terminoAux(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <TerminoAux>");
+	
+		getToken();
 		
+		if(curr.getTokenType() == TokenType.MultiplierOperator ||
+		   curr.getTokenType() == TokenType.DivisionOperator ||
+		   curr.getTokenType() == TokenType.ModOperator){
+			
+			factor();
+			terminoAux();
+		}
+		
+		Logger.log("<-" + depth + " Fin <TerminoAux>");	
+	    depth--;
 	}
-
+	
+	private void factor(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <Factor>");
+	
+		getToken();
+		
+		if(curr.getTokenType() == TokenType.NotOperator ||
+		   curr.getTokenType() == TokenType.PlusOperator ||
+		   curr.getTokenType() == TokenType.RestOperator){
+			factor();
+			
+		}else {
+			reuseToken();
+			primario();
+		}
+		
+		Logger.log("<-" + depth + " Fin <Factor>");	
+	    depth--;
+	}
+	
+	private void primario(){
+		depth++;
+		Logger.log(depth + "-> Iniciando <Primario>");
+	
+		getToken();
+		
+		if(curr.getTokenType() == TokenType.ThisKeyword){
+			
+		}//else if()
+		
+		
+		Logger.log("<-" + depth + " Fin <Primario>");	
+	    depth--;
+	}
 
 
 	public static void main(String args[])
