@@ -788,8 +788,12 @@ public class ASint {
 		depth++;
 		Logger.log(depth + "-> Iniciando <Expression?>");			
 				
-		expressionOr();
-		expressionAux();		
+		getToken();		
+		
+		if(!ASintHelper.isFollowExpressionQ(curr)){					
+			reuseToken();
+			expression();				
+		}
 		
 		Logger.log("<-" + depth + " Fin <Expression?>");	
 	    depth--;
@@ -815,8 +819,9 @@ public class ASint {
 		if(curr.getTokenType() == TokenType.OrOperator){
 			expressionOr();
 			expressionAux();
-		}
-		else throw new UnexpectedTokenException("(!) Error, se esperaba || en línea " + curr.getLinea());
+		}else if(!ASintHelper.isFollowExpressionAux(curr))	{	
+				throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+		}else reuseToken();
 		
 		Logger.log("<-" + depth + " Fin <ExpressionAux>");	
 	    depth--;
@@ -843,13 +848,15 @@ public class ASint {
 			expressionAnd();
 			expressionOrAux();
 		}
-		else throw new UnexpectedTokenException("(!) Error, se esperaba && en línea " + curr.getLinea());
+		else if(!ASintHelper.isFollowExpressionOrAux(curr)){
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+		}else reuseToken();
 		
 		Logger.log("<-" + depth + " Fin <ExpressionOrAux>");	
 	    depth--;
 	}
 	
-	private void expressionAnd(){
+	private void expressionAnd()throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <ExpressionAnd>");
 		 	
@@ -860,7 +867,7 @@ public class ASint {
 	    depth--;
 	}	
 	
-	private void expressionAndAux(){
+	private void expressionAndAux() throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <ExpressionAndAux>");
 		 	
@@ -868,13 +875,15 @@ public class ASint {
 		if(curr.getTokenType() == TokenType.DistinctOperator || curr.getTokenType() == TokenType.EqualOperator ){
 			expressionComp();
 			expressionAndAux();
-		}				
+		}else if(!ASintHelper.isFollowExpressionAndAux(curr)){
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+		}else reuseToken();
 		
 		Logger.log("<-" + depth + " Fin <ExpressionAndAux>");	
 	    depth--;
 	}
 	
-	private void expressionComp(){
+	private void expressionComp()throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <ExpressionComp>");
 		
@@ -885,7 +894,7 @@ public class ASint {
 	    depth--;
 	}
 	
-	private void expressionCompAux(){
+	private void expressionCompAux() throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <ExpressionCompAux>");
 	
@@ -898,13 +907,15 @@ public class ASint {
 			
 			expressionSR();
 			expressionCompAux();
-		}
+		}else if(!ASintHelper.isFollowExpressionCompAux(curr)){
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+		}else reuseToken();
 		
 		Logger.log("<-" + depth + " Fin <ExpressionCompAux>");	
 	    depth--;
 	}		
 	
-	private void expressionSR(){		
+	private void expressionSR()throws UnexpectedTokenException{		
 		depth++;
 		Logger.log(depth + "-> Iniciando <ExpressionSR>");
 	
@@ -915,7 +926,7 @@ public class ASint {
 	    depth--;
 	}
 	
-	private void expressionSRAux(){
+	private void expressionSRAux()throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <ExpressionSRAux>");
 	
@@ -924,13 +935,15 @@ public class ASint {
 		   curr.getTokenType() == TokenType.RestOperator){
 			termino();
 			expressionSRAux();
-		}
+		}else if(!ASintHelper.isFollowExpressionSRAux(curr)){	
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+		}else reuseToken();
 		
 		Logger.log("<-" + depth + " Fin <ExpressionSRAux>");	
 	    depth--;
 	}
 	
-	private void termino(){
+	private void termino()throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <Termino>");
 	
@@ -941,7 +954,7 @@ public class ASint {
 	    depth--;
 	}
 
-	private void terminoAux(){
+	private void terminoAux()throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <TerminoAux>");
 	
@@ -953,7 +966,9 @@ public class ASint {
 			
 			factor();
 			terminoAux();
-		}
+		}else if(!ASintHelper.isFollowTermino(curr)){
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+		}else reuseToken();
 		
 		Logger.log("<-" + depth + " Fin <TerminoAux>");	
 	    depth--;
