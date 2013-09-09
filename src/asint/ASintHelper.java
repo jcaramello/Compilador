@@ -43,6 +43,41 @@ public class ASintHelper {
 			   t.getTokenType() == TokenType.RestOperator ||
 			   isFollowExpressionSRAux(t);
 	}
+			
+	public static boolean isFollowLlamadaStar(Token t){
+		return t.getTokenType() == TokenType.MultiplierOperator ||
+			   t.getTokenType() == TokenType.DivisionOperator ||
+			   t.getTokenType() == TokenType.ModOperator ||
+			   isFollowTermino(t);
+	}
+	
+	public static boolean isFollowListaExpsFact(Token t){
+		return t.getTokenType() == TokenType.ClosedParenthesisSymbol;
+	}
+	
+	public static boolean isLiteral(Token t){
+		TokenType type = t.getTokenType();
+		return type == TokenType.NullKeyword || 
+			   type == TokenType.BooleanLiteral ||
+			   type == TokenType.IntigerLiteral ||
+			   type == TokenType.CharLiteral ||
+			   type == TokenType.StringLiteral;
+	}
 	
 	
+	public static boolean isFirstListaExps(Token t){
+		return t.getTokenType() == TokenType.DistinctOperator ||
+			   t.getTokenType() == TokenType.PlusOperator ||
+			   t.getTokenType() == TokenType.RestOperator ||
+			   isFirstPrimario(t);
+	}
+	
+	public static boolean isFirstPrimario(Token t){
+		return t.getTokenType() == TokenType.ThisKeyword ||
+			   isLiteral(t) ||
+			   t.getTokenType() == TokenType.OpenParenthesisSymbol ||
+			   t.getTokenType() == TokenType.Identifier ||
+			   t.getTokenType() == TokenType.NewKeyword ||
+			   t.getTokenType() == TokenType.DotSymbol;
+	}
 }

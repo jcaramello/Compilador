@@ -974,7 +974,7 @@ public class ASint {
 	    depth--;
 	}
 	
-	private void factor(){
+	private void factor()throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <Factor>");
 	
@@ -994,22 +994,161 @@ public class ASint {
 	    depth--;
 	}
 	
-	private void primario(){
+	private void primario() throws UnexpectedTokenException{
 		depth++;
 		Logger.log(depth + "-> Iniciando <Primario>");
 	
 		getToken();
 		
-		if(curr.getTokenType() == TokenType.ThisKeyword){
+		if(curr.getTokenType() == TokenType.ThisKeyword || ASintHelper.isLiteral(curr)){
 			
-		}//else if()
-		
+		}else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){
+			
+			expression();
+			getToken();
+			if(curr.getTokenType() == TokenType.ClosedParenthesisSymbol)
+				llamadaStar();
+			else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			
+		}else if(curr.getTokenType() == TokenType.Identifier){			
+			primarioFact();			
+		}else if(curr.getTokenType() == TokenType.NewKeyword){
+			getToken();
+			if(curr.getTokenType() == TokenType.Identifier){
+				argsActuales();
+				llamadaStar();
+			}
+		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 		
 		Logger.log("<-" + depth + " Fin <Primario>");	
 	    depth--;
 	}
+	
+	
+	private void primarioFact() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <PrimarioFact>");
+	
+		getToken();
+		reuseToken();
+		
+		if(curr.getTokenType() == TokenType.DotSymbol){				
+			llamadaStar();	
+		}else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){			
+			argsActuales();
+			llamadaStar();
+		} 
+		else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		
+		Logger.log("<-" + depth + " Fin <PrimarioFact>");	
+	    depth--;
+	}
+	
+	private void llamadaStar() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <Llamada*>");
+	
+		getToken();
+		
+		if(curr.getTokenType() == TokenType.DotSymbol){
+			reuseToken();
+			llamada();
+			llamadaStar();
+		
+		}else if(!ASintHelper.isFollowLlamadaStar(curr))
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		
+		Logger.log("<-" + depth + " Fin <Llamada*>");	
+	    depth--;
+	}
 
-
+	private void llamada() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <Llamada>");
+	
+		getToken();
+		
+		if(curr.getTokenType() == TokenType.DotSymbol){
+			getToken();
+			if(curr.getTokenType() == TokenType.Identifier){
+				argsActuales();
+			}throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+		
+		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		
+		Logger.log("<-" + depth + " Fin <Llamada>");	
+	    depth--;
+	}
+	
+	private void argsActuales() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <ArgsActuales>");
+	
+		getToken();
+		
+		if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){
+			listaExpsQ();
+		
+		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		
+		Logger.log("<-" + depth + " Fin <ArgsActuales>");	
+	    depth--;
+	}
+	
+	private void listaExpsQ() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <listaExps?>");
+	
+		getToken();
+		
+		if(ASintHelper.isFirstListaExps(curr)){
+			reuseToken();
+			ListaExps();
+			getToken();
+			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
+				throw new UnexpectedTokenException("(!) Error, Se esperaba "+ curr.getLexema() +" en línea " + curr.getLinea());
+				
+		}else if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		
+		Logger.log("<-" + depth + " Fin <listaExps?>");	
+	    depth--;
+	}
+	
+	private void listaExps() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <listaExps>");
+	
+		getToken();
+		
+		if(ASintHelper.isFirstListaExps(curr)){
+			reuseToken();
+			expressionOr();
+			expressionAux();
+			listaExpsFact();
+				
+		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		
+		Logger.log("<-" + depth + " Fin <listaExps>");	
+	    depth--;
+	}
+	
+	private void listaExpsFact() throws UnexpectedTokenException{
+		depth++;
+		Logger.log(depth + "-> Iniciando <listaExpsFact>");
+	
+		getToken();
+		
+		if(curr.getTokenType() == TokenType.ComaSymbol){			
+			listaExps();
+				
+		}else if(!ASintHelper.isFollowListaExpsFact(curr)) 
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		
+		Logger.log("<-" + depth + " Fin <listaExpsFact>");	
+	    depth--;
+	}
+	
 	public static void main(String args[])
 	{		
 		Application.Initialize(args);
