@@ -1051,13 +1051,13 @@ public class ASint {
 	
 		getToken();
 		
-		if(curr.getTokenType() == TokenType.DotSymbol){
-			reuseToken();
+		if(curr.getTokenType() == TokenType.DotSymbol){			
 			llamada();
 			llamadaStar();
 		
 		}else if(!ASintHelper.isFollowLlamadaStar(curr))
 			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		else reuseToken();
 		
 		Logger.log("<-" + depth + " Fin <Llamada*>");	
 	    depth--;

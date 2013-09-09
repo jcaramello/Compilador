@@ -53,7 +53,7 @@ public class ASintHelper {
 		return t.getTokenType() == TokenType.MultiplierOperator ||
 				   t.getTokenType() == TokenType.DivisionOperator ||
 				   t.getTokenType() == TokenType.ModOperator ||
-				   isFollowTermino(t);
+				   isFollowTerminoAux(t);
 	}
 			
 	public static boolean isFollowLlamadaStar(Token t){
