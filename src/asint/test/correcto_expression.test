@@ -1,0 +1,13 @@
+class expressionTest{
+
+var int x;
+var int y;
+var boolean bool;
+
+ctor () 
+	var int r;
+	{ 
+		r = 4 + (x * 5) - y;
+		bool = r >= 10;
+	}
+}

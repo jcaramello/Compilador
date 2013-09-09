@@ -9,8 +9,13 @@ public class ASintHelper {
 		return t.getTokenType() == TokenType.SemicolonSymbol;
 	}
 	
+	public static boolean isFollowExpression(Token t){
+		return t.getTokenType() == TokenType.ClosedParenthesisSymbol ||
+			   isFollowExpressionQ(t);
+	}
+	
 	public static boolean isFollowExpressionAux(Token t){
-		return isFollowExpressionQ(t) ||
+		return isFollowExpression(t) ||
 			   t.getTokenType() == TokenType.OpenParenthesisSymbol;
 	}
 	
@@ -43,6 +48,13 @@ public class ASintHelper {
 			   t.getTokenType() == TokenType.RestOperator ||
 			   isFollowExpressionSRAux(t);
 	}
+	
+	public static boolean isFollowFactor(Token t){
+		return t.getTokenType() == TokenType.MultiplierOperator ||
+				   t.getTokenType() == TokenType.DivisionOperator ||
+				   t.getTokenType() == TokenType.ModOperator ||
+				   isFollowTermino(t);
+	}
 			
 	public static boolean isFollowLlamadaStar(Token t){
 		return t.getTokenType() == TokenType.MultiplierOperator ||
@@ -50,6 +62,10 @@ public class ASintHelper {
 			   t.getTokenType() == TokenType.ModOperator ||
 			   isFollowTermino(t);
 	}
+	
+	public static boolean isFollowTerminoAux(Token t){
+		return isFollowTermino(t);
+		}
 	
 	public static boolean isFollowListaExpsFact(Token t){
 		return t.getTokenType() == TokenType.ClosedParenthesisSymbol;

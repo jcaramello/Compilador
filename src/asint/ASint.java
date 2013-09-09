@@ -966,7 +966,7 @@ public class ASint {
 			
 			factor();
 			terminoAux();
-		}else if(!ASintHelper.isFollowTermino(curr)){
+		}else if(!ASintHelper.isFollowTerminoAux(curr)){
 			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		}else reuseToken();
 		
@@ -1038,8 +1038,9 @@ public class ASint {
 			argsActuales();
 			llamadaStar();
 		} 
-		else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
-		
+		else if(!ASintHelper.isFollowFactor(curr))
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+				
 		Logger.log("<-" + depth + " Fin <PrimarioFact>");	
 	    depth--;
 	}
@@ -1074,11 +1075,11 @@ public class ASint {
 				argsActuales();
 			}throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
-		}		
+		}else if(curr.getTokenType() != TokenType.DotSymbol)
+			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
 		Logger.log("<-" + depth + " Fin <Llamada>");	
-	    depth--;
-	    throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+	    depth--;	    
 	}
 	
 	private void argsActuales() throws UnexpectedTokenException{
