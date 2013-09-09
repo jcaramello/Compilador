@@ -1037,7 +1037,7 @@ public class ASint {
 		}else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){			
 			argsActuales();
 			llamadaStar();
-		} 
+		} 				
 		else if(!ASintHelper.isFollowFactor(curr))
 			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 				
@@ -1052,6 +1052,7 @@ public class ASint {
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.DotSymbol){			
+			reuseToken();
 			llamada();
 			llamadaStar();
 		
@@ -1071,9 +1072,9 @@ public class ASint {
 		
 		if(curr.getTokenType() == TokenType.DotSymbol){
 			getToken();
-			if(curr.getTokenType() == TokenType.Identifier){
+			if(curr.getTokenType() == TokenType.Identifier){				
 				argsActuales();
-			}throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
 		}else if(curr.getTokenType() != TokenType.DotSymbol)
 			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());

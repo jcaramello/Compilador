@@ -18,7 +18,7 @@ class clase1 extends clase2 {
 		var type b, d, e;
 		{
 			;
-			asd = ;  // faltan expresiones
+			asd = 3 + b;  // faltan expresiones
 			( ); 
 			if( ) a = ; 
 			if( ) a = ; else ( );
