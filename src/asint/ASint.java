@@ -1074,10 +1074,11 @@ public class ASint {
 				argsActuales();
 			}throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
-		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		}		
 		
 		Logger.log("<-" + depth + " Fin <Llamada>");	
 	    depth--;
+	    throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 	}
 	
 	private void argsActuales() throws UnexpectedTokenException{
@@ -1103,7 +1104,7 @@ public class ASint {
 		
 		if(ASintHelper.isFirstListaExps(curr)){
 			reuseToken();
-			ListaExps();
+			listaExps();
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
 				throw new UnexpectedTokenException("(!) Error, Se esperaba "+ curr.getLexema() +" en línea " + curr.getLinea());
