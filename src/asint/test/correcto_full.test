@@ -19,16 +19,13 @@ class clase1 extends clase2 {
 		{
 			;
 			asd = 3 + b;  // faltan expresiones
-			( ); 
-			if( ) a = ; 
-			if( ) a = ; else ( );
-			while( ) { asd = ; }
+			( 3 +5 ); 
+			if( a > 9) a =( x * y ) % 2 == 0; 
+			if( x == y ) a = false; else a = true;
+			while( a == true) { asd = asd + 1; }
 			
-			for ( b = ; ; ) {
-				;
-				( );
-				if( ) b = ;
-				for (c = ; ; ) { }
+			for ( b = 1; b<10; b +1 ) {
+				a = 3 + a;								
 			} 
 			 
 		}

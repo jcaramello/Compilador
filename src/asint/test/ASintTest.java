@@ -42,7 +42,7 @@ public class ASintTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   /*{ "correcto_full.test", null },
+			   { "correcto_full.test", null },
 			   { "correcto1.test", null },
 			   { "correcto2.test", null },
 			   { "incorrecto_classSinNombre.test", "(!) Error, se esperaba identificador en línea 3" },
@@ -64,8 +64,11 @@ public class ASintTest {
 			   { "incorrecto_segundaClassInvalida.test", "(!) Error, se esperaba class en línea 8" }, 
 			   { "incorrecto_tokenInvalidoEnClass.test", "(!) Error, se esperaba atributo, constructor, método o } en línea 5" },
 			   { "incorrecto_variableVoid.test", "(!) Error, se esperaba boolean, int, char, String o identificador de tipo después de var, en línea 4" },
-			   { "incorrecto_metodoSinNada.test", "(!) Error, se esperaba var (para variables locales) o { para apertura de bloque en línea 7" },*/
+			   { "incorrecto_metodoSinNada.test", "(!) Error, se esperaba var (para variables locales) o { para apertura de bloque en línea 7" },
 			   { "correcto_expression.test", null },
+			   { "incorrecto_expressionMalTerminada.test", "(!) Error, token invalido } en línea 11" },
+			   { "incorrecto_expressionMalParentizada.test", "(!) Error, se esperaba ; después de asignación en línea 10" },
+			   { "incorrecto_expressionSinPuntoYComaAlFinal.test", "(!) Error, token invalido } en línea 11" }			   
 				 
 			   
 	   });

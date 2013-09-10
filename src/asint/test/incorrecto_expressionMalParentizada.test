@@ -1,0 +1,12 @@
+class expressionMalParentizadaTest{
+
+var int x;
+var int y;
+var boolean bool;
+
+ctor () 
+	var int r;
+	{ 
+		r = (3 + 4) * 6 ) + 7;
+	}
+}
