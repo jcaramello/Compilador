@@ -1091,7 +1091,10 @@ public class ASint {
 		
 		if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){
 			listaExpsQ();
-		
+			getToken();
+			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
+				throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea() + ". Se esperaba )");
+			
 		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 		
 		Logger.log("<-" + depth + " Fin <ArgsActuales>");	
@@ -1103,14 +1106,15 @@ public class ASint {
 		Logger.log(depth + "-> Iniciando <listaExps?>");
 	
 		getToken();
+		reuseToken();
 		
-		if(ASintHelper.isFirstListaExps(curr)){
-			reuseToken();
+		if(ASintHelper.isFirstListaExps(curr)){			
 			listaExps();
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
 				throw new UnexpectedTokenException("(!) Error, Se esperaba "+ curr.getLexema() +" en línea " + curr.getLinea());
-				
+			else reuseToken();
+			
 		}else if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
 			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 		
@@ -1147,6 +1151,7 @@ public class ASint {
 				
 		}else if(!ASintHelper.isFollowListaExpsFact(curr)) 
 			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		else reuseToken();
 		
 		Logger.log("<-" + depth + " Fin <listaExpsFact>");	
 	    depth--;

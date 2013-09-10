@@ -7,14 +7,15 @@ var boolean bool;
 ctor () 
 	var int r;
 	{ 
-		/*r = 4 + (x * 5) - y;
-		r = (x + y / xy)* (4+y);
+		r = 4 + (x * 5) - y;
+		r = (x + y / x*y)* (4+y);
 		r = x + y * 4 - 7;
 		bool = r >= 10;
 		bool = bool && (x % 2 == 0);
 		bool = (x > 5) || ((y == 4) && (5>=9));
 		bool = true || (5 > 6);
-		r = new Sarasa().Property();	*/	
+		r = new Sarasa().Property();	
+		r = arg1;
 		r = objeto.llamada(arg1, arg2, arg3);
 	}
 }

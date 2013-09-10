@@ -10,12 +10,13 @@ public class ASintHelper {
 	}
 	
 	public static boolean isFollowExpression(Token t){
-		return t.getTokenType() == TokenType.ClosedParenthesisSymbol ||
+		return t.getTokenType() == TokenType.ClosedParenthesisSymbol ||			   
 			   isFollowExpressionQ(t);
 	}
 	
 	public static boolean isFollowExpressionAux(Token t){
 		return isFollowExpression(t) ||
+			   t.getTokenType() == TokenType.ComaSymbol ||
 			   t.getTokenType() == TokenType.OpenParenthesisSymbol;
 	}
 	
