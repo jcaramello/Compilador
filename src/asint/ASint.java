@@ -791,7 +791,7 @@ public class ASint {
 		getToken();		
 		reuseToken();
 		
-		if(!ASintHelper.isFollowExpressionQ(curr)){							
+		if(!ASintHelper.isFollowExpressionQ(curr)){										
 			expression();				
 		}
 		

@@ -1,0 +1,5 @@
+class a {
+	static void met1(){
+		(m3(!true)); //linea 7
+	}//linea 4
+}

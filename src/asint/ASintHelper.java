@@ -83,10 +83,30 @@ public class ASintHelper {
 	
 	
 	public static boolean isFirstListaExps(Token t){
-		return t.getTokenType() == TokenType.DistinctOperator ||
+		return isFirstExpressionOr(t);		  
+	}
+	
+	public static boolean isFirstExpressionOr(Token t){
+		return isFirstExpressionAnd(t);			  
+	}
+	
+	public static boolean isFirstExpressionAnd(Token t){
+		return isFirstExpressionComp(t);			  
+	}
+	
+	public static boolean isFirstExpressionComp(Token t){
+		return isFirstExpressionSR(t);			  
+	}
+	
+	public static boolean isFirstExpressionSR(Token t){
+		return isFirstFactor(t);			  
+	}
+	
+	public static boolean isFirstFactor(Token t){
+		return t.getTokenType() == TokenType.NotOperator ||
 			   t.getTokenType() == TokenType.PlusOperator ||
 			   t.getTokenType() == TokenType.RestOperator ||
-			   isFirstPrimario(t);
+			   isFirstPrimario(t);			  
 	}
 	
 	public static boolean isFirstPrimario(Token t){
