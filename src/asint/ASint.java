@@ -720,7 +720,7 @@ public class ASint {
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ; en return, en línea " + curr.getLinea());			
 			}
-		}
+		}else throw new UnexpectedTokenException("(!) Error, el token " + curr.getLexema()+" no se corresponde con el comienzo de una sentencia valida, en línea " + curr.getLinea());
 		
 		Logger.verbose("<-" + depth + " Fin <Sentencia>");	
 	    depth--;			

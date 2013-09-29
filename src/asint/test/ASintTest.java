@@ -70,8 +70,8 @@ public class ASintTest {
 			   { "incorrecto_expressionMalParentizada.test", "(!) Error, se esperaba ; después de asignación en línea 10" },
 			   { "incorrecto_expressionSinPuntoYComaAlFinal.test", "(!) Error, token invalido } en línea 11" },
 			   { "correcto_sentenciaReturnVacio.test", null },
-			   { "correcto_ExpresionLlamada.test", null }
-			   
+			   { "correcto_ExpresionLlamada.test", null },
+			   { "incorrecto_MetodoConCuerpoInvalido.test", "(!) Error, el token = no se corresponde con el comienzo de una sentencia valida, en línea 3" }			   			  
 				 
 			   
 	   });
