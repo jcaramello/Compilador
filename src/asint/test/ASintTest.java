@@ -44,7 +44,7 @@ public class ASintTest {
 	   return Arrays.asList(new String[][] {
 			   { "correcto_full.test", null },
 			   { "correcto1.test", null },
-			   { "correcto2.test", null },
+			   { "correcto2.test", null },			   
 			   { "incorrecto_classSinNombre.test", "(!) Error, se esperaba identificador en línea 3" },
 			   { "incorrecto_empiezaSinClass.test", "(!) Error, se esperaba class en línea 3" },
 			   { "incorrecto_extendsSinNombre.test", "(!) Error, se esperaba identificador en línea 3" },
@@ -68,7 +68,8 @@ public class ASintTest {
 			   { "correcto_expression.test", null },
 			   { "incorrecto_expressionMalTerminada.test", "(!) Error, token invalido } en línea 11" },
 			   { "incorrecto_expressionMalParentizada.test", "(!) Error, se esperaba ; después de asignación en línea 10" },
-			   { "incorrecto_expressionSinPuntoYComaAlFinal.test", "(!) Error, token invalido } en línea 11" }			   
+			   { "incorrecto_expressionSinPuntoYComaAlFinal.test", "(!) Error, token invalido } en línea 11" },
+			   { "correcto_sentenciaReturnVacio.test", null }
 				 
 			   
 	   });

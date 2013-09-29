@@ -618,10 +618,10 @@ public class ASint {
 		Logger.verbose(depth + "-> Iniciando <Sentencia>");
 		
 		getToken(); 
-
+		
 		if(curr.getTokenType() == TokenType.SemicolonSymbol) {
 
-		}
+		}		
 		else if(curr.getTokenType() == TokenType.Identifier) {
 			reuseToken();
 			asignacion();
@@ -630,7 +630,7 @@ public class ASint {
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ; después de asignación en línea " + curr.getLinea());			
 			}
-		}
+		} 
 		else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol) {
 			reuseToken();
 			sentenciaSimple();
@@ -789,9 +789,9 @@ public class ASint {
 		Logger.verbose(depth + "-> Iniciando <Expression?>");			
 				
 		getToken();		
+		reuseToken();
 		
-		if(!ASintHelper.isFollowExpressionQ(curr)){					
-			reuseToken();
+		if(!ASintHelper.isFollowExpressionQ(curr)){							
 			expression();				
 		}
 		
