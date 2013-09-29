@@ -73,8 +73,8 @@ public class ASintTest {
 			   { "correcto_ExpresionLlamada.test", null },
 			   { "incorrecto_MetodoConCuerpoInvalido.test", "(!) Error, el token = no se corresponde con el comienzo de una sentencia valida, en línea 3" },			   			  
 			   { "incorrecto_Asignacion_error6bis.test", "(!) Error, el token 4 no se corresponde con el comienzo de una sentencia valida, en línea 3"},
-			   { "incorrecto_IfThenElseMalFormado.test", "(!) Error, el token else no se corresponde con el comienzo de una sentencia valida, en línea 3"}	
-			   
+			   { "incorrecto_IfThenElseMalFormado.test", "(!) Error, el token else no se corresponde con el comienzo de una sentencia valida, en línea 3"},	
+			   { "incorrecto_IfThenMalFormado.test", "(!) Error, el token } no se corresponde con el comienzo de una sentencia valida, en línea 4"}
 	   });
 	}
 	

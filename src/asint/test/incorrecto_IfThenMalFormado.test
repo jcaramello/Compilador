@@ -1,0 +1,5 @@
+class a {
+	static void met1(){
+		if(4+5) // el error esta en la linea 5 que falta la sentencia
+	} 
+}
