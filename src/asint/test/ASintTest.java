@@ -71,8 +71,9 @@ public class ASintTest {
 			   { "incorrecto_expressionSinPuntoYComaAlFinal.test", "(!) Error, token invalido } en línea 11" },
 			   { "correcto_sentenciaReturnVacio.test", null },
 			   { "correcto_ExpresionLlamada.test", null },
-			   { "incorrecto_MetodoConCuerpoInvalido.test", "(!) Error, el token = no se corresponde con el comienzo de una sentencia valida, en línea 3" }			   			  
-				 
+			   { "incorrecto_MetodoConCuerpoInvalido.test", "(!) Error, el token = no se corresponde con el comienzo de una sentencia valida, en línea 3" },			   			  
+			   { "incorrecto_Asignacion_error6bis.test", "(!) Error, el token 4 no se corresponde con el comienzo de una sentencia valida, en línea 3"}
+ 
 			   
 	   });
 	}
