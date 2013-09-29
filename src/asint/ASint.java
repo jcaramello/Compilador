@@ -820,7 +820,7 @@ public class ASint {
 			expressionOr();
 			expressionAux();
 		}else if(!ASintHelper.isFollowExpressionAux(curr))	{	
-				throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+				throw new UnexpectedTokenException("(!) Error, ExpressionAux mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 		}else reuseToken();
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionAux>");	
@@ -849,7 +849,7 @@ public class ASint {
 			expressionOrAux();
 		}
 		else if(!ASintHelper.isFollowExpressionOrAux(curr)){
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			throw new UnexpectedTokenException("(!) Error, ExpressionOrAux mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 		}else reuseToken();
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionOrAux>");	
@@ -876,7 +876,7 @@ public class ASint {
 			expressionComp();
 			expressionAndAux();
 		}else if(!ASintHelper.isFollowExpressionAndAux(curr)){
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			throw new UnexpectedTokenException("(!) Error, ExpressionAndAux mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 		}else reuseToken();
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionAndAux>");	
@@ -908,7 +908,7 @@ public class ASint {
 			expressionSR();
 			expressionCompAux();
 		}else if(!ASintHelper.isFollowExpressionCompAux(curr)){
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			throw new UnexpectedTokenException("(!) Error, ExpressionCompAux mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 		}else reuseToken();
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionCompAux>");	
@@ -936,7 +936,7 @@ public class ASint {
 			termino();
 			expressionSRAux();
 		}else if(!ASintHelper.isFollowExpressionSRAux(curr)){	
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			throw new UnexpectedTokenException("(!) Error, ExpressionSRAux mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 		}else reuseToken();
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionSRAux>");	
@@ -967,7 +967,7 @@ public class ASint {
 			factor();
 			terminoAux();
 		}else if(!ASintHelper.isFollowTerminoAux(curr)){
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			throw new UnexpectedTokenException("(!) Error, TerminoAux mal formado, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 		}else reuseToken();
 		
 		Logger.verbose("<-" + depth + " Fin <TerminoAux>");	
@@ -1008,7 +1008,7 @@ public class ASint {
 			getToken();
 			if(curr.getTokenType() == TokenType.ClosedParenthesisSymbol)
 				llamadaStar();
-			else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			else throw new UnexpectedTokenException("(!) Error, la llamada no es correcta. Se esperaba ), el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 			
 		}else if(curr.getTokenType() == TokenType.Identifier){			
 			primarioFact();			
@@ -1018,7 +1018,7 @@ public class ASint {
 				argsActuales();
 				llamadaStar();
 			}
-		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		}else throw new UnexpectedTokenException("(!) Error, Primario mal formado, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());		
 		
 		Logger.verbose("<-" + depth + " Fin <Primario>");	
 	    depth--;
@@ -1039,7 +1039,7 @@ public class ASint {
 			llamadaStar();
 		} 				
 		else if(!ASintHelper.isFollowFactor(curr))
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+			throw new UnexpectedTokenException("(!) Error, PrimarioFact mal formado, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());		
 				
 		Logger.verbose("<-" + depth + " Fin <PrimarioFact>");	
 	    depth--;
@@ -1057,7 +1057,7 @@ public class ASint {
 			llamadaStar();
 		
 		}else if(!ASintHelper.isFollowLlamadaStar(curr))
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+			throw new UnexpectedTokenException("(!) Error, Llamada* mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());		
 		else reuseToken();
 		
 		Logger.verbose("<-" + depth + " Fin <Llamada*>");	
@@ -1074,10 +1074,10 @@ public class ASint {
 			getToken();
 			if(curr.getTokenType() == TokenType.Identifier){				
 				argsActuales();
-			}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			}else throw new UnexpectedTokenException("(!) Error, Llamada de metodo mal formada, se esperaba un identificador. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
 		}else if(curr.getTokenType() != TokenType.DotSymbol)
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
+			throw new UnexpectedTokenException("(!) Error, Llamada de metodo mal formada, se esperaba un '.' (Punto). Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
 		Logger.verbose("<-" + depth + " Fin <Llamada>");	
 	    depth--;	    
@@ -1093,9 +1093,9 @@ public class ASint {
 			listaExpsQ();
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
-				throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea() + ". Se esperaba )");
+				throw new UnexpectedTokenException("(!) Error, Argumentos Actuales mal formados, se esperaba ')'. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea() + ". Se esperaba )");
 			
-		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		}else throw new UnexpectedTokenException("(!) Error, Argumentos Actuales mal formados, se esperaba '('. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 		
 		Logger.verbose("<-" + depth + " Fin <ArgsActuales>");	
 	    depth--;
@@ -1112,11 +1112,11 @@ public class ASint {
 			listaExps();
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
-				throw new UnexpectedTokenException("(!) Error, Se esperaba "+ curr.getLexema() +" en línea " + curr.getLinea());
+				throw new UnexpectedTokenException("(!) Error, Se esperaba ')'. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 			else reuseToken();
 			
 		}else if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
-			throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+			throw new UnexpectedTokenException("(!) Error, Se esperaba ')'. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 		
 		Logger.verbose("<-" + depth + " Fin <listaExps?>");	
 	    depth--;
@@ -1134,7 +1134,7 @@ public class ASint {
 			expressionAux();
 			listaExpsFact();
 				
-		}else throw new UnexpectedTokenException("(!) Error, token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
+		}else throw new UnexpectedTokenException("(!) Error, Lista de expresiones mal formada. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 		
 		Logger.verbose("<-" + depth + " Fin <listaExps>");	
 	    depth--;
