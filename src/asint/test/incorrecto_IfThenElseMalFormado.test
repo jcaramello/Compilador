@@ -1,0 +1,5 @@
+class a {
+	static void met1(){
+	 	if (4+5) else a = 12;
+	} 
+}
