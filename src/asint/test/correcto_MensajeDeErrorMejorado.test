@@ -1,0 +1,6 @@
+class error1{
+	static int metodo1(){
+		a = a > b <d;
+	
+	} //linea 4
+}

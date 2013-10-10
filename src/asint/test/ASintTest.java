@@ -42,7 +42,7 @@ public class ASintTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   { "correcto_full.test", null },
+			   /*{ "correcto_full.test", null },
 			   { "correcto1.test", null },
 			   { "correcto2.test", null },			   
 			   { "incorrecto_classSinNombre.test", "(!) Error, se esperaba identificador en línea 3" },
@@ -66,22 +66,23 @@ public class ASintTest {
 			   { "incorrecto_variableVoid.test", "(!) Error, se esperaba boolean, int, char, String o identificador de tipo después de var, en línea 4" },
 			   { "incorrecto_metodoSinNada.test", "(!) Error, se esperaba var (para variables locales) o { para apertura de bloque en línea 7" },
 			   { "correcto_expression.test", null },
-			   { "incorrecto_expressionMalTerminada.test", "(!) Error, token invalido } en línea 11" },
+			   { "incorrecto_expressionMalTerminada.test", "(!) Error, Primario mal formado, el token } no es valido, en línea 11" },
 			   { "incorrecto_expressionMalParentizada.test", "(!) Error, se esperaba ; después de asignación en línea 10" },
-			   { "incorrecto_expressionSinPuntoYComaAlFinal.test", "(!) Error, token invalido } en línea 11" },
+			   { "incorrecto_expressionSinPuntoYComaAlFinal.test", "(!) Error, Termino mal formado, el token } no es valido, en línea 11" },
 			   { "correcto_sentenciaReturnVacio.test", null },
 			   { "correcto_ExpresionLlamada.test", null },
 			   { "incorrecto_MetodoConCuerpoInvalido.test", "(!) Error, el token = no se corresponde con el comienzo de una sentencia valida, en línea 3" },			   			  
 			   { "incorrecto_Asignacion_error6bis.test", "(!) Error, el token 4 no se corresponde con el comienzo de una sentencia valida, en línea 3"},
 			   { "incorrecto_IfThenElseMalFormado.test", "(!) Error, el token else no se corresponde con el comienzo de una sentencia valida, en línea 3"},	
-			   { "incorrecto_IfThenMalFormado.test", "(!) Error, el token } no se corresponde con el comienzo de una sentencia valida, en línea 4"}
+			   { "incorrecto_IfThenMalFormado.test", "(!) Error, el token } no se corresponde con el comienzo de una sentencia valida, en línea 4"},*/
+			   {"correcto_MensajeDeErrorMejorado.test", "(!) Error, definicion del miembro de clase no valido. se esperaba: var, identificador o modificador de método (static o dynamic) y no int, en línea 2"}
 	   });
 	}
 	
     @Before
     public void setUp() {
         Application.isTesting = false; // i.e. no estamos testeando el ALex
-        Application.logType = LogType.Console;
+        Application.logType = LogType.Console;     
     }
 
     @After
