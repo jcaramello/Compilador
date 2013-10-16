@@ -1,17 +1,17 @@
 package asema.entities;
 
 import java.util.UUID;
+
 import asema.exceptions.SemanticException;
 
-public abstract class Type {
-	
-	public String Name;
+public abstract class BaseNode {
+
 	public UUID UUID;
 	
-	public Type(){
+	public BaseNode(){
+		
 		this.UUID = java.util.UUID.randomUUID();
 	}
 	
 	public abstract void check() throws SemanticException;
-	public abstract boolean conforms(Type t);
 }

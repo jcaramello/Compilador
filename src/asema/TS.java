@@ -1,6 +1,6 @@
 package asema;
 
-import java.util.List;
+import java.util.Map;
 
 import alex.Token;
 import asema.entities.EntryClass;
@@ -12,7 +12,7 @@ import asema.exceptions.SemanticException;
  *
  */
 public class TS {
-	
+		
 	
 	/**
 	 * Internal static properties
@@ -29,7 +29,7 @@ public class TS {
 		// pero por si las moscas creo q deberiamos guardarlo
 	}
 	
-	public static List<EntryClass> getClasses(){
+	public static Map<String, EntryClass> getClasses(){
 		return null;	
 	}
 	

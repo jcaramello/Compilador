@@ -1,14 +1,25 @@
 package asema.entities;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import enums.ModifierMethodType;
-
 import alex.Token;
 import asema.exceptions.SemanticException;
 
-public class EntryClass {
+public class EntryClass extends EntryBase{
 
+	
+	/**
+	 * Constructor
+	 */
+	public EntryClass(){
+		
+		this.Attributes = new HashMap<String, EntryVar>();
+		this.Instances = new HashMap<String, EntryVar>();
+		this.Methods = new HashMap<String, EntryMethod>();
+	}
+	
 	/**
 	 * Public Members
 	 */
@@ -66,11 +77,18 @@ public class EntryClass {
 	 * Protected Members
 	 */
 	
-	protected List<EntryVar> attributes;
+	protected Map<String, EntryVar> Attributes;
 	
-	protected List<EntryMethod> methods;
+	protected Map<String, EntryMethod> Methods;
 	
-	protected List<EntryVar> instances;
+	protected Map<String, EntryVar> Instances;
 	
-	protected EntryMethod constructor;
+	/**
+	 * Esto creo que es mejor tomar la convencion de q un constructor es un metodo
+	 * ya que en realidad las clases terminan siendo lo mismo. Ademas facilita el diseño de bloque nodo
+	 * ya que sino, hay q tener q diferenciar en bloque nodo si el ast pertenece a un constructor o un metodo.
+	 * Agrege un flag boolean en la clase de entry method para poder diferenciarlo en caso de
+	 * que lo necesitemos mas adelante.
+	 */
+	protected EntryMethod Constructor;
 }
