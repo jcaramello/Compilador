@@ -29,17 +29,19 @@ public class EntryMethod extends EntryBase {
 	private Map<String, EntryVar> LocalVars;
 	private Map<String, EntryVar> FormalArgs;
 	private BlockNode AST;
+	private EntryClass ContainerClass;
 	
 	/*
 	 * Contructor
 	 */			
-	public EntryMethod(String _name, ModifierMethodType _modifier, Type _returnType){
+	public EntryMethod(String _name, ModifierMethodType _modifier, Type _returnType, EntryClass containerClass){
 		
 		this.Name = _name;
 		this.Modifier = _modifier;
 		this.ReturnType = _returnType;
 		this.LocalVars = new HashMap<String, EntryVar>();
-		this.FormalArgs = new HashMap<String, EntryVar>();	
+		this.FormalArgs = new HashMap<String, EntryVar>();
+		this.ContainerClass  = containerClass;
 	}	
 	
 	/*
@@ -112,6 +114,28 @@ public class EntryMethod extends EntryBase {
 			if(!this.FormalArgs.values().isEmpty())
 				throw new SemanticErrorException("Error! - El metodo Main no puede contener parametros formales.");
 		}
+	}
+	
+	/**
+	 * Determina si una variable es visible o no dentro del metodo
+	 * @param name
+	 * @return
+	 */
+	public boolean isVisibleVariable(String name){		
+		
+		return this.LocalVars.containsValue(name)  ||
+			   this.FormalArgs.containsValue(name) ||
+			   this.ContainerClass.containsAttribute(name);
+	}
+	
+	/**
+	 * Determina si un metodo es visible o no dentro del metodo
+	 * @param name
+	 * @return
+	 */
+	public boolean isVisibleMethod(String name){		
+		
+		return false;
 	}
 	
 	/**

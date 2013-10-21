@@ -8,6 +8,7 @@ import common.CommonHelper;
 import alex.Token;
 import asema.entities.EntryClass;
 import asema.entities.EntryMethod;
+import asema.entities.EntryVar;
 import asema.exceptions.SemanticErrorException;
 
 /***
@@ -90,6 +91,14 @@ public class TS {
 	}
 	
 	/**
+	 * Retorna la clase actual
+	 * @return
+	 */
+	public static EntryClass getCurrentClass(){
+		return TS.CurrentClass;
+	}
+	
+	/**
 	 * Determina si la TS contiene o no una clase con el nombre name
 	 * @param name
 	 * @return
@@ -109,15 +118,7 @@ public class TS {
 	public static void applyInheritances() throws SemanticErrorException{
 		
 	}
-	
-	/**
-	 * Chequea que todas las variables de instancia hayan sido declaradas
-	 * @throws SemanticErrorException
-	 */
-	public static void checkDeclarations() throws SemanticErrorException{
 		
-		
-	}
 	
 	/**
 	 * Realiza todas las validaciones semanticas de la TS

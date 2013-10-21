@@ -3,6 +3,8 @@ package asema.entities;
 import java.util.HashMap;
 import java.util.Map;
 
+import common.CommonHelper;
+
 import enums.ModifierMethodType;
 import alex.Token;
 import asema.exceptions.SemanticErrorException;
@@ -22,17 +24,19 @@ public class EntryClass extends EntryBase{
 	
 	public EntryClass fatherClass;
 	
-	public boolean isInheritanceApplied;
+	public boolean isInheritanceApplied;	
 	
 	/**
-	 * Protected Members
+	 * private Members
 	 */
 	
-	protected Map<String, EntryVar> Attributes;
+	private Map<String, EntryVar> Attributes;
 	
-	protected Map<String, EntryMethod> Methods;
+	private Map<String, EntryMethod> Methods;
+		
+	private Map<String, EntryVar> InstancesVariables;
 	
-	protected Map<String, EntryVar> Instances;
+	private EntryMethod CurrentMethod;
 	
 	/*
 	 * Esto creo que es mejor tomar la convencion de q un constructor es un metodo
@@ -49,9 +53,9 @@ public class EntryClass extends EntryBase{
 	public EntryClass(String name, EntryClass father){
 		
 		this.Name = name;
-		this.Attributes = new HashMap<String, EntryVar>();
-		this.Instances = new HashMap<String, EntryVar>();
+		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
+		this.InstancesVariables = new HashMap<String, EntryVar>();
 		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType());
 	}
 	
@@ -63,6 +67,24 @@ public class EntryClass extends EntryBase{
 	
 	public EntryVar getAttribute(String name){
 		return this.Attributes.get(name);
+	}
+	
+	public void addInstanceVariable(String name) throws SemanticErrorException{
+		if(this.InstancesVariables.containsKey(name))
+			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene una variable de instancia %s.", this.Name, name));
+		if(this.Methods.containsKey(name) || name.equals(this.Name))
+			throw new SemanticErrorException("Ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos.");
+		else this.InstancesVariables.put(name, new EntryVar(new ClassType(this), name));		
+	}
+	
+	public EntryVar getInstanceVariable(String name){
+		if(!CommonHelper.isNullOrEmpty(name))
+			return this.InstancesVariables.get(name);
+		else return null;
+	}
+	
+	public Iterable<EntryVar> getInstances(){
+		return this.InstancesVariables.values();
 	}
 	
 	public boolean containsAttribute(String name){	
@@ -99,6 +121,15 @@ public class EntryClass extends EntryBase{
 	
 	public EntryMethod getConstructor(){
 		return this.Constructor;
+	}
+	
+	public void setCurrentMethod(EntryMethod current){
+		if(current != null)
+			this.CurrentMethod = current;
+	}
+	
+	public EntryMethod getCurrentMethod(){
+		return this.CurrentMethod;
 	}
 	
 	public void applyInheritance() throws SemanticErrorException{
