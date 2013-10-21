@@ -7,6 +7,11 @@ import enums.ModifierMethodType;
 import alex.Token;
 import asema.exceptions.SemanticErrorException;
 
+/**
+ * Entry Class
+ * @author jcaramello, nechegoyen
+ *
+ */
 public class EntryClass extends EntryBase{
 
 	/**
@@ -18,7 +23,6 @@ public class EntryClass extends EntryBase{
 	public EntryClass fatherClass;
 	
 	public boolean isInheritanceApplied;
-	
 	
 	/**
 	 * Protected Members
@@ -51,38 +55,41 @@ public class EntryClass extends EntryBase{
 		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType());
 	}
 	
-	public void addAttribute(Token identifier) throws SemanticErrorException{
-		
+	public void addAttribute(String name) throws SemanticErrorException{
+		if(this.Attributes.containsKey(name))
+			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un atributo %s.", this.Name, name));
+		else this.Attributes.put(name, new EntryVar(null, name));		
 	}
 	
-	public EntryVar getAttribute(String identifier){
-		return null;
+	public EntryVar getAttribute(String name){
+		return this.Attributes.get(name);
 	}
 	
-	public boolean containsAttribute(String identifier){
-	
-		return false;
+	public boolean containsAttribute(String name){	
+		return this.Attributes.containsKey(name);
 	}
 	
-	public void addMethod(Token identifier, Type returnType, ModifierMethodType modifierType){
-		
+	public void addMethod(String name, Type returnType, ModifierMethodType modifierType) throws SemanticErrorException{
+		// ver como hacer para controlar repetidos. Hay que mirar modificadores tipo de retornos o solo name?
+		if(this.Methods.containsKey(name))
+			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un metodo %s.", this.Name, name));
+		else this.Methods.put(name, new EntryMethod(name, modifierType, returnType));		
 	}
 	
-	public EntryMethod getMethod(String identifier){
+	public EntryMethod getMethod(String name){
 		
 		// habria que ver si puede haaber 2 metodos con el mismo nombre pero con distinto modificador
 		// no recuerdo si eso era valido, en caso de ser asi habria q agregar un parametro mas
 		
-		return null;
+		return this.Methods.get(name);
 	}
 	
 	public Iterable<EntryMethod> getMethods(){
 		return this.Methods.values();
 	}
 	
-	public boolean containsMethod(String identifier){
-		
-		return false;
+	public boolean containsMethod(String name){		
+		return this.Methods.containsKey(name);
 	}
 	
 	public void addConstructor(EntryMethod constructor){

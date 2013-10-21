@@ -18,7 +18,7 @@ import asema.exceptions.SemanticErrorException;
 public class TS {
 		
 	
-	/**
+	/*
 	 * Internal static properties
 	 */
 	
@@ -26,10 +26,15 @@ public class TS {
 	
 	private static Map<String, EntryClass> Classes;
 
-	/**
+	/*
 	 * Public Methods
 	 */
 	
+	/**
+	 * Agrega una nueva clase a la TS, validando que no exista ninguna otra clase con el mismo nombre y cuya clase padre es Object
+	 * @param classIdentifier
+	 * @throws SemanticErrorException
+	 */
 	public static void addClass(String classIdentifier) throws SemanticErrorException{				
 		if(TS.containsClass(classIdentifier))
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS", classIdentifier));
@@ -37,6 +42,12 @@ public class TS {
 		TS.Classes.put(classIdentifier, newClass);
 	}
 	
+	/**
+	 * Agrega una nueva clase a la TS, validando que no exista ninguna otra clase con el mismo nombre y cuya clase padre es father
+	 * @param classIdentifier
+	 * @param father
+	 * @throws SemanticErrorException
+	 */
 	public static void addClass(String classIdentifier, EntryClass father)throws SemanticErrorException{				
 		if(TS.containsClass(classIdentifier))
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS", classIdentifier));
@@ -46,16 +57,30 @@ public class TS {
 		TS.Classes.put(classIdentifier, newClass);
 	}
 	
+	/**
+	 * Retorna todas las clases de la TS
+	 * @return
+	 */
 	public static Iterable<EntryClass> getClasses(){
 		return TS.Classes.values();	
 	}
 	
+	/**
+	 * Retorna la clase de nombre name
+	 * @param name
+	 * @return
+	 */
 	public static EntryClass getClass(String name){
 		if(!CommonHelper.isNullOrEmpty(name))
 			return TS.Classes.get(name);
 		else return null;
 	}
 	
+	/**
+	 * Setea la clase actual
+	 * @param identifier
+	 * @throws SemanticErrorException
+	 */
 	public static void setCurrentClass(String identifier)throws SemanticErrorException{
 		EntryClass current = TS.Classes.get(identifier);
 		if(!CommonHelper.isNullOrEmpty(identifier) && current != null){
@@ -64,10 +89,19 @@ public class TS {
 		else throw new SemanticErrorException(String.format("Error! - La clase %s no es una clase valida o todavia no ha sido cargada", identifier));
 	}
 	
-	public static boolean containsClass(String identifier){
-		return TS.Classes.containsKey(identifier);	
+	/**
+	 * Determina si la TS contiene o no una clase con el nombre name
+	 * @param name
+	 * @return
+	 */
+	public static boolean containsClass(String name){
+		return TS.Classes.containsKey(name);	
 	}
 	
+	/**
+	 * Chequea si existe herencia circular en la TS
+	 * @throws SemanticErrorException
+	 */
 	public static void checkCircularInheritance() throws SemanticErrorException{
 		
 	}	
@@ -76,11 +110,19 @@ public class TS {
 		
 	}
 	
+	/**
+	 * Chequea que todas las variables de instancia hayan sido declaradas
+	 * @throws SemanticErrorException
+	 */
 	public static void checkDeclarations() throws SemanticErrorException{
 		
 		
 	}
 	
+	/**
+	 * Realiza todas las validaciones semanticas de la TS
+	 * @throws SemanticErrorException
+	 */
 	public static void validate() throws SemanticErrorException{
 		for (EntryClass ec : TS.getClasses()) {
 			for (EntryMethod em : ec.getMethods()) {

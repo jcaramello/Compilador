@@ -8,9 +8,14 @@ import asema.exceptions.SemanticErrorException;
 
 import enums.ModifierMethodType;
 
+/**
+ * Entry Method
+ * @author jcaramello, nechegoyen
+ *
+ */
 public class EntryMethod extends EntryBase {
 	
-	/**
+	/*
 	 * Public Members
 	 */
 	public String Name;
@@ -18,14 +23,14 @@ public class EntryMethod extends EntryBase {
 	public Type ReturnType;	
 	public boolean IsContructor;
 	
-	/**
+	/*
 	 * Private Members
 	 */
 	private Map<String, EntryVar> LocalVars;
 	private Map<String, EntryVar> FormalArgs;
 	private BlockNode AST;
 	
-	/**
+	/*
 	 * Contructor
 	 */			
 	public EntryMethod(String _name, ModifierMethodType _modifier, Type _returnType){
@@ -37,10 +42,16 @@ public class EntryMethod extends EntryBase {
 		this.FormalArgs = new HashMap<String, EntryVar>();	
 	}	
 	
-	/**
+	/*
 	 * Public Methods
 	 */
 	
+	
+	/**
+	 * Agrega las parametros formales, chequeando que no hayan parametros formales con el mismo nombre
+	 * @param vars
+	 * @throws SemanticErrorException
+	 */
 	public void addFormalArgs(List<EntryVar> args) throws SemanticErrorException{
 		for (EntryVar var : args) {
 			if(this.FormalArgs.containsKey(var.Name))
@@ -49,6 +60,11 @@ public class EntryMethod extends EntryBase {
 		}
 	}
 	
+	/**
+	 * Agrega las variables locales, chequeando que no hayan variables locales con el mismo nombre
+	 * @param vars
+	 * @throws SemanticErrorException
+	 */
 	public void addLocalVars(List<EntryVar> vars) throws SemanticErrorException{
 		for (EntryVar var : vars) {
 			if(this.FormalArgs.containsKey(var.Name))
@@ -57,14 +73,28 @@ public class EntryMethod extends EntryBase {
 		}
 	}
 	
+	/**
+	 * retorna las variables locales
+	 * @param name
+	 * @return
+	 */
 	public EntryVar getLocalVar(String name){
 		return this.LocalVars.get(name);
 	}
 	
+	/**
+	 * Retorna los parametros formales
+	 * @param name
+	 * @return
+	 */
 	public EntryVar getFormalArg(String name){
 		return this.FormalArgs.get(name);
 	}
 	
+	/**
+	 * Valida si existe algun parametro formal con el mismo nombre de alguna variable local
+	 * @throws SemanticErrorException
+	 */
 	public void validateNames() throws SemanticErrorException{
 		for (EntryVar fa : this.FormalArgs.values()) {
 			if(this.LocalVars.containsKey(fa.Name));
@@ -72,6 +102,10 @@ public class EntryMethod extends EntryBase {
 		}
 	}
 	
+	/**
+	 * Valida si el metodo es un metodo Main bien formado
+	 * @throws SemanticErrorException
+	 */
 	public void isValidMain() throws SemanticErrorException{
 		if(this.Name.toLowerCase().equals("main"))
 		{
@@ -80,11 +114,19 @@ public class EntryMethod extends EntryBase {
 		}
 	}
 	
+	/**
+	 * Agrega el nodo bloque del AST
+	 * @param node
+	 */
 	public void addAST(BlockNode node){
 		if(node != null)
 			this.AST = node;
 	}
 	
+	/**
+	 * Obtiene el nodo Bloque
+	 * @return
+	 */
 	public BlockNode getAST(){
 		return this.AST;
 	}
