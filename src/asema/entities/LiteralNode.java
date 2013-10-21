@@ -1,7 +1,7 @@
 package asema.entities;
 
 import alex.Token;
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public class LiteralNode extends PrimaryNode {
 
@@ -15,7 +15,7 @@ public class LiteralNode extends PrimaryNode {
 	}
 	
 	@Override
-	public void check() throws SemanticException {
+	public void check() throws SemanticErrorException {
 		// TODO Auto-generated method stub
 
 	}

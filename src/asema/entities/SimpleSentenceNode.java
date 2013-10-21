@@ -1,6 +1,6 @@
 package asema.entities;
 
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public class SimpleSentenceNode extends SentenceNode {
 
@@ -12,7 +12,7 @@ public class SimpleSentenceNode extends SentenceNode {
 	}
 	
 	@Override
-	public void check() throws SemanticException {
+	public void check() throws SemanticErrorException {
 		// TODO Auto-generated method stub
 		
 	}

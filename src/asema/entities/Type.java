@@ -1,7 +1,7 @@
 package asema.entities;
 
 import java.util.UUID;
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public abstract class Type {
 	
@@ -12,6 +12,6 @@ public abstract class Type {
 		this.UUID = java.util.UUID.randomUUID();
 	}
 	
-	public abstract void check() throws SemanticException;
+	public abstract void check() throws SemanticErrorException;
 	public abstract boolean conforms(Type t);
 }

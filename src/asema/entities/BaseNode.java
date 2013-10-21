@@ -2,7 +2,7 @@ package asema.entities;
 
 import java.util.UUID;
 
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public abstract class BaseNode {
 
@@ -13,5 +13,5 @@ public abstract class BaseNode {
 		this.UUID = java.util.UUID.randomUUID();
 	}
 	
-	public abstract void check() throws SemanticException;
+	public abstract void check() throws SemanticErrorException;
 }

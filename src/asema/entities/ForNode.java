@@ -1,6 +1,6 @@
 package asema.entities;
 
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public class ForNode extends SentenceNode {
 
@@ -18,7 +18,7 @@ public class ForNode extends SentenceNode {
 	
 	
 	@Override
-	public void check() throws SemanticException {
+	public void check() throws SemanticErrorException {
 		// TODO Auto-generated method stub
 
 	}

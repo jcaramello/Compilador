@@ -1,7 +1,7 @@
 package asema.entities;
 
 import alex.Token;
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public class BinaryExpressionNode extends ExpressionNode {
 
@@ -16,7 +16,7 @@ public class BinaryExpressionNode extends ExpressionNode {
 	}
 	
 	@Override
-	public void check() throws SemanticException {
+	public void check() throws SemanticErrorException {
 		// TODO Auto-generated method stub
 
 	}

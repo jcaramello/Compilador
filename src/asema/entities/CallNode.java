@@ -3,7 +3,7 @@ package asema.entities;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public class CallNode extends PrimaryNode {
 
@@ -27,7 +27,7 @@ public class CallNode extends PrimaryNode {
 	}
 	
 	@Override
-	public void check() throws SemanticException {
+	public void check() throws SemanticErrorException {
 		// TODO Auto-generated method stub
 
 	}

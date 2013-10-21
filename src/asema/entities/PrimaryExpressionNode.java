@@ -1,6 +1,6 @@
 package asema.entities;
 
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public class PrimaryExpressionNode extends ExpressionNode {
 
@@ -11,7 +11,7 @@ public class PrimaryExpressionNode extends ExpressionNode {
 	}	
 	
 	@Override
-	public void check() throws SemanticException {
+	public void check() throws SemanticErrorException {
 		// TODO Auto-generated method stub
 
 	}

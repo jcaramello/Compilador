@@ -4,7 +4,7 @@ package asema.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import asema.exceptions.SemanticException;
+import asema.exceptions.SemanticErrorException;
 
 public class BlockNode extends BaseNode {
 	
@@ -32,7 +32,7 @@ public class BlockNode extends BaseNode {
 	}
 	
 	@Override
-	public void check() throws SemanticException {
+	public void check() throws SemanticErrorException {
 		// TODO Auto-generated method stub
 
 	}
