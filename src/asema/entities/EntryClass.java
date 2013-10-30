@@ -56,7 +56,7 @@ public class EntryClass extends EntryBase{
 		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
-		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType());
+		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType(), this);
 	}
 	
 	public void addAttribute(String name) throws SemanticErrorException{
@@ -95,7 +95,7 @@ public class EntryClass extends EntryBase{
 		// ver como hacer para controlar repetidos. Hay que mirar modificadores tipo de retornos o solo name?
 		if(this.Methods.containsKey(name))
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un metodo %s.", this.Name, name));
-		else this.Methods.put(name, new EntryMethod(name, modifierType, returnType));		
+		else this.Methods.put(name, new EntryMethod(name, modifierType, returnType, this));		
 	}
 	
 	public EntryMethod getMethod(String name){
