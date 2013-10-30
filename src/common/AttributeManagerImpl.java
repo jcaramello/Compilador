@@ -11,6 +11,15 @@ import enums.AttributeType;
 class AttributeManagerImpl implements IAttributeManager{
 
 	/**
+	 * Default Constructor
+	 */
+	public AttributeManagerImpl()
+	{
+		this.CurrentSynthesizedAttributes = new HashMap<AttributeType, Attribute<?>>();
+		this.Stack = new Stack<Map<AttributeType, Attribute<?>>>();
+	}
+	
+	/**
 	 * Stack donde se mantienen los atributos
 	 */
 	private Stack<Map<AttributeType, Attribute<?>>> Stack;
