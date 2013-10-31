@@ -44,6 +44,12 @@ public class Application {
 	 */
 	public static String logFilePath;
 	
+	
+	/**
+	 * Compiled file Extension 
+	 */
+	public static String CompiledFileExtension = "ceivm";
+	
 	/**
 	 * Initialize global application's variables
 	 * @param args
