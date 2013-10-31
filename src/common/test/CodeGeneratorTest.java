@@ -14,10 +14,10 @@ public class CodeGeneratorTest {
 	public void test() {
 		Application.Name = "CodeGeneratorTest";
 		
-		CodeGenerator.Gen(Instructions.LOAD, "2");
-		CodeGenerator.Gen(Instructions.LOAD, "3");		
-		CodeGenerator.Gen(Instructions.ADD);
-		CodeGenerator.Gen(Instructions.VTLabel, "Sarasa");
+		CodeGenerator.gen(Instructions.LOAD, "2");
+		CodeGenerator.gen(Instructions.LOAD, "3");		
+		CodeGenerator.gen(Instructions.ADD);
+		CodeGenerator.gen(Instructions.VTLabel, "Sarasa");
 		
 		
 		CodeGenerator.close();

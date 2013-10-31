@@ -74,16 +74,16 @@ public class CodeGenerator {
 	 * Log a simple message
 	 * @param msg
 	 */
-	public static void Gen(String inst)
+	public static void gen(String inst)
 	{
-		Gen(inst, null);
+		gen(inst, null);
 	}
 
 	/**
 	 * Log a simple message
 	 * @param msg
 	 */
-	public static void Gen(String inst, String Parameter)
+	public static void gen(String inst, String Parameter)
 	{
 		try {			
 			String instruction = null;
