@@ -42,7 +42,7 @@ public class ASintTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   /*{ "correcto_full.test", null },
+			   { "correcto_full.test", null },
 			   { "correcto1.test", null },
 			   { "correcto2.test", null },			   
 			   { "incorrecto_classSinNombre.test", "(!) Error, se esperaba identificador en línea 3" },
@@ -50,7 +50,7 @@ public class ASintTest {
 			   { "incorrecto_extendsSinNombre.test", "(!) Error, se esperaba identificador en línea 3" },
 			   { "incorrecto_classSinLlaveApertura.test", "(!) Error, se esperaba extends o { en línea 4" },
 			   { "incorrecto_classConExtendsSinLlaveApertura.test", "(!) Error, se esperaba { en línea 4" },
-			   { "incorrecto_atributoSinVar.test", "(!) Error, se esperaba atributo, constructor, método o } en línea 4" },
+			   { "incorrecto_atributoSinVar.test", "(!) Error, definicion del miembro de clase no valido. se esperaba: var, identificador o modificador de método (static o dynamic) y no int, en línea 4" },
 			   { "incorrecto_atributoNombreProhibido.test", "(!) Error, se esperaba identificador (nombre de variable), en línea 4" },
 			   { "incorrecto_atributoSinPuntoYComa.test", "(!) Error, se esperaba , o ; en línea 5" },
 			   { "incorrecto_listaAtributosMalFormada.test", "(!) Error, se esperaba identificador (nombre de variable) en línea 4" },
@@ -60,9 +60,9 @@ public class ASintTest {
 			   { "incorrecto_variableLocalSinVar.test", "(!) Error, se esperaba var (para variables locales) o { para apertura de bloque en línea 5" }, 
 			   { "incorrecto_ctorSinBloque.test", "(!) Error, se esperaba var en línea 8" }, 
 			   { "incorrecto_metodoSinBloque.test", "(!) Error, se esperaba var en línea 8" }, 
-			   { "incorrecto_metodoSinMod.test", "(!) Error, se esperaba atributo, constructor, método o } en línea 5" }, 
+			   { "incorrecto_metodoSinMod.test", "(!) Error, definicion del miembro de clase no valido. se esperaba: var, identificador o modificador de método (static o dynamic) y no char, en línea 5" }, 
 			   { "incorrecto_segundaClassInvalida.test", "(!) Error, se esperaba class en línea 8" }, 
-			   { "incorrecto_tokenInvalidoEnClass.test", "(!) Error, se esperaba atributo, constructor, método o } en línea 5" },
+			   { "incorrecto_tokenInvalidoEnClass.test", "(!) Error, definicion del miembro de clase no valido. se esperaba: var, identificador o modificador de método (static o dynamic) y no ;, en línea 5" },
 			   { "incorrecto_variableVoid.test", "(!) Error, se esperaba boolean, int, char, String o identificador de tipo después de var, en línea 4" },
 			   { "incorrecto_metodoSinNada.test", "(!) Error, se esperaba var (para variables locales) o { para apertura de bloque en línea 7" },
 			   { "correcto_expression.test", null },
@@ -74,8 +74,8 @@ public class ASintTest {
 			   { "incorrecto_MetodoConCuerpoInvalido.test", "(!) Error, el token = no se corresponde con el comienzo de una sentencia valida, en línea 3" },			   			  
 			   { "incorrecto_Asignacion_error6bis.test", "(!) Error, el token 4 no se corresponde con el comienzo de una sentencia valida, en línea 3"},
 			   { "incorrecto_IfThenElseMalFormado.test", "(!) Error, el token else no se corresponde con el comienzo de una sentencia valida, en línea 3"},	
-			   { "incorrecto_IfThenMalFormado.test", "(!) Error, el token } no se corresponde con el comienzo de una sentencia valida, en línea 4"},*/
-			   {"correcto_MensajeDeErrorMejorado.test", "(!) Error, definicion del miembro de clase no valido. se esperaba: var, identificador o modificador de método (static o dynamic) y no int, en línea 2"}
+			   { "incorrecto_IfThenMalFormado.test", "(!) Error, el token } no se corresponde con el comienzo de una sentencia valida, en línea 4"},			   
+			   { "incorrecto_ExpressionLogicaTriple.test", "(!) Error, Expression mal formada, el token < no es valido, en línea 3"}
 	   });
 	}
 	
@@ -104,6 +104,12 @@ public class ASintTest {
 			try {					
 				URL url = this.getClass().getResource(testFile);
 				ASint tester = new ASint(url.getPath());
+				// El siguiente assert lo agrege para el caso en cuando es el test es correcto.
+				// ya que en ese caso, no se va a disparar ninguna excepcion y deberiamos chequear que 
+				// eso era realmente lo que se esperaba, y eso lo hago justamente mirando el nombre del file.
+				// Si el nombre del file contiene en algun lugar el sub string "incorrecto", entonces asumo 
+				// que se esperaba que se disparase una excepcion, lo cual no sucedio y por lo que debo hacer fallar el test.
+				assertEquals(testFile.toLowerCase().contains("incorrecto".toLowerCase()), false);
 			} catch (UnexpectedTokenException e) {
 				Logger.log(e.getMessage());
 				assertEquals(e.getMessage(), expected);

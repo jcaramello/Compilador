@@ -906,7 +906,8 @@ public class ASint {
 		   curr.getTokenType() == TokenType.LessOperator){
 			
 			expressionSR();
-			expressionCompAux();
+			//expressionCompAux(); // Esta linea fue comentada para corregir el defecto de  a = a > b < d; ya que si esta, toma como valida esa expresion y no deberia hacerlo.
+			
 		}else if(!ASintHelper.isFollowExpressionCompAux(curr)){
 			throw new UnexpectedTokenException("(!) Error, Expression mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 		}else reuseToken();

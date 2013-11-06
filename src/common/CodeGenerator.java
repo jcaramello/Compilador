@@ -36,6 +36,7 @@ public class CodeGenerator {
 	 * Formato de instruccion [Instruccion Parametro]
 	 */
 	private static final String INSTRUCTION_FORMAT = "%s %s"+NEW_LINE;
+	private static final String LABEL_FORMAT = "%s %s"+NEW_LINE;
 	
 	/**
 	 * Singleton Instance
