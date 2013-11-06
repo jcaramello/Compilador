@@ -7,13 +7,18 @@ package enums;
  *
  */
 public enum AttributeType {
-
-	Type,
-	ExpectedType,
-	Variables,
-	Args,
-	Identifier,
-	Entry,
+	
+	ListaDecVars_ExpectedType,
+	ListaDecVars_Variables,	
+	ModMethod_Mod,
+	TypeMethod_Type,
+	ArgsFormales_Args,
+	VarsLocales_Vars,
+	Bloque_AST,
+	ListaArgsFormalesQ_Args,
+	
+	
+	
 	
 	/// ... Demas Atributos
 	

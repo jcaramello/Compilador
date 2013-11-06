@@ -22,6 +22,8 @@ public class EntryClass extends EntryBase{
 	
 	public String Name;	
 	
+	public String inheritsFrom;
+	
 	public EntryClass fatherClass;
 	
 	public boolean isInheritanceApplied;	
@@ -91,11 +93,17 @@ public class EntryClass extends EntryBase{
 		return this.Attributes.containsKey(name);
 	}
 	
-	public void addMethod(String name, Type returnType, ModifierMethodType modifierType) throws SemanticErrorException{
+	public EntryMethod addMethod(String name, Type returnType, ModifierMethodType modifierType) throws SemanticErrorException{
 		// ver como hacer para controlar repetidos. Hay que mirar modificadores tipo de retornos o solo name?
+		EntryMethod entryMethod = null;
 		if(this.Methods.containsKey(name))
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un metodo %s.", this.Name, name));
-		else this.Methods.put(name, new EntryMethod(name, modifierType, returnType, this));		
+		else{
+			entryMethod = new EntryMethod(name, modifierType, returnType, this);
+			this.Methods.put(name, entryMethod);		
+		}
+		
+		return entryMethod;
 	}
 	
 	public EntryMethod getMethod(String name){

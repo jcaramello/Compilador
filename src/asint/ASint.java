@@ -1,21 +1,20 @@
 package asint;
 
 import java.io.IOException;
-
-import common.Application;
+import java.util.List;
+import common.Attribute;
+import common.AttributeManager;
 import common.Logger;
+import enums.AttributeType;
 import enums.TokenType;
 
 import alex.ALex;
 import alex.Token;
 import alex.exceptions.ALexException;
-import alex.exceptions.ForbiddenCharacterException;
-import alex.exceptions.ForbiddenOperatorException;
-import alex.exceptions.ForbiddenWordException;
-import alex.exceptions.InvalidCharacterException;
-import alex.exceptions.InvalidIdentifierException;
-import alex.exceptions.InvalidStringException;
-import alex.exceptions.UnclosedCommentException;
+import asema.EDTHelper;
+import asema.TS;
+import asema.entities.*;
+import asema.exceptions.SemanticErrorException;
 
 /**
  * Analizador Sintactico
@@ -31,7 +30,7 @@ public class ASint {
 	private int depth; // Profundidad de llamadas
 	
 	
-	public ASint(String archivo) throws UnexpectedTokenException
+	public ASint(String archivo) throws UnexpectedTokenException, SemanticErrorException
 	{
 		depth = 0;
 		
@@ -83,7 +82,7 @@ public class ASint {
 	
 	// Métodos correspondientes a los no-terminales de la gramática.
 	
-	private void inicial() throws UnexpectedTokenException {	
+	private void inicial() throws UnexpectedTokenException, SemanticErrorException {	
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Inicial>");
 		
@@ -95,7 +94,7 @@ public class ASint {
 	}
 
 	
-	private void clase() throws UnexpectedTokenException {
+	private void clase() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Clase>");
 		
@@ -109,6 +108,8 @@ public class ASint {
 		if(curr.getTokenType() != TokenType.Identifier) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador en línea " + curr.getLinea());
 		}
+		
+		EDTHelper.addClass(curr);
 		
 		herenciaQ();
 		
@@ -129,7 +130,7 @@ public class ASint {
 	}
 
 
-	private void inicialPlus() throws UnexpectedTokenException {
+	private void inicialPlus() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Inicial+>");
 		
@@ -177,11 +178,15 @@ public class ASint {
 		getToken(); // identificador
 		if(curr.getTokenType() != TokenType.Identifier) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador en línea " + curr.getLinea());
-		}	
+		}
+		
+		// Agrege un nuevo atributo inheritsFrom por que el Father class lo implementamos comod e tipo
+		// EntryClass y es para mantener la ref a la clase padre. la cual puede que todavia no haya procesado.
+		TS.getCurrentClass().inheritsFrom = curr.getLexema();
 	}
 
 
-	private void miembroStar() throws UnexpectedTokenException {
+	private void miembroStar() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Miembro*>");
 		
@@ -208,7 +213,7 @@ public class ASint {
 
 	
 	
-	private void miembro() throws UnexpectedTokenException {
+	private void miembro() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Miembro>");
 	
@@ -230,7 +235,7 @@ public class ASint {
 	}
 
 
-	private void metodo() throws UnexpectedTokenException {
+	private void metodo() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Metodo>");
 		
@@ -241,7 +246,11 @@ public class ASint {
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba modificador de método (static o dynamic) en línea " + curr.getLinea());
 		} 
-		else modMetodo();
+		else{
+			AttributeManager.getCurrent().loadContext();
+			modMetodo();
+			AttributeManager.getCurrent().unloadContext();
+		}
 		
 		getToken();
 		reuseToken();
@@ -254,16 +263,34 @@ public class ASint {
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba tipo de método: void, boolean, int, char, String o identificador de tipo en línea " + curr.getLinea());
 		}
-		else tipoMetodo();
+		else{
+			AttributeManager.getCurrent().loadContext();
+			tipoMetodo();
+			AttributeManager.getCurrent().unloadContext();
+		}
 		
 		getToken();
 		if(curr.getTokenType() != TokenType.Identifier) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador (nombre de método), en línea " + curr.getLinea());
 		}
 		
+		EDTHelper.addMethod(curr);
+		
+		AttributeManager.getCurrent().loadContext();
 		argsFormales(); // entiendo que en estos no obtengo ningún beneficio informando más temprano del error.
+		AttributeManager.getCurrent().unloadContext();
+		
+		EDTHelper.addArgsFormals(TS.getCurrentClass().getCurrentMethod());
+		
+		AttributeManager.getCurrent().loadContext();
 		varsLocales();
+		AttributeManager.getCurrent().unloadContext();
+		EDTHelper.addLocalVars(TS.getCurrentClass().getCurrentMethod());
+		
+		AttributeManager.getCurrent().loadContext();
 		bloque();
+		AttributeManager.getCurrent().unloadContext();
+		EDTHelper.addAST(TS.getCurrentClass().getCurrentMethod());
 		
 		Logger.verbose("<-" + depth + " Fin <Metodo>");
 		depth--;		
@@ -305,7 +332,12 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba ( abriendo lista de argumentos formales en línea " + curr.getLinea());
 		}
 		
+		AttributeManager.getCurrent().loadContext();
 		listaArgsFormalesQ();
+		AttributeManager.getCurrent().unloadContext();
+		
+		Attribute<List<EntryVar>> attribute = (Attribute<List<EntryVar>>) AttributeManager.getCurrent().getSynthesizedAttribute(AttributeType.ListaArgsFormalesQ_Args);
+		AttributeManager.getCurrent().setSynthesizedAttribute(attribute);
 		
 		getToken();
 		if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol) {
@@ -402,7 +434,7 @@ public class ASint {
 	}
 
 
-	private void varsLocales() throws UnexpectedTokenException {
+	private void varsLocales() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <VarsLocales>");
 
@@ -452,22 +484,38 @@ public class ASint {
 	}
 
 
-	private void ctor() throws UnexpectedTokenException {
+	private void ctor() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Ctor>");
 		
 		getToken(); // identifier garantizado
-
+		
+		EDTHelper.addConstructor(curr);
+		
+		AttributeManager.getCurrent().loadContext();
 		argsFormales();
+		AttributeManager.getCurrent().unloadContext();
+		
+		EDTHelper.addArgsFormals(TS.getCurrentClass().getConstructor());
+		
+		AttributeManager.getCurrent().loadContext();
 		varsLocales();
+		AttributeManager.getCurrent().unloadContext();
+		
+		EDTHelper.addLocalVars(TS.getCurrentClass().getConstructor());
+		
+		AttributeManager.getCurrent().loadContext();
 		bloque();
+		AttributeManager.getCurrent().unloadContext();
+		
+		EDTHelper.addAST(TS.getCurrentClass().getConstructor());
 		
 		Logger.verbose("<-" + depth + " Fin <Ctor>");	
 	    depth--;
 	}
 
 
-	private void atributoStar() throws UnexpectedTokenException {
+	private void atributoStar() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Atributo*>");
 		
@@ -484,7 +532,7 @@ public class ASint {
 	}
 
 	
-	private void atributo() throws UnexpectedTokenException {
+	private void atributo() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Atributo>");
 		
@@ -503,15 +551,30 @@ public class ASint {
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba boolean, int, char, String o identificador de tipo después de var, en línea " + curr.getLinea());
 		}
-		else tipo();
+		else {
+			AttributeManager.getCurrent().loadContext();
+			tipo();
+			AttributeManager.getCurrent().unloadContext();
+			
+			Attribute<String> expectedType = new Attribute<String>(AttributeType.ListaDecVars_ExpectedType, curr.getLexema());
+			AttributeManager.getCurrent().setSynthesizedAttribute(expectedType);
+		}
 		
 		getToken();
 		reuseToken();
 		if(curr.getTokenType() != TokenType.Identifier) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador (nombre de variable), en línea " + curr.getLinea());
 		}
-		else listaDecVars();
-		
+		else{ 
+			AttributeManager.getCurrent().loadContext();
+			listaDecVars();
+			AttributeManager.getCurrent().unloadContext();
+			
+			List<String> variables = (List<String>) AttributeManager.getCurrent().getSynthesizedAttribute(AttributeType.ListaDecVars_Variables).Value;
+			for (String variable : variables) {
+				TS.getCurrentClass().addAttribute(variable);
+			}
+		}
 		getToken();
 		if(curr.getTokenType() != TokenType.SemicolonSymbol) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba ; en línea " + curr.getLinea());

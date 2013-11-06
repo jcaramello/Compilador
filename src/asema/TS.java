@@ -49,13 +49,14 @@ public class TS {
 	 * @param father
 	 * @throws SemanticErrorException
 	 */
-	public static void addClass(String classIdentifier, EntryClass father)throws SemanticErrorException{				
+	public static EntryClass addClass(String classIdentifier, EntryClass father)throws SemanticErrorException{				
 		if(TS.containsClass(classIdentifier))
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS", classIdentifier));
 		if(!TS.containsClass(father.Name))
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS", classIdentifier));
 		EntryClass newClass = new EntryClass(classIdentifier, father);
 		TS.Classes.put(classIdentifier, newClass);
+		return newClass;
 	}
 	
 	/**

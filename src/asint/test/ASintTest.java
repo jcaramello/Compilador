@@ -18,6 +18,7 @@ import org.junit.runners.Parameterized.Parameters;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
+import asema.exceptions.SemanticErrorException;
 import asint.ASint;
 import asint.UnexpectedTokenException;
 
@@ -94,7 +95,7 @@ public class ASintTest {
     public ExpectedException expectedEx = ExpectedException.none();
 
 	@Test
-	public void testGenerico() throws UnexpectedTokenException {
+	public void testGenerico() throws UnexpectedTokenException, SemanticErrorException {
 
 		if(expected == null) { // Se espera éxito
 			URL url = this.getClass().getResource(testFile);
