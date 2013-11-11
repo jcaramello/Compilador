@@ -6,7 +6,7 @@ import java.util.List;
 
 import asema.exceptions.SemanticErrorException;
 
-public class BlockNode extends BaseNode {
+public class BlockNode extends SentenceNode {
 	
 	/**
 	 * Contexto sobre el cual se ejecuta el bloque, Entry Base deberia ser o una entrada de constructor

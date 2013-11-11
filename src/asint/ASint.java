@@ -384,7 +384,7 @@ public class ASint {
 		
 		for (EntryVar entryVar : listaArgsFormalesFact) {
 			if(entryVar.Name.equals(arg.Name))
-				throw new SemanticErrorException(String.format("El nombre del argumento esta repetido. Linea %s", Integer.toString(curr.getLinea()))
+				throw new SemanticErrorException(String.format("El nombre del argumento esta repetido. Linea %s", Integer.toString(curr.getLinea())));
 		}
 		
 		//Inserto al principio para que al final de la recursion la lista quede ordenada
@@ -399,7 +399,7 @@ public class ASint {
 	private List<EntryVar> listaArgsFormalesFact() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ListaArgsFormalesFact>");
-		List<EntryVar> listaArgsFormalesFact;
+		List<EntryVar> listaArgsFormalesFact = new ArrayList<EntryVar>();
 		
 		getToken(); 
 		if(curr.getTokenType() != TokenType.ComaSymbol &&
@@ -409,9 +409,7 @@ public class ASint {
 		} 
 		else if(curr.getTokenType() == TokenType.ClosedParenthesisSymbol)
 		{
-			reuseToken(); // lambda
-			listaArgsFormalesFact = new ArrayList<EntryVar>();
-			
+			reuseToken(); // lambda						
 		}
 		else if(curr.getTokenType() == TokenType.ComaSymbol)
 		{				
@@ -656,7 +654,7 @@ public class ASint {
 	}
 
 
-	private List<EntryVar> listaDecVars(Type expectedType) throws UnexpectedTokenException {
+	private List<EntryVar> listaDecVars(Type expectedType) throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ListaDecVars>");
 				
@@ -670,7 +668,7 @@ public class ASint {
 		
 		for (EntryVar entryVar : variables) {
 			if(entryVar.Name.equals(curr.getLexema()))
-				throw new SemanticErrorException(String.format("Error(!). La variable %s esta repetida. Linea %s", curr.getLexema(), Integer.toString(curr.getLinea()));
+				throw new SemanticErrorException(String.format("Error(!). La variable %s esta repetida. Linea %s", curr.getLexema(), Integer.toString(curr.getLinea())));
 		}
 		
 		variables.add(0, new EntryVar(expectedType, curr.getLexema()));
@@ -798,7 +796,7 @@ public class ASint {
 			if(curr.getTokenType() != TokenType.Identifier) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba identificador para asignación en for, en línea " + curr.getLinea());			
 			} 
-			else intiAssing = asignacion();
+			else initAssing = asignacion();
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
@@ -824,15 +822,19 @@ public class ASint {
 			sentence = new ForNode(initAssing, loopCond, incrementExp, body);
 		}
 		else if(curr.getTokenType() == TokenType.OpenKeySymbol) {
-			sentenciaStar();
-			
+			List<SentenceNode> sentences = sentenciaStar();
+			sentence = new BlockNode(sentences);
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedKeySymbol) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba } (cierre de bloque) en línea " + curr.getLinea());			
 			}
 		}
 		else if(curr.getTokenType() == TokenType.ReturnKeyword) {
-			expressionQ();
+			
+			ExpressionNode returnExp = expressionQ();
+			if(returnExp == null)
+				throw new SemanticErrorException(String.format("Error(!). La expression de retorno no puede ser vacia. Linea %s", Integer.toString(curr.getLinea())));
+			sentence = new ReturnNode(returnExp);
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
@@ -841,28 +843,33 @@ public class ASint {
 		}else throw new UnexpectedTokenException("(!) Error, el token " + curr.getLexema()+" no se corresponde con el comienzo de una sentencia valida, en línea " + curr.getLinea());
 		
 		Logger.verbose("<-" + depth + " Fin <Sentencia>");	
-	    depth--;			
+	    depth--;
+	    
+	    return sentence;
 	}
 
 
-	private void sentenciaFact() throws UnexpectedTokenException {
+	private SentenceNode sentenciaFact() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <SentenciaFact>");
+		SentenceNode sentence = null;
 		
 		getToken();
 		if(curr.getTokenType() == TokenType.ElseKeyword) {
-			sentencia();
+			sentence = sentencia();
 		}
 		else reuseToken(); // lambda (acá hay margen para captar errores anticipadamente con follow(SentenciaFact)
 		
 		Logger.verbose("<-" + depth + " Fin <SentenciaFact>");	
-	    depth--;			
+	    depth--;	
+	    
+	    return sentence;
 	}
 
 	
-	private void asignacion() throws UnexpectedTokenException {
+	private AssignmentNode asignacion() throws UnexpectedTokenException {
 		depth++;
-		Logger.verbose(depth + "-> Iniciando <Asignacion>");
+		Logger.verbose(depth + "-> Iniciando <Asignacion>");		
 		
 		getToken();
 		if(curr.getTokenType() != TokenType.Identifier) {
@@ -874,14 +881,16 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba = en asignación, en línea " + curr.getLinea());					
 		}
 		
-		expression();
-		
+		EntryVar leftRigth = TS.findVar(curr.getLexema());
+		ExpressionNode rigthSide = expression();
+				
+		AssignmentNode assignmentNode = new AssignmentNode(leftRigth, rigthSide);
 		Logger.verbose("<-" + depth + " Fin <Asignacion>");	
 	    depth--;
 	}
 	
 	
-	private void sentenciaSimple() throws UnexpectedTokenException {
+	private SimpleSentenceNode sentenciaSimple() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <SentenciaSimple>");
 		
@@ -890,7 +899,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba ( para apertura de sentencia simple, en línea " + curr.getLinea());					
 		}
 		
-		expression();
+		ExpressionNode exp = expression();
 		
 		getToken();
 		if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol) {
@@ -899,25 +908,31 @@ public class ASint {
 		
 		Logger.verbose("<-" + depth + " Fin <SentenciaSimple>");	
 	    depth--;
+	    
+	    return new SimpleSentenceNode(exp);
 	}
 
 	
-	private void expressionQ() throws UnexpectedTokenException{
+	private ExpressionNode expressionQ() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Expression?>");			
-				
+		
+		ExpressionNode exp = null;
+		
 		getToken();		
 		reuseToken();
 		
 		if(!ASintHelper.isFollowExpressionQ(curr)){										
-			expression();				
+			exp = expression();				
 		}
 		
 		Logger.verbose("<-" + depth + " Fin <Expression?>");	
 	    depth--;
+	    
+	    return exp;
 	}
 	
-	private void expression() throws UnexpectedTokenException{
+	private ExpressionNode expression() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Expression?>");			
 				

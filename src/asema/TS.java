@@ -148,6 +148,10 @@ public class TS {
 		TS.initializeSystemClass();
 	}
 	
+	public static EntryVar findVar(String id)
+	{
+		return null;
+	}
 	
 	/*
 	 * Private Methods
