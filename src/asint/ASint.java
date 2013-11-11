@@ -313,29 +313,35 @@ public class ASint {
 	}
 
 	
-	private void argsFormales() throws UnexpectedTokenException, SemanticErrorException {
+	private List<EntryVar> argsFormales() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ArgsFormales>");
+		
+		List<EntryVar> argsFormales_Args = null;
 		
 		getToken();
 		if(curr.getTokenType() != TokenType.OpenParenthesisSymbol) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba ( abriendo lista de argumentos formales en línea " + curr.getLinea());
 		}
 				
-		listaArgsFormalesQ();						
+		argsFormales_Args = listaArgsFormalesQ();						
 		getToken();
 		if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba ) cerrando lista de argumentos formales en línea " + curr.getLinea());
 		}
 		
 		Logger.verbose("<-" + depth + " Fin <ArgsFormales>");
-		depth--;		
+		depth--;
+		
+		return argsFormales_Args;
 	}
 
 	
-	private void listaArgsFormalesQ() throws UnexpectedTokenException, SemanticErrorException {
+	private List<EntryVar> listaArgsFormalesQ() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ListaArgsFormales?>");
+		
+		List<EntryVar> listaArgsFormalesQ_Args = new ArrayList<EntryVar>();
 		
 		getToken(); 
 		reuseToken();
@@ -348,32 +354,39 @@ public class ASint {
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba boolean, int, char, String o identificador como tipo de argumento formal, o bien cierre de paréntesis, en línea " + curr.getLinea());
 		}
-		else if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol){
-						
-			listaArgsFormales();					
-			
-			}else {
-											
-			}
+		else if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol){						
+			listaArgsFormalesQ_Args = listaArgsFormales();					
+		}
 		
 		Logger.verbose("<-" + depth + " Fin <ListaArgsFormales?>");
-		depth--;	
+		depth--;
+		return listaArgsFormalesQ_Args;
 	}
 
 
-	private void listaArgsFormales() throws UnexpectedTokenException, SemanticErrorException {
+	private List<EntryVar> listaArgsFormales() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
-		Logger.verbose(depth + "-> Iniciando <ListaArgsFormales>");
-				
-		argFormal();				
-		listaArgsFormalesFact();		
+		Logger.verbose(depth + "-> Iniciando <ListaArgsFormales>");		
+		
+		EntryVar arg = argFormal();						
+		List<EntryVar> listaArgsFormalesFact = listaArgsFormalesFact();
+		
+		
+		for (EntryVar entryVar : listaArgsFormalesFact) {
+			if(entryVar.Name.equals(arg.Name))
+				throw new SemanticErrorException(String.format("El nombre del argumento esta repetido. Linea %s", Integer.toString(curr.getLinea()))
+		}
+		
+		//Inserto al principio para que al final de la recursion la lista quede ordenada
+		listaArgsFormalesFact.add(0, arg);		
 		
 		Logger.verbose("<-" + depth + " Fin <ListaArgsFormales>");
-		depth--;			
+		depth--;	
+		return listaArgsFormalesFact;
 	}
 
 	
-	private void listaArgsFormalesFact() throws UnexpectedTokenException, SemanticErrorException {
+	private List<EntryVar> listaArgsFormalesFact() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ListaArgsFormalesFact>");
 		
@@ -386,11 +399,12 @@ public class ASint {
 		else if(curr.getTokenType() == TokenType.ClosedParenthesisSymbol)
 		{
 			reuseToken(); // lambda
+			return new ArrayList<EntryVar>();
 			
 		}
 		else if(curr.getTokenType() == TokenType.ComaSymbol)
 		{				
-			listaArgsFormales();					
+			return listaArgsFormales();					
 		}
 		
 		Logger.verbose("<-" + depth + " Fin <ListaArgsFormalesFact>");
@@ -398,10 +412,11 @@ public class ASint {
 	}
 
 	
-	private void argFormal() throws UnexpectedTokenException {
+	private EntryVar argFormal() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ArgFormal>");
-
+		Type type;
+		
 		getToken(); 
 		reuseToken();
 		if(curr.getTokenType() != TokenType.Identifier &&
@@ -412,15 +427,17 @@ public class ASint {
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba boolean, int, char, String o identificador como tipo de argumento formal en línea " + curr.getLinea());
 		}
-		else tipo();
+		else type = tipo();
 		
 		getToken();
 		if(curr.getTokenType() != TokenType.Identifier) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador (nombre de argumento formal), en línea " + curr.getLinea());
-		}
+		}			
 		
 		Logger.verbose("<-" + depth + " Fin <ArgFormal>");
 		depth--;
+		
+		return new EntryVar(type, curr.getLexema());
 	}
 
 
