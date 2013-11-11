@@ -21,8 +21,10 @@ public class BlockNode extends BaseNode {
 	 * Contructor
 	 */
 	
-	public BlockNode(){
-		this.Sentences = new ArrayList<SentenceNode>(); 
+	public BlockNode(List<SentenceNode> sentences){
+		this.Sentences = new ArrayList<SentenceNode>();
+		if(sentences != null)
+			this.Sentences = sentences;
 	}
 	
 	public void addSentence(){

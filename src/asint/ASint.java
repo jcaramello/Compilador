@@ -287,29 +287,39 @@ public class ASint {
 	}
 	
 
-	private void modMetodo() throws UnexpectedTokenException {
+	private ModifierMethodType modMetodo() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ModMetodo>");
 		
+		ModifierMethodType modifier;
+		
 		getToken(); // static o dynamic garantizado.
 
+		if(curr.getTokenType() == TokenType.StaticKeyword)
+			modifier = ModifierMethodType.Static;
+		else modifier = ModifierMethodType.Dynamic;
+		
 		Logger.verbose("<-" + depth + " Fin <ModMetodo>");
-		depth--;			
+		depth--;		
+		
+		return modifier;
 	}
 
 
-	private void tipoMetodo() throws UnexpectedTokenException {
+	private Type tipoMetodo() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <TipoMetodo>");
+		Type type = new VoidType();
 		
 		getToken(); // garantizado void o TipoPrimitivo
 		if(curr.getTokenType() != TokenType.VoidKeyword) {
 			reuseToken();
-			tipo();
+			type = tipo();
 		}
 		
 		Logger.verbose("<-" + depth + " Fin <TipoMetodo>");
 		depth--;	
+		return type;
 	}
 
 	
@@ -389,6 +399,7 @@ public class ASint {
 	private List<EntryVar> listaArgsFormalesFact() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ListaArgsFormalesFact>");
+		List<EntryVar> listaArgsFormalesFact;
 		
 		getToken(); 
 		if(curr.getTokenType() != TokenType.ComaSymbol &&
@@ -399,16 +410,18 @@ public class ASint {
 		else if(curr.getTokenType() == TokenType.ClosedParenthesisSymbol)
 		{
 			reuseToken(); // lambda
-			return new ArrayList<EntryVar>();
+			listaArgsFormalesFact = new ArrayList<EntryVar>();
 			
 		}
 		else if(curr.getTokenType() == TokenType.ComaSymbol)
 		{				
-			return listaArgsFormales();					
+			listaArgsFormalesFact = listaArgsFormales();					
 		}
 		
 		Logger.verbose("<-" + depth + " Fin <ListaArgsFormalesFact>");
-		depth--;			
+		depth--;
+		
+		return listaArgsFormalesFact;
 	}
 
 	
@@ -441,18 +454,19 @@ public class ASint {
 	}
 
 
-	private void varsLocales() throws UnexpectedTokenException, SemanticErrorException {
+	private List<EntryVar> varsLocales() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <VarsLocales>");
-
+		List<EntryVar> variables = new ArrayList<EntryVar>();;
+		
 		getToken(); // var
 		if(curr.getTokenType() != TokenType.VarKeyword &&
 				curr.getTokenType() != TokenType.OpenKeySymbol) { // Follow(VarsLocales) 
 			throw new UnexpectedTokenException("(!) Error, se esperaba var (para variables locales) o { para apertura de bloque en línea " + curr.getLinea());		
 		} 
 		else if(curr.getTokenType() == TokenType.VarKeyword) {
-			tipo();
-			listaDecVars();
+			Type expectedType = tipo();
+			variables = listaDecVars(expectedType);
 			
 			getToken(); // ;
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) { 
@@ -462,24 +476,28 @@ public class ASint {
 			atributoStar();
 		}
 		else if(curr.getTokenType() == TokenType.OpenKeySymbol) {
-			reuseToken(); // lambda
+			reuseToken(); // lambda				
 		}
 		
 		Logger.verbose("<-" + depth + " Fin <VarsLocales>");
 		depth--;
+		
+		return variables;
 	}
 
 
-	private void bloque() throws UnexpectedTokenException {
+	private BlockNode bloque() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Bloque>");
+		BlockNode node;
 		
 		getToken(); 
 		if(curr.getTokenType() != TokenType.OpenKeySymbol) { 
 			throw new UnexpectedTokenException("(!) Error, se esperaba { para apertura de bloque en línea " + curr.getLinea());		
 		}
 		
-		sentenciaStar();
+		List<SentenceNode> sentences  = sentenciaStar();
+		node = new BlockNode(sentences);
 		
 		getToken(); 
 		if(curr.getTokenType() != TokenType.ClosedKeySymbol) { 
@@ -488,6 +506,8 @@ public class ASint {
 		
 		Logger.verbose("<-" + depth + " Fin <Bloque>");	
 	    depth--;
+	    
+	    return node;
 	}
 
 
@@ -584,10 +604,12 @@ public class ASint {
 	}
 
 
-	private void tipo() throws UnexpectedTokenException {
+	private Type tipo() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Tipo>");
 
+		Type type;
+		
 		getToken();
 		if(curr.getTokenType() != TokenType.Identifier &&
 				curr.getTokenType() != TokenType.BooleanKeyword &&
@@ -600,15 +622,19 @@ public class ASint {
 		
 		if(curr.getTokenType() != TokenType.Identifier) {
 			reuseToken();
-			tipoPrimitivo();
+			type = tipoPrimitivo();
 		}
-		
+		else{
+			type = new ClassType(curr);
+		}
 		Logger.verbose("<-" + depth + " Fin <Tipo>");	
 	    depth--;
+	    
+	    return type;
 	}
 
 
-	private void tipoPrimitivo() throws UnexpectedTokenException {
+	private Type tipoPrimitivo() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <TipoPrimitivo>");
 		
@@ -621,72 +647,94 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba tipo primitivo: boolean, int, char, String en línea " + curr.getLinea());
 		}
 		
+		Type type = new PrimitiveType(curr.getLexema());
+		
 		Logger.verbose("<-" + depth + " Fin <TipoPrimitivo>");	
 	    depth--;
+	    
+	    return type;
 	}
 
 
-	private void listaDecVars() throws UnexpectedTokenException {
+	private List<EntryVar> listaDecVars(Type expectedType) throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ListaDecVars>");
-		
+				
 		getToken(); // identifier
 		if(curr.getTokenType() != TokenType.Identifier)
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador (nombre de variable) en línea " + curr.getLinea());
 		}
 		
-		listaDecVarsFact();
+		List<EntryVar> variables = listaDecVarsFact(expectedType);
+		
+		for (EntryVar entryVar : variables) {
+			if(entryVar.Name.equals(curr.getLexema()))
+				throw new SemanticErrorException(String.format("Error(!). La variable %s esta repetida. Linea %s", curr.getLexema(), Integer.toString(curr.getLinea()));
+		}
+		
+		variables.add(0, new EntryVar(expectedType, curr.getLexema()));
 		
 		Logger.verbose("<-" + depth + " Fin <ListaDecVars>");	
 	    depth--;	
+	    
+	    return variables;
 	}
 
-	private void listaDecVarsFact() throws UnexpectedTokenException {
+	private List<EntryVar> listaDecVarsFact(Type expectedType) throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ListaDecVarsFact>");
 		
+		List<EntryVar> variables = new ArrayList<EntryVar>();
+		
 		getToken(); 
 		if(curr.getTokenType() == TokenType.ComaSymbol)
-			listaDecVars();
+			variables = listaDecVars(expectedType);
 		else if(curr.getTokenType() != TokenType.SemicolonSymbol) { // follow(ListaDecVars)
 			throw new UnexpectedTokenException("(!) Error, se esperaba , o ; en línea " + curr.getLinea());
 		} 
 		else reuseToken(); // lambda
 		
 		Logger.verbose("<-" + depth + " Fin <ListaDecVarsFact>");	
-	    depth--;			
+	    depth--;	
+	    
+	    return variables;
 	}
 	
 
-	private void sentenciaStar() throws UnexpectedTokenException {
+	private List<SentenceNode> sentenciaStar() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Sentencia*>");
+		List<SentenceNode> sentences = new ArrayList<SentenceNode>();
 		
 		getToken(); 
 		reuseToken();
 		if(curr.getTokenType() != TokenType.ClosedKeySymbol) { // Follow(Sentencia*)
-			sentencia();
-			sentenciaStar();
+			SentenceNode sentence = sentencia();
+			sentences = sentenciaStar();
+			sentences.add(sentence); // no estoy seguro si es un add o un add(0)
 		}
 		
 		Logger.verbose("<-" + depth + " Fin <Sentencia*>");	
-	    depth--;	
+	    depth--;
+	    
+	    return sentences;
 	}
 
 
-	private void sentencia() throws UnexpectedTokenException {
+	private SentenceNode sentencia() throws UnexpectedTokenException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Sentencia>");
+		SentenceNode sentence;
 		
 		getToken(); 
 		
 		if(curr.getTokenType() == TokenType.SemicolonSymbol) {
-
+			sentence = new EmptySentenceNode();
 		}		
 		else if(curr.getTokenType() == TokenType.Identifier) {
 			reuseToken();
-			asignacion();
+			sentence = asignacion();
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
@@ -695,7 +743,7 @@ public class ASint {
 		} 
 		else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol) {
 			reuseToken();
-			sentenciaSimple();
+			sentence = sentenciaSimple();
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
@@ -708,15 +756,17 @@ public class ASint {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ( en condición de if en línea " + curr.getLinea());			
 			}
 			
-			expression();
+			ExpressionNode cond = expression();
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ) en condición de if en línea " + curr.getLinea());			
 			}
 			
-			sentencia();
-			sentenciaFact();
+			SentenceNode thenSentence = sentencia();
+			SentenceNode elseSentence = sentenciaFact();
+			
+			sentence = new IfNode(cond, thenSentence, elseSentence);
 		}
 		else if(curr.getTokenType() == TokenType.WhileKeyword) {
 			getToken();
@@ -724,14 +774,16 @@ public class ASint {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ( en condición de while en línea " + curr.getLinea());			
 			}
 			
-			expression();			
+			ExpressionNode loopCond = expression();			
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ) en condición de while en línea " + curr.getLinea());			
 			}
 			
-			sentencia();
+			SentenceNode body = sentencia();
+			
+			sentence = new WhileNode(loopCond, body);
 		}
 		else if(curr.getTokenType() == TokenType.ForKeyword) {
 			getToken();
@@ -739,33 +791,37 @@ public class ASint {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ( en for en línea " + curr.getLinea());			
 			}
 			
+			AssignmentNode initAssing;			
+			
 			getToken();
 			reuseToken();
 			if(curr.getTokenType() != TokenType.Identifier) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba identificador para asignación en for, en línea " + curr.getLinea());			
 			} 
-			else asignacion();
+			else intiAssing = asignacion();
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ; entre asignación y condición de corte en for, en línea " + curr.getLinea());			
 			}
 			
-			expression();
+			ExpressionNode loopCond = expression();
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ; entre condición de corte y expresión de incremento en for, en línea " + curr.getLinea());			
 			}
 			
-			expression();
+			ExpressionNode incrementExp = expression();
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol) {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ) en for en línea " + curr.getLinea());			
 			}
 			
-			sentencia();
+			SentenceNode body = sentencia();
+			
+			sentence = new ForNode(initAssing, loopCond, incrementExp, body);
 		}
 		else if(curr.getTokenType() == TokenType.OpenKeySymbol) {
 			sentenciaStar();

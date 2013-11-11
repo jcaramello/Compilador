@@ -12,13 +12,13 @@ public class IfNode extends SentenceNode {
 	// En realidad no estoy seguro si el tipo deberia ser BaseNode o BlockNode
 	// Si estoy seguro de que no es SentenceNode como esta en uml
 	
-	public BaseNode ThenExpression;
-	public BaseNode ElseExpression;
+	public SentenceNode ThenExpression;
+	public SentenceNode ElseExpression;
 
-	public IfNode(ExpressionNode cond, BaseNode thenExp, BaseNode elseExp){
+	public IfNode(ExpressionNode cond, SentenceNode thenExp, SentenceNode elseSentence){
 		this.ConditionalExpression = cond;
 		this.ThenExpression = thenExp;
-		this.ElseExpression = elseExp;
+		this.ElseExpression = elseSentence;
 	}
 	
 	@Override
