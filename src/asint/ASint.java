@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import common.Logger;
-import enums.AttributeType;
 import enums.ModifierMethodType;
 import enums.TokenType;
 
@@ -85,7 +84,7 @@ public class ASint {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Inicial>");
 		
-		clase();
+		clase();		
 		inicialPlus();
 		
 		Logger.verbose("<-" + depth + " Fin <Inicial>");		
@@ -107,6 +106,9 @@ public class ASint {
 		if(curr.getTokenType() != TokenType.Identifier) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador en línea " + curr.getLinea());
 		}			
+		
+		TS.addClass(curr.getLexema());
+		TS.setCurrentClass(curr.getLexema());
 		
 		herenciaQ();
 		
@@ -240,13 +242,12 @@ public class ASint {
 		
 		getToken();
 		reuseToken();
-		if(curr.getTokenType() != TokenType.StaticKeyword &&		// Nunca salta
-				curr.getTokenType() != TokenType.DynamicKeyword)
+		if(curr.getTokenType() != TokenType.StaticKeyword && curr.getTokenType() != TokenType.DynamicKeyword)
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba modificador de método (static o dynamic) en línea " + curr.getLinea());
 		} 
 		else{			
-			modMetodo();						
+			modifierType = modMetodo();						
 		}
 		
 		getToken();
@@ -261,7 +262,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba tipo de método: void, boolean, int, char, String o identificador de tipo en línea " + curr.getLinea());
 		}
 		else{			
-			tipoMetodo();								
+			returnType = tipoMetodo();								
 		}
 		
 		getToken();
@@ -272,10 +273,14 @@ public class ASint {
 		EntryMethod entryMethod = TS.getCurrentClass().addMethod(curr.getLexema(), returnType, modifierType);
 		TS.getCurrentClass().setCurrentMethod(entryMethod);
 				
-		argsFormales(); // entiendo que en estos no obtengo ningún beneficio informando más temprano del error.				
-				
-		varsLocales();				
-		bloque();		
+		List<EntryVar> args = argsFormales(); 				
+		TS.getCurrentClass().getCurrentMethod().addFormalArgs(args);		
+		
+		List<EntryVar> vars = varsLocales();				
+		TS.getCurrentClass().getCurrentMethod().addLocalVars(vars);
+		
+		BlockNode node = bloque();		
+		TS.getCurrentClass().getCurrentMethod().addAST(node);
 		
 		Logger.verbose("<-" + depth + " Fin <Metodo>");
 		depth--;		
@@ -474,13 +479,24 @@ public class ASint {
 		Logger.verbose(depth + "-> Iniciando <Ctor>");
 		
 		getToken(); // identifier garantizado
-				
-		argsFormales();		
-				
-		varsLocales();
-				
-		bloque();
-
+			
+		if(!curr.getLexema().equals(TS.getCurrentClass().Name))
+			throw new SemanticErrorException(String.format("El nombre del constructor debe coincidir con el nombre de la clase. Linea %s.", Integer.toString(curr.getLinea())));
+		
+		EntryMethod ctor = 
+				new EntryMethod(curr.getLexema(), ModifierMethodType.Dynamic, new ClassType(TS.getCurrentClass()), TS.getCurrentClass());
+		
+		List<EntryVar> args = argsFormales();					
+		ctor.addFormalArgs(args);
+		
+		List<EntryVar> vars = varsLocales();
+		ctor.addLocalVars(vars);
+		
+		BlockNode node = bloque();
+		ctor.addAST(node);
+		
+		TS.getCurrentClass().addConstructor(ctor);
+		
 		Logger.verbose("<-" + depth + " Fin <Ctor>");	
 	    depth--;
 	}
@@ -507,6 +523,9 @@ public class ASint {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Atributo>");
 		
+		Type type = null;
+		List<EntryVar> vars = null;
+		
 		getToken(); // var
 		if(curr.getTokenType() != TokenType.VarKeyword) {
 			throw new UnexpectedTokenException("(!) Error, se esperaba var en línea " + curr.getLinea());		
@@ -523,7 +542,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba boolean, int, char, String o identificador de tipo después de var, en línea " + curr.getLinea());
 		}
 		else {			
-			tipo();								
+			type = tipo();								
 		}
 		
 		getToken();
@@ -532,7 +551,11 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador (nombre de variable), en línea " + curr.getLinea());
 		}
 		else{ 			
-			listaDecVars();								
+			vars = listaDecVars(type);	
+			
+			for (EntryVar var : vars) {
+				TS.getCurrentClass().addAttribute(var);
+			}
 		}
 		getToken();
 		if(curr.getTokenType() != TokenType.SemicolonSymbol) {

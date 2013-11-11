@@ -61,10 +61,10 @@ public class EntryClass extends EntryBase{
 		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType(), this);
 	}
 	
-	public void addAttribute(String name) throws SemanticErrorException{
-		if(this.Attributes.containsKey(name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un atributo %s.", this.Name, name));
-		else this.Attributes.put(name, new EntryVar(null, name));		
+	public void addAttribute(EntryVar a) throws SemanticErrorException{
+		if(this.Attributes.containsKey(a.Name))
+			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un atributo %s.", this.Name, a.Name));
+		else this.Attributes.put(a.Name, a);		
 	}
 	
 	public EntryVar getAttribute(String name){
