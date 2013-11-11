@@ -16,7 +16,10 @@ public enum AttributeType {
 	VarsLocales_Vars,
 	Bloque_AST,
 	ListaArgsFormalesQ_Args,
-	
+	ListaArgsFormales_Args,
+	ArgFormal,
+	ListaArgsFormalesFact_Args,
+	Tipo_Type
 	
 	
 	
