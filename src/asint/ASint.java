@@ -484,7 +484,7 @@ public class ASint {
 	}
 
 
-	private BlockNode bloque() throws UnexpectedTokenException {
+	private BlockNode bloque() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Bloque>");
 		BlockNode node;
@@ -679,7 +679,7 @@ public class ASint {
 	    return variables;
 	}
 
-	private List<EntryVar> listaDecVarsFact(Type expectedType) throws UnexpectedTokenException {
+	private List<EntryVar> listaDecVarsFact(Type expectedType) throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ListaDecVarsFact>");
 		
@@ -700,7 +700,7 @@ public class ASint {
 	}
 	
 
-	private List<SentenceNode> sentenciaStar() throws UnexpectedTokenException {
+	private List<SentenceNode> sentenciaStar() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Sentencia*>");
 		List<SentenceNode> sentences = new ArrayList<SentenceNode>();
@@ -720,7 +720,7 @@ public class ASint {
 	}
 
 
-	private SentenceNode sentencia() throws UnexpectedTokenException {
+	private SentenceNode sentencia() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Sentencia>");
 		SentenceNode sentence;
@@ -849,7 +849,7 @@ public class ASint {
 	}
 
 
-	private SentenceNode sentenciaFact() throws UnexpectedTokenException {
+	private SentenceNode sentenciaFact() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <SentenciaFact>");
 		SentenceNode sentence = null;
@@ -887,6 +887,7 @@ public class ASint {
 		AssignmentNode assignmentNode = new AssignmentNode(leftRigth, rigthSide);
 		Logger.verbose("<-" + depth + " Fin <Asignacion>");	
 	    depth--;
+	    return assignmentNode;
 	}
 	
 	
@@ -1042,6 +1043,8 @@ public class ASint {
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionAndAux>");	
 	    depth--;
+	    
+	    return expAndAux;
 	}
 	
 	private ExpressionNode expressionComp()throws UnexpectedTokenException{
@@ -1124,6 +1127,8 @@ public class ASint {
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionSRAux>");	
 	    depth--;
+	    
+	    return expSRAux;
 	}
 	
 	private ExpressionNode termino()throws UnexpectedTokenException{
@@ -1198,14 +1203,17 @@ public class ASint {
 		PrimaryNode primario = null;
 		getToken();
 		
-		if(curr.getTokenType() == TokenType.ThisKeyword || ASintHelper.isLiteral(curr)){
+		if(curr.getTokenType() == TokenType.ThisKeyword){			
 			primario = new ThisNode(new ClassType(TS.getCurrentClass()));
+		}else if(ASintHelper.isLiteral(curr)){
+			primario = literal(curr);
 		}else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){
 			
 			ExpressionNode exp = expression();
 			getToken();
-			if(curr.getTokenType() == TokenType.ClosedParenthesisSymbol)
-				primario = llamadaStar(exp);
+			if(curr.getTokenType() == TokenType.ClosedParenthesisSymbol){								
+				primario = llamadaStar(new ParenthesizedExpressionNode(exp));
+			}
 			else throw new UnexpectedTokenException("(!) Error, la llamada no es correcta. Se esperaba ), el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 			
 		}else if(curr.getTokenType() == TokenType.Identifier){			
@@ -1215,82 +1223,126 @@ public class ASint {
 		}else if(curr.getTokenType() == TokenType.NewKeyword){
 			getToken();
 			if(curr.getTokenType() == TokenType.Identifier){
-				argsActuales();
-				llamadaStar();
+				List<ExpressionNode> params = argsActuales();
+				NewNode context = new NewNode(curr, null, params);
+				primario = llamadaStar(context);
 			}
 		}else throw new UnexpectedTokenException("(!) Error, Expresion mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());		
 		
 		Logger.verbose("<-" + depth + " Fin <Primario>");	
 	    depth--;
+	    
+	    return primario;
 	}
 	
 	
-	private void primarioFact() throws UnexpectedTokenException{
+	private PrimaryNode primarioFact(IDNode id) throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <PrimarioFact>");
-	
+		
+		PrimaryNode primarioFact = null;
+		
 		getToken();
 		reuseToken();
 		
 		if(curr.getTokenType() == TokenType.DotSymbol){				
-			llamadaStar();	
+			primarioFact = llamadaStar(id);	
 		}else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){			
-			argsActuales();
-			llamadaStar();
+			List<ExpressionNode> params = argsActuales();			
+			primarioFact = llamadaStar(new CallNode(null, id, params));
 		} 				
 		else if(!ASintHelper.isFollowFactor(curr))
 			throw new UnexpectedTokenException("(!) Error, Expresion mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());		
 				
 		Logger.verbose("<-" + depth + " Fin <PrimarioFact>");	
 	    depth--;
+	    
+	    return primarioFact;
 	}
 	
-	private void llamadaStar() throws UnexpectedTokenException{
+	private PrimaryNode llamadaStar(PrimaryNode context) throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Llamada*>");
 	
+		PrimaryNode primary = null;
+		
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.DotSymbol){			
 			reuseToken();
-			llamada();
-			llamadaStar();
+			CallNode contextLlamadaStar = llamada(context);
+			primary = llamadaStar(contextLlamadaStar);
 		
 		}else if(!ASintHelper.isFollowLlamadaStar(curr))
 			throw new UnexpectedTokenException("(!) Error, Expresion mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());		
-		else reuseToken();
+		else {
+			reuseToken();
+			primary = context;
+		}
 		
 		Logger.verbose("<-" + depth + " Fin <Llamada*>");	
 	    depth--;
+	    
+	    return primary;
 	}
 
-	private void llamada() throws UnexpectedTokenException{
+	private CallNode llamada(PrimaryNode context) throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Llamada>");
 	
+		CallNode call = null;
+		
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.DotSymbol){
 			getToken();
 			if(curr.getTokenType() == TokenType.Identifier){				
-				argsActuales();
+				List<ExpressionNode> params = argsActuales();
+				call = new CallNode(context, new IDNode(curr), params);
 			}else throw new UnexpectedTokenException("(!) Error, Expresion mal formada, se esperaba un identificador. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
 		}else if(curr.getTokenType() != TokenType.DotSymbol)
 			throw new UnexpectedTokenException("(!) Error, Expresion mal formada, se esperaba un '.' (Punto). Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
 		Logger.verbose("<-" + depth + " Fin <Llamada>");	
-	    depth--;	    
+	    depth--;
+	    
+	    return call;
 	}
 	
-	private void argsActuales() throws UnexpectedTokenException{
+	private LiteralNode literal(Token tkn){
+		depth++;
+		Logger.verbose(depth + "-> Iniciando <Llamada>");
+		TokenType tknType = tkn.getTokenType();
+		Type type = null;
+		
+		if(tknType == TokenType.NullKeyword){
+			
+		}else if(tknType == TokenType.BooleanLiteral)
+			type = new PrimitiveType("boolean");
+		else if(tknType == TokenType.CharLiteral)
+			type = new PrimitiveType("char");
+		else if(tknType == TokenType.IntigerLiteral)
+			type = new PrimitiveType("int");
+		else if(tknType == TokenType.StringLiteral)
+			type = new ClassType(TS.getClass("String"));
+		
+		Logger.verbose("<-" + depth + " Fin <Llamada>");	
+	    depth--;
+	    
+	    return new LiteralNode(type, tkn);	
+	}
+	
+	private List<ExpressionNode> argsActuales() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ArgsActuales>");
-	
+		
+		List<ExpressionNode> params = null;
+		
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){
-			listaExpsQ();
+			params = listaExpsQ();
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
 				throw new UnexpectedTokenException("(!) Error, Expresion mal formada, se esperaba ')'. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea() + ". Se esperaba )");
@@ -1299,55 +1351,70 @@ public class ASint {
 		
 		Logger.verbose("<-" + depth + " Fin <ArgsActuales>");	
 	    depth--;
+	    
+	    return params;
 	}
 	
-	private void listaExpsQ() throws UnexpectedTokenException{
+	private List<ExpressionNode> listaExpsQ() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <listaExps?>");
+		
+		List<ExpressionNode> params = null;
 	
 		getToken();
 		reuseToken();
 		
 		if(ASintHelper.isFirstListaExps(curr)){			
-			listaExps();
+			params = listaExps();
 			getToken();
 			if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
 				throw new UnexpectedTokenException("(!) Error, Lista de expressiones mal formada. Se esperaba ')'. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
-			else reuseToken();
+			else {
+				reuseToken();
+			}
 			
 		}else if(curr.getTokenType() != TokenType.ClosedParenthesisSymbol)
 			throw new UnexpectedTokenException("(!) Error,Lista de expressiones mal formada. Se esperaba ')'. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 		
 		Logger.verbose("<-" + depth + " Fin <listaExps?>");	
 	    depth--;
+	    
+	    return params;
 	}
 	
-	private void listaExps() throws UnexpectedTokenException{
+	private List<ExpressionNode> listaExps() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <listaExps>");
 	
+		List<ExpressionNode> exps = null;
+		
 		getToken();
 		
 		if(ASintHelper.isFirstListaExps(curr)){
 			reuseToken();
-			expressionOr();
-			expressionAux();
-			listaExpsFact();
+			ExpressionNode expOr = expressionOr();
+			ExpressionNode expAux = expressionAux(expOr);
+			exps = listaExpsFact();
+			exps.add(0, expAux); // ver si el orden esta bien
 				
 		}else throw new UnexpectedTokenException("(!) Error, Lista de expresiones mal formada. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
 		
 		Logger.verbose("<-" + depth + " Fin <listaExps>");	
 	    depth--;
+	    
+	    return exps;
 	}
 	
-	private void listaExpsFact() throws UnexpectedTokenException{
+	private List<ExpressionNode> listaExpsFact() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <listaExpsFact>");
 	
+		 List<ExpressionNode> exps = new ArrayList<ExpressionNode>();
+		
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.ComaSymbol){			
-			listaExps();
+			exps = listaExps();
 				
 		}else if(!ASintHelper.isFollowListaExpsFact(curr)) 
 			throw new UnexpectedTokenException("(!) Error, Lista de expressiones mal formada. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());		
@@ -1355,5 +1422,7 @@ public class ASint {
 		
 		Logger.verbose("<-" + depth + " Fin <listaExpsFact>");	
 	    depth--;
+	    
+	    return exps;
 	}	
 }

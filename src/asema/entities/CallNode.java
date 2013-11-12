@@ -2,6 +2,7 @@ package asema.entities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import asema.exceptions.SemanticErrorException;
 
@@ -17,13 +18,13 @@ public class CallNode extends PrimaryNode {
 	 * En fin, cualquier caso creo que el contexto, termina siendo siempre un primaryNode.
 	 */
 	public PrimaryNode Context;	
-	public ArrayList<ExpressionNode> ActualsParameters;	
+	public List<ExpressionNode> ActualsParameters;	
 	public IDNode OperationName;
 	
-	public CallNode(PrimaryNode context, IDNode operationName, ExpressionNode... actualsParameters){
+	public CallNode(PrimaryNode context, IDNode operationName, List<ExpressionNode> actualsParameters){
 		this.Context = context;
 		this.OperationName = operationName;
-		this.ActualsParameters = new ArrayList<ExpressionNode>(Arrays.asList(actualsParameters));
+		this.ActualsParameters = actualsParameters;
 	}
 	
 	@Override
