@@ -1073,7 +1073,9 @@ public class ASint {
 			ExpressionNode expSR = expressionSR();
 			expComoAux = new BinaryExpressionNode(expSR, expLeft, curr);
 			
-			//expressionCompAux(); // Esta linea fue comentada para corregir el defecto de  a = a > b < d; ya que si esta, toma como valida esa expresion y no deberia hacerlo.
+			// Esta linea fue comentada para corregir el defecto de  a = a > b < d; ya que si esta,
+			// toma como valida esa expresion y no deberia hacerlo.
+			//expressionCompAux(); 
 			
 		}else if(!ASintHelper.isFollowExpressionCompAux(curr)){
 			throw new UnexpectedTokenException("(!) Error, Expression mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
@@ -1092,99 +1094,124 @@ public class ASint {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionSR>");
 	
-		termino();
-		expressionSRAux();
+		ExpressionNode term = termino();
+		ExpressionNode expSRAux = expressionSRAux(term);
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionSR>");	
 	    depth--;
+	    
+	    return expSRAux;
 	}
 	
-	private void expressionSRAux()throws UnexpectedTokenException{
+	private ExpressionNode expressionSRAux(ExpressionNode expLeft)throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionSRAux>");
 	
+		ExpressionNode expSRAux = null;
+		
 		getToken();
 		if(curr.getTokenType() == TokenType.PlusOperator ||
 		   curr.getTokenType() == TokenType.RestOperator){
-			termino();
-			expressionSRAux();
+			ExpressionNode term = termino();
+			ExpressionNode expBinary =  new BinaryExpressionNode(term, expLeft, curr);
+			expSRAux = expressionSRAux(expBinary);
 		}else if(!ASintHelper.isFollowExpressionSRAux(curr)){	
 			throw new UnexpectedTokenException("(!) Error, Expression mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
-		}else reuseToken();
+		}else {
+			reuseToken();
+			expSRAux = expLeft;
+		}
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionSRAux>");	
 	    depth--;
 	}
 	
-	private void termino()throws UnexpectedTokenException{
+	private ExpressionNode termino()throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Termino>");
 	
-		factor();
-		terminoAux();
+		ExpressionNode factor = factor();
+		ExpressionNode term = terminoAux(factor);
 		
 		Logger.verbose("<-" + depth + " Fin <Termino>");	
 	    depth--;
+	    
+	    return term;
 	}
 
-	private void terminoAux()throws UnexpectedTokenException{
+	private ExpressionNode terminoAux(ExpressionNode expLeft)throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <TerminoAux>");
 	
+		ExpressionNode terminoAux = null;
+		
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.MultiplierOperator ||
 		   curr.getTokenType() == TokenType.DivisionOperator ||
 		   curr.getTokenType() == TokenType.ModOperator){
 			
-			factor();
-			terminoAux();
+			ExpressionNode factor = factor();
+			ExpressionNode expBinary = new BinaryExpressionNode(factor, expLeft, curr);
+			terminoAux = terminoAux(expBinary);
+			
 		}else if(!ASintHelper.isFollowTerminoAux(curr)){
 			throw new UnexpectedTokenException("(!) Error, Expresion mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
-		}else reuseToken();
+		}else {
+			reuseToken();
+			terminoAux = expLeft;
+		}
 		
 		Logger.verbose("<-" + depth + " Fin <TerminoAux>");	
 	    depth--;
+	    
+	    return terminoAux;
 	}
 	
-	private void factor()throws UnexpectedTokenException{
+	private ExpressionNode factor()throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Factor>");
 	
+		ExpressionNode factor = null;
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.NotOperator ||
 		   curr.getTokenType() == TokenType.PlusOperator ||
-		   curr.getTokenType() == TokenType.RestOperator){
-			factor();
+		   curr.getTokenType() == TokenType.RestOperator){			
+			factor = new UnaryExpressionNode(factor(), curr);
 			
 		}else {
 			reuseToken();
-			primario();
+			factor = new PrimaryExpressionNode(primario());
 		}
 		
 		Logger.verbose("<-" + depth + " Fin <Factor>");	
 	    depth--;
+	    
+	    return factor;
 	}
 	
-	private void primario() throws UnexpectedTokenException{
+	private PrimaryNode primario() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Primario>");
 	
+		PrimaryNode primario = null;
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.ThisKeyword || ASintHelper.isLiteral(curr)){
-			
+			primario = new ThisNode(new ClassType(TS.getCurrentClass()));
 		}else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){
 			
-			expression();
+			ExpressionNode exp = expression();
 			getToken();
 			if(curr.getTokenType() == TokenType.ClosedParenthesisSymbol)
-				llamadaStar();
+				primario = llamadaStar(exp);
 			else throw new UnexpectedTokenException("(!) Error, la llamada no es correcta. Se esperaba ), el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 			
 		}else if(curr.getTokenType() == TokenType.Identifier){			
-			primarioFact();			
+			IDNode id = new IDNode(curr);
+			primario = primarioFact(id);			
+			
 		}else if(curr.getTokenType() == TokenType.NewKeyword){
 			getToken();
 			if(curr.getTokenType() == TokenType.Identifier){
