@@ -936,101 +936,133 @@ public class ASint {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Expression?>");			
 				
-		expressionOr();
-		expressionAux();		
+		ExpressionNode expOR = expressionOr();
+		ExpressionNode expAux = expressionAux(expOR);		
 		
 		Logger.verbose("<-" + depth + " Fin <Expression?>");	
 	    depth--;
+	    
+	    return expAux;
 	}
 	
-	private void expressionAux() throws UnexpectedTokenException{
+	private ExpressionNode expressionAux(ExpressionNode expLeft) throws UnexpectedTokenException{
 		depth++	;
 		Logger.verbose(depth + "-> Iniciando <ExpressionAux>");
-		 
+		ExpressionNode expAux = null;
+		
 		getToken();			
 		
 		if(curr.getTokenType() == TokenType.OrOperator){
-			expressionOr();
-			expressionAux();
+			ExpressionNode expOr = expressionOr();
+			ExpressionNode expBinary = new BinaryExpressionNode(expOr, expLeft, curr);
+			expAux = expressionAux(expBinary);
+			
 		}else if(!ASintHelper.isFollowExpressionAux(curr))	{	
 				throw new UnexpectedTokenException("(!) Error, Expression mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
-		}else reuseToken();
+		}else {
+			reuseToken();
+			expAux = expLeft;
+		}
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionAux>");	
 	    depth--;
+	    
+	    return expAux;
 	}
 	
-	private void expressionOr() throws UnexpectedTokenException{
+	private ExpressionNode expressionOr() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionAux>");
 			
-		expressionAnd();
-		expressionOrAux();	
+		ExpressionNode expAnd = expressionAnd();
+		ExpressionNode expOrAux = expressionOrAux(expAnd);	
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionAux>");	
 	    depth--;
+	    
+	    return expOrAux;
 	}
 	
-	private void expressionOrAux()throws UnexpectedTokenException{
+	private ExpressionNode expressionOrAux(ExpressionNode expLeft)throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionOrAux>");
-		 
+		
+		ExpressionNode expOrAux = null;
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.AndOperator){
-			expressionAnd();
-			expressionOrAux();
+			ExpressionNode expAnd = expressionAnd();
+			ExpressionNode expBinary = new BinaryExpressionNode(expAnd, expLeft, curr);
+			expOrAux = expressionOrAux(expBinary);
 		}
 		else if(!ASintHelper.isFollowExpressionOrAux(curr)){
 			throw new UnexpectedTokenException("(!) Error, Expression mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
-		}else reuseToken();
+		}else {
+			reuseToken();
+			expOrAux = expLeft;
+		}
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionOrAux>");	
 	    depth--;
+	    
+	    return expOrAux;
 	}
 	
-	private void expressionAnd()throws UnexpectedTokenException{
+	private ExpressionNode expressionAnd()throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionAnd>");
 		 	
-		expressionComp();
-		expressionAndAux();		
+		ExpressionNode expLeft = expressionComp();
+		ExpressionNode expAndAux = expressionAndAux(expLeft);		
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionAnd>");	
 	    depth--;
+	    
+	    return expAndAux;
 	}	
 	
-	private void expressionAndAux() throws UnexpectedTokenException{
+	private ExpressionNode expressionAndAux(ExpressionNode expLeft) throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionAndAux>");
-		 	
+
+		ExpressionNode expAndAux = null;
+		
 		getToken();
 		if(curr.getTokenType() == TokenType.DistinctOperator || curr.getTokenType() == TokenType.EqualOperator ){
-			expressionComp();
-			expressionAndAux();
+			ExpressionNode expRigth = expressionComp();
+			ExpressionNode expBinary = new BinaryExpressionNode(expRigth, expLeft, curr);
+			expAndAux = expressionAndAux(expBinary);
+			
 		}else if(!ASintHelper.isFollowExpressionAndAux(curr)){
 			throw new UnexpectedTokenException("(!) Error, Expression mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
-		}else reuseToken();
+		}else {
+			reuseToken();
+			expAndAux = expLeft;
+		}
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionAndAux>");	
 	    depth--;
 	}
 	
-	private void expressionComp()throws UnexpectedTokenException{
+	private ExpressionNode expressionComp()throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionComp>");
 		
-		expressionSR();
-		expressionCompAux();
+		ExpressionNode expSR = expressionSR();
+		ExpressionNode expComAux = expressionCompAux(expSR);
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionComp>");	
 	    depth--;
+	    
+	    return expComAux;
 	}
 	
-	private void expressionCompAux() throws UnexpectedTokenException{
+	private ExpressionNode expressionCompAux(ExpressionNode expLeft) throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionCompAux>");
 	
+		ExpressionNode expComoAux = null;
+		
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.GratherOrEqualOperator ||
@@ -1038,18 +1070,25 @@ public class ASint {
 		   curr.getTokenType() == TokenType.GratherOperator ||
 		   curr.getTokenType() == TokenType.LessOperator){
 			
-			expressionSR();
+			ExpressionNode expSR = expressionSR();
+			expComoAux = new BinaryExpressionNode(expSR, expLeft, curr);
+			
 			//expressionCompAux(); // Esta linea fue comentada para corregir el defecto de  a = a > b < d; ya que si esta, toma como valida esa expresion y no deberia hacerlo.
 			
 		}else if(!ASintHelper.isFollowExpressionCompAux(curr)){
 			throw new UnexpectedTokenException("(!) Error, Expression mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
-		}else reuseToken();
+		}else{
+			reuseToken();
+			expComoAux = expLeft;
+		}
 		
 		Logger.verbose("<-" + depth + " Fin <ExpressionCompAux>");	
 	    depth--;
+	    
+	    return expComoAux;
 	}		
 	
-	private void expressionSR()throws UnexpectedTokenException{		
+	private ExpressionNode expressionSR()throws UnexpectedTokenException{		
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ExpressionSR>");
 	
