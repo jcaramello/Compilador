@@ -39,11 +39,11 @@ public class IfNode extends SentenceNode {
 		ThenNode.check();
 		
 		CodeGenerator.gen(Instructions.JUMP, ""+l2);
-		CodeGenerator.gen(l1 + ": NOP");
+		CodeGenerator.gen("L" + l1 + ": NOP");
 		
 		if(ElseNode != null) ElseNode.check();
 		
-		CodeGenerator.gen(l2 + ": NOP");
+		CodeGenerator.gen("L" + l2 + ": NOP");
 		
 		
 		return null; // ??

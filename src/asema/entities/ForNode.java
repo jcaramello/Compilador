@@ -29,7 +29,7 @@ public class ForNode extends SentenceNode {
 		
 		InitializationExpression.check();
 		
-		CodeGenerator.gen(l1 + ": NOP");
+		CodeGenerator.gen("L" + l1 + ": NOP");
 		
 		if(!LoopCondition.check().equals(PrimitiveType.Boolean))
 			throw new SemanticErrorException("El tipo de la expresión condicional del for debe ser boolean.");
@@ -42,7 +42,7 @@ public class ForNode extends SentenceNode {
 			throw new SemanticErrorException("El tipo de la expresión de incremento en el for debe conformar con el de la variable de iteración.");
 		
 		CodeGenerator.gen(Instructions.JUMP, ""+l1);
-		CodeGenerator.gen(l2 + ": NOP");
+		CodeGenerator.gen("L" + l2 + ": NOP");
 	
 		
 		return null; // ??

@@ -25,7 +25,7 @@ public class WhileNode extends SentenceNode {
 		int l1 = TS.getNewLabelID();
 		int l2 = TS.getNewLabelID();
 
-		CodeGenerator.gen(l1 + ": NOP");
+		CodeGenerator.gen("L" + l1 + ": NOP");
 		
 		if(!LoopCondition.check().equals(PrimitiveType.Boolean))
 			throw new SemanticErrorException("El tipo de la expresión condicional del while debe ser boolean.");
@@ -35,7 +35,7 @@ public class WhileNode extends SentenceNode {
 		Body.check();
 		
 		CodeGenerator.gen(Instructions.JUMP, ""+l1);
-		CodeGenerator.gen(l2 + ": NOP");
+		CodeGenerator.gen("L" + l2 + ": NOP");
 	
 		
 		return null; // ??
