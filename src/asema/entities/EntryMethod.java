@@ -93,6 +93,14 @@ public class EntryMethod extends EntryBase {
 	}
 	
 	/**
+	 *  Retorna la cantidad de variables locales
+	 */
+	public int getLocalVarsCant() {
+		return this.LocalVars.size();
+	}
+	
+	
+	/**
 	 * Retorna los parametros formales
 	 * @param name
 	 * @return

@@ -13,7 +13,7 @@ public class PrimaryExpressionNode extends ExpressionNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
-		return PrimaryNode.check();
+		return Value.check();
 
 	}
 

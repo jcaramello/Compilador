@@ -14,7 +14,7 @@ public class ParenthesizedExpressionNode extends PrimaryNode {
 	public Type check() throws SemanticErrorException {
 		
 
-		return ExpressionNode.check();
+		return expression.check();
 
 	}
 

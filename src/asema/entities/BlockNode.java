@@ -31,12 +31,17 @@ public class BlockNode extends SentenceNode {
 		
 		// Ver el tema de que las sentencias se agregen en orden
 		// no recuerdo si teniamos que insertar al principio o al final de la lista.
+		
+		// por el check() entiendo que sería al final
 	}
 	
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
-
+	public Type check() throws SemanticErrorException {
+		
+		for(int i = 0; i < Sentences.size(); i++) 
+			Sentences.get(i).check();
+		
+		return null;
 	}
 
 }

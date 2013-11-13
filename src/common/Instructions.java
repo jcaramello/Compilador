@@ -57,4 +57,5 @@ public class Instructions {
 	public static final String CALL = "CALL";
 	public static final String JUMP = "JUMP";
 	public static final String BF = "BF";
+	public static final String RET = "RET";
 }
