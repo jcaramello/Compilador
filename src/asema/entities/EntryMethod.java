@@ -1,6 +1,7 @@
 package asema.entities;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,14 +23,18 @@ public class EntryMethod extends EntryBase {
 	public ModifierMethodType Modifier;
 	public Type ReturnType;	
 	public boolean IsContructor;
+	public String Label;
+	public int Offset;
 	
 	/*
 	 * Private Members
 	 */
 	private Map<String, EntryVar> LocalVars;
 	private Map<String, EntryVar> FormalArgs;
+	private List<EntryVar> FormalArgsByIndex;
 	private BlockNode AST;
 	private EntryClass ContainerClass;
+
 	
 	/*
 	 * Contructor
@@ -41,6 +46,7 @@ public class EntryMethod extends EntryBase {
 		this.ReturnType = _returnType;
 		this.LocalVars = new HashMap<String, EntryVar>();
 		this.FormalArgs = new HashMap<String, EntryVar>();
+		this.FormalArgsByIndex = new LinkedList<EntryVar>();
 		this.ContainerClass  = containerClass;
 	}	
 	
@@ -58,7 +64,10 @@ public class EntryMethod extends EntryBase {
 		for (EntryVar var : args) {
 			if(this.FormalArgs.containsKey(var.Name))
 				throw new SemanticErrorException(String.format("Error! - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
-			else this.FormalArgs.put(var.Name, var);
+			else {
+				this.FormalArgs.put(var.Name, var);
+				this.FormalArgsByIndex.add(var);
+			}
 		}
 	}
 	
@@ -91,6 +100,20 @@ public class EntryMethod extends EntryBase {
 	 */
 	public EntryVar getFormalArg(String name){
 		return this.FormalArgs.get(name);
+	}
+	
+	/**
+	 *  Retorna la cantidad de parámetros formales
+	 */
+	public int getFormalArgsCant() {
+		return this.FormalArgs.size();
+	}
+	
+	/**
+	 * Retorna el i-ésimo parámetro formal
+	 */
+	public EntryVar getFormalArgByIndex(int i) {
+		return this.FormalArgsByIndex.get(i);
 	}
 	
 	/**

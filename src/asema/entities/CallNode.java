@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import common.CodeGenerator;
+import common.Instructions;
+
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 public class CallNode extends PrimaryNode {
@@ -28,9 +32,49 @@ public class CallNode extends PrimaryNode {
 	}
 	
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
-
+	public Type check() throws SemanticErrorException {
+		
+		if(Context == null)
+			Context = new ThisNode();
+		
+		EntryMethod met = TS.getClass(Context.check().Name).getMethod(OperationName.Identifier.getLexema());
+		
+		if(ActualsParameters.size() != met.getFormalArgsCant())
+			throw new SemanticErrorException("La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales.");
+		
+		if(met.Modifier.equals("static")) {
+			CodeGenerator.gen("POP");  // elimino el this apilado
+			
+			for(int i = 0; i < ActualsParameters.size(); i++) {
+				if(!ActualsParameters.get(i).check().conforms(met.getFormalArgByIndex(i).Type))
+						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales.");
+			}
+			
+			if(!met.ReturnType.equals(VoidType.VoidType))
+				CodeGenerator.gen(Instructions.RMEM, "1");
+				
+			CodeGenerator.gen(Instructions.PUSH, met.Label);
+			CodeGenerator.gen(Instructions.CALL);
+		}
+		else {
+			if(!met.ReturnType.equals(VoidType.VoidType)) {
+				CodeGenerator.gen(Instructions.RMEM, "1");
+				CodeGenerator.gen(Instructions.SWAP);
+			}
+			
+			for(int i = 0; i < ActualsParameters.size(); i++) {
+				if(!ActualsParameters.get(i).check().conforms(met.getFormalArgByIndex(i).Type))
+						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales.");
+				CodeGenerator.gen(Instructions.SWAP);
+			}
+			
+			CodeGenerator.gen(Instructions.DUP);
+			CodeGenerator.gen(Instructions.LOADREF, "0");
+			CodeGenerator.gen(Instructions.LOADREF, ""+ met.Offset);
+			CodeGenerator.gen(Instructions.CALL);
+		}
+	
+		return met.ReturnType;
 	}
 
 }

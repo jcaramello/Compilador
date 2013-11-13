@@ -4,6 +4,12 @@ import asema.exceptions.SemanticErrorException;
 
 public class VoidType extends Type {
 
+	public static VoidType VoidType = new VoidType();
+	
+	public VoidType() {
+		this.Name = "void";
+	}
+	
 	@Override
 	public void check() throws SemanticErrorException {
 		// TODO Auto-generated method stub

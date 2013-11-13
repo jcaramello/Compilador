@@ -17,11 +17,11 @@ public class EntryVar extends EntryBase{
 	}
 	
 	public boolean esParametroLocal() {
-		return Origin.equals("Param");
+		return Origin.equals("param");
 	}
 	
 	public boolean esVariableLocal() {
-		return Origin.equals("LocalVar");
+		return Origin.equals("local");
 	}
 	
 }
