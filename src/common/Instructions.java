@@ -48,7 +48,7 @@ public class Instructions {
 	 */
 	public static final String CODE_SECTION = ".CODE";
 	public static final String DATA_SECTION = ".DATA";
-	public static final String VTLabel = "VTLabel : ";	
+	public static final String VTLabel = "VTLabel :";	
 	public static final String LABEL = "%s_%s :";	//[clase]_[metodo] :
 	
 	/**
@@ -58,4 +58,12 @@ public class Instructions {
 	public static final String JUMP = "JUMP";
 	public static final String BF = "BF";
 	public static final String HALT = "HALT";	
+	public static final String RET = "RET";
+	public static final String READ = "READ";
+	public static final String PRNLN = "PRNLN";
+	public static final String BPRINT = "BPRINT";
+	public static final String CPRINT = "CPRINT";
+	public static final String IPRINT = "IPRINT";
+	public static final String SPRINT = "SPRINT";
+	
 }
