@@ -8,7 +8,7 @@ import asema.exceptions.SemanticErrorException;
 
 public class AssignmentNode extends SentenceNode {
 
-	private EntryVar leftSide;
+	public EntryVar leftSide;
 	private ExpressionNode  rigthSide;
 	
 	public AssignmentNode(EntryVar left, ExpressionNode rigth)

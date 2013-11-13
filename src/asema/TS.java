@@ -24,9 +24,11 @@ public class TS {
 	 */
 	
 	private static EntryClass CurrentClass;
-	
+
 	private static Map<String, EntryClass> Classes;
 
+	private static int controlLabel;
+	
 	/*
 	 * Public Methods
 	 */
@@ -99,6 +101,7 @@ public class TS {
 		return TS.CurrentClass;
 	}
 	
+	
 	/**
 	 * Determina si la TS contiene o no una clase con el nombre name
 	 * @param name
@@ -146,11 +149,21 @@ public class TS {
 		TS.Classes = new HashMap<String, EntryClass>();
 		TS.initializeObjectClass();
 		TS.initializeSystemClass();
+		controlLabel = 0;
 	}
 	
 	public static EntryVar findVar(String id)
 	{
 		return null;
+	}
+	
+	
+	/**
+	 * Incrementa el número global de label de control (para if, while, for) y devuelve el nuevo a usar 
+	 */
+	public static int getNewLabelID() {
+		controlLabel++;
+		return controlLabel;
 	}
 	
 	/*
@@ -170,4 +183,6 @@ public class TS {
 		EntryClass systemClass = new EntryClass("System", TS.getClass("Object"));
 		TS.Classes.put("System", systemClass);
 	}
+	
+
 }

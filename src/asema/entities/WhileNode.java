@@ -1,5 +1,9 @@
 package asema.entities;
 
+import common.CodeGenerator;
+import common.Instructions;
+
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 public class WhileNode extends SentenceNode {
@@ -16,8 +20,25 @@ public class WhileNode extends SentenceNode {
 	}
 	
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
+	public Type check() throws SemanticErrorException {
+		
+		int l1 = TS.getNewLabelID();
+		int l2 = TS.getNewLabelID();
+
+		CodeGenerator.gen(l1 + ": NOP");
+		
+		if(!LoopCondition.check().equals(PrimitiveType.Boolean))
+			throw new SemanticErrorException("El tipo de la expresión condicional del while debe ser boolean.");
+		
+		CodeGenerator.gen(Instructions.BF, ""+l2);
+		
+		Body.check();
+		
+		CodeGenerator.gen(Instructions.JUMP, ""+l1);
+		CodeGenerator.gen(l2 + ": NOP");
+	
+		
+		return null; // ??
 
 	}
 

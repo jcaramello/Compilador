@@ -1,13 +1,17 @@
 package asema.entities;
 
+import common.CodeGenerator;
+import common.Instructions;
+
 import asema.exceptions.SemanticErrorException;
 
 public class EmptySentenceNode extends SentenceNode {
 
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
+	public Type check() throws SemanticErrorException {
 		
+		CodeGenerator.gen(Instructions.NOP);
+		return null;
 	}
 
 }

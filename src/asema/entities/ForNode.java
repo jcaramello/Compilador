@@ -1,5 +1,9 @@
 package asema.entities;
 
+import common.CodeGenerator;
+import common.Instructions;
+
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 public class ForNode extends SentenceNode {
@@ -18,8 +22,30 @@ public class ForNode extends SentenceNode {
 	
 	
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
+	public Type check() throws SemanticErrorException {
+		
+		int l1 = TS.getNewLabelID();
+		int l2 = TS.getNewLabelID();
+		
+		InitializationExpression.check();
+		
+		CodeGenerator.gen(l1 + ": NOP");
+		
+		if(!LoopCondition.check().equals(PrimitiveType.Boolean))
+			throw new SemanticErrorException("El tipo de la expresión condicional del for debe ser boolean.");
+		
+		CodeGenerator.gen(Instructions.BF, ""+l2);
+		
+		Body.check();
+		
+		if(!IncrementExpression.check().conforms(InitializationExpression.leftSide.Type))
+			throw new SemanticErrorException("El tipo de la expresión de incremento en el for debe conformar con el de la variable de iteración.");
+		
+		CodeGenerator.gen(Instructions.JUMP, ""+l1);
+		CodeGenerator.gen(l2 + ": NOP");
+	
+		
+		return null; // ??
 
 	}
 
