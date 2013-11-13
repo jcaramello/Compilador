@@ -13,5 +13,5 @@ public abstract class BaseNode {
 		this.UUID = java.util.UUID.randomUUID();
 	}
 	
-	public abstract void check() throws SemanticErrorException;
+	public abstract Type check() throws SemanticErrorException;
 }

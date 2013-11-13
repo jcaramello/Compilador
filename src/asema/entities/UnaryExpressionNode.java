@@ -1,5 +1,8 @@
 package asema.entities;
 
+import common.CodeGenerator;
+
+import enums.TokenType;
 import alex.Token;
 import asema.exceptions.SemanticErrorException;
 
@@ -14,9 +17,34 @@ public class UnaryExpressionNode extends ExpressionNode {
 	}
 	
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
-
+	public PrimitiveType check() throws SemanticErrorException {
+		
+		if(Operator.getTokenType() == TokenType.PlusOperator || Operator.getTokenType() == TokenType.RestOperator)
+		{
+			if(!Operand.check().equals(PrimitiveType.Int))
+				throw new SemanticErrorException("El tipo del operando de + o - debe ser un entero.");
+			else
+			{
+				if(Operator.getTokenType() == TokenType.RestOperator)
+				{
+					CodeGenerator.gen("NEG");
+					return new PrimitiveType("Int");
+				}
+			}
+		}
+		
+		if(Operator.getTokenType() == TokenType.NotOperator) {
+			if(!Operand.check().equals(PrimitiveType.Boolean))
+				throw new SemanticErrorException("El tipo del operando de ! debe ser un boolean.");
+			else {
+				CodeGenerator.gen("NOT");
+				return new PrimitiveType("Boolean");
+			}
+		}
+		
+		return null; 
 	}
+	
+	
 
 }

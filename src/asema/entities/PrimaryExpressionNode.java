@@ -11,8 +11,9 @@ public class PrimaryExpressionNode extends ExpressionNode {
 	}	
 	
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
+	public Type check() throws SemanticErrorException {
+		
+		return PrimaryNode.check();
 
 	}
 

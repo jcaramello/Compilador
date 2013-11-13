@@ -7,11 +7,21 @@ public class EntryVar extends EntryBase{
 	 */
 	public Type Type;
 	public String Name;
+	public String Origin; 
+	public int Offset;
 	
 	public EntryVar(Type t, String id){
 		
 		this.Type = t;
 		this.Name = id;
+	}
+	
+	public boolean esParametroLocal() {
+		return Origin.equals("Param");
+	}
+	
+	public boolean esVariableLocal() {
+		return Origin.equals("LocalVar");
 	}
 	
 }

@@ -14,4 +14,13 @@ public abstract class Type {
 	
 	public abstract void check() throws SemanticErrorException;
 	public abstract boolean conforms(Type t);
+	
+	public boolean equals(Type t2) {
+		return t2.Name.equals(this.Name);
+	}
+	
+	public boolean equals(String t2) {
+		return t2.equals(this.Name);
+	}
+
 }
