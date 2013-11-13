@@ -1,14 +1,20 @@
 package asema;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import common.CodeGenerator;
 import common.CommonHelper;
+import common.Instructions;
+import enums.ModifierMethodType;
 
 import alex.Token;
 import asema.entities.EntryClass;
 import asema.entities.EntryMethod;
 import asema.entities.EntryVar;
+import asema.entities.PrimitiveType;
+import asema.entities.VoidType;
 import asema.exceptions.SemanticErrorException;
 
 /***
@@ -112,6 +118,22 @@ public class TS {
 	}
 	
 	/**
+	 * Inicializa las classes default y demas cosas de la TS,
+	 * Ademas Genera los offset de cada clase y por ultimo el codigo intermedio
+	 * @throws SemanticErrorException 
+	 */
+	public static void generate() throws SemanticErrorException
+	{
+		initialize();
+		
+		for (EntryClass c : TS.getClasses()) {
+			c.generate();
+		}
+		
+		CodeGenerator.gen(Instructions.HALT);
+	}
+	
+	/**
 	 * Chequea si existe herencia circular en la TS
 	 * @throws SemanticErrorException
 	 */
@@ -119,10 +141,13 @@ public class TS {
 		
 	}	
 	
+	/**
+	 * applyInheritances
+	 * @throws SemanticErrorException
+	 */
 	public static void applyInheritances() throws SemanticErrorException{
 		
-	}
-		
+	}			
 	
 	/**
 	 * Realiza todas las validaciones semanticas de la TS
@@ -133,30 +158,23 @@ public class TS {
 			for (EntryMethod em : ec.getMethods()) {
 				em.validateNames();
 				em.isValidMain();
-				em.getAST().check();
-			}
-			
-			ec.getConstructor().validateNames();
-			ec.getConstructor().getAST().check();
+			}			
+			ec.getConstructor().validateNames();			
 		}
 	}
 	
 	/**
 	 * Inicializa las estructuras basicas de la clase
 	 * Debe ser invocado antes de utilizar cualquier otro metodo
+	 * @throws SemanticErrorException 
 	 */
-	public static void initialize(){
+	public static void initialize() throws SemanticErrorException{
 		TS.Classes = new HashMap<String, EntryClass>();
+		// Object class debe inicializarse antes que System
 		TS.initializeObjectClass();
 		TS.initializeSystemClass();
 		controlLabel = 0;
 	}
-	
-	public static EntryVar findVar(String id)
-	{
-		return null;
-	}
-	
 	
 	/**
 	 * Incrementa el número global de label de control (para if, while, for) y devuelve el nuevo a usar 
@@ -165,24 +183,73 @@ public class TS {
 		controlLabel++;
 		return controlLabel;
 	}
+
+	public static EntryVar findVar(String identificador) throws SemanticErrorException
+	{		
+		EntryClass currentClass = TS.getCurrentClass();
+		EntryMethod currentMethod = currentClass.getCurrentMethod();
+		
+		EntryVar var = currentMethod.getLocalVar(identificador);
+		if(var == null) 
+			var = currentMethod.getFormalArg(identificador);		
+		if(var == null)
+			var = currentClass.getAttribute(identificador);
+		if(var == null)
+			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido.", identificador));
+		return var;	
+	}
 	
 	/*
 	 * Private Methods
 	 */
 	
+	/**
+	 * Initializa la clase Object
+	 */
 	private static void initializeObjectClass()
 	{
 		// TODO: ver de agregar los metdos y cosas default que tiene la clase object
 		EntryClass objectClass = new EntryClass("Object", null);
+		objectClass.inheritsFrom = null;
+		objectClass.isInheritanceApplied = true;
+		objectClass.fatherClass = null;				
 		TS.Classes.put("Object", objectClass);
 	}
 	
-	private static void initializeSystemClass()
+	/**
+	 * Initializa la clase System
+	 */
+	private static void initializeSystemClass() throws SemanticErrorException
 	{
 		// TODO: ver de agregar los metdos y cosas default que tiene la clase System
 		EntryClass systemClass = new EntryClass("System", TS.getClass("Object"));
+		EntryClass objectClass = TS.Classes.get("Object");
+		systemClass.inheritsFrom = objectClass.Name;
+		systemClass.isInheritanceApplied = true;
+		systemClass.fatherClass = objectClass;					
+	
+		systemClass.addMethod("read", new PrimitiveType("int"), ModifierMethodType.Static);
+		systemClass.addMethod("printB", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("boolean"), "b");
+		systemClass.addMethod("printC", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("char"), "c");
+		systemClass.addMethod("printI", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("int"), "i");
+		systemClass.addMethod("printS", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("String"), "s");
+		systemClass.addMethod("println", new VoidType(), ModifierMethodType.Static);
+		systemClass.addMethod("printBln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("boolean"), "b");
+		systemClass.addMethod("printCln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("char"), "c");
+		systemClass.addMethod("printIln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("int"), "i");
+		systemClass.addMethod("printSln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("String"), "s");		
+		
 		TS.Classes.put("System", systemClass);
 	}
 	
 
+	/**
+	 * Calcula los offsets
+	 */
+	private static void calcOffsets(){
+		for (EntryClass ec : TS.getClasses()) {
+			if(!ec.OffsetCalculated)
+				ec.calcOffsets();
+		}
+	}
 }

@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import common.CodeGenerator;
+import common.Instructions;
+
 import asema.exceptions.SemanticErrorException;
 
 import enums.ModifierMethodType;
@@ -68,6 +71,19 @@ public class EntryMethod extends EntryBase {
 				this.FormalArgsByIndex.add(var);
 			}
 		}
+	}
+	
+	/**
+	 * Agrega las parametros formales, chequeando que no hayan parametros formales con el mismo nombre
+	 * @param vars
+	 * @throws SemanticErrorException
+	 */
+	public void addFormalArgs(Type t, String name) throws SemanticErrorException{		
+		
+		EntryVar var = new EntryVar(t, name);
+		if(this.FormalArgs.containsKey(var.Name))
+			throw new SemanticErrorException(String.format("Error! - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
+		else this.FormalArgs.put(var.Name, var);		
 	}
 	
 	/**
@@ -185,10 +201,96 @@ public class EntryMethod extends EntryBase {
 		return this.AST;
 	}
 	
+
 	/** 
 	 *  Obtiene la clase a la cual pertenece
 	 */
 	public EntryClass getContainerClass() {
 		return this.ContainerClass;
+	}
+	
+	public void generate() throws SemanticErrorException{
+		CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP);
+		CodeGenerator.gen(Instructions.LOADFP);
+		CodeGenerator.gen(Instructions.LOADSP);
+		CodeGenerator.gen(Instructions.STOREFP);
+		
+		String cantVars = Integer.toString(this.LocalVars.values().size());
+		
+		CodeGenerator.gen(Instructions.RMEM, cantVars);
+		
+		this.ContainerClass.setCurrentMethod(this);
+		if(this.AST == null)
+			this.AST.check();
+		else generateBodyPredef();
+		
+	}
+	
+	/**
+	 * Generate defult body
+	 */
+	private void generateBodyPredef(){
+		if(this.Name.equals("read")) {
+			CodeGenerator.gen(Instructions.STOREFP);
+			CodeGenerator.gen(Instructions.RET, 0); 
+			CodeGenerator.gen(Instructions.FMEM, 1); 
+			CodeGenerator.gen(Instructions.READ);
+		} else if(this.Name.equals("println")) {
+			CodeGenerator.gen(Instructions.STOREFP);
+			CodeGenerator.gen(Instructions.RET, 0); 
+			CodeGenerator.gen(Instructions.PRNLN);
+		} else if(this.Name.equals("printB")) {
+			CodeGenerator.gen(Instructions.STOREFP);
+			CodeGenerator.gen(Instructions.LOAD, 3); 
+			CodeGenerator.gen(Instructions.BPRINT);
+			CodeGenerator.gen(Instructions.RET, 1); 
+		} else if(this.Name.equals("printC")) {
+			CodeGenerator.gen(Instructions.STOREFP); 
+			CodeGenerator.gen(Instructions.LOAD, 3); 
+			CodeGenerator.gen(Instructions.CPRINT); 
+			CodeGenerator.gen(Instructions.RET, 1); 
+		} else if(this.Name.equals("printI")) {
+			CodeGenerator.gen(Instructions.STOREFP); 
+			CodeGenerator.gen(Instructions.LOAD, 3); 
+			CodeGenerator.gen(Instructions.IPRINT); 
+			CodeGenerator.gen(Instructions.RET, 1); 
+		} else if(this.Name.equals("printS")) {
+			CodeGenerator.gen(Instructions.STOREFP); 
+			CodeGenerator.gen(Instructions.LOAD, 3); 
+			CodeGenerator.gen(Instructions.SPRINT); 
+			CodeGenerator.gen(Instructions.RET, 1); 
+		} else if(this.Name.equals("printBln")) {
+			CodeGenerator.gen(Instructions.STOREFP);
+			CodeGenerator.gen(Instructions.LOAD, 3); 
+			CodeGenerator.gen(Instructions.BPRINT);
+			CodeGenerator.gen(Instructions.PRNLN); 
+			CodeGenerator.gen(Instructions.RET, 1); 
+		} else if(this.Name.equals("printCln")) {
+			CodeGenerator.gen(Instructions.STOREFP);
+			CodeGenerator.gen(Instructions.LOAD, 3); 
+			CodeGenerator.gen(Instructions.CPRINT); 
+			CodeGenerator.gen(Instructions.PRNLN); 
+			CodeGenerator.gen(Instructions.RET, 1); 
+		} else if(this.Name.equals("printIln")) {
+			CodeGenerator.gen(Instructions.STOREFP); 
+			CodeGenerator.gen(Instructions.LOAD, 3); 
+			CodeGenerator.gen(Instructions.IPRINT); 
+			CodeGenerator.gen(Instructions.PRNLN); 
+			CodeGenerator.gen(Instructions.RET, 1); 
+		} else if(this.Name.equals("printSln")) {
+			CodeGenerator.gen(Instructions.STOREFP); 
+			CodeGenerator.gen(Instructions.LOAD, 3); 
+			CodeGenerator.gen(Instructions.SPRINT);
+			CodeGenerator.gen(Instructions.PRNLN); 
+			CodeGenerator.gen(Instructions.RET, 1); 
+		}
+	}
+	
+	/**
+	 * Calcula Offset
+	 * @return
+	 */
+	public void calcOffsets(){
+		
 	}
 }

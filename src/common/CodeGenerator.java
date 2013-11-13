@@ -84,6 +84,15 @@ public class CodeGenerator {
 	 * Log a simple message
 	 * @param msg
 	 */
+	public static void gen(String inst, int Parameter)
+	{
+		gen(inst, Integer.toString(Parameter));
+	}
+	
+	/**
+	 * Log a simple message
+	 * @param msg
+	 */
 	public static void gen(String inst, String Parameter)
 	{
 		try {			
