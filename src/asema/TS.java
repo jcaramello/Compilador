@@ -191,6 +191,9 @@ public class TS {
 	 * Private Methods
 	 */
 	
+	/**
+	 * Initializa la clase Object
+	 */
 	private static void initializeObjectClass()
 	{
 		// TODO: ver de agregar los metdos y cosas default que tiene la clase object
@@ -201,6 +204,9 @@ public class TS {
 		TS.Classes.put("Object", objectClass);
 	}
 	
+	/**
+	 * Initializa la clase System
+	 */
 	private static void initializeSystemClass() throws SemanticErrorException
 	{
 		// TODO: ver de agregar los metdos y cosas default que tiene la clase System
