@@ -1,5 +1,7 @@
 package asema.entities;
 
+import enums.OriginType;
+
 public class EntryVar extends EntryBase{
 
 	/**
@@ -7,7 +9,7 @@ public class EntryVar extends EntryBase{
 	 */
 	public Type Type;
 	public String Name;
-	public String Origin; 
+	public OriginType Origin; 
 	public int Offset;
 	
 	public EntryVar(Type t, String id){
@@ -17,11 +19,11 @@ public class EntryVar extends EntryBase{
 	}
 	
 	public boolean esParametroLocal() {
-		return Origin.equals("param");
+		return Origin.equals(OriginType.Local);
 	}
 	
 	public boolean esVariableLocal() {
-		return Origin.equals("local");
+		return Origin.equals(OriginType.Param);
 	}
 	
 }

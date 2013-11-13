@@ -1,5 +1,9 @@
 package asema.entities;
 
+import common.CodeGenerator;
+import common.Instructions;
+
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 public class AssignmentNode extends SentenceNode {
@@ -14,9 +18,23 @@ public class AssignmentNode extends SentenceNode {
 	}
 	
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
-
+	public Type check() throws SemanticErrorException {
+		
+		Type t = leftSide.Type;
+		
+		if(!rigthSide.check().conforms(t))
+			throw new SemanticErrorException("El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo.");
+		
+		if(leftSide.esParametroLocal() || leftSide.esVariableLocal()) {
+			CodeGenerator.gen(Instructions.STORE, ""+ leftSide.Offset);
+		}
+		else {
+			CodeGenerator.gen(Instructions.LOAD, "3");
+			CodeGenerator.gen(Instructions.SWAP);
+			CodeGenerator.gen(Instructions.STORE, ""+ leftSide.Offset);
+		}
+			
+		return t;
 	}
 
 }

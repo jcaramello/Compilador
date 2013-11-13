@@ -71,6 +71,10 @@ public class EntryClass extends EntryBase{
 		return this.Attributes.get(name);
 	}
 	
+	public int getCantAttributes() {
+		return this.Attributes.size();
+	}
+	
 	public void addInstanceVariable(String name) throws SemanticErrorException{
 		if(this.InstancesVariables.containsKey(name))
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene una variable de instancia %s.", this.Name, name));

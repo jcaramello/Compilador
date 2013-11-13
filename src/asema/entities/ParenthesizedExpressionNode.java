@@ -11,8 +11,10 @@ public class ParenthesizedExpressionNode extends PrimaryNode {
 	}
 	
 	@Override
-	public void check() throws SemanticErrorException {
-		// TODO Auto-generated method stub
+	public Type check() throws SemanticErrorException {
+		
+
+		return ExpressionNode.check();
 
 	}
 
