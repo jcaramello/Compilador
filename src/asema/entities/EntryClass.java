@@ -3,10 +3,13 @@ package asema.entities;
 import java.util.HashMap;
 import java.util.Map;
 
+import common.CodeGenerator;
 import common.CommonHelper;
+import common.Instructions;
 
 import enums.ModifierMethodType;
 import alex.Token;
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 /**
@@ -143,4 +146,29 @@ public class EntryClass extends EntryBase{
 	public void applyInheritance() throws SemanticErrorException{
 		
 	}	
+	
+	public void generate() throws SemanticErrorException{
+		CodeGenerator.gen(Instructions.DATA_SECTION);
+		CodeGenerator.gen(Instructions.VTLabel, Instructions.NOP);
+		
+		TS.setCurrentClass(this.Name);		
+		String[] mets = new String[this.Methods.size()];
+		
+		for (EntryMethod em : Methods.values()) {
+			if(em.Modifier == ModifierMethodType.Dynamic)
+				mets[em.Offset] = em.Name;
+		}
+		
+		for(int i = 0; i < mets.length; i++) {
+			CodeGenerator.gen(Instructions.DW, mets[i]);			
+		}
+		
+		CodeGenerator.gen(Instructions.CODE_SECTION);
+		
+		for (EntryMethod em : Methods.values()) {
+			em.generate();
+		}
+
+		this.Constructor.generate();
+	}
 }

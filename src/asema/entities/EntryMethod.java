@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import common.CodeGenerator;
+import common.Instructions;
+
 import asema.exceptions.SemanticErrorException;
 
 import enums.ModifierMethodType;
@@ -22,6 +25,7 @@ public class EntryMethod extends EntryBase {
 	public ModifierMethodType Modifier;
 	public Type ReturnType;	
 	public boolean IsContructor;
+	public int Offset;
 	
 	/*
 	 * Private Members
@@ -153,5 +157,27 @@ public class EntryMethod extends EntryBase {
 	 */
 	public BlockNode getAST(){
 		return this.AST;
+	}
+	
+	public void generate() throws SemanticErrorException{
+		CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP);
+		CodeGenerator.gen(Instructions.LOADFP);
+		CodeGenerator.gen(Instructions.LOADSP);
+		CodeGenerator.gen(Instructions.STOREFP);
+		
+		String cantVars = Integer.toString(this.LocalVars.values().size());
+		
+		CodeGenerator.gen(Instructions.RMEM, cantVars);
+		
+		this.ContainerClass.setCurrentMethod(this);
+		if(this.AST == null)
+			this.AST.check();
+		else generateBodyPredef();
+		
+	}
+	
+	
+	private void generateBodyPredef(){
+		
 	}
 }

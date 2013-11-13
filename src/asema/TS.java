@@ -3,7 +3,9 @@ package asema;
 import java.util.HashMap;
 import java.util.Map;
 
+import common.CodeGenerator;
 import common.CommonHelper;
+import common.Instructions;
 
 import alex.Token;
 import asema.entities.EntryClass;
@@ -109,6 +111,22 @@ public class TS {
 	}
 	
 	/**
+	 * Inicializa las classes default y demas cosas de la TS,
+	 * Ademas Genera los offset de cada clase y por ultimo el codigo intermedio
+	 * @throws SemanticErrorException 
+	 */
+	public static void generate() throws SemanticErrorException
+	{
+		initialize();
+		
+		for (EntryClass c : TS.getClasses()) {
+			c.generate();
+		}
+		
+		CodeGenerator.gen(Instructions.HALT);
+	}
+	
+	/**
 	 * Chequea si existe herencia circular en la TS
 	 * @throws SemanticErrorException
 	 */
@@ -116,10 +134,13 @@ public class TS {
 		
 	}	
 	
+	/**
+	 * applyInheritances
+	 * @throws SemanticErrorException
+	 */
 	public static void applyInheritances() throws SemanticErrorException{
 		
-	}
-		
+	}			
 	
 	/**
 	 * Realiza todas las validaciones semanticas de la TS
@@ -148,9 +169,19 @@ public class TS {
 		TS.initializeSystemClass();
 	}
 	
-	public static EntryVar findVar(String id)
-	{
-		return null;
+	public static EntryVar findVar(String identificador) throws SemanticErrorException
+	{		
+		EntryClass currentClass = TS.getCurrentClass();
+		EntryMethod currentMethod = currentClass.getCurrentMethod();
+		
+		EntryVar var = currentMethod.getLocalVar(identificador);
+		if(var == null) 
+			var = currentMethod.getFormalArg(identificador);		
+		if(var == null)
+			var = currentClass.getAttribute(identificador);
+		if(var == null)
+			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido.", identificador));
+		return var;	
 	}
 	
 	/*

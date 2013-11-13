@@ -867,7 +867,7 @@ public class ASint {
 	}
 
 	
-	private AssignmentNode asignacion() throws UnexpectedTokenException {
+	private AssignmentNode asignacion() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Asignacion>");		
 		

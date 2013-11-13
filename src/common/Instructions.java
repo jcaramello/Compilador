@@ -48,7 +48,8 @@ public class Instructions {
 	 */
 	public static final String CODE_SECTION = ".CODE";
 	public static final String DATA_SECTION = ".DATA";
-	public static final String VTLabel = "VTLabel :";	
+	public static final String VTLabel = "VTLabel : ";	
+	public static final String LABEL = "%s_%s :";	//[clase]_[metodo] :
 	
 	/**
 	 * Other
@@ -56,4 +57,5 @@ public class Instructions {
 	public static final String CALL = "CALL";
 	public static final String JUMP = "JUMP";
 	public static final String BF = "BF";
+	public static final String HALT = "HALT";	
 }
