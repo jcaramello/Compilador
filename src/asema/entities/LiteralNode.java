@@ -1,6 +1,7 @@
 package asema.entities;
 
 import common.CodeGenerator;
+import common.Instructions;
 
 import alex.Token;
 import asema.exceptions.SemanticErrorException;
@@ -24,6 +25,7 @@ public class LiteralNode extends PrimaryNode {
 			if(Value.getLexema().equals("false")) CodeGenerator.gen("PUSH 0");			
 		}
 		else if(Type.equals(PrimitiveType.String)) {
+			CodeGenerator.gen(Instructions.RMEM, "1");
 			CodeGenerator.gen("PUSH " + Value.getLexema().length() + 1);
 			CodeGenerator.gen("PUSH LMALLOC");
 			CodeGenerator.gen("CALL");

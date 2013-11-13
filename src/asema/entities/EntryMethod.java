@@ -258,6 +258,20 @@ public class EntryMethod extends EntryBase {
 			this.AST.check();
 		else generateBodyPredef();
 		
+		// Return por default
+		
+		int toFree = this.getFormalArgsCant();
+		
+		if(this.Modifier.equals(ModifierMethodType.Dynamic))
+			toFree++;	
+		if(!this.ReturnType.equals(VoidType.VoidType))
+			toFree++;
+		
+		CodeGenerator.gen(Instructions.FMEM, ""+this.getLocalVarsCant());
+		CodeGenerator.gen(Instructions.STOREFP);
+
+		CodeGenerator.gen(Instructions.RET, ""+toFree);
+		
 	}
 	
 	/**

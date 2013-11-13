@@ -30,7 +30,7 @@ public class ReturnNode extends SentenceNode {
 		
 		int toFree = met.getFormalArgsCant();
 		
-		if(met.Modifier.equals(ModifierMethodType.Static))
+		if(met.Modifier.equals(ModifierMethodType.Dynamic))
 			toFree++;
 		
 		CodeGenerator.gen(Instructions.FMEM, ""+met.getLocalVarsCant());
