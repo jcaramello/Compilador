@@ -59,12 +59,14 @@ public class EntryClass extends EntryBase{
 	 * que lo necesitemos mas adelante.
 	 */
 	protected EntryMethod Constructor;
+
+	private int cantInheritedAttributes;
 	
 	/**
 	 * Constructor
 	 */
 	public EntryClass(String name, EntryClass father){
-		
+		this.cantInheritedAttributes = 0;
 		this.Name = name;
 		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
@@ -90,7 +92,7 @@ public class EntryClass extends EntryBase{
 	}
 	
 	public int getCantAttributes() {
-		return this.Attributes.size();
+		return this.Attributes.size() + cantInheritedAttributes;
 	}
 	
 	public void addInstanceVariable(String name) throws SemanticErrorException{
@@ -198,7 +200,8 @@ public class EntryClass extends EntryBase{
 
 		// Preservo los offsets del padre de atributos en el CIR (ilustrativo; innecesario)
 		for (EntryVar ev : this.fatherClass.getAttributes()) {
-			this.getAttribute(ev.Name).Offset = ev.Offset;
+			// Esta línea así no va a andar, los atributos no se heredaron (y está bien que no).
+			//this.getAttribute(ev.Name).Offset = ev.Offset;
 		}			
 
 		// Agrego los nuevos a partir de ahí
@@ -268,12 +271,15 @@ public class EntryClass extends EntryBase{
 					if(em.Modifier == overrideMethod.Modifier && 
 					   em.ReturnType.Name == em.ReturnType.Name &&
 					   CommonHelper.validFormalArgs(em.getFormalArgs(), overrideMethod.getFormalArgs()))
-						// Esta linea no me cierra, el metodo ya esta. no hace falta agregarlo
-						this.Methods.put(overrideMethod.Name, overrideMethod);
+						// El metodo ya esta. no hace falta agregarlo.						
+						{ // this.Methods.put(overrideMethod.Name, overrideMethod);
+						}
 					else throw new SemanticErrorException(String.format("Error(!). El metodo %s debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno.", overrideMethod.Name));
 				else // Esta linea no me cierra, el metodo ya esta. no hace falta agregarlo
-					this.Methods.put(overrideMethod.Name, overrideMethod);
+					this.Methods.put(em.Name, em);
 			}
+			
+			this.cantInheritedAttributes = this.fatherClass.getCantAttributes();
 		}
 
 	}
