@@ -1,16 +1,20 @@
 package asema;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import common.CodeGenerator;
 import common.CommonHelper;
 import common.Instructions;
+import enums.ModifierMethodType;
 
 import alex.Token;
 import asema.entities.EntryClass;
 import asema.entities.EntryMethod;
 import asema.entities.EntryVar;
+import asema.entities.PrimitiveType;
+import asema.entities.VoidType;
 import asema.exceptions.SemanticErrorException;
 
 /***
@@ -151,20 +155,19 @@ public class TS {
 			for (EntryMethod em : ec.getMethods()) {
 				em.validateNames();
 				em.isValidMain();
-				em.getAST().check();
-			}
-			
-			ec.getConstructor().validateNames();
-			ec.getConstructor().getAST().check();
+			}			
+			ec.getConstructor().validateNames();			
 		}
 	}
 	
 	/**
 	 * Inicializa las estructuras basicas de la clase
 	 * Debe ser invocado antes de utilizar cualquier otro metodo
+	 * @throws SemanticErrorException 
 	 */
-	public static void initialize(){
+	public static void initialize() throws SemanticErrorException{
 		TS.Classes = new HashMap<String, EntryClass>();
+		// Object class debe inicializarse antes que System
 		TS.initializeObjectClass();
 		TS.initializeSystemClass();
 	}
@@ -192,13 +195,32 @@ public class TS {
 	{
 		// TODO: ver de agregar los metdos y cosas default que tiene la clase object
 		EntryClass objectClass = new EntryClass("Object", null);
+		objectClass.inheritsFrom = null;
+		objectClass.isInheritanceApplied = true;
+		objectClass.fatherClass = null;				
 		TS.Classes.put("Object", objectClass);
 	}
 	
-	private static void initializeSystemClass()
+	private static void initializeSystemClass() throws SemanticErrorException
 	{
 		// TODO: ver de agregar los metdos y cosas default que tiene la clase System
 		EntryClass systemClass = new EntryClass("System", TS.getClass("Object"));
+		EntryClass objectClass = TS.Classes.get("Object");
+		systemClass.inheritsFrom = objectClass.Name;
+		systemClass.isInheritanceApplied = true;
+		systemClass.fatherClass = objectClass;					
+	
+		systemClass.addMethod("read", new PrimitiveType("int"), ModifierMethodType.Static);
+		systemClass.addMethod("printB", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("boolean"), "b");
+		systemClass.addMethod("printC", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("char"), "c");
+		systemClass.addMethod("printI", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("int"), "i");
+		systemClass.addMethod("printS", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("String"), "s");
+		systemClass.addMethod("println", new VoidType(), ModifierMethodType.Static);
+		systemClass.addMethod("printBln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("boolean"), "b");
+		systemClass.addMethod("printCln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("char"), "c");
+		systemClass.addMethod("printIln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("int"), "i");
+		systemClass.addMethod("printSln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("String"), "s");		
+		
 		TS.Classes.put("System", systemClass);
 	}
 }

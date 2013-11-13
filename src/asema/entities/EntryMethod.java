@@ -67,6 +67,19 @@ public class EntryMethod extends EntryBase {
 	}
 	
 	/**
+	 * Agrega las parametros formales, chequeando que no hayan parametros formales con el mismo nombre
+	 * @param vars
+	 * @throws SemanticErrorException
+	 */
+	public void addFormalArgs(Type t, String name) throws SemanticErrorException{		
+		
+		EntryVar var = new EntryVar(t, name);
+		if(this.FormalArgs.containsKey(var.Name))
+			throw new SemanticErrorException(String.format("Error! - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
+		else this.FormalArgs.put(var.Name, var);		
+	}
+	
+	/**
 	 * Agrega las variables locales, chequeando que no hayan variables locales con el mismo nombre
 	 * @param vars
 	 * @throws SemanticErrorException
