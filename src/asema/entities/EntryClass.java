@@ -9,6 +9,7 @@ import common.CommonHelper;
 import common.Instructions;
 
 import enums.ModifierMethodType;
+import enums.OriginType;
 import alex.Token;
 import asema.TS;
 import asema.exceptions.SemanticErrorException;
@@ -233,4 +234,30 @@ public class EntryClass extends EntryBase{
 		this.Constructor.calcOffsets();		
 		this.OffsetCalculated = true;
 	}
+	
+	public void checkDeclarations() throws SemanticErrorException{
+		// “extend” es el identificador guardado en el EdT
+		if(this.inheritsFrom == ""){
+			EntryClass objectClass = TS.getClass("Object");
+			this.inheritsFrom = objectClass.Name;
+			this.fatherClass = objectClass;
+		}
+		else{
+			this.fatherClass = TS.getClass(this.inheritsFrom);
+			if(this.fatherClass == null)
+				throw new SemanticErrorException(String.format("Error(!). La clase %s no existe.", this.inheritsFrom));
+		}	
+	
+		for(EntryVar ev : this.getAttributes())
+			if(!CommonHelper.isPrimitiveType(ev.Type.Name) && TS.getClass(ev.Type.Name) == null)
+				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
+			else ev.Origin = OriginType.Inst;
+	
+		for(EntryMethod em : this.getMethods())
+			em.checkDeclarations();
+	
+		this.Constructor.checkDeclarations();
+
+	}
+	
 }

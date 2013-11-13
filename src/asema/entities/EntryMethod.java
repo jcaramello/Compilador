@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import common.CodeGenerator;
+import common.CommonHelper;
 import common.Instructions;
 
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 import enums.ModifierMethodType;
+import enums.OriginType;
 
 /**
  * Entry Method
@@ -34,6 +37,7 @@ public class EntryMethod extends EntryBase {
 	private Map<String, EntryVar> LocalVars;
 	private Map<String, EntryVar> FormalArgs;
 	private List<EntryVar> FormalArgsByIndex;
+	private List<EntryVar> LocalVarsByIndex;
 	private BlockNode AST;
 	private EntryClass ContainerClass;
 
@@ -49,6 +53,7 @@ public class EntryMethod extends EntryBase {
 		this.LocalVars = new HashMap<String, EntryVar>();
 		this.FormalArgs = new HashMap<String, EntryVar>();
 		this.FormalArgsByIndex = new LinkedList<EntryVar>();
+		this.LocalVarsByIndex = new LinkedList<EntryVar>();
 		this.ContainerClass  = containerClass;
 	}	
 	
@@ -93,9 +98,12 @@ public class EntryMethod extends EntryBase {
 	 */
 	public void addLocalVars(List<EntryVar> vars) throws SemanticErrorException{
 		for (EntryVar var : vars) {
-			if(this.FormalArgs.containsKey(var.Name))
+			if(this.LocalVars.containsKey(var.Name))
 				throw new SemanticErrorException(String.format("Error! - La variable local %s se encuentra repetida dentro de la lista de variables locales", var.Name));
-			else this.FormalArgs.put(var.Name, var);
+			else{
+				this.LocalVars.put(var.Name, var);
+				this.LocalVarsByIndex.add(var);
+			}
 		}
 	}
 	
@@ -140,6 +148,13 @@ public class EntryMethod extends EntryBase {
 	}
 	
 	/**
+	 * Retorna el i-ésimo parámetro formal
+	 */
+	public EntryVar getLocalVarByIndex(int i) {
+		return this.LocalVarsByIndex.get(i);
+	}
+	
+	/**
 	 * Valida si existe algun parametro formal con el mismo nombre de alguna variable local
 	 * @throws SemanticErrorException
 	 */
@@ -154,12 +169,16 @@ public class EntryMethod extends EntryBase {
 	 * Valida si el metodo es un metodo Main bien formado
 	 * @throws SemanticErrorException
 	 */
-	public void isValidMain() throws SemanticErrorException{
+	public boolean isValidMain() throws SemanticErrorException{
+		boolean isMain = false;
 		if(this.Name.toLowerCase().equals("main"))
 		{
+			isMain = true;
 			if(!this.FormalArgs.values().isEmpty())
 				throw new SemanticErrorException("Error! - El metodo Main no puede contener parametros formales.");
 		}
+		
+		return isMain;
 	}
 	
 	/**
@@ -290,7 +309,41 @@ public class EntryMethod extends EntryBase {
 	 * Calcula Offset
 	 * @return
 	 */
-	public void calcOffsets(){
+	public void calcOffsets(){		
+
+		int cantArgs = this.FormalArgs.values().size();
+		for(int i = 1; i <= cantArgs; i++) {
+			this.getFormalArgByIndex(i).Offset = cantArgs + 3 - i;
+			if(this.Modifier == ModifierMethodType.Dynamic)
+				this.getFormalArgByIndex(i).Offset++; // deja lugar para this
+		}
+
+		int cantVars = this.LocalVars.values().size();
+		for(int i = 0; i < cantVars; i++) {
+					this.getLocalVarByIndex(i).Offset = -i;
+		}
 		
+	}
+	
+	/**
+	 * Check declarations
+	 * @throws SemanticErrorException 
+	 */
+	public void checkDeclarations() throws SemanticErrorException{
+		for(EntryVar ev : this.LocalVars.values())
+			if(!CommonHelper.isPrimitiveType(ev.Type.Name) && TS.getClass(ev.Type.Name) == null)
+				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
+			else ev.Origin = OriginType.Local;
+	
+		for(EntryVar ev : this.FormalArgs.values())
+			if(!CommonHelper.isPrimitiveType(ev.Type.Name) && TS.getClass(ev.Type.Name) == null)
+				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
+			else ev.Origin = OriginType.Param;
+	
+		// Para el tipo de retorno
+		if(!CommonHelper.isPrimitiveType(this.ReturnType.Name) && TS.getClass(this.ReturnType.Name) == null)
+			throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", this.ReturnType.Name));		
+
+
 	}
 }

@@ -118,6 +118,21 @@ public class TS {
 	}
 	
 	/**
+	 * Execute semantics controls, generate code
+	 * @throws SemanticErrorException 
+	 */
+	public static void  execute() throws SemanticErrorException
+	{
+		TS.initialize();
+		TS.checkDeclarations();
+		TS.validate();
+		TS.checkCircularInheritance();
+		TS.applyInheritances();
+		TS.calcOffsets();
+		TS.generate();
+	}
+	
+	/**
 	 * Inicializa las classes default y demas cosas de la TS,
 	 * Ademas Genera los offset de cada clase y por ultimo el codigo intermedio
 	 * @throws SemanticErrorException 
@@ -147,20 +162,35 @@ public class TS {
 	 */
 	public static void applyInheritances() throws SemanticErrorException{
 		
-	}			
+	}	
+	
+	/**
+	 * Check Declarations
+	 * @throws SemanticErrorException 
+	 */
+	public static void checkDeclarations() throws SemanticErrorException{
+		for(EntryClass ec : TS.getClasses())
+			if(!CommonHelper.isPredefinedClass(ec.Name))
+				ec.checkDeclarations();
+	}
+	
 	
 	/**
 	 * Realiza todas las validaciones semanticas de la TS
 	 * @throws SemanticErrorException
 	 */
 	public static void validate() throws SemanticErrorException{
+		boolean existsMain = false;
 		for (EntryClass ec : TS.getClasses()) {
 			for (EntryMethod em : ec.getMethods()) {
 				em.validateNames();
-				em.isValidMain();
+				existsMain = em.isValidMain();
 			}			
 			ec.getConstructor().validateNames();			
 		}
+		
+		if(!existsMain)
+			throw new SemanticErrorException("Error(!). Alguna clase debe contener al menos un metodo main sin parametros"); 
 	}
 	
 	/**
@@ -207,8 +237,7 @@ public class TS {
 	 * Initializa la clase Object
 	 */
 	private static void initializeObjectClass()
-	{
-		// TODO: ver de agregar los metdos y cosas default que tiene la clase object
+	{		
 		EntryClass objectClass = new EntryClass("Object", null);
 		objectClass.inheritsFrom = null;
 		objectClass.isInheritanceApplied = true;
@@ -220,8 +249,7 @@ public class TS {
 	 * Initializa la clase System
 	 */
 	private static void initializeSystemClass() throws SemanticErrorException
-	{
-		// TODO: ver de agregar los metdos y cosas default que tiene la clase System
+	{		
 		EntryClass systemClass = new EntryClass("System", TS.getClass("Object"));
 		EntryClass objectClass = TS.Classes.get("Object");
 		systemClass.inheritsFrom = objectClass.Name;
@@ -240,8 +268,7 @@ public class TS {
 		systemClass.addMethod("printSln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("String"), "s");		
 		
 		TS.Classes.put("System", systemClass);
-	}
-	
+	}	
 
 	/**
 	 * Calcula los offsets
