@@ -229,4 +229,14 @@ public class TS {
 		
 		TS.Classes.put("System", systemClass);
 	}
+	
+	/**
+	 * Calcula los offsets
+	 */
+	private static void calcOffsets(){
+		for (EntryClass ec : TS.getClasses()) {
+			if(!ec.OffsetCalculated)
+				ec.calcOffsets();
+		}
+	}
 }

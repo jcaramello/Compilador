@@ -12,6 +12,7 @@ public class EntryVar extends EntryBase{
 	
 	public EntryVar(Type t, String id){
 		
+		this.Offset = -1;
 		this.Type = t;
 		this.Name = id;
 	}

@@ -248,4 +248,12 @@ public class EntryMethod extends EntryBase {
 			CodeGenerator.gen(Instructions.RET, 1); 
 		}
 	}
+	
+	/**
+	 * Calcula Offset
+	 * @return
+	 */
+	public void calcOffsets(){
+		
+	}
 }

@@ -1,6 +1,7 @@
 package asema.entities;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import common.CodeGenerator;
@@ -31,13 +32,19 @@ public class EntryClass extends EntryBase{
 	
 	public boolean isInheritanceApplied;	
 	
+	public boolean OffsetCalculated;
+	
 	/**
 	 * private Members
 	 */
 	
 	private Map<String, EntryVar> Attributes;
 	
+	private List<EntryVar> OrderedAttributes;
+	
 	private Map<String, EntryMethod> Methods;
+	
+	private List<EntryMethod> OrderedMethods;
 		
 	private Map<String, EntryVar> InstancesVariables;
 	
@@ -67,11 +74,18 @@ public class EntryClass extends EntryBase{
 	public void addAttribute(EntryVar a) throws SemanticErrorException{
 		if(this.Attributes.containsKey(a.Name))
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un atributo %s.", this.Name, a.Name));
-		else this.Attributes.put(a.Name, a);		
+		else {
+			this.Attributes.put(a.Name, a);
+			this.OrderedAttributes.add(a);
+		}
 	}
 	
 	public EntryVar getAttribute(String name){
 		return this.Attributes.get(name);
+	}	
+	
+	public List<EntryVar> getAttributes(){
+		return this.OrderedAttributes;
 	}
 	
 	public void addInstanceVariable(String name) throws SemanticErrorException{
@@ -103,7 +117,8 @@ public class EntryClass extends EntryBase{
 			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un metodo %s.", this.Name, name));
 		else{
 			entryMethod = new EntryMethod(name, modifierType, returnType, this);
-			this.Methods.put(name, entryMethod);		
+			this.Methods.put(name, entryMethod);
+			this.OrderedMethods.add(entryMethod);
 		}
 		
 		return entryMethod;
@@ -117,8 +132,8 @@ public class EntryClass extends EntryBase{
 		return this.Methods.get(name);
 	}
 	
-	public Iterable<EntryMethod> getMethods(){
-		return this.Methods.values();
+	public List<EntryMethod> getMethods(){
+		return this.OrderedMethods;
 	}
 	
 	public boolean containsMethod(String name){		
@@ -170,5 +185,48 @@ public class EntryClass extends EntryBase{
 		}
 
 		this.Constructor.generate();
+	}
+	
+	/**
+	 * Calcula Offset
+	 */
+	public void calcOffsets()
+	{		
+		if(this.fatherClass != null)
+			this.fatherClass.calcOffsets();
+
+		// Preservo los offsets del padre de atributos en el CIR (ilustrativo; innecesario)
+		for (EntryVar ev : this.fatherClass.getAttributes()) {
+			this.getAttribute(ev.Name).Offset = ev.Offset;
+		}			
+
+		// Agrego los nuevos a partir de ahí
+		int cantVarsAncestro = this.fatherClass.getAttributes().size();
+		int cantVars = this.getAttributes().size();
+		for(int i = 1; i <= cantVars; i++) {
+			if(this.getAttributes().get(i).Offset == -1) 
+				this.getAttributes().get(i).Offset = cantVarsAncestro + i;
+		}
+
+		// Preservo los offsets del padre de métodos en la VT (ilustrativo, sólo necesario para los redefinidos)
+		for(EntryMethod em : this.fatherClass.getMethods()) {
+			if(em.Modifier == ModifierMethodType.Dynamic)
+				this.getMethod(em.Name).Offset = em.Offset;
+		}
+
+		// Agrego los nuevos a partir de ahí
+		int cantMetodosAncestro = this.fatherClass.getMethods().size();
+		int cantMetodos = this.getMethods().size();
+		int off = 0;
+		for(int i = 0; i < cantMetodos; i++) {
+			if(this.getMethods().get(i).Modifier == ModifierMethodType.Dynamic && this.getMethods().get(i).Offset == -1){
+				this.getMethods().get(i).Offset = cantMetodosAncestro + off;
+				off++;
+			}
+			this.getMethods().get(i).calcOffsets();
+		}
+
+		this.Constructor.calcOffsets();		
+		this.OffsetCalculated = true;
 	}
 }
