@@ -33,6 +33,7 @@ public class Instructions {
 	public static final String POP = "POP";
 	public static final String LOAD = "LOAD";
 	public static final String STORE = "STORE";
+	public static final String STOREREF = "STOREREF";
 	public static final String LOADREF = "LOADREF";
 	public static final String LOADFP = "LOADFP";
 	public static final String LOADSP = "LOADSP";

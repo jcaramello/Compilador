@@ -1224,7 +1224,7 @@ public class ASint {
 			getToken();
 			if(curr.getTokenType() == TokenType.Identifier){
 				List<ExpressionNode> params = argsActuales();
-				NewNode context = new NewNode(curr, null, params);
+				NewNode context = new NewNode(curr, params);
 				primario = llamadaStar(context);
 			}
 		}else throw new UnexpectedTokenException("(!) Error, Expresion mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());		
