@@ -150,8 +150,23 @@ public class EntryMethod extends EntryBase {
 	/**
 	 * Retorna el i-ésimo parámetro formal
 	 */
+	public List<EntryVar> getFormalArgs() {
+		return this.FormalArgsByIndex;
+	}
+	
+	
+	/**
+	 * Retorna el i-ésimo parámetro formal
+	 */
 	public EntryVar getLocalVarByIndex(int i) {
 		return this.LocalVarsByIndex.get(i);
+	}
+	
+	/**
+	 * Retorna el i-ésimo parámetro formal
+	 */
+	public List<EntryVar> getLocalVars() {
+		return this.LocalVarsByIndex;
 	}
 	
 	/**

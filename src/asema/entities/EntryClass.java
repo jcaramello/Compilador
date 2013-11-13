@@ -163,10 +163,6 @@ public class EntryClass extends EntryBase{
 		return this.CurrentMethod;
 	}
 	
-	public void applyInheritance() throws SemanticErrorException{
-		
-	}	
-	
 	public void generate() throws SemanticErrorException{
 		CodeGenerator.gen(Instructions.DATA_SECTION);
 		CodeGenerator.gen(Instructions.VTLabel, Instructions.NOP);
@@ -257,6 +253,28 @@ public class EntryClass extends EntryBase{
 			em.checkDeclarations();
 	
 		this.Constructor.checkDeclarations();
+
+	}
+	
+	
+	public void applyInheritance() throws SemanticErrorException{
+		if(!this.isInheritanceApplied) {
+			this.fatherClass.applyInheritance();
+			this.isInheritanceApplied = true;
+			
+			for (EntryMethod em : this.fatherClass.getMethods()) {
+				EntryMethod overrideMethod = this.getMethod(em.Name);	
+				if(overrideMethod != null)
+					if(em.Modifier == overrideMethod.Modifier && 
+					   em.ReturnType.Name == em.ReturnType.Name &&
+					   CommonHelper.validFormalArgs(em.getFormalArgs(), overrideMethod.getFormalArgs()))
+						// Esta linea no me cierra, el metodo ya esta. no hace falta agregarlo
+						this.Methods.put(overrideMethod.Name, overrideMethod);
+					else throw new SemanticErrorException(String.format("Error(!). El metodo %s debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno.", overrideMethod.Name));
+				else // Esta linea no me cierra, el metodo ya esta. no hace falta agregarlo
+					this.Methods.put(overrideMethod.Name, overrideMethod);
+			}
+		}
 
 	}
 	

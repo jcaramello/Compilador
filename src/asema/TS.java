@@ -160,8 +160,10 @@ public class TS {
 	 * applyInheritances
 	 * @throws SemanticErrorException
 	 */
-	public static void applyInheritances() throws SemanticErrorException{
-		
+	public static void applyInheritances() throws SemanticErrorException{		
+		for(EntryClass ec : TS.getClasses())
+			if(!CommonHelper.isPredefinedClass(ec.Name))
+				ec.applyInheritance();
 	}	
 	
 	/**

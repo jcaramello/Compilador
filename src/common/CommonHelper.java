@@ -1,5 +1,7 @@
 package common;
 
+import java.util.List;
+
 public class CommonHelper {
 
 	public static String Empty = "";
@@ -17,5 +19,19 @@ public class CommonHelper {
 			   name.equals("char") ||
 			   name.equals("boolean") ||
 			   name.equals("String");			   			
+	}
+	
+	public static boolean validFormalArgs(List<asema.entities.EntryVar> expectedVars, List<asema.entities.EntryVar> actualVars){
+		boolean isValid = true;
+		if(expectedVars.size() != actualVars.size())
+			isValid = false;
+		
+		for (int i = 0; i < expectedVars.size(); i++) {
+			if(!expectedVars.get(i).Type.Name.equals(actualVars.get(i).Type.Name)){
+				isValid = false;
+				break;
+			}
+		}
+		return isValid;
 	}
 }
