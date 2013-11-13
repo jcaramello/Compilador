@@ -6,6 +6,7 @@ import java.util.List;
 
 import common.CodeGenerator;
 import common.Instructions;
+import enums.ModifierMethodType;
 
 import asema.TS;
 import asema.exceptions.SemanticErrorException;
@@ -42,7 +43,7 @@ public class CallNode extends PrimaryNode {
 		if(ActualsParameters.size() != met.getFormalArgsCant())
 			throw new SemanticErrorException("La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales.");
 		
-		if(met.Modifier.equals("static")) {
+		if(met.Modifier == ModifierMethodType.Static) {
 			CodeGenerator.gen("POP");  // elimino el this apilado
 			
 			for(int i = 0; i < ActualsParameters.size(); i++) {
@@ -53,7 +54,7 @@ public class CallNode extends PrimaryNode {
 			if(!met.ReturnType.equals(VoidType.VoidType))
 				CodeGenerator.gen(Instructions.RMEM, "1");
 				
-			CodeGenerator.gen(Instructions.PUSH, met.Label);
+			CodeGenerator.gen(Instructions.PUSH, met.getContainerClass().Name + "_" + met.Name);
 			CodeGenerator.gen(Instructions.CALL);
 		}
 		else {

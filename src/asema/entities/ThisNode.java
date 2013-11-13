@@ -1,6 +1,7 @@
 package asema.entities;
 
 import common.CodeGenerator;
+import enums.ModifierMethodType;
 
 import asema.TS;
 import asema.exceptions.SemanticErrorException;
@@ -13,10 +14,14 @@ public class ThisNode extends PrimaryNode {
 		this.Type = t;
 	}
 	
+	public ThisNode() {
+		this.Type = new ClassType(TS.getCurrentClass());
+	}
+	
 	@Override
 	public Type check() throws SemanticErrorException {
 		
-		if(TS.getCurrentClass().getCurrentMethod().Modifier.equals("static"))
+		if(TS.getCurrentClass().getCurrentMethod().Modifier == ModifierMethodType.Static)
 			throw new SemanticErrorException("No se puede acceder a this desde un método estático.");
 		
 		CodeGenerator.gen("LOAD 3");

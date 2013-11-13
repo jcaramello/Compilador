@@ -23,7 +23,6 @@ public class EntryMethod extends EntryBase {
 	public ModifierMethodType Modifier;
 	public Type ReturnType;	
 	public boolean IsContructor;
-	public String Label;
 	public int Offset;
 	
 	/*
@@ -176,5 +175,12 @@ public class EntryMethod extends EntryBase {
 	 */
 	public BlockNode getAST(){
 		return this.AST;
+	}
+	
+	/** 
+	 *  Obtiene la clase a la cual pertenece
+	 */
+	public EntryClass getContainerClass() {
+		return this.ContainerClass;
 	}
 }
