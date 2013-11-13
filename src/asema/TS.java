@@ -153,7 +153,14 @@ public class TS {
 	 * @throws SemanticErrorException
 	 */
 	public static void checkCircularInheritance() throws SemanticErrorException{
-		
+		for(EntryClass ec: TS.getClasses()) {
+			EntryClass c = ec.fatherClass;
+			while(c!= null) {
+				if(c.Name.equals(ec.Name))
+					throw new SemanticErrorException("Existe herencia circular en " + ec.Name);
+				c = c.fatherClass;
+			}			
+		}
 	}	
 	
 	/**
@@ -203,11 +210,33 @@ public class TS {
 	public static void initialize() throws SemanticErrorException{
 		TS.Classes = new HashMap<String, EntryClass>();
 		// Object class debe inicializarse antes que System
+		TS.initializePredefRoutines();
 		TS.initializeObjectClass();
 		TS.initializeSystemClass();
 		controlLabel = 0;
 	}
 	
+	private static void initializePredefRoutines() {
+		
+		// Rutina malloc
+		
+		CodeGenerator.gen(Instructions.CODE_SECTION);
+		CodeGenerator.gen("LMALLOC: NOP");
+		CodeGenerator.gen(Instructions.LOADFP);
+		CodeGenerator.gen(Instructions.LOADSP);
+		CodeGenerator.gen(Instructions.STOREFP);
+		CodeGenerator.gen("LOADHL");
+		CodeGenerator.gen(Instructions.DUP);
+		CodeGenerator.gen(Instructions.PUSH, "1");
+		CodeGenerator.gen(Instructions.ADD);
+		CodeGenerator.gen(Instructions.STORE, "4");
+		CodeGenerator.gen(Instructions.LOAD, "3");
+		CodeGenerator.gen(Instructions.ADD);
+		CodeGenerator.gen("STOREHL");
+		CodeGenerator.gen(Instructions.STOREFP);
+		CodeGenerator.gen(Instructions.RET, "1");
+	}
+
 	/**
 	 * Incrementa el número global de label de control (para if, while, for) y devuelve el nuevo a usar 
 	 */

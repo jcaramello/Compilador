@@ -1,6 +1,7 @@
 package asema.entities;
 
 import alex.Token;
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 public class ClassType extends Type {
@@ -30,7 +31,14 @@ public class ClassType extends Type {
 
 	@Override
 	public boolean conforms(Type t) {
-		// TODO Auto-generated method stub
+		EntryClass c = TS.getClass(t.Name);
+		
+		while(c!= null) {
+			if(c.Name.equals(t.Name))
+				return true;
+			c = c.fatherClass;
+		}			
+		
 		return false;
 	}
 

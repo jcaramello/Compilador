@@ -22,8 +22,7 @@ public class PrimitiveType extends Type {
 
 	@Override
 	public boolean conforms(Type t) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.Name.equals(t.Name);
 	}
 
 	
