@@ -11,10 +11,10 @@ public class WhileNode extends SentenceNode {
 	public ExpressionNode LoopCondition;
 	//En realidad no estoy seguro si el tipo deberia ser BaseNode o BlockNode
 	// Si estoy seguro de que no es SentenceNode como esta en el uml
-	public SentenceNode Body;
+	public BaseNode Body;
 	
 	
-	public WhileNode(ExpressionNode exp, SentenceNode body){
+	public WhileNode(ExpressionNode exp, BaseNode body){
 		this.LoopCondition = exp;
 		this.Body = body;
 	}

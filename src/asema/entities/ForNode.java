@@ -11,9 +11,9 @@ public class ForNode extends SentenceNode {
 	public AssignmentNode InitializationExpression;	
 	public ExpressionNode LoopCondition;
 	public ExpressionNode IncrementExpression;
-	public SentenceNode Body;
+	public BaseNode Body;
 	
-	public ForNode(AssignmentNode a, ExpressionNode l, ExpressionNode i, SentenceNode b){
+	public ForNode(AssignmentNode a, ExpressionNode l, ExpressionNode i, BaseNode b){
 		this.InitializationExpression = a;
 		this.LoopCondition = l;
 		this.IncrementExpression = i;
