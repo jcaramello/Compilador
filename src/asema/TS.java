@@ -192,7 +192,7 @@ public class TS {
 		for (EntryClass ec : TS.getClasses()) {
 			for (EntryMethod em : ec.getMethods()) {
 				em.validateNames();
-				existsMain = em.isValidMain();
+				existsMain = existsMain || em.isValidMain();
 			}			
 			ec.getConstructor().validateNames();			
 		}

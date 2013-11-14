@@ -74,7 +74,7 @@ public class EntryClass extends EntryBase{
 		this.OrderedAttributes = new ArrayList<EntryVar>();
 		this.OrderedMethods = new ArrayList<EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
-		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType(), this);
+		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new ClassType(this), this);
 	}
 	
 	public void addAttribute(EntryVar a) throws SemanticErrorException{

@@ -18,7 +18,8 @@ public class CommonHelper {
 		return name.equals("int") ||
 			   name.equals("char") ||
 			   name.equals("boolean") ||
-			   name.equals("String");			   			
+			   name.equals("String") ||
+			   name.equals("void");			   			
 	}
 	
 	public static boolean validFormalArgs(List<asema.entities.EntryVar> expectedVars, List<asema.entities.EntryVar> actualVars){
