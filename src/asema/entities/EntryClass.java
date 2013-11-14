@@ -72,7 +72,7 @@ public class EntryClass extends EntryBase{
 		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
 		this.OrderedAttributes = new ArrayList<EntryVar>();
-		this.OrderedMethods = new ArrayList<EntryVar>();
+		this.OrderedMethods = new ArrayList<EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
 		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType(), this);
 	}
