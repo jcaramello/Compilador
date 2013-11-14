@@ -1,5 +1,8 @@
 package common;
 
+import java.io.File;
+import java.io.FileReader;
+
 import enums.LogType;
 
 /**
@@ -55,7 +58,7 @@ public class Application {
 	 * @param args
 	 */
 	public static void Initialize(String args[]){
-		Application.Name = "ALex";
+		Application.Name = (new File(args[0])).getName();
 		Application.isTesting = isTestingEnabled(args);
 		Application.isVerbose = isVerboseEnabled(args);
 		Application.logType = (args.length > 1 && !args[1].equals(Application.VERBOSE_PARAMETER) && !args[1].equals(Application.TESTING_PARAMETER)) ? LogType.File : LogType.Console;
