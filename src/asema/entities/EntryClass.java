@@ -239,7 +239,7 @@ public class EntryClass extends EntryBase{
 	
 	public void checkDeclarations() throws SemanticErrorException{
 		// “extend” es el identificador guardado en el EdT
-		if(this.inheritsFrom == ""){
+		if(this.inheritsFrom == "" || this.inheritsFrom == null){
 			EntryClass objectClass = TS.getClass("Object");
 			this.inheritsFrom = objectClass.Name;
 			this.fatherClass = objectClass;

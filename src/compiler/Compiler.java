@@ -1,6 +1,8 @@
 package compiler;
 
+import alex.exceptions.ALexException;
 import asema.TS;
+import asema.exceptions.SemanticErrorException;
 import asint.ASint;
 import asint.UnexpectedTokenException;
 
@@ -25,8 +27,11 @@ public class Compiler {
 				Logger.log("El se compilo exitosamente");
 			}
 			
-		}catch(UnexpectedTokenException u){
+		}
+		catch(UnexpectedTokenException u){
 			Logger.log(u.getMessage());			
+		}catch(SemanticErrorException u){
+			Logger.log(u.getMessage());				
 		}catch (Exception e) {
 			Logger.log("Error!!");
 			Logger.verbose(e);									
