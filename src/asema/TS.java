@@ -35,6 +35,8 @@ public class TS {
 
 	private static int controlLabel;
 	
+	public static EntryClass ObjectClass;
+	
 	/*
 	 * Public Methods
 	 */
@@ -271,7 +273,9 @@ public class TS {
 		EntryClass objectClass = new EntryClass("Object", null);
 		objectClass.inheritsFrom = null;
 		objectClass.isInheritanceApplied = true;
-		objectClass.fatherClass = null;				
+		objectClass.fatherClass = null;			
+		TS.ObjectClass = objectClass;
+	
 		TS.Classes.put("Object", objectClass);
 	}
 	
@@ -305,7 +309,7 @@ public class TS {
 	 */
 	private static void calcOffsets(){
 		for (EntryClass ec : TS.getClasses()) {
-			if(!ec.OffsetCalculated)
+			if(!ec.OffsetCalculated && ec != TS.ObjectClass)
 				ec.calcOffsets();
 		}
 	}

@@ -198,7 +198,7 @@ public class EntryClass extends EntryBase{
 	 */
 	public void calcOffsets()
 	{		
-		if(this.fatherClass != null)
+		if(this.fatherClass != null && this.fatherClass != TS.ObjectClass)
 			this.fatherClass.calcOffsets();
 
 		// Preservo los offsets del padre de atributos en el CIR (ilustrativo; innecesario)

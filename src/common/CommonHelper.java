@@ -11,7 +11,7 @@ public class CommonHelper {
 	}
 	
 	public static boolean isPredefinedClass(String name){
-		return name.equals("Oject") || name.equals("System");	
+		return name.equals("Object") || name.equals("System");	
 	}
 	
 	public static boolean isPrimitiveType(String name){
