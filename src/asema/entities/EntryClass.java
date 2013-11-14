@@ -1,5 +1,6 @@
 package asema.entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,8 @@ public class EntryClass extends EntryBase{
 		this.Name = name;
 		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
+		this.OrderedAttributes = new ArrayList<EntryVar>();
+		this.OrderedAttributes = new ArrayList<EntryVar>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
 		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType(), this);
 	}

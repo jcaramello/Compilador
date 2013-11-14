@@ -122,8 +122,7 @@ public class TS {
 	 * @throws SemanticErrorException 
 	 */
 	public static void  execute() throws SemanticErrorException
-	{
-		TS.initialize();
+	{		
 		TS.checkDeclarations();
 		TS.validate();
 		TS.checkCircularInheritance();

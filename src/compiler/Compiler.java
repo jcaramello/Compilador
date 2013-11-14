@@ -19,6 +19,7 @@ public class Compiler {
 		try {				
 			
 			if (validateInput(args)) {
+				TS.initialize();
 				ASint asint = new ASint(args[0]);	
 				TS.execute();
 				Logger.log("El se compilo exitosamente");
