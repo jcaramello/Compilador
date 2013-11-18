@@ -1,6 +1,7 @@
 package asema.entities;
 
 import common.CodeGenerator;
+import common.Instructions;
 
 import alex.Token;
 import asema.TS;
@@ -20,13 +21,13 @@ public class IDNode extends PrimaryNode {
 		EntryVar ev = TS.findVar(Identifier.getLexema());
 		
 		if(ev.esParametroLocal() || ev.esVariableLocal()) {
-			CodeGenerator.gen("LOAD " + ev.Offset);
+			CodeGenerator.gen(Instructions.LOAD, ev.Offset);
 		} else {
 			if(TS.getCurrentClass().getCurrentMethod().Modifier.equals("static"))
 				throw new SemanticErrorException("No se puede acceder a una variable de instancia desde un método static.");
 			
-			CodeGenerator.gen("LOAD 3");
-			CodeGenerator.gen("LOADREF " + ev.Offset);
+			CodeGenerator.gen(Instructions.LOAD, 3);
+			CodeGenerator.gen(Instructions.LOADREF, ev.Offset);
 		}
 		
 		return ev.Type;

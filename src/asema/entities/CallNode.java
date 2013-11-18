@@ -52,14 +52,14 @@ public class CallNode extends PrimaryNode {
 			}
 			
 			if(!met.ReturnType.equals(VoidType.VoidType))
-				CodeGenerator.gen(Instructions.RMEM, "1");
+				CodeGenerator.gen(Instructions.RMEM, 1);
 				
 			CodeGenerator.gen(Instructions.PUSH, met.getContainerClass().Name + "_" + met.Name);
 			CodeGenerator.gen(Instructions.CALL);
 		}
 		else {
 			if(!met.ReturnType.equals(VoidType.VoidType)) {
-				CodeGenerator.gen(Instructions.RMEM, "1");
+				CodeGenerator.gen(Instructions.RMEM, 1);
 				CodeGenerator.gen(Instructions.SWAP);
 			}
 			
@@ -70,8 +70,8 @@ public class CallNode extends PrimaryNode {
 			}
 			
 			CodeGenerator.gen(Instructions.DUP);
-			CodeGenerator.gen(Instructions.LOADREF, "0");
-			CodeGenerator.gen(Instructions.LOADREF, ""+ met.Offset);
+			CodeGenerator.gen(Instructions.LOADREF, 0);
+			CodeGenerator.gen(Instructions.LOADREF, met.Offset);
 			CodeGenerator.gen(Instructions.CALL);
 		}
 	

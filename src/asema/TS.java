@@ -221,8 +221,8 @@ public class TS {
 		
 		// Rutina malloc
 		
-		CodeGenerator.gen(Instructions.CODE_SECTION);
-		CodeGenerator.gen("LMALLOC: NOP");
+		CodeGenerator.gen(Instructions.CODE_SECTION, true);
+		CodeGenerator.gen("LMALLOC: NOP", true);
 		CodeGenerator.gen(Instructions.LOADFP);
 		CodeGenerator.gen(Instructions.LOADSP);
 		CodeGenerator.gen(Instructions.STOREFP);

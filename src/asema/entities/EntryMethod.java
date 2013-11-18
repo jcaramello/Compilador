@@ -247,7 +247,7 @@ public class EntryMethod extends EntryBase {
 	}
 	
 	public void generate() throws SemanticErrorException{
-		CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP);
+		CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP, true);
 		CodeGenerator.gen(Instructions.LOADFP);
 		CodeGenerator.gen(Instructions.LOADSP);
 		CodeGenerator.gen(Instructions.STOREFP);

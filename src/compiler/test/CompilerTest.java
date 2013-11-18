@@ -84,6 +84,7 @@ public class CompilerTest {
 				Logger.log(e.getMessage());
 				assertEquals(e.getMessage(), expected);
 			}finally{
+				Logger.close();
 				CodeGenerator.close();
 			}
 			

@@ -24,8 +24,8 @@ public class NewNode extends PrimaryNode {
 		
 		EntryClass cl = TS.getClass(ClassName.getLexema());
 				
-		CodeGenerator.gen(Instructions.RMEM, "1");
-		CodeGenerator.gen(Instructions.PUSH, "" + (cl.getCantAttributes() + 1));
+		CodeGenerator.gen(Instructions.RMEM, 1);
+		CodeGenerator.gen(Instructions.PUSH, cl.getCantAttributes() + 1);
 		CodeGenerator.gen(Instructions.PUSH, "LMALLOC");
 		CodeGenerator.gen(Instructions.CALL);
 		CodeGenerator.gen(Instructions.DUP);

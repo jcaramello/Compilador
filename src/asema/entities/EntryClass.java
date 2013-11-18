@@ -169,8 +169,8 @@ public class EntryClass extends EntryBase{
 	}
 	
 	public void generate() throws SemanticErrorException{
-		CodeGenerator.gen(Instructions.DATA_SECTION);
-		CodeGenerator.gen(Instructions.VTLabel, Instructions.NOP);
+		CodeGenerator.gen(Instructions.DATA_SECTION, true);
+		CodeGenerator.gen(Instructions.VTLabel, Instructions.NOP, true);
 		
 		TS.setCurrentClass(this.Name);		
 		String[] mets = new String[this.Methods.size()];
@@ -184,7 +184,7 @@ public class EntryClass extends EntryBase{
 			CodeGenerator.gen(Instructions.DW, mets[i]);			
 		}
 		
-		CodeGenerator.gen(Instructions.CODE_SECTION);
+		CodeGenerator.gen(Instructions.CODE_SECTION, true);
 		
 		for (EntryMethod em : Methods.values()) {
 			em.generate();

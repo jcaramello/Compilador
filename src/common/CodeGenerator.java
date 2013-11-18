@@ -35,7 +35,7 @@ public class CodeGenerator {
 	/**
 	 * Formato de instruccion [Instruccion Parametro]
 	 */
-	private static final String INSTRUCTION_FORMAT = "%s %s"+NEW_LINE;
+	private static final String INSTRUCTION_FORMAT = "\t\t %s %s"+NEW_LINE;
 	private static final String LABEL_FORMAT = "%s %s"+NEW_LINE;
 	
 	/**
@@ -75,31 +75,60 @@ public class CodeGenerator {
 	 * Log a simple message
 	 * @param msg
 	 */
-	public static void gen(String inst)
+	public static void gen(String inst, boolean withLabel)
 	{
-		gen(inst, null);
-	}
-
-	/**
-	 * Log a simple message
-	 * @param msg
-	 */
-	public static void gen(String inst, int Parameter)
-	{
-		gen(inst, Integer.toString(Parameter));
+		gen(inst, null, withLabel);
 	}
 	
 	/**
 	 * Log a simple message
 	 * @param msg
 	 */
+	public static void gen(String inst)
+	{
+		gen(inst, null, false);
+	}
+
+	/**
+	 * Log a simple message
+	 * @param msg
+	 */
+	public static void gen(String inst, int Parameter, boolean withLabel)
+	{
+		gen(inst, Integer.toString(Parameter), withLabel);
+	}
+	
+	/**
+	 * Log a simple message
+	 * @param msg
+	 */
+	public static void gen(String inst, int Parameter)
+	{
+		gen(inst, Integer.toString(Parameter), false);
+	}
+	
 	public static void gen(String inst, String Parameter)
 	{
+		gen(inst, Parameter, false);
+	}
+	
+	/**
+	 * Log a simple message
+	 * @param msg
+	 */
+	public static void gen(String inst, String Parameter, boolean withLabel)
+	{
 		try {			
+			
+			String format = INSTRUCTION_FORMAT;
+			
+			if(withLabel)
+				format = LABEL_FORMAT;
+			
 			String instruction = null;
 			if(Parameter != null)
-				instruction = String.format(INSTRUCTION_FORMAT, inst, Parameter);
-			else instruction = String.format(INSTRUCTION_FORMAT, inst, "");
+				instruction = String.format(format, inst, Parameter);
+			else instruction = String.format(format, inst, "");
 			
 			getCurrent().bufferedWriter.write(instruction);							
 			
