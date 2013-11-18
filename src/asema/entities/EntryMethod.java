@@ -257,7 +257,7 @@ public class EntryMethod extends EntryBase {
 		CodeGenerator.gen(Instructions.RMEM, cantVars);
 		
 		this.ContainerClass.setCurrentMethod(this);
-		if(this.AST == null)
+		if(this.AST != null)
 			this.AST.check();
 		else generateBodyPredef();
 		
@@ -345,14 +345,14 @@ public class EntryMethod extends EntryBase {
 
 		int cantArgs = this.FormalArgs.values().size();
 		for(int i = 1; i <= cantArgs; i++) {
-			this.getFormalArgByIndex(--i).Offset = cantArgs + 3 - i;
+			this.getFormalArgByIndex(i-1).Offset = cantArgs + 3 - i;
 			if(this.Modifier == ModifierMethodType.Dynamic)
-				this.getFormalArgByIndex(--i).Offset++; // deja lugar para this
+				this.getFormalArgByIndex(i-1).Offset++; // deja lugar para this
 		}
 
 		int cantVars = this.LocalVars.values().size();
 		for(int i = 0; i < cantVars; i++) {
-					this.getLocalVarByIndex(--i).Offset = -i;
+			this.getLocalVarByIndex(i-1).Offset = -i;
 		}
 		
 	}

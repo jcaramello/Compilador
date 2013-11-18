@@ -7,6 +7,7 @@ import asint.ASint;
 import asint.UnexpectedTokenException;
 
 import common.Application;
+import common.CodeGenerator;
 import common.Logger;
 
 public class Compiler {
@@ -38,6 +39,7 @@ public class Compiler {
 		}
 		finally{		
 			Logger.close();
+			CodeGenerator.close();
 		}
 	
 	}

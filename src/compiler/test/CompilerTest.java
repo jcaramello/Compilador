@@ -24,6 +24,7 @@ import asint.ASint;
 import asint.UnexpectedTokenException;
 
 import common.Application;
+import common.CodeGenerator;
 import common.Logger;
 
 import enums.LogType;
@@ -82,7 +83,10 @@ public class CompilerTest {
 			} catch (SemanticErrorException e) {
 				Logger.log(e.getMessage());
 				assertEquals(e.getMessage(), expected);
+			}finally{
+				CodeGenerator.close();
 			}
+			
 					
 	}
 	
