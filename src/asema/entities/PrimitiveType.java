@@ -7,7 +7,7 @@ public class PrimitiveType extends Type {
 	public static PrimitiveType Int = new PrimitiveType("Int");
 	public static PrimitiveType String = new PrimitiveType("String");
 	public static PrimitiveType Boolean = new PrimitiveType("Boolean");
-	public static PrimitiveType Char = new PrimitiveType("Char");
+	public static PrimitiveType Char = new PrimitiveType("Char");	
 	
 	public PrimitiveType(String name)
 	{

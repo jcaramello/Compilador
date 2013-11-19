@@ -1319,13 +1319,13 @@ public class ASint {
 		if(tknType == TokenType.NullKeyword){
 			
 		}else if(tknType == TokenType.BooleanLiteral)
-			type = new PrimitiveType("boolean");
+			type = PrimitiveType.Boolean;
 		else if(tknType == TokenType.CharLiteral)
-			type = new PrimitiveType("char");
+			type = PrimitiveType.Char;
 		else if(tknType == TokenType.IntigerLiteral)
-			type = new PrimitiveType("int");
+			type = PrimitiveType.Int;
 		else if(tknType == TokenType.StringLiteral)
-			type = new ClassType(TS.getClass("String"));
+			type = PrimitiveType.String;
 		
 		Logger.verbose("<-" + depth + " Fin <Llamada>");	
 	    depth--;
