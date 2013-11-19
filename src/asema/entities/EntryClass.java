@@ -74,7 +74,7 @@ public class EntryClass extends EntryBase{
 		this.OrderedAttributes = new ArrayList<EntryVar>();
 		this.OrderedMethods = new ArrayList<EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
-		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new ClassType(this), this);
+		this.Constructor = new EntryMethod(String.format("DefaultCtor", name), ModifierMethodType.Dynamic, new ClassType(this), this);
 	}
 	
 	public void addAttribute(EntryVar a) throws SemanticErrorException{
@@ -174,14 +174,18 @@ public class EntryClass extends EntryBase{
 		
 		TS.setCurrentClass(this.Name);		
 		String[] mets = new String[this.Methods.size()];
+
+		int totalDynamicMethods = 0;
 		
 		for (EntryMethod em : Methods.values()) {
-			if(em.Modifier == ModifierMethodType.Dynamic)
+			if(em.Modifier == ModifierMethodType.Dynamic){
 				mets[em.Offset] = em.Name;
+				totalDynamicMethods++;
+			}
 		}
 		
-		for(int i = 0; i < mets.length; i++) {
-			CodeGenerator.gen(Instructions.DW, mets[i]);			
+		for(int i = 0; i < totalDynamicMethods; i++) {					
+			CodeGenerator.gen(Instructions.DW, mets[i]);
 		}
 		
 		CodeGenerator.gen(Instructions.CODE_SECTION, true);

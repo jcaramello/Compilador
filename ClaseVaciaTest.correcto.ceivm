@@ -15,7 +15,6 @@ LMALLOC: NOP
 		 RET 1
 .DATA 
 VT_ClaseVaciaTest : NOP
-		 DW 
 .CODE 
 ClaseVaciaTest_main : NOP
 		 LOADFP 
@@ -25,7 +24,7 @@ ClaseVaciaTest_main : NOP
 		 FMEM 0
 		 STOREFP 
 		 RET 0
-ClaseVaciaTest_Default_ClaseVaciaTest_Constructor : NOP
+ClaseVaciaTest_DefaultCtor : NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
@@ -35,16 +34,6 @@ ClaseVaciaTest_Default_ClaseVaciaTest_Constructor : NOP
 		 RET 2
 .DATA 
 VT_System : NOP
-		 DW 
-		 DW 
-		 DW 
-		 DW 
-		 DW 
-		 DW 
-		 DW 
-		 DW 
-		 DW 
-		 DW 
 .CODE 
 System_printSln : NOP
 		 LOADFP 
@@ -169,7 +158,7 @@ System_printS : NOP
 		 FMEM 0
 		 STOREFP 
 		 RET 1
-System_Default_System_Constructor : NOP
+System_DefaultCtor : NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
@@ -180,7 +169,7 @@ System_Default_System_Constructor : NOP
 .DATA 
 VT_Object : NOP
 .CODE 
-Object_Default_Object_Constructor : NOP
+Object_DefaultCtor : NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
