@@ -49,7 +49,7 @@ public class Instructions {
 	 */
 	public static final String CODE_SECTION = ".CODE";
 	public static final String DATA_SECTION = ".DATA";
-	public static final String VTLabel = "VTLabel :";	
+	public static final String VTLabel = "VT_%s :"; // VT_[clase]	
 	public static final String LABEL = "%s_%s :";	//[clase]_[metodo] :
 	
 	/**

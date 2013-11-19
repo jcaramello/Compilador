@@ -13,23 +13,28 @@ LMALLOC: NOP
 		 STOREHL 
 		 STOREFP 
 		 RET 1
+.DATA 
+VT_ClaseVaciaTest : NOP
+		 DW 
 .CODE 
-LMALLOC: NOP 
+ClaseVaciaTest_main : NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
-		 LOADHL 
-		 DUP 
-		 PUSH 1
-		 ADD 
-		 STORE 4
-		 LOAD 3
-		 ADD 
-		 STOREHL 
+		 RMEM 0
+		 FMEM 0
 		 STOREFP 
-		 RET 1
+		 RET 0
+ClaseVaciaTest_Default_ClaseVaciaTest_Constructor : NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 2
 .DATA 
-VTLabel : NOP
+VT_System : NOP
 		 DW 
 		 DW 
 		 DW 
@@ -173,7 +178,7 @@ System_Default_System_Constructor : NOP
 		 STOREFP 
 		 RET 2
 .DATA 
-VTLabel : NOP
+VT_Object : NOP
 .CODE 
 Object_Default_Object_Constructor : NOP
 		 LOADFP 

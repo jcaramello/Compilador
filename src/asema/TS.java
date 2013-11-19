@@ -124,29 +124,26 @@ public class TS {
 	 * @throws SemanticErrorException 
 	 */
 	public static void  execute() throws SemanticErrorException
-	{		
+	{				
 		TS.checkDeclarations();
 		TS.validate();
 		TS.checkCircularInheritance();
 		TS.applyInheritances();
 		TS.calcOffsets();
 		TS.generate();
+		CodeGenerator.gen(Instructions.HALT);
 	}
 	
 	/**
-	 * Inicializa las classes default y demas cosas de la TS,
-	 * Ademas Genera los offset de cada clase y por ultimo el codigo intermedio
+	 * Genera el codigo para cada una de las clases
+	 * junto con los offset 
 	 * @throws SemanticErrorException 
 	 */
 	public static void generate() throws SemanticErrorException
-	{
-		initialize();
-		
+	{		
 		for (EntryClass c : TS.getClasses()) {
 			c.generate();
-		}
-		
-		CodeGenerator.gen(Instructions.HALT);
+		}			
 	}
 	
 	/**
@@ -206,6 +203,9 @@ public class TS {
 	/**
 	 * Inicializa las estructuras basicas de la clase
 	 * Debe ser invocado antes de utilizar cualquier otro metodo
+	 * 
+	 * NOTA: DEBE LLAMARSE ANTES DE PROCESSAR LA EDT. Esto es asi por que es necesario
+	 * que esten inicializadas las estructuras basicas antes de comenzar a processar la edt
 	 * @throws SemanticErrorException 
 	 */
 	public static void initialize() throws SemanticErrorException{

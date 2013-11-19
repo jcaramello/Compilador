@@ -170,7 +170,7 @@ public class EntryClass extends EntryBase{
 	
 	public void generate() throws SemanticErrorException{
 		CodeGenerator.gen(Instructions.DATA_SECTION, true);
-		CodeGenerator.gen(Instructions.VTLabel, Instructions.NOP, true);
+		CodeGenerator.gen(String.format(Instructions.VTLabel, this.Name), Instructions.NOP, true);
 		
 		TS.setCurrentClass(this.Name);		
 		String[] mets = new String[this.Methods.size()];
