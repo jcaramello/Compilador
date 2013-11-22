@@ -29,7 +29,7 @@ public class UnaryExpressionNode extends ExpressionNode {
 				if(Operator.getTokenType() == TokenType.RestOperator)
 				{
 					CodeGenerator.gen(Instructions.NEG);
-					return new PrimitiveType("Int");
+					return PrimitiveType.Int;
 				}
 			}
 		}
@@ -39,7 +39,7 @@ public class UnaryExpressionNode extends ExpressionNode {
 				throw new SemanticErrorException("El tipo del operando de ! debe ser un boolean.");
 			else {
 				CodeGenerator.gen(Instructions.NOT);
-				return new PrimitiveType("Boolean");
+				return PrimitiveType.Boolean;
 			}
 		}
 		

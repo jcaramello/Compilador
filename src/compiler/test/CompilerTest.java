@@ -48,7 +48,13 @@ public class CompilerTest {
 	   return Arrays.asList(new String[][] {
 			   //{"ClaseVaciaTest.correcto", null},
 			   //{"ClaseHelloWordTest.correcto", null},
-			   {"Read.correcto", null}
+			   //{"PrintB.correcto", null},
+			   //{"PrintC.correcto", null},
+			   //{"PrintI.correcto", null},
+			   //{"PrintS.correcto", null},
+			   //{"PrintSln.correcto", null},
+			   //{"Read.correcto", null}
+			   {"IfThen.correcto", null},
 	   });
 	}
 	

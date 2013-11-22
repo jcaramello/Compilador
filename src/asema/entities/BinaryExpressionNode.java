@@ -31,13 +31,13 @@ public class BinaryExpressionNode extends ExpressionNode {
 		{
 			if(!ti.equals(PrimitiveType.Int) || !td.equals(PrimitiveType.Int))
 				throw new SemanticErrorException("El tipo de los operandos +, -, *, / o % debe ser entero.");
-			else toRet = new PrimitiveType("Int");	
+			else toRet = PrimitiveType.Int;	
 		}
 		
 		if(Operator.getTokenType() == TokenType.AndOperator || Operator.getTokenType() == TokenType.OrOperator) {
 			if(!ti.equals(PrimitiveType.Boolean) || !td.equals(PrimitiveType.Boolean))
 				throw new SemanticErrorException("El tipo de los operandos && o || debe ser boolean.");
-			else toRet = new PrimitiveType("Boolean");	
+			else toRet = PrimitiveType.Boolean;		
 		}
 				
 		if(Operator.getTokenType() == TokenType.LessOperator || Operator.getTokenType() == TokenType.LessOrEqualOperator
@@ -45,13 +45,13 @@ public class BinaryExpressionNode extends ExpressionNode {
 		{
 			if(!ti.equals(PrimitiveType.Int) || !td.equals(PrimitiveType.Int))
 				throw new SemanticErrorException("El tipo de los operandos >, >=, <, <= debe ser entero.");
-			else toRet = new PrimitiveType("Boolean");	
+			else toRet = PrimitiveType.Boolean;	
 		}
 		
 		if(Operator.getTokenType() == TokenType.EqualOperator || Operator.getTokenType() == TokenType.DistinctOperator) {
 			if(!ti.conforms(td) && !td.conforms(ti))
 				throw new SemanticErrorException("El tipo de los operandos == o != debe conformar.");
-			else toRet = new PrimitiveType("Boolean");	
+			else toRet = PrimitiveType.Boolean;	
 		}
 		
 		if(Operator.getTokenType() == TokenType.PlusOperator) CodeGenerator.gen("ADD");

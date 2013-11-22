@@ -307,10 +307,10 @@ public class ASint {
 	}
 
 
-	private Type tipoMetodo() throws UnexpectedTokenException {
+	private Type tipoMetodo() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <TipoMetodo>");
-		Type type = new VoidType();
+		Type type = VoidType.VoidType;
 		
 		getToken(); // garantizado void o TipoPrimitivo
 		if(curr.getTokenType() != TokenType.VoidKeyword) {
@@ -424,7 +424,7 @@ public class ASint {
 	}
 
 	
-	private EntryVar argFormal() throws UnexpectedTokenException {
+	private EntryVar argFormal() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ArgFormal>");
 		Type type;
@@ -603,7 +603,7 @@ public class ASint {
 	}
 
 
-	private Type tipo() throws UnexpectedTokenException {
+	private Type tipo() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Tipo>");
 
@@ -633,7 +633,7 @@ public class ASint {
 	}
 
 
-	private Type tipoPrimitivo() throws UnexpectedTokenException {
+	private Type tipoPrimitivo() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <TipoPrimitivo>");
 		
@@ -646,7 +646,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba tipo primitivo: boolean, int, char, String en línea " + curr.getLinea());
 		}
 		
-		Type type = new PrimitiveType(curr.getLexema());
+		Type type = PrimitiveType.get(curr);
 		
 		Logger.verbose("<-" + depth + " Fin <TipoPrimitivo>");	
 	    depth--;
@@ -961,8 +961,9 @@ public class ASint {
 		getToken();			
 		
 		if(curr.getTokenType() == TokenType.OrOperator){
+			Token orOp = curr;
 			ExpressionNode expOr = expressionOr();
-			ExpressionNode expBinary = new BinaryExpressionNode(expOr, expLeft, curr);
+			ExpressionNode expBinary = new BinaryExpressionNode(expOr, expLeft, orOp);
 			expAux = expressionAux(expBinary);
 			
 		}else if(!ASintHelper.isFollowExpressionAux(curr))	{	
@@ -999,8 +1000,9 @@ public class ASint {
 		getToken();
 		
 		if(curr.getTokenType() == TokenType.AndOperator){
+			Token andOp = curr;
 			ExpressionNode expAnd = expressionAnd();
-			ExpressionNode expBinary = new BinaryExpressionNode(expAnd, expLeft, curr);
+			ExpressionNode expBinary = new BinaryExpressionNode(expAnd, expLeft, andOp);
 			expOrAux = expressionOrAux(expBinary);
 		}
 		else if(!ASintHelper.isFollowExpressionOrAux(curr)){
@@ -1037,8 +1039,9 @@ public class ASint {
 		
 		getToken();
 		if(curr.getTokenType() == TokenType.DistinctOperator || curr.getTokenType() == TokenType.EqualOperator ){
+			Token distinctOp = curr;
 			ExpressionNode expRigth = expressionComp();
-			ExpressionNode expBinary = new BinaryExpressionNode(expRigth, expLeft, curr);
+			ExpressionNode expBinary = new BinaryExpressionNode(expRigth, expLeft, distinctOp);
 			expAndAux = expressionAndAux(expBinary);
 			
 		}else if(!ASintHelper.isFollowExpressionAndAux(curr)){
@@ -1080,8 +1083,9 @@ public class ASint {
 		   curr.getTokenType() == TokenType.GratherOperator ||
 		   curr.getTokenType() == TokenType.LessOperator){
 			
+			Token relationalOp = curr;
 			ExpressionNode expSR = expressionSR();
-			expComoAux = new BinaryExpressionNode(expSR, expLeft, curr);
+			expComoAux = new BinaryExpressionNode(expSR, expLeft, relationalOp);
 			
 			// Esta linea fue comentada para corregir el defecto de  a = a > b < d; ya que si esta,
 			// toma como valida esa expresion y no deberia hacerlo.
@@ -1122,8 +1126,9 @@ public class ASint {
 		getToken();
 		if(curr.getTokenType() == TokenType.PlusOperator ||
 		   curr.getTokenType() == TokenType.RestOperator){
+			Token arithmeticOp = curr;
 			ExpressionNode term = termino();
-			ExpressionNode expBinary =  new BinaryExpressionNode(term, expLeft, curr);
+			ExpressionNode expBinary =  new BinaryExpressionNode(term, expLeft, arithmeticOp);
 			expSRAux = expressionSRAux(expBinary);
 		}else if(!ASintHelper.isFollowExpressionSRAux(curr)){	
 			throw new UnexpectedTokenException("(!) Error, Expression mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
@@ -1162,9 +1167,9 @@ public class ASint {
 		if(curr.getTokenType() == TokenType.MultiplierOperator ||
 		   curr.getTokenType() == TokenType.DivisionOperator ||
 		   curr.getTokenType() == TokenType.ModOperator){
-			
+			Token arithmeticOp = curr;
 			ExpressionNode factor = factor();
-			ExpressionNode expBinary = new BinaryExpressionNode(factor, expLeft, curr);
+			ExpressionNode expBinary = new BinaryExpressionNode(factor, expLeft, arithmeticOp);
 			terminoAux = terminoAux(expBinary);
 			
 		}else if(!ASintHelper.isFollowTerminoAux(curr)){
