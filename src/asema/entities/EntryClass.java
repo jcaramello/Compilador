@@ -1,5 +1,6 @@
 package asema.entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,8 +71,10 @@ public class EntryClass extends EntryBase{
 		this.Name = name;
 		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
+		this.OrderedAttributes = new ArrayList<EntryVar>();
+		this.OrderedMethods = new ArrayList<EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
-		this.Constructor = new EntryMethod(String.format("Default_%s_Constructor", name), ModifierMethodType.Dynamic, new VoidType(), this);
+		this.Constructor = new EntryMethod(String.format("DefaultCtor", name), ModifierMethodType.Dynamic, new ClassType(this), this);
 	}
 	
 	public void addAttribute(EntryVar a) throws SemanticErrorException{
@@ -166,22 +169,26 @@ public class EntryClass extends EntryBase{
 	}
 	
 	public void generate() throws SemanticErrorException{
-		CodeGenerator.gen(Instructions.DATA_SECTION);
-		CodeGenerator.gen(Instructions.VTLabel, Instructions.NOP);
+		CodeGenerator.gen(Instructions.DATA_SECTION, true);
+		CodeGenerator.gen(String.format(Instructions.VTLabel, this.Name), Instructions.NOP, true);
 		
 		TS.setCurrentClass(this.Name);		
 		String[] mets = new String[this.Methods.size()];
+
+		int totalDynamicMethods = 0;
 		
 		for (EntryMethod em : Methods.values()) {
-			if(em.Modifier == ModifierMethodType.Dynamic)
+			if(em.Modifier == ModifierMethodType.Dynamic){
 				mets[em.Offset] = em.Name;
+				totalDynamicMethods++;
+			}
 		}
 		
-		for(int i = 0; i < mets.length; i++) {
-			CodeGenerator.gen(Instructions.DW, mets[i]);			
+		for(int i = 0; i < totalDynamicMethods; i++) {					
+			CodeGenerator.gen(Instructions.DW, mets[i]);
 		}
 		
-		CodeGenerator.gen(Instructions.CODE_SECTION);
+		CodeGenerator.gen(Instructions.CODE_SECTION, true);
 		
 		for (EntryMethod em : Methods.values()) {
 			em.generate();
@@ -195,7 +202,7 @@ public class EntryClass extends EntryBase{
 	 */
 	public void calcOffsets()
 	{		
-		if(this.fatherClass != null)
+		if(this.fatherClass != null && this.fatherClass != TS.ObjectClass)
 			this.fatherClass.calcOffsets();
 
 		// Preservo los offsets del padre de atributos en el CIR (ilustrativo; innecesario)
@@ -236,7 +243,7 @@ public class EntryClass extends EntryBase{
 	
 	public void checkDeclarations() throws SemanticErrorException{
 		// “extend” es el identificador guardado en el EdT
-		if(this.inheritsFrom == ""){
+		if(this.inheritsFrom == "" || this.inheritsFrom == null){
 			EntryClass objectClass = TS.getClass("Object");
 			this.inheritsFrom = objectClass.Name;
 			this.fatherClass = objectClass;
@@ -274,7 +281,7 @@ public class EntryClass extends EntryBase{
 						// El metodo ya esta. no hace falta agregarlo.						
 						{ // this.Methods.put(overrideMethod.Name, overrideMethod);
 						}
-					else throw new SemanticErrorException(String.format("Error(!). El metodo %s debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno.", overrideMethod.Name));
+					else throw new SemanticErrorException(String.format("Error(!). El metodo $s.%s debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno.", this.Name, overrideMethod.Name));
 				else // Esta linea no me cierra, el metodo ya esta. no hace falta agregarlo
 					this.Methods.put(em.Name, em);
 			}

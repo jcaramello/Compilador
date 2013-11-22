@@ -34,16 +34,16 @@ public class IfNode extends SentenceNode {
 		if(!ConditionalExpression.check().equals(PrimitiveType.Boolean))
 			throw new SemanticErrorException("El tipo de la expresión condicional del if debe ser boolean.");
 		
-		CodeGenerator.gen(Instructions.BF, ""+l1);
+		CodeGenerator.gen(Instructions.BF, l1);
 		
 		ThenNode.check();
 		
-		CodeGenerator.gen(Instructions.JUMP, ""+l2);
-		CodeGenerator.gen("L" + l1 + ": NOP");
+		CodeGenerator.gen(Instructions.JUMP, l2);
+		CodeGenerator.gen("L" + l1 + ": NOP", true);
 		
 		if(ElseNode != null) ElseNode.check();
 		
-		CodeGenerator.gen("L" + l2 + ": NOP");
+		CodeGenerator.gen("L" + l2 + ": NOP", true);
 		
 		
 		return null; // ??

@@ -35,6 +35,8 @@ public class TS {
 
 	private static int controlLabel;
 	
+	public static EntryClass ObjectClass;
+	
 	/*
 	 * Public Methods
 	 */
@@ -122,30 +124,26 @@ public class TS {
 	 * @throws SemanticErrorException 
 	 */
 	public static void  execute() throws SemanticErrorException
-	{
-		TS.initialize();
+	{				
 		TS.checkDeclarations();
 		TS.validate();
 		TS.checkCircularInheritance();
 		TS.applyInheritances();
 		TS.calcOffsets();
 		TS.generate();
+		CodeGenerator.gen(Instructions.HALT);
 	}
 	
 	/**
-	 * Inicializa las classes default y demas cosas de la TS,
-	 * Ademas Genera los offset de cada clase y por ultimo el codigo intermedio
+	 * Genera el codigo para cada una de las clases
+	 * junto con los offset 
 	 * @throws SemanticErrorException 
 	 */
 	public static void generate() throws SemanticErrorException
-	{
-		initialize();
-		
+	{		
 		for (EntryClass c : TS.getClasses()) {
 			c.generate();
-		}
-		
-		CodeGenerator.gen(Instructions.HALT);
+		}			
 	}
 	
 	/**
@@ -193,7 +191,7 @@ public class TS {
 		for (EntryClass ec : TS.getClasses()) {
 			for (EntryMethod em : ec.getMethods()) {
 				em.validateNames();
-				existsMain = em.isValidMain();
+				existsMain = existsMain || em.isValidMain();
 			}			
 			ec.getConstructor().validateNames();			
 		}
@@ -205,6 +203,9 @@ public class TS {
 	/**
 	 * Inicializa las estructuras basicas de la clase
 	 * Debe ser invocado antes de utilizar cualquier otro metodo
+	 * 
+	 * NOTA: DEBE LLAMARSE ANTES DE PROCESSAR LA EDT. Esto es asi por que es necesario
+	 * que esten inicializadas las estructuras basicas antes de comenzar a processar la edt
 	 * @throws SemanticErrorException 
 	 */
 	public static void initialize() throws SemanticErrorException{
@@ -220,8 +221,8 @@ public class TS {
 		
 		// Rutina malloc
 		
-		CodeGenerator.gen(Instructions.CODE_SECTION);
-		CodeGenerator.gen("LMALLOC: NOP");
+		CodeGenerator.gen(Instructions.CODE_SECTION, true);
+		CodeGenerator.gen("LMALLOC: NOP", true);
 		CodeGenerator.gen(Instructions.LOADFP);
 		CodeGenerator.gen(Instructions.LOADSP);
 		CodeGenerator.gen(Instructions.STOREFP);
@@ -255,8 +256,11 @@ public class TS {
 			var = currentMethod.getFormalArg(identificador);		
 		if(var == null)
 			var = currentClass.getAttribute(identificador);
-		if(var == null)
-			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido.", identificador));
+		 
+		// Se decidio que se el llamador quien debe verificar que si identificador no representa nada, entonces debe producirse un error semantico  		
+		// identificador podria ser alguna otra cosa, como por ej, un identificador de clase en una llamada calificada y yo desde aca no lo se
+		// el que llama a var tendra que seguir buscando y decidir cuando no se ha encontrado nada y corresponde disparar la excepcion
+		
 		return var;	
 	}
 	
@@ -272,7 +276,9 @@ public class TS {
 		EntryClass objectClass = new EntryClass("Object", null);
 		objectClass.inheritsFrom = null;
 		objectClass.isInheritanceApplied = true;
-		objectClass.fatherClass = null;				
+		objectClass.fatherClass = null;			
+		TS.ObjectClass = objectClass;
+	
 		TS.Classes.put("Object", objectClass);
 	}
 	
@@ -306,7 +312,7 @@ public class TS {
 	 */
 	private static void calcOffsets(){
 		for (EntryClass ec : TS.getClasses()) {
-			if(!ec.OffsetCalculated)
+			if(!ec.OffsetCalculated && ec != TS.ObjectClass)
 				ec.calcOffsets();
 		}
 	}

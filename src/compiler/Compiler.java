@@ -1,10 +1,13 @@
 package compiler;
 
+import alex.exceptions.ALexException;
 import asema.TS;
+import asema.exceptions.SemanticErrorException;
 import asint.ASint;
 import asint.UnexpectedTokenException;
 
 import common.Application;
+import common.CodeGenerator;
 import common.Logger;
 
 public class Compiler {
@@ -19,19 +22,24 @@ public class Compiler {
 		try {				
 			
 			if (validateInput(args)) {
+				TS.initialize();
 				ASint asint = new ASint(args[0]);	
 				TS.execute();
 				Logger.log("El se compilo exitosamente");
 			}
 			
-		}catch(UnexpectedTokenException u){
+		}
+		catch(UnexpectedTokenException u){
 			Logger.log(u.getMessage());			
+		}catch(SemanticErrorException u){
+			Logger.log(u.getMessage());				
 		}catch (Exception e) {
 			Logger.log("Error!!");
 			Logger.verbose(e);									
 		}
 		finally{		
 			Logger.close();
+			CodeGenerator.close();
 		}
 	
 	}

@@ -18,6 +18,7 @@ import org.junit.runners.Parameterized.Parameters;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 import asint.ASint;
 import asint.UnexpectedTokenException;
@@ -99,6 +100,7 @@ public class ASintTest {
 
 		if(expected == null) { // Se espera éxito
 			URL url = this.getClass().getResource(testFile);
+			TS.initialize();
 			ASint tester = new ASint(url.getPath());
 		}
 		else {

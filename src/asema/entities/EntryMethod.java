@@ -88,7 +88,10 @@ public class EntryMethod extends EntryBase {
 		EntryVar var = new EntryVar(t, name);
 		if(this.FormalArgs.containsKey(var.Name))
 			throw new SemanticErrorException(String.format("Error! - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
-		else this.FormalArgs.put(var.Name, var);		
+		else {
+			this.FormalArgs.put(var.Name, var);
+			this.FormalArgsByIndex.add(var);
+		}
 	}
 	
 	/**
@@ -175,7 +178,7 @@ public class EntryMethod extends EntryBase {
 	 */
 	public void validateNames() throws SemanticErrorException{
 		for (EntryVar fa : this.FormalArgs.values()) {
-			if(this.LocalVars.containsKey(fa.Name));
+			if(this.LocalVars.containsKey(fa.Name))
 				throw new SemanticErrorException(String.format("Error! - El parametro formal %s es ambiguo. intente renombralo", fa.Name));
 		}
 	}
@@ -244,7 +247,7 @@ public class EntryMethod extends EntryBase {
 	}
 	
 	public void generate() throws SemanticErrorException{
-		CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP);
+		CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP, true);
 		CodeGenerator.gen(Instructions.LOADFP);
 		CodeGenerator.gen(Instructions.LOADSP);
 		CodeGenerator.gen(Instructions.STOREFP);
@@ -254,7 +257,7 @@ public class EntryMethod extends EntryBase {
 		CodeGenerator.gen(Instructions.RMEM, cantVars);
 		
 		this.ContainerClass.setCurrentMethod(this);
-		if(this.AST == null)
+		if(this.AST != null)
 			this.AST.check();
 		else generateBodyPredef();
 		
@@ -342,14 +345,14 @@ public class EntryMethod extends EntryBase {
 
 		int cantArgs = this.FormalArgs.values().size();
 		for(int i = 1; i <= cantArgs; i++) {
-			this.getFormalArgByIndex(i).Offset = cantArgs + 3 - i;
+			this.getFormalArgByIndex(i-1).Offset = cantArgs + 3 - i;
 			if(this.Modifier == ModifierMethodType.Dynamic)
-				this.getFormalArgByIndex(i).Offset++; // deja lugar para this
+				this.getFormalArgByIndex(i-1).Offset++; // deja lugar para this
 		}
 
 		int cantVars = this.LocalVars.values().size();
 		for(int i = 0; i < cantVars; i++) {
-					this.getLocalVarByIndex(i).Offset = -i;
+			this.getLocalVarByIndex(i-1).Offset = -i;
 		}
 		
 	}

@@ -882,6 +882,10 @@ public class ASint {
 		}
 		
 		EntryVar leftRigth = TS.findVar(curr.getLexema());
+		
+		if(leftRigth == null) 
+			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido. Linea: $d", curr.getLexema(), curr.getLinea()));
+		
 		ExpressionNode rigthSide = expression();
 				
 		AssignmentNode assignmentNode = new AssignmentNode(leftRigth, rigthSide);
@@ -1216,9 +1220,8 @@ public class ASint {
 			}
 			else throw new UnexpectedTokenException("(!) Error, la llamada no es correcta. Se esperaba ), el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
 			
-		}else if(curr.getTokenType() == TokenType.Identifier){			
-			IDNode id = new IDNode(curr);
-			primario = primarioFact(id);			
+		}else if(curr.getTokenType() == TokenType.Identifier){						
+			primario = primarioFact();			
 			
 		}else if(curr.getTokenType() == TokenType.NewKeyword){
 			getToken();
@@ -1236,15 +1239,14 @@ public class ASint {
 	}
 	
 	
-	private PrimaryNode primarioFact(IDNode id) throws UnexpectedTokenException{
+	private PrimaryNode primarioFact() throws UnexpectedTokenException{
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <PrimarioFact>");
 		
 		PrimaryNode primarioFact = null;
-		
+		IDNode id = new IDNode(curr);
 		getToken();
-		reuseToken();
-		
+		reuseToken();		
 		if(curr.getTokenType() == TokenType.DotSymbol){				
 			primarioFact = llamadaStar(id);	
 		}else if(curr.getTokenType() == TokenType.OpenParenthesisSymbol){			
@@ -1296,9 +1298,10 @@ public class ASint {
 		
 		if(curr.getTokenType() == TokenType.DotSymbol){
 			getToken();
-			if(curr.getTokenType() == TokenType.Identifier){				
+			if(curr.getTokenType() == TokenType.Identifier){
+				IDNode operationName = new IDNode(curr);
 				List<ExpressionNode> params = argsActuales();
-				call = new CallNode(context, new IDNode(curr), params);
+				call = new CallNode(context, operationName, params);
 			}else throw new UnexpectedTokenException("(!) Error, Expresion mal formada, se esperaba un identificador. Token invalido "+ curr.getLexema() +" en línea " + curr.getLinea());
 		
 		}else if(curr.getTokenType() != TokenType.DotSymbol)
@@ -1319,13 +1322,13 @@ public class ASint {
 		if(tknType == TokenType.NullKeyword){
 			
 		}else if(tknType == TokenType.BooleanLiteral)
-			type = new PrimitiveType("boolean");
+			type = PrimitiveType.Boolean;
 		else if(tknType == TokenType.CharLiteral)
-			type = new PrimitiveType("char");
+			type = PrimitiveType.Char;
 		else if(tknType == TokenType.IntigerLiteral)
-			type = new PrimitiveType("int");
+			type = PrimitiveType.Int;
 		else if(tknType == TokenType.StringLiteral)
-			type = new ClassType(TS.getClass("String"));
+			type = PrimitiveType.String;
 		
 		Logger.verbose("<-" + depth + " Fin <Llamada>");	
 	    depth--;

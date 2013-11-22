@@ -1,6 +1,7 @@
 package asema.entities;
 
 import common.CodeGenerator;
+import common.Instructions;
 
 import alex.Token;
 import asema.TS;
@@ -17,19 +18,35 @@ public class IDNode extends PrimaryNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
-		EntryVar ev = TS.findVar(Identifier.getLexema());
+		Type type = null;
+		EntryVar ev = TS.findVar(Identifier.getLexema());		
 		
-		if(ev.esParametroLocal() || ev.esVariableLocal()) {
-			CodeGenerator.gen("LOAD " + ev.Offset);
-		} else {
-			if(TS.getCurrentClass().getCurrentMethod().Modifier.equals("static"))
-				throw new SemanticErrorException("No se puede acceder a una variable de instancia desde un método static.");
+		// Aca no estamos diferenciando entre si es una variable de tipo primitivo o una variable de tipo clase
+		// no se si eso hace falta o no.
+		if(ev != null){
+			if(ev.esParametroLocal() || ev.esVariableLocal()) {
+				CodeGenerator.gen(Instructions.LOAD, ev.Offset);
+			} else {
+				if(TS.getCurrentClass().getCurrentMethod().Modifier.equals("static"))
+					throw new SemanticErrorException("No se puede acceder a una variable de instancia desde un método static.");
+				
+				CodeGenerator.gen(Instructions.LOAD, 3);
+				CodeGenerator.gen(Instructions.LOADREF, ev.Offset);
+			}
 			
-			CodeGenerator.gen("LOAD 3");
-			CodeGenerator.gen("LOADREF " + ev.Offset);
+			type = ev.Type;
 		}
 		
-		return ev.Type;
+		// Identificador de clase tipo System.print();
+		EntryClass ec = TS.getClass(Identifier.getLexema());
+		if(ec != null){
+			// Creo q no hay que generar nada por que la llamada al metodo estatico se resuelve mas adelante.
+			type = new ClassType(ec);
+		}
+		
+		if(type == null)
+			throw new SemanticErrorException(String.format("Error (!). El identificador %s no puede ser resuelto. Linea $d", Identifier.getLexema(), Identifier.getLinea()));
+		return type;
 	}
 
 }

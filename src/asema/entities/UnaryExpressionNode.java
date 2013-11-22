@@ -1,6 +1,7 @@
 package asema.entities;
 
 import common.CodeGenerator;
+import common.Instructions;
 
 import enums.TokenType;
 import alex.Token;
@@ -27,7 +28,7 @@ public class UnaryExpressionNode extends ExpressionNode {
 			{
 				if(Operator.getTokenType() == TokenType.RestOperator)
 				{
-					CodeGenerator.gen("NEG");
+					CodeGenerator.gen(Instructions.NEG);
 					return new PrimitiveType("Int");
 				}
 			}
@@ -37,7 +38,7 @@ public class UnaryExpressionNode extends ExpressionNode {
 			if(!Operand.check().equals(PrimitiveType.Boolean))
 				throw new SemanticErrorException("El tipo del operando de ! debe ser un boolean.");
 			else {
-				CodeGenerator.gen("NOT");
+				CodeGenerator.gen(Instructions.NOT);
 				return new PrimitiveType("Boolean");
 			}
 		}
