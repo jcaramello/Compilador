@@ -1,7 +1,7 @@
 class ifThenTest{
 
 	static void main(){
-		if(3 > 5)
+		if(6 > 5)
 			(System.printI(3));
 	}
 }

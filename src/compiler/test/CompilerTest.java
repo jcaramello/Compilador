@@ -55,6 +55,8 @@ public class CompilerTest {
 			   //{"PrintSln.correcto", null},
 			   {"Read.correcto", null}
 			   //{"IfThen.correcto", null},
+			   //{"Read.correcto", null}
+			   //{"IfThen.correcto", null},
 	   });
 	}
 	

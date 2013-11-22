@@ -31,21 +31,24 @@ public class IfNode extends SentenceNode {
 		int l1 = TS.getNewLabelID();
 		int l2 = TS.getNewLabelID();
 		
+		String label1 = String.format("L%d", l1);
+		String label2 = String.format("L%d", l2);
+		
 		Type t = ConditionalExpression.check();
 		
 		if(!t.equals(PrimitiveType.Boolean))
 			throw new SemanticErrorException("El tipo de la expresión condicional del if debe ser boolean.");
 		
-		CodeGenerator.gen(Instructions.BF, l1);
+		CodeGenerator.gen(Instructions.BF, label1);
 		
 		ThenNode.check();
 		
-		CodeGenerator.gen(Instructions.JUMP, l2);
-		CodeGenerator.gen("L" + l1 + ": NOP", true);
+		CodeGenerator.gen(Instructions.JUMP, label2);
+		CodeGenerator.gen(label1+ ": NOP", true);
 		
 		if(ElseNode != null) ElseNode.check();
 		
-		CodeGenerator.gen("L" + l2 + ": NOP", true);
+		CodeGenerator.gen(label2 + ": NOP", true);
 		
 		
 		return null; // ??
