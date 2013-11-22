@@ -214,7 +214,7 @@ public class EntryClass extends EntryBase{
 		// Agrego los nuevos a partir de ahí
 		int cantVarsAncestro = this.fatherClass.getAttributes().size();
 		int cantVars = this.getAttributes().size();
-		for(int i = 1; i <= cantVars; i++) {
+		for(int i = 0; i < cantVars; i++) {
 			if(this.getAttributes().get(i).Offset == -1) 
 				this.getAttributes().get(i).Offset = cantVarsAncestro + i;
 		}
