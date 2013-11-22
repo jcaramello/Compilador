@@ -36,8 +36,9 @@ public class ReturnNode extends SentenceNode {
 		CodeGenerator.gen(Instructions.FMEM, met.getLocalVarsCant());
 		CodeGenerator.gen(Instructions.STOREFP);
 		
-		if(!met.ReturnType.equals(VoidType.VoidType))
-			toFree++;
+		// Simplemente no se reservó ese espacio antes
+		//if(!met.ReturnType.equals(VoidType.VoidType))
+		//	toFree++;
 		
 		CodeGenerator.gen(Instructions.RET, toFree);
 		

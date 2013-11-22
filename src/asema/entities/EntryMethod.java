@@ -274,8 +274,8 @@ public class EntryMethod extends EntryBase {
 		
 		if(this.Modifier.equals(ModifierMethodType.Dynamic))
 			toFree++;	
-		if(!this.ReturnType.equals(VoidType.VoidType))
-			toFree++;
+		//if(!this.ReturnType.equals(VoidType.VoidType))
+		//	toFree++;
 		
 		CodeGenerator.gen(Instructions.FMEM, ""+this.getLocalVarsCant());
 		CodeGenerator.gen(Instructions.STOREFP);
@@ -290,7 +290,7 @@ public class EntryMethod extends EntryBase {
 	private void generateBodyPredef(){
 		if(this.Name.equals("read")) {
 			CodeGenerator.gen(Instructions.READ);
-			CodeGenerator.gen(Instructions.STORE, "4");
+			CodeGenerator.gen(Instructions.STORE, "3");
 			CodeGenerator.gen(Instructions.STOREFP);
 			CodeGenerator.gen(Instructions.RET, "0");
 		} else if(this.Name.equals("println")) { 
