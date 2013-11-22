@@ -1,6 +1,0 @@
-class ClaseHelloWordTest{
-
-	static void main(){
-		(System.printS("Hello word!!"));
-	}
-}

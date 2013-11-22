@@ -308,12 +308,12 @@ public class TS {
 		systemClass.addMethod("printB", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("boolean"), "b");
 		systemClass.addMethod("printC", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("char"), "c");
 		systemClass.addMethod("printI", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("int"), "i");
-		systemClass.addMethod("printS", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("String"), "s");
+		systemClass.addMethod("printS", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("string"), "s");
 		systemClass.addMethod("println", new VoidType(), ModifierMethodType.Static);
 		systemClass.addMethod("printBln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("boolean"), "b");
 		systemClass.addMethod("printCln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("char"), "c");
 		systemClass.addMethod("printIln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("int"), "i");
-		systemClass.addMethod("printSln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("String"), "s");		
+		systemClass.addMethod("printSln", new VoidType(), ModifierMethodType.Static).addFormalArgs(new PrimitiveType("string"), "s");		
 		
 		TS.Classes.put("System", systemClass);
 	}	

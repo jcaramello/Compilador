@@ -38,7 +38,7 @@ public class BlockNode extends SentenceNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
-		for(int i = 0; i < Sentences.size(); i++) 
+		for(int i = Sentences.size() - 1; i >= 0; i--) 
 			Sentences.get(i).check();
 		
 		return null;

@@ -1,0 +1,7 @@
+class ClaseTest{
+
+	static void main(){
+		(System.printS("Hello world!"));
+		(System.printS("Misma linea"));
+	}
+}
