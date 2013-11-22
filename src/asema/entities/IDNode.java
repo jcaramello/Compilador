@@ -18,6 +18,8 @@ public class IDNode extends PrimaryNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
+		CodeGenerator.gen("# IDNode start");
+		
 		Type type = null;
 		EntryVar ev = TS.findVar(Identifier.getLexema());		
 		
@@ -40,7 +42,7 @@ public class IDNode extends PrimaryNode {
 		// Identificador de clase tipo System.print();
 		EntryClass ec = TS.getClass(Identifier.getLexema());
 		if(ec != null){
-			// Creo q no hay que generar nada por que la llamada al metodo estatico se resuelve mas adelante.
+			CodeGenerator.gen(Instructions.PUSH, "VT_" + ec.Name);
 			type = new ClassType(ec);
 		}
 		

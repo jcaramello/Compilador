@@ -35,6 +35,8 @@ public class CallNode extends PrimaryNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
+		CodeGenerator.gen("# CallNode start");
+		
 		if(Context == null)
 			Context = new ThisNode();
 		

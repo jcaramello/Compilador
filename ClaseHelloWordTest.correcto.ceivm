@@ -155,6 +155,10 @@ ClaseHelloWordTest_main: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
+		 # SimpleSentenceNode start 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
 		 POP 
 		 RMEM 1
 		 PUSH 15
