@@ -220,7 +220,7 @@ public class ASint {
 		getToken();
 		reuseToken();
 		if(curr.getTokenType() == TokenType.VarKeyword) {			  // <Atributo>
-			atributo();
+			atributo(null);
 		} else if(curr.getTokenType() == TokenType.Identifier) {	  // <Ctor>
 			ctor();
 		} else if(curr.getTokenType() == TokenType.StaticKeyword 	  // <ModMetodo>
@@ -472,7 +472,7 @@ public class ASint {
 				throw new UnexpectedTokenException("(!) Error, se esperaba ; para cerrar declaración de variable local en línea " + curr.getLinea());		
 			}
 			
-			atributoStar();
+			atributoStar(variables);
 		}
 		else if(curr.getTokenType() == TokenType.OpenKeySymbol) {
 			reuseToken(); // lambda				
@@ -538,15 +538,16 @@ public class ASint {
 	}
 
 
-	private void atributoStar() throws UnexpectedTokenException, SemanticErrorException {
+	// vars: La lista de variables locales a la cual agregar, o null si se trata de atributos de clase.
+	private void atributoStar(List<EntryVar> vars) throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Atributo*>");
 		
 		getToken(); 
 		reuseToken();
 		if(curr.getTokenType() != TokenType.OpenKeySymbol) { // Follow(AtributoStar)
-			atributo();
-			atributoStar();
+			atributo(vars);
+			atributoStar(vars);
 		}
 		// else lambda
 		
@@ -555,7 +556,7 @@ public class ASint {
 	}
 
 	
-	private void atributo() throws UnexpectedTokenException, SemanticErrorException {
+	private void atributo(List<EntryVar> variables) throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Atributo>");
 		
@@ -589,8 +590,12 @@ public class ASint {
 		else{ 			
 			vars = listaDecVars(type);	
 			
-			for (EntryVar var : vars) {
-				TS.getCurrentClass().addAttribute(var);
+			if(variables==null)
+				for (EntryVar var : vars) {
+					TS.getCurrentClass().addAttribute(var);
+				}
+			else { // Son variables locales
+				variables.addAll(vars);
 			}
 		}
 		getToken();

@@ -2,6 +2,8 @@ class ClaseTest{
 
 	static void main()
 	var int a, b;
+	var char c;
+	var string d;
 	{
 		b = System.read();
 		(System.printI(b));
