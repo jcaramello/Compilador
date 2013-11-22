@@ -256,8 +256,11 @@ public class TS {
 			var = currentMethod.getFormalArg(identificador);		
 		if(var == null)
 			var = currentClass.getAttribute(identificador);
-		if(var == null)
-			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido.", identificador));
+		 
+		// Se decidio que se el llamador quien debe verificar que si identificador no representa nada, entonces debe producirse un error semantico  		
+		// identificador podria ser alguna otra cosa, como por ej, un identificador de clase en una llamada calificada y yo desde aca no lo se
+		// el que llama a var tendra que seguir buscando y decidir cuando no se ha encontrado nada y corresponde disparar la excepcion
+		
 		return var;	
 	}
 	

@@ -281,7 +281,7 @@ public class EntryClass extends EntryBase{
 						// El metodo ya esta. no hace falta agregarlo.						
 						{ // this.Methods.put(overrideMethod.Name, overrideMethod);
 						}
-					else throw new SemanticErrorException(String.format("Error(!). El metodo %s debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno.", overrideMethod.Name));
+					else throw new SemanticErrorException(String.format("Error(!). El metodo $s.%s debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno.", this.Name, overrideMethod.Name));
 				else // Esta linea no me cierra, el metodo ya esta. no hace falta agregarlo
 					this.Methods.put(em.Name, em);
 			}

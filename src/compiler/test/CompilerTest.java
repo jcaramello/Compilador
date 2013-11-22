@@ -46,8 +46,8 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   {"ClaseVaciaTest.correcto", null},
-			   { "ClaseHelloWordTest.correcto", null}
+			   //{"ClaseVaciaTest.correcto", null},
+			   {"ClaseHelloWordTest.correcto", null}
 			  
 	   });
 	}
@@ -73,7 +73,7 @@ public class CompilerTest {
 									
 			try {													
 				TS.initialize();
-				ASint asint = new ASint(url.getPath() + "testcases/" + testFile);	
+				new ASint(url.getPath() + "testcases/" + testFile);	
 				TS.execute();																							
 				// El siguiente assert lo agrege para el caso en cuando es el test es correcto.
 				// ya que en ese caso, no se va a disparar ninguna excepcion y deberiamos chequear que 
