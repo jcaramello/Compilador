@@ -19,6 +19,46 @@ LMALLOC: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
+VT_ifThenElseTest: NOP
+.CODE 
+		 Main__method: NOP 
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 PUSH 3
+		 PUSH 5
+		 GT 
+		 BF L1
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 POP 
+		 PUSH 3
+		 PUSH System_printI
+		 CALL 
+		 JUMP L2
+L1: NOP 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 POP 
+		 PUSH 4
+		 PUSH System_printI
+		 CALL 
+L2: NOP 
+		 FMEM 0
+		 STOREFP 
+		 RET 0
+ifThenElseTest_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
 VT_System: NOP
 .CODE 
 System_printSln: NOP
@@ -138,39 +178,6 @@ System_DefaultCtor: NOP
 VT_Object: NOP
 .CODE 
 Object_DefaultCtor: NOP
-		 LOADFP 
-		 LOADSP 
-		 STOREFP 
-		 RMEM 0
-		 FMEM 0
-		 STOREFP 
-		 RET 1
-.DATA 
-VT_ifThenTest: NOP
-.CODE 
-		 Main__method: NOP 
-		 LOADFP 
-		 LOADSP 
-		 STOREFP 
-		 RMEM 0
-		 PUSH 6
-		 PUSH 5
-		 GT 
-		 BF L1
-		 # CallNode start 
-		 # IDNode start 
-		 PUSH VT_System
-		 POP 
-		 PUSH 3
-		 PUSH System_printI
-		 CALL 
-		 JUMP L2
-L1: NOP 
-L2: NOP 
-		 FMEM 0
-		 STOREFP 
-		 RET 0
-ifThenTest_DefaultCtor: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 

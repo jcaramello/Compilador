@@ -1,0 +1,291 @@
+Información de ensamblado, linkeo y carga (generado por el CeIASMAssemblerLinkerAndLoader)
+
+----------- Límite de carga de las secciones ----------------------------------------------
+
+.CODE:  de locación          0 a locación        232
+.DATA:  de locación        233 a locación        235
+.HEAP:  de locación        236 a locación        235
+.STACK: de locación       8192 a locación       8191
+
+----------- Resolución de etiquetas -------------------------------------------------------
+Dirección   Etiqueta
+
+         6  lmalloc
+        24  system_printsln
+        39  system_printi
+        53  system_printiln
+        68  system_println
+        80  system_printcln
+        95  system_printc
+       109  system_read
+       126  system_printbln
+       141  system_printb
+       155  system_prints
+       169  system_defaultctor
+       180  object_defaultctor
+       191  main__method
+       214  l1
+       215  l2
+       221  ifthentest_defaultctor
+       233  vt_system
+       234  vt_object
+       235  vt_ifthentest
+
+------------------------------------------------------------------------------------------
+----------- Contenido de la memoria ensamblada, linkeada y cargada -----------------------
+------------------------------------------------------------------------------------------
+
+----------- Sección .CODE ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+         0         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 2 columna: 4.
+         1           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 2 columna: 9.
+         2           1  PUSH                                    ; Archivo: IfThen.correcto.ceivm línea: 3 columna: 4.
+         3         191  Main__method                            ; Archivo: IfThen.correcto.ceivm línea: 3 columna: 9.
+         4         100  CALL                                    ; Archivo: IfThen.correcto.ceivm línea: 4 columna: 4.
+         5         104  HALT                                    ; Archivo: IfThen.correcto.ceivm línea: 5 columna: 4.
+         6           0  LMALLOC: NOP                            ; Archivo: IfThen.correcto.ceivm línea: 7 columna: 10.
+         7         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 8 columna: 4.
+         8         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 9 columna: 4.
+         9         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 10 columna: 4.
+        10         128  LOADHL                                  ; Archivo: IfThen.correcto.ceivm línea: 11 columna: 4.
+        11          30  DUP                                     ; Archivo: IfThen.correcto.ceivm línea: 12 columna: 4.
+        12           1  PUSH                                    ; Archivo: IfThen.correcto.ceivm línea: 13 columna: 4.
+        13           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 13 columna: 9.
+        14           2  ADD                                     ; Archivo: IfThen.correcto.ceivm línea: 14 columna: 4.
+        15          81  STORE                                   ; Archivo: IfThen.correcto.ceivm línea: 15 columna: 4.
+        16           4  4                                       ; Archivo: IfThen.correcto.ceivm línea: 15 columna: 10.
+        17          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 16 columna: 4.
+        18           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 16 columna: 9.
+        19           2  ADD                                     ; Archivo: IfThen.correcto.ceivm línea: 17 columna: 4.
+        20         129  STOREHL                                 ; Archivo: IfThen.correcto.ceivm línea: 18 columna: 4.
+        21         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 19 columna: 4.
+        22         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 20 columna: 4.
+        23           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 20 columna: 8.
+        24           0  System_printSln: NOP                    ; Archivo: IfThen.correcto.ceivm línea: 24 columna: 18.
+        25         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 25 columna: 4.
+        26         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 26 columna: 4.
+        27         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 27 columna: 4.
+        28         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 28 columna: 4.
+        29           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 28 columna: 9.
+        30          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 29 columna: 4.
+        31           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 29 columna: 9.
+        32          64  SPRINT                                  ; Archivo: IfThen.correcto.ceivm línea: 30 columna: 4.
+        33          65  PRNLN                                   ; Archivo: IfThen.correcto.ceivm línea: 31 columna: 4.
+        34         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 32 columna: 4.
+        35           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 32 columna: 9.
+        36         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 33 columna: 4.
+        37         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 34 columna: 4.
+        38           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 34 columna: 8.
+        39           0  System_printI: NOP                      ; Archivo: IfThen.correcto.ceivm línea: 35 columna: 16.
+        40         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 36 columna: 4.
+        41         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 37 columna: 4.
+        42         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 38 columna: 4.
+        43         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 39 columna: 4.
+        44           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 39 columna: 9.
+        45          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 40 columna: 4.
+        46           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 40 columna: 9.
+        47          63  IPRINT                                  ; Archivo: IfThen.correcto.ceivm línea: 41 columna: 4.
+        48         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 42 columna: 4.
+        49           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 42 columna: 9.
+        50         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 43 columna: 4.
+        51         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 44 columna: 4.
+        52           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 44 columna: 8.
+        53           0  System_printIln: NOP                    ; Archivo: IfThen.correcto.ceivm línea: 45 columna: 18.
+        54         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 46 columna: 4.
+        55         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 47 columna: 4.
+        56         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 48 columna: 4.
+        57         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 49 columna: 4.
+        58           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 49 columna: 9.
+        59          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 50 columna: 4.
+        60           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 50 columna: 9.
+        61          63  IPRINT                                  ; Archivo: IfThen.correcto.ceivm línea: 51 columna: 4.
+        62          65  PRNLN                                   ; Archivo: IfThen.correcto.ceivm línea: 52 columna: 4.
+        63         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 53 columna: 4.
+        64           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 53 columna: 9.
+        65         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 54 columna: 4.
+        66         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 55 columna: 4.
+        67           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 55 columna: 8.
+        68           0  System_println: NOP                     ; Archivo: IfThen.correcto.ceivm línea: 56 columna: 17.
+        69         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 57 columna: 4.
+        70         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 58 columna: 4.
+        71         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 59 columna: 4.
+        72         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 60 columna: 4.
+        73           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 60 columna: 9.
+        74          65  PRNLN                                   ; Archivo: IfThen.correcto.ceivm línea: 61 columna: 4.
+        75         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 62 columna: 4.
+        76           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 62 columna: 9.
+        77         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 63 columna: 4.
+        78         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 64 columna: 4.
+        79           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 64 columna: 8.
+        80           0  System_printCln: NOP                    ; Archivo: IfThen.correcto.ceivm línea: 65 columna: 18.
+        81         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 66 columna: 4.
+        82         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 67 columna: 4.
+        83         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 68 columna: 4.
+        84         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 69 columna: 4.
+        85           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 69 columna: 9.
+        86          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 70 columna: 4.
+        87           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 70 columna: 9.
+        88          62  CPRINT                                  ; Archivo: IfThen.correcto.ceivm línea: 71 columna: 4.
+        89          65  PRNLN                                   ; Archivo: IfThen.correcto.ceivm línea: 72 columna: 4.
+        90         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 73 columna: 4.
+        91           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 73 columna: 9.
+        92         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 74 columna: 4.
+        93         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 75 columna: 4.
+        94           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 75 columna: 8.
+        95           0  System_printC: NOP                      ; Archivo: IfThen.correcto.ceivm línea: 76 columna: 16.
+        96         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 77 columna: 4.
+        97         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 78 columna: 4.
+        98         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 79 columna: 4.
+        99         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 80 columna: 4.
+       100           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 80 columna: 9.
+       101          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 81 columna: 4.
+       102           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 81 columna: 9.
+       103          62  CPRINT                                  ; Archivo: IfThen.correcto.ceivm línea: 82 columna: 4.
+       104         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 83 columna: 4.
+       105           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 83 columna: 9.
+       106         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 84 columna: 4.
+       107         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 85 columna: 4.
+       108           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 85 columna: 8.
+       109           0  System_read: NOP                        ; Archivo: IfThen.correcto.ceivm línea: 86 columna: 14.
+       110         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 87 columna: 4.
+       111         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 88 columna: 4.
+       112         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 89 columna: 4.
+       113         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 90 columna: 4.
+       114           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 90 columna: 9.
+       115          60  READ                                    ; Archivo: IfThen.correcto.ceivm línea: 91 columna: 4.
+       116          81  STORE                                   ; Archivo: IfThen.correcto.ceivm línea: 92 columna: 4.
+       117           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 92 columna: 10.
+       118         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 93 columna: 4.
+       119         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 94 columna: 4.
+       120           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 94 columna: 8.
+       121         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 95 columna: 4.
+       122           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 95 columna: 9.
+       123         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 96 columna: 4.
+       124         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 97 columna: 4.
+       125           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 97 columna: 8.
+       126           0  System_printBln: NOP                    ; Archivo: IfThen.correcto.ceivm línea: 98 columna: 18.
+       127         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 99 columna: 4.
+       128         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 100 columna: 4.
+       129         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 101 columna: 4.
+       130         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 102 columna: 4.
+       131           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 102 columna: 9.
+       132          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 103 columna: 4.
+       133           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 103 columna: 9.
+       134          61  BPRINT                                  ; Archivo: IfThen.correcto.ceivm línea: 104 columna: 4.
+       135          65  PRNLN                                   ; Archivo: IfThen.correcto.ceivm línea: 105 columna: 4.
+       136         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 106 columna: 4.
+       137           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 106 columna: 9.
+       138         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 107 columna: 4.
+       139         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 108 columna: 4.
+       140           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 108 columna: 8.
+       141           0  System_printB: NOP                      ; Archivo: IfThen.correcto.ceivm línea: 109 columna: 16.
+       142         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 110 columna: 4.
+       143         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 111 columna: 4.
+       144         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 112 columna: 4.
+       145         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 113 columna: 4.
+       146           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 113 columna: 9.
+       147          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 114 columna: 4.
+       148           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 114 columna: 9.
+       149          61  BPRINT                                  ; Archivo: IfThen.correcto.ceivm línea: 115 columna: 4.
+       150         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 116 columna: 4.
+       151           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 116 columna: 9.
+       152         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 117 columna: 4.
+       153         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 118 columna: 4.
+       154           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 118 columna: 8.
+       155           0  System_printS: NOP                      ; Archivo: IfThen.correcto.ceivm línea: 119 columna: 16.
+       156         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 120 columna: 4.
+       157         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 121 columna: 4.
+       158         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 122 columna: 4.
+       159         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 123 columna: 4.
+       160           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 123 columna: 9.
+       161          80  LOAD                                    ; Archivo: IfThen.correcto.ceivm línea: 124 columna: 4.
+       162           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 124 columna: 9.
+       163          64  SPRINT                                  ; Archivo: IfThen.correcto.ceivm línea: 125 columna: 4.
+       164         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 126 columna: 4.
+       165           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 126 columna: 9.
+       166         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 127 columna: 4.
+       167         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 128 columna: 4.
+       168           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 128 columna: 8.
+       169           0  System_DefaultCtor: NOP                 ; Archivo: IfThen.correcto.ceivm línea: 129 columna: 21.
+       170         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 130 columna: 4.
+       171         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 131 columna: 4.
+       172         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 132 columna: 4.
+       173         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 133 columna: 4.
+       174           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 133 columna: 9.
+       175         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 134 columna: 4.
+       176           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 134 columna: 9.
+       177         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 135 columna: 4.
+       178         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 136 columna: 4.
+       179           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 136 columna: 8.
+       180           0  Object_DefaultCtor: NOP                 ; Archivo: IfThen.correcto.ceivm línea: 140 columna: 21.
+       181         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 141 columna: 4.
+       182         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 142 columna: 4.
+       183         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 143 columna: 4.
+       184         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 144 columna: 4.
+       185           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 144 columna: 9.
+       186         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 145 columna: 4.
+       187           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 145 columna: 9.
+       188         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 146 columna: 4.
+       189         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 147 columna: 4.
+       190           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 147 columna: 8.
+       191           0  Main__method: NOP                       ; Archivo: IfThen.correcto.ceivm línea: 151 columna: 18.
+       192         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 152 columna: 4.
+       193         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 153 columna: 4.
+       194         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 154 columna: 4.
+       195         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 155 columna: 4.
+       196           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 155 columna: 9.
+       197           1  PUSH                                    ; Archivo: IfThen.correcto.ceivm línea: 156 columna: 4.
+       198           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 156 columna: 9.
+       199           1  PUSH                                    ; Archivo: IfThen.correcto.ceivm línea: 157 columna: 4.
+       200           5  5                                       ; Archivo: IfThen.correcto.ceivm línea: 157 columna: 9.
+       201          14  GT                                      ; Archivo: IfThen.correcto.ceivm línea: 158 columna: 4.
+       202          41  BF                                      ; Archivo: IfThen.correcto.ceivm línea: 159 columna: 4.
+       203           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 159 columna: 7.
+       204           1  PUSH                                    ; Archivo: IfThen.correcto.ceivm línea: 162 columna: 4.
+       205         233  VT_System                               ; Archivo: IfThen.correcto.ceivm línea: 162 columna: 9.
+       206          31  POP                                     ; Archivo: IfThen.correcto.ceivm línea: 163 columna: 4.
+       207           1  PUSH                                    ; Archivo: IfThen.correcto.ceivm línea: 164 columna: 4.
+       208           3  3                                       ; Archivo: IfThen.correcto.ceivm línea: 164 columna: 9.
+       209           1  PUSH                                    ; Archivo: IfThen.correcto.ceivm línea: 165 columna: 4.
+       210          39  System_printI                           ; Archivo: IfThen.correcto.ceivm línea: 165 columna: 9.
+       211         100  CALL                                    ; Archivo: IfThen.correcto.ceivm línea: 166 columna: 4.
+       212          40  JUMP                                    ; Archivo: IfThen.correcto.ceivm línea: 167 columna: 4.
+       213           2  2                                       ; Archivo: IfThen.correcto.ceivm línea: 167 columna: 9.
+       214           0  L1: NOP                                 ; Archivo: IfThen.correcto.ceivm línea: 168 columna: 5.
+       215           0  L2: NOP                                 ; Archivo: IfThen.correcto.ceivm línea: 169 columna: 5.
+       216         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 170 columna: 4.
+       217           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 170 columna: 9.
+       218         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 171 columna: 4.
+       219         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 172 columna: 4.
+       220           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 172 columna: 8.
+       221           0  ifThenTest_DefaultCtor: NOP             ; Archivo: IfThen.correcto.ceivm línea: 173 columna: 25.
+       222         124  LOADFP                                  ; Archivo: IfThen.correcto.ceivm línea: 174 columna: 4.
+       223         122  LOADSP                                  ; Archivo: IfThen.correcto.ceivm línea: 175 columna: 4.
+       224         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 176 columna: 4.
+       225         101  RMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 177 columna: 4.
+       226           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 177 columna: 9.
+       227         102  FMEM                                    ; Archivo: IfThen.correcto.ceivm línea: 178 columna: 4.
+       228           0  0                                       ; Archivo: IfThen.correcto.ceivm línea: 178 columna: 9.
+       229         125  STOREFP                                 ; Archivo: IfThen.correcto.ceivm línea: 179 columna: 4.
+       230         103  RET                                     ; Archivo: IfThen.correcto.ceivm línea: 180 columna: 4.
+       231           1  1                                       ; Archivo: IfThen.correcto.ceivm línea: 180 columna: 8.
+       232         104  HALT                                    ; Archivo: IfThen.correcto.ceivm línea: 181 columna: 4.
+
+----------- Sección .DATA ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+       233           0  VT_System: NOP                          ; Archivo: IfThen.correcto.ceivm línea: 22 columna: 12.
+       234           0  VT_Object: NOP                          ; Archivo: IfThen.correcto.ceivm línea: 138 columna: 12.
+       235           0  VT_ifThenTest: NOP                      ; Archivo: IfThen.correcto.ceivm línea: 149 columna: 16.
+
+----------- Sección .HEAP ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+
+----------- Sección .STACK (decreciente) --------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+
+El volcado de la información de ensamblado, linkeo y carga se completó exitosamente...
+

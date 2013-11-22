@@ -1,0 +1,8 @@
+class ifThenElseTest{
+
+	static void main(){
+		if(3 > 5)
+			(System.printI(3));
+		else (System.printI(4));
+	}
+}
