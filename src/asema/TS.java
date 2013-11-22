@@ -131,6 +131,7 @@ public class TS {
 		TS.applyInheritances();
 		TS.calcOffsets();
 		TS.generate();
+		// Este queda al final por si acaso.
 		CodeGenerator.gen(Instructions.HALT);
 	}
 	
@@ -224,6 +225,7 @@ public class TS {
 		CodeGenerator.gen(Instructions.RMEM, "1");
 		CodeGenerator.gen(Instructions.PUSH, "Main__method");
 		CodeGenerator.gen(Instructions.CALL);
+		CodeGenerator.gen(Instructions.HALT);
 	}
 	
 	private static void initializePredefRoutines() {

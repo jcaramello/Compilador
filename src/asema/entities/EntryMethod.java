@@ -289,48 +289,38 @@ public class EntryMethod extends EntryBase {
 	 */
 	private void generateBodyPredef(){
 		if(this.Name.equals("read")) {
-			CodeGenerator.gen(Instructions.RET, 0); 
 			CodeGenerator.gen(Instructions.FMEM, 1); 
 			CodeGenerator.gen(Instructions.READ);
-		} else if(this.Name.equals("println")) {
-			CodeGenerator.gen(Instructions.RET, 0); 
+		} else if(this.Name.equals("println")) { 
 			CodeGenerator.gen(Instructions.PRNLN);
 		} else if(this.Name.equals("printB")) {
 			CodeGenerator.gen(Instructions.LOAD, 3); 
 			CodeGenerator.gen(Instructions.BPRINT);
-			CodeGenerator.gen(Instructions.RET, 1); 
 		} else if(this.Name.equals("printC")) {
 			CodeGenerator.gen(Instructions.LOAD, 3); 
 			CodeGenerator.gen(Instructions.CPRINT); 
-			CodeGenerator.gen(Instructions.RET, 1); 
 		} else if(this.Name.equals("printI")) {
 			CodeGenerator.gen(Instructions.LOAD, 3); 
 			CodeGenerator.gen(Instructions.IPRINT); 
-			CodeGenerator.gen(Instructions.RET, 1); 
 		} else if(this.Name.equals("printS")) {
 			CodeGenerator.gen(Instructions.LOAD, 3); 
 			CodeGenerator.gen(Instructions.SPRINT); 
-			CodeGenerator.gen(Instructions.RET, 1); 
 		} else if(this.Name.equals("printBln")) {
 			CodeGenerator.gen(Instructions.LOAD, 3); 
 			CodeGenerator.gen(Instructions.BPRINT);
 			CodeGenerator.gen(Instructions.PRNLN); 
-			CodeGenerator.gen(Instructions.RET, 1); 
 		} else if(this.Name.equals("printCln")) {
 			CodeGenerator.gen(Instructions.LOAD, 3); 
 			CodeGenerator.gen(Instructions.CPRINT); 
 			CodeGenerator.gen(Instructions.PRNLN); 
-			CodeGenerator.gen(Instructions.RET, 1); 
 		} else if(this.Name.equals("printIln")) {
 			CodeGenerator.gen(Instructions.LOAD, 3); 
 			CodeGenerator.gen(Instructions.IPRINT); 
 			CodeGenerator.gen(Instructions.PRNLN); 
-			CodeGenerator.gen(Instructions.RET, 1); 
 		} else if(this.Name.equals("printSln")) {
 			CodeGenerator.gen(Instructions.LOAD, 3); 
 			CodeGenerator.gen(Instructions.SPRINT);
 			CodeGenerator.gen(Instructions.PRNLN); 
-			CodeGenerator.gen(Instructions.RET, 1); 
 		}
 	}
 	

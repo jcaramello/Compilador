@@ -42,6 +42,7 @@ public class IDNode extends PrimaryNode {
 		// Identificador de clase tipo System.print();
 		EntryClass ec = TS.getClass(Identifier.getLexema());
 		if(ec != null){
+			// Esto es lo que después se desapila cuando es static.
 			CodeGenerator.gen(Instructions.PUSH, "VT_" + ec.Name);
 			type = new ClassType(ec);
 		}

@@ -2,6 +2,7 @@
 		 RMEM 1
 		 PUSH Main__method
 		 CALL 
+		 HALT 
 .CODE 
 LMALLOC: NOP 
 		 LOADFP 
@@ -28,7 +29,6 @@ System_printSln: NOP
 		 LOAD 3
 		 SPRINT 
 		 PRNLN 
-		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
@@ -39,7 +39,6 @@ System_printI: NOP
 		 RMEM 0
 		 LOAD 3
 		 IPRINT 
-		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
@@ -51,7 +50,6 @@ System_printIln: NOP
 		 LOAD 3
 		 IPRINT 
 		 PRNLN 
-		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
@@ -60,7 +58,6 @@ System_println: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 RET 0
 		 PRNLN 
 		 FMEM 0
 		 STOREFP 
@@ -73,7 +70,6 @@ System_printCln: NOP
 		 LOAD 3
 		 CPRINT 
 		 PRNLN 
-		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
@@ -84,7 +80,6 @@ System_printC: NOP
 		 RMEM 0
 		 LOAD 3
 		 CPRINT 
-		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
@@ -93,7 +88,6 @@ System_read: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 RET 0
 		 FMEM 1
 		 READ 
 		 FMEM 0
@@ -107,7 +101,6 @@ System_printBln: NOP
 		 LOAD 3
 		 BPRINT 
 		 PRNLN 
-		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
@@ -118,7 +111,6 @@ System_printB: NOP
 		 RMEM 0
 		 LOAD 3
 		 BPRINT 
-		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
@@ -129,7 +121,6 @@ System_printS: NOP
 		 RMEM 0
 		 LOAD 3
 		 SPRINT 
-		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
