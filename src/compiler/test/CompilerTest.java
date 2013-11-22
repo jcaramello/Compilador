@@ -47,8 +47,8 @@ public class CompilerTest {
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
 			   //{"ClaseVaciaTest.correcto", null},
-			   {"ClaseHelloWordTest.correcto", null}
-			  
+			   //{"ClaseHelloWordTest.correcto", null},
+			   {"PrintI.correcto", null}
 	   });
 	}
 	

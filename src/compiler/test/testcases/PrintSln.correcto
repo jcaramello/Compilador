@@ -1,0 +1,6 @@
+class ClaseTest{
+
+	static void main(){
+		(System.printSln("Hello world!"));
+	}
+}

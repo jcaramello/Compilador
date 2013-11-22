@@ -1,0 +1,6 @@
+class ClaseTest{
+
+	static void main(){
+		(System.printI(1));
+	}
+}
