@@ -307,10 +307,10 @@ public class ASint {
 	}
 
 
-	private Type tipoMetodo() throws UnexpectedTokenException {
+	private Type tipoMetodo() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <TipoMetodo>");
-		Type type = new VoidType();
+		Type type = VoidType.VoidType;
 		
 		getToken(); // garantizado void o TipoPrimitivo
 		if(curr.getTokenType() != TokenType.VoidKeyword) {
@@ -424,7 +424,7 @@ public class ASint {
 	}
 
 	
-	private EntryVar argFormal() throws UnexpectedTokenException {
+	private EntryVar argFormal() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ArgFormal>");
 		Type type;
@@ -603,7 +603,7 @@ public class ASint {
 	}
 
 
-	private Type tipo() throws UnexpectedTokenException {
+	private Type tipo() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <Tipo>");
 
@@ -633,7 +633,7 @@ public class ASint {
 	}
 
 
-	private Type tipoPrimitivo() throws UnexpectedTokenException {
+	private Type tipoPrimitivo() throws UnexpectedTokenException, SemanticErrorException {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <TipoPrimitivo>");
 		
@@ -646,7 +646,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba tipo primitivo: boolean, int, char, String en línea " + curr.getLinea());
 		}
 		
-		Type type = new PrimitiveType(curr.getLexema());
+		Type type = PrimitiveType.get(curr);
 		
 		Logger.verbose("<-" + depth + " Fin <TipoPrimitivo>");	
 	    depth--;

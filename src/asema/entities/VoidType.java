@@ -6,7 +6,7 @@ public class VoidType extends Type {
 
 	public static VoidType VoidType = new VoidType();
 	
-	public VoidType() {
+	private VoidType() {
 		this.Name = "void";
 	}
 	
