@@ -30,8 +30,10 @@ public class IfNode extends SentenceNode {
 		
 		int l1 = TS.getNewLabelID();
 		int l2 = TS.getNewLabelID();
-
-		if(!ConditionalExpression.check().equals(PrimitiveType.Boolean))
+		
+		Type t = ConditionalExpression.check();
+		
+		if(!t.equals(PrimitiveType.Boolean))
 			throw new SemanticErrorException("El tipo de la expresión condicional del if debe ser boolean.");
 		
 		CodeGenerator.gen(Instructions.BF, l1);
