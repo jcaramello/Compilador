@@ -25,7 +25,6 @@ System_printSln: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 LOAD 3
 		 SPRINT 
 		 PRNLN 
@@ -38,7 +37,6 @@ System_printI: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 LOAD 3
 		 IPRINT 
 		 RET 1
@@ -50,7 +48,6 @@ System_printIln: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 LOAD 3
 		 IPRINT 
 		 PRNLN 
@@ -63,7 +60,6 @@ System_println: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 RET 0
 		 PRNLN 
 		 FMEM 0
@@ -74,7 +70,6 @@ System_printCln: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 LOAD 3
 		 CPRINT 
 		 PRNLN 
@@ -87,7 +82,6 @@ System_printC: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 LOAD 3
 		 CPRINT 
 		 RET 1
@@ -99,7 +93,6 @@ System_read: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 RET 0
 		 FMEM 1
 		 READ 
@@ -111,7 +104,6 @@ System_printBln: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 LOAD 3
 		 BPRINT 
 		 PRNLN 
@@ -124,7 +116,6 @@ System_printB: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 LOAD 3
 		 BPRINT 
 		 RET 1
@@ -136,7 +127,6 @@ System_printS: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 STOREFP 
 		 LOAD 3
 		 SPRINT 
 		 RET 1
