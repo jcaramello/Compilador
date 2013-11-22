@@ -2,6 +2,7 @@ package asint;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import common.Logger;
 import enums.ModifierMethodType;
@@ -659,6 +660,8 @@ public class ASint {
 		Logger.verbose(depth + "-> Iniciando <ListaDecVars>");
 				
 		getToken(); // identifier
+		String lex = curr.getLexema();
+		
 		if(curr.getTokenType() != TokenType.Identifier)
 		{
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador (nombre de variable) en línea " + curr.getLinea());
@@ -671,7 +674,7 @@ public class ASint {
 				throw new SemanticErrorException(String.format("Error(!). La variable %s esta repetida. Linea %s", curr.getLexema(), Integer.toString(curr.getLinea())));
 		}
 		
-		variables.add(0, new EntryVar(expectedType, curr.getLexema()));
+		variables.add(0, new EntryVar(expectedType, lex));
 		
 		Logger.verbose("<-" + depth + " Fin <ListaDecVars>");	
 	    depth--;	
@@ -876,16 +879,16 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador en asignación, en línea " + curr.getLinea());					
 		}
 		
-		getToken();
-		if(curr.getTokenType() != TokenType.AssignOperator) {
-			throw new UnexpectedTokenException("(!) Error, se esperaba = en asignación, en línea " + curr.getLinea());					
-		}
-		
 		EntryVar leftRigth = TS.findVar(curr.getLexema());
 		
 		if(leftRigth == null) 
-			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido. Linea: $d", curr.getLexema(), curr.getLinea()));
+			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido. Linea: %d", curr.getLexema(), curr.getLinea()));
 		
+		getToken();
+		if(curr.getTokenType() != TokenType.AssignOperator) {
+			throw new UnexpectedTokenException("(!) Error, se esperaba = en asignación, en línea " + curr.getLinea());					
+		}		
+
 		ExpressionNode rigthSide = expression();
 				
 		AssignmentNode assignmentNode = new AssignmentNode(leftRigth, rigthSide);
@@ -1253,8 +1256,12 @@ public class ASint {
 			List<ExpressionNode> params = argsActuales();			
 			primarioFact = llamadaStar(new CallNode(null, id, params));
 		} 				
-		else if(!ASintHelper.isFollowFactor(curr))
-			throw new UnexpectedTokenException("(!) Error, Expresion mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());		
+		else if(!ASintHelper.isFollowFactor(curr)) {
+			throw new UnexpectedTokenException("(!) Error, Expresion mal formada, el token "+ curr.getLexema() +" no es valido, en línea " + curr.getLinea());
+		}
+		else { // Caso en que hay un identificador "suelto", como en el nombre de una variable!
+			primarioFact = id;
+		}
 				
 		Logger.verbose("<-" + depth + " Fin <PrimarioFact>");	
 	    depth--;
@@ -1340,7 +1347,7 @@ public class ASint {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <ArgsActuales>");
 		
-		List<ExpressionNode> params = null;
+		List<ExpressionNode> params = new ArrayList<ExpressionNode>();
 		
 		getToken();
 		
@@ -1362,7 +1369,7 @@ public class ASint {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <listaExps?>");
 		
-		List<ExpressionNode> params = null;
+		List<ExpressionNode> params = new ArrayList<ExpressionNode>();
 	
 		getToken();
 		reuseToken();
@@ -1389,7 +1396,7 @@ public class ASint {
 		depth++;
 		Logger.verbose(depth + "-> Iniciando <listaExps>");
 	
-		List<ExpressionNode> exps = null;
+		List<ExpressionNode> exps = new ArrayList<ExpressionNode>();
 		
 		getToken();
 		

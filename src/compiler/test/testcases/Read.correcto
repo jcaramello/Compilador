@@ -1,0 +1,11 @@
+class ClaseTest{
+
+	static void main()
+	var int a;
+	{
+		a = System.read();
+		(System.printI(a));
+		(System.printI(a));
+		(System.printI(a));
+	}
+}

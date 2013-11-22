@@ -289,8 +289,10 @@ public class EntryMethod extends EntryBase {
 	 */
 	private void generateBodyPredef(){
 		if(this.Name.equals("read")) {
-			CodeGenerator.gen(Instructions.FMEM, 1); 
 			CodeGenerator.gen(Instructions.READ);
+			CodeGenerator.gen(Instructions.STORE, "4");
+			CodeGenerator.gen(Instructions.STOREFP);
+			CodeGenerator.gen(Instructions.RET, "0");
 		} else if(this.Name.equals("println")) { 
 			CodeGenerator.gen(Instructions.PRNLN);
 		} else if(this.Name.equals("printB")) {
@@ -339,7 +341,8 @@ public class EntryMethod extends EntryBase {
 
 		int cantVars = this.LocalVars.values().size();
 		for(int i = 0; i < cantVars; i++) {
-			this.getLocalVarByIndex(i-1).Offset = -i;
+			// Era i-1 y tiraba error, por qué estaba así?
+			this.getLocalVarByIndex(i).Offset = -i;
 		}
 		
 	}
