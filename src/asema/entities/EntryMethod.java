@@ -40,6 +40,7 @@ public class EntryMethod extends EntryBase {
 	private List<EntryVar> LocalVarsByIndex;
 	private BlockNode AST;
 	private EntryClass ContainerClass;
+	private boolean isMain;
 
 	
 	/*
@@ -188,7 +189,7 @@ public class EntryMethod extends EntryBase {
 	 * @throws SemanticErrorException
 	 */
 	public boolean isValidMain() throws SemanticErrorException{
-		boolean isMain = false;
+		isMain = false;
 		if(this.Name.toLowerCase().equals("main"))
 		{
 			isMain = true;
@@ -247,7 +248,13 @@ public class EntryMethod extends EntryBase {
 	}
 	
 	public void generate() throws SemanticErrorException{
-		CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP, true);
+		
+		if(isMain)
+			CodeGenerator.gen("Main__method: NOP");
+		else	
+			CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP, true);
+		
+			
 		CodeGenerator.gen(Instructions.LOADFP);
 		CodeGenerator.gen(Instructions.LOADSP);
 		CodeGenerator.gen(Instructions.STOREFP);

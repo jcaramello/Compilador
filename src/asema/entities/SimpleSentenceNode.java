@@ -16,7 +16,7 @@ public class SimpleSentenceNode extends SentenceNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
-		CodeGenerator.gen("# SimpleSentenceNode start");
+		//CodeGenerator.gen("# SimpleSentenceNode start");
 		return Expression.check();
 		
 	}

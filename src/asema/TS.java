@@ -211,10 +211,19 @@ public class TS {
 	public static void initialize() throws SemanticErrorException{
 		TS.Classes = new HashMap<String, EntryClass>();
 		// Object class debe inicializarse antes que System
+		TS.jumpToMain();
 		TS.initializePredefRoutines();
 		TS.initializeObjectClass();
 		TS.initializeSystemClass();
 		controlLabel = 0;
+	}
+	
+	private static void jumpToMain() {
+		
+		CodeGenerator.gen(Instructions.CODE_SECTION, true);
+		CodeGenerator.gen(Instructions.RMEM, "1");
+		CodeGenerator.gen(Instructions.PUSH, "Main__method");
+		CodeGenerator.gen(Instructions.CALL);
 	}
 	
 	private static void initializePredefRoutines() {

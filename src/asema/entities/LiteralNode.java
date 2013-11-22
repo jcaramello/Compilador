@@ -20,6 +20,8 @@ public class LiteralNode extends PrimaryNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
+		//CodeGenerator.gen("# LiteralNode start");
+		
 		if(Type.equals(PrimitiveType.Boolean)) {
 			if(Value.getLexema().equals("true")) CodeGenerator.gen(Instructions.PUSH, 1);
 			if(Value.getLexema().equals("false")) CodeGenerator.gen(Instructions.PUSH, 0);			

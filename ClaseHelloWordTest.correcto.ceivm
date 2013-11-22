@@ -1,4 +1,8 @@
 .CODE 
+		 RMEM 1
+		 PUSH Main__method
+		 CALL 
+.CODE 
 LMALLOC: NOP 
 		 LOADFP 
 		 LOADSP 
@@ -150,12 +154,11 @@ System_DefaultCtor: NOP
 .DATA 
 VT_ClaseHelloWordTest: NOP
 .CODE 
-ClaseHelloWordTest_main: NOP
+		 Main__method: NOP 
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 # SimpleSentenceNode start 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
