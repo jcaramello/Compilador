@@ -1,0 +1,8 @@
+class ClaseTest{
+
+	static void main(){
+		(System.printC('a'));
+		(System.printCln('b'));
+		(System.printC('c'));
+	}
+}

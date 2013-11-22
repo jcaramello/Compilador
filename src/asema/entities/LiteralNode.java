@@ -32,15 +32,16 @@ public class LiteralNode extends PrimaryNode {
 			CodeGenerator.gen(Instructions.PUSH, "LMALLOC");
 			CodeGenerator.gen(Instructions.CALL);
 			
-			for(int i = 0; i < Value.getLexema().length(); i++) {
+			// El lexema incluye las comillas!
+			for(int i = 1; i < Value.getLexema().length() - 1; i++) {
 				CodeGenerator.gen(Instructions.DUP);
 				CodeGenerator.gen(Instructions.PUSH, Value.getLexema().charAt(i));
-				CodeGenerator.gen(Instructions.STOREREF, i);
+				CodeGenerator.gen(Instructions.STOREREF, i - 1);
 			}
 			
 			CodeGenerator.gen(Instructions.DUP);
 			CodeGenerator.gen(Instructions.PUSH, 0);
-			CodeGenerator.gen(Instructions.STOREREF, Value.getLexema().length());
+			CodeGenerator.gen(Instructions.STOREREF, Value.getLexema().length() - 2);
 		}
 		else if(Type.equals("null")) {
 			// Qué hacer en este caso? Esto es C(Object)
