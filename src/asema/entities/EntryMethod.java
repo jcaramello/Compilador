@@ -250,7 +250,7 @@ public class EntryMethod extends EntryBase {
 	public void generate() throws SemanticErrorException{
 		
 		if(isMain)
-			CodeGenerator.gen("Main__method: NOP");
+			CodeGenerator.gen(String.format(Instructions.LABEL, "Main_", "method"), Instructions.NOP, true);
 		else	
 			CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP, true);
 		

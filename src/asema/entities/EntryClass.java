@@ -188,7 +188,7 @@ public class EntryClass extends EntryBase{
 		}
 		
 		for(int i = 0; i < totalDynamicMethods; i++) {					
-			CodeGenerator.gen(Instructions.DW, mets[i]);
+			CodeGenerator.gen(Instructions.DW, String.format("%s_%s", this.Name,mets[i]));
 		}
 		
 		CodeGenerator.gen(Instructions.CODE_SECTION, true);

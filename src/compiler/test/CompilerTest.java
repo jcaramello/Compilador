@@ -62,7 +62,8 @@ public class CompilerTest {
 			   //{"BloqueAnidado.correcto", null},
 			   //{"ClaseCtorDefault.correcto", null},
 			   //{"ClaseCtorCustom.correcto", null},
-			   {"ClaseCtorCustomYParams.correcto", null},
+			   //{"ClaseCtorCustomYParams.correcto", null},
+			   {"ClaseConAtributo.correcto", null}
 	   });
 	}
 	
