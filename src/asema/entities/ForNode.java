@@ -27,22 +27,26 @@ public class ForNode extends SentenceNode {
 		int l1 = TS.getNewLabelID();
 		int l2 = TS.getNewLabelID();
 		
+		String label1 = String.format("L%d", l1);
+		String label2 = String.format("L%d", l2);
+		
 		InitializationExpression.check();
 		
-		CodeGenerator.gen("L" + l1 + ": NOP", true);
+		CodeGenerator.gen(label1+ ": NOP", true);
 		
 		if(!LoopCondition.check().equals(PrimitiveType.Boolean))
 			throw new SemanticErrorException("El tipo de la expresión condicional del for debe ser boolean.");
 		
-		CodeGenerator.gen(Instructions.BF, l2);
+		CodeGenerator.gen(Instructions.BF, label2);
 		
-		Body.check();
+		Body.check();		
 		
 		if(!IncrementExpression.check().conforms(InitializationExpression.leftSide.Type))
 			throw new SemanticErrorException("El tipo de la expresión de incremento en el for debe conformar con el de la variable de iteración.");
 		
-		CodeGenerator.gen(Instructions.JUMP, l1);
-		CodeGenerator.gen("L" + l2 + ": NOP");
+		CodeGenerator.gen(Instructions.STORE, InitializationExpression.leftSide.Offset);
+		CodeGenerator.gen(Instructions.JUMP, label1);
+		CodeGenerator.gen(label2 + ": NOP");
 	
 		
 		return null; // ??
