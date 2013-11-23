@@ -1,0 +1,7 @@
+class ClaseCtorDefaultTest{
+
+	static void main()	
+	{		 
+	  (ClaseCtorDefaultTest obj = new ClaseCtorDefaultTest());
+	}
+}

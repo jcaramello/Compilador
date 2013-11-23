@@ -59,7 +59,8 @@ public class CompilerTest {
 			   //{"For.correcto", null},
 			   //{"While.correcto", null},
 			   //{"Asignacion.correcto", null},
-			   {"BloqueAnidado.correcto", null},
+			   //{"BloqueAnidado.correcto", null},
+			   {"ClaseConCtorDefault.correcto", null},
 	   });
 	}
 	
