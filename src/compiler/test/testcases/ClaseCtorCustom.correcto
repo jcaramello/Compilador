@@ -1,0 +1,12 @@
+class ClaseCtorCustomTest{
+	
+	ClaseCtorCustomTest(){
+		(System.printS("Hola mundo!"));
+	}
+
+	static void main()
+	var ClaseCtorCustomTest obj;	
+	{		 
+	  obj = new ClaseCtorCustomTest();
+	}
+}

@@ -60,7 +60,8 @@ public class CompilerTest {
 			   //{"While.correcto", null},
 			   //{"Asignacion.correcto", null},
 			   //{"BloqueAnidado.correcto", null},
-			   {"ClaseConCtorDefault.correcto", null},
+			   //{"ClaseCtorDefault.correcto", null},
+			   {"ClaseCtorCustom.correcto", null},
 	   });
 	}
 	
