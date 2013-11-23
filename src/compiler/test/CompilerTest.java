@@ -56,7 +56,8 @@ public class CompilerTest {
 			   //{"Read.correcto", null}			  
 			   //{"IfThen.correcto", null},
 			   //{"IfThenElse.correcto", null},
-			   	 {"For.correcto", null},
+			   //{"For.correcto", null},
+			     {"While.correcto", null},
 
 	   });
 	}
