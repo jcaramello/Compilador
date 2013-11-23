@@ -57,8 +57,9 @@ public class CompilerTest {
 			   //{"IfThen.correcto", null},
 			   //{"IfThenElse.correcto", null},
 			   //{"For.correcto", null},
-			     {"While.correcto", null},
-
+			   //{"While.correcto", null},
+			   //{"Asignacion.correcto", null},
+			   {"BloqueAnidado.correcto", null},
 	   });
 	}
 	
