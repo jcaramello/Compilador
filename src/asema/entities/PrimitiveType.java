@@ -30,13 +30,13 @@ public class PrimitiveType extends Type {
 	public static PrimitiveType get(Token tkn) throws SemanticErrorException{
 		
 		String name = tkn.getLexema();
-		if(name.equals("int"))
+		if(name.equals(PrimitiveType.Int.Name))
 			return PrimitiveType.Int;
-		if(name.equals("string"))
+		if(name.equals(PrimitiveType.String.Name))
 			return PrimitiveType.String;
-		if(name.equals("boolena"))
+		if(name.equals(PrimitiveType.Boolean.Name))
 			return PrimitiveType.Boolean;
-		if(name.equals("char"))
+		if(name.equals(PrimitiveType.Char.Name))
 			return PrimitiveType.Char;
 				
 		throw new SemanticErrorException(java.lang.String.format("Error(!). Tipo primitivo invalido: %s. Linea %d", name, tkn.getLinea()));

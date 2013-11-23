@@ -61,7 +61,8 @@ public class CompilerTest {
 			   //{"Asignacion.correcto", null},
 			   //{"BloqueAnidado.correcto", null},
 			   //{"ClaseCtorDefault.correcto", null},
-			   {"ClaseCtorCustom.correcto", null},
+			   //{"ClaseCtorCustom.correcto", null},
+			   {"ClaseCtorCustomYParams.correcto", null},
 	   });
 	}
 	

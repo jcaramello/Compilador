@@ -1,0 +1,18 @@
+class ClaseCtorCustomYParamsTest{
+	
+	ClaseCtorCustomYParamsTest(int p1, char p2, string p3, boolean p4){
+		(System.printI(p1));
+		(System.println());
+		(System.printC(p2));
+		(System.println());
+		(System.printS(p3));
+		(System.println());
+		(System.printB(p4));
+	}
+
+	static void main()
+	var ClaseCtorCustomYParamsTest obj;	
+	{		 
+	  obj = new ClaseCtorCustomYParamsTest(3, 't', "Hola Mundo!", true);
+	}
+}

@@ -258,7 +258,7 @@ public class EntryClass extends EntryBase{
 		}	
 	
 		for(EntryVar ev : this.getAttributes())
-			if(!CommonHelper.isPrimitiveType(ev.Type.Name) && TS.getClass(ev.Type.Name) == null)
+			if(!CommonHelper.isPrimitiveType(ev.Type) && TS.getClass(ev.Type.Name) == null)
 				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
 			else ev.Origin = OriginType.Inst;
 	

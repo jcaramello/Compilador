@@ -229,6 +229,11 @@ public class ALex {
 			if (lexema.equals("true") || lexema.equals("false"))
 				tokenType = TokenType.BooleanLiteral;
 
+			// Si es un literal booleano, cambio el tipo de token.
+			if (lexema.equals("string"))
+				tokenType = TokenType.StringKeyword;
+
+			
 			Token toRet = new Token(tokenType, lexema, lineN);
 			lexema = "";
 			return toRet;
