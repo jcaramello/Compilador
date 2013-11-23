@@ -1,7 +1,8 @@
 class ClaseCtorDefaultTest{
 
-	static void main()	
+	static void main()
+	var ClaseCtorDefaultTest obj;	
 	{		 
-	  (ClaseCtorDefaultTest obj = new ClaseCtorDefaultTest());
+	  obj = new ClaseCtorDefaultTest();
 	}
 }

@@ -21,7 +21,7 @@ public class ReturnNode extends SentenceNode {
 		EntryMethod met = TS.getCurrentClass().getCurrentMethod();
 		Type t = met.ReturnType;
 		
-		if(!met.ReturnType.equals(VoidType.VoidType) && !met.IsContructor) {
+		if(!met.ReturnType.equals(VoidType.VoidType) && !met.IsDefaultContructor) {
 			if(!Expression.check().conforms(met.ReturnType))
 				throw new SemanticErrorException("El tipo de la expresión de retorno de un método debe conformar al tipo del método.");
 			

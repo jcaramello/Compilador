@@ -28,7 +28,7 @@ public class EntryMethod extends EntryBase {
 	public String Name;
 	public ModifierMethodType Modifier;
 	public Type ReturnType;	
-	public boolean IsContructor;
+	public boolean IsDefaultContructor;
 	public int Offset;
 	
 	/*
