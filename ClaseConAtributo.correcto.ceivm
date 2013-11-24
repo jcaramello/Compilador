@@ -66,7 +66,7 @@ Main__method: NOP
 		 STORE 0
 		 # CallNode start 
 		 # IDNode start 
-		 LOAD 0		 
+		 LOAD 0
 		 # IDNode end 
 		 PUSH 4
 		 SWAP 

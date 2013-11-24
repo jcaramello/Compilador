@@ -56,6 +56,7 @@ public class EntryMethod extends EntryBase {
 		this.FormalArgsByIndex = new LinkedList<EntryVar>();
 		this.LocalVarsByIndex = new LinkedList<EntryVar>();
 		this.ContainerClass  = containerClass;
+		this.Offset = -1;
 	}	
 	
 	/*
