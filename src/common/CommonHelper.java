@@ -18,7 +18,7 @@ public class CommonHelper {
 		return name.equals("int") ||
 			   name.equals("char") ||
 			   name.equals("boolean") ||
-			   name.equals("String") ||
+			   name.equals("string") ||
 			   name.equals("void");			   			
 	}
 	

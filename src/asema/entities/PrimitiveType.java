@@ -34,7 +34,7 @@ public class PrimitiveType extends Type {
 			return PrimitiveType.Int;
 		if(name.equals("string"))
 			return PrimitiveType.String;
-		if(name.equals("boolena"))
+		if(name.equals("boolean"))
 			return PrimitiveType.Boolean;
 		if(name.equals("char"))
 			return PrimitiveType.Char;
