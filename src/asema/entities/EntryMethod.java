@@ -28,7 +28,7 @@ public class EntryMethod extends EntryBase {
 	public String Name;
 	public ModifierMethodType Modifier;
 	public Type ReturnType;	
-	public boolean IsContructor;
+	public boolean IsDefaultContructor;
 	public int Offset;
 	
 	/*
@@ -250,7 +250,7 @@ public class EntryMethod extends EntryBase {
 	public void generate() throws SemanticErrorException{
 		
 		if(isMain)
-			CodeGenerator.gen("Main__method: NOP");
+			CodeGenerator.gen(String.format(Instructions.LABEL, "Main_", "method"), Instructions.NOP, true);
 		else	
 			CodeGenerator.gen(String.format(Instructions.LABEL, this.ContainerClass.Name, this.Name), Instructions.NOP, true);
 		
@@ -353,17 +353,17 @@ public class EntryMethod extends EntryBase {
 	 */
 	public void checkDeclarations() throws SemanticErrorException{
 		for(EntryVar ev : this.LocalVars.values())
-			if(!CommonHelper.isPrimitiveType(ev.Type.Name) && TS.getClass(ev.Type.Name) == null)
+			if(!CommonHelper.isPrimitiveType(ev.Type) && TS.getClass(ev.Type.Name) == null)
 				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
 			else ev.Origin = OriginType.Local;
 	
 		for(EntryVar ev : this.FormalArgs.values())
-			if(!CommonHelper.isPrimitiveType(ev.Type.Name) && TS.getClass(ev.Type.Name) == null)
+			if(!CommonHelper.isPrimitiveType(ev.Type) && TS.getClass(ev.Type.Name) == null)
 				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
 			else ev.Origin = OriginType.Param;
 	
 		// Para el tipo de retorno
-		if(!CommonHelper.isPrimitiveType(this.ReturnType.Name) && TS.getClass(this.ReturnType.Name) == null)
+		if(!CommonHelper.isPrimitiveType(this.ReturnType) && TS.getClass(this.ReturnType.Name) == null)
 			throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", this.ReturnType.Name));		
 
 

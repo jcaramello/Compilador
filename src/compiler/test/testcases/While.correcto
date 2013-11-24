@@ -1,0 +1,12 @@
+class WhileTest{
+
+	static void main()
+	var int i;
+	{		
+		i = 0;
+		while(i < 10){
+			(System.printI(i));
+			i = i + 1;
+		}
+	}
+}

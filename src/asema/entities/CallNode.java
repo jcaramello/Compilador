@@ -40,7 +40,9 @@ public class CallNode extends PrimaryNode {
 		if(Context == null)
 			Context = new ThisNode();
 		
-		EntryMethod met = TS.getClass(Context.check().Name).getMethod(OperationName.Identifier.getLexema());
+		EntryClass clase =  TS.getClass(Context.check().Name);
+		
+		EntryMethod met = clase.getMethod(OperationName.Identifier.getLexema());
 		
 		if(ActualsParameters.size() != met.getFormalArgsCant())
 			throw new SemanticErrorException("La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales.");
@@ -67,15 +69,17 @@ public class CallNode extends PrimaryNode {
 			
 			for(int i = 0; i < ActualsParameters.size(); i++) {
 				if(!ActualsParameters.get(i).check().conforms(met.getFormalArgByIndex(i).Type))
-						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales.");
+						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales.");				
 				CodeGenerator.gen(Instructions.SWAP);
 			}
 			
 			CodeGenerator.gen(Instructions.DUP);
-			CodeGenerator.gen(Instructions.LOADREF, 0);
+			CodeGenerator.gen(Instructions.LOADREF, 0); // offset de la VTable
 			CodeGenerator.gen(Instructions.LOADREF, met.Offset);
-			CodeGenerator.gen(Instructions.CALL);
+			CodeGenerator.gen(Instructions.CALL);		
 		}
+		
+		CodeGenerator.gen("# CallNode end");
 	
 		return met.ReturnType;
 	}

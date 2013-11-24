@@ -53,10 +53,17 @@ public class CompilerTest {
 			   //{"PrintI.correcto", null},
 			   //{"PrintS.correcto", null},
 			   //{"PrintSln.correcto", null},
-			   {"Read.correcto", null}
+			   //{"Read.correcto", null}			  
 			   //{"IfThen.correcto", null},
-			   //{"Read.correcto", null}
-			   //{"IfThen.correcto", null},
+			   //{"IfThenElse.correcto", null},
+			   //{"For.correcto", null},
+			   //{"While.correcto", null},
+			   //{"Asignacion.correcto", null},
+			   //{"BloqueAnidado.correcto", null},
+			   //{"ClaseCtorDefault.correcto", null},
+			   //{"ClaseCtorCustom.correcto", null},
+			   //{"ClaseCtorCustomYParams.correcto", null},
+			   {"ClaseConAtributo.correcto", null}
 	   });
 	}
 	

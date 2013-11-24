@@ -1,0 +1,16 @@
+class ClaseConAtributo{
+
+	var int a1;
+
+	dynamic void setA1(int newValue){
+		a1 = newValue;
+		(System.printI(a1));
+	}
+
+	static void main()
+	var ClaseConAtributo obj;	
+	{		 
+	  obj = new ClaseConAtributo();
+	  (obj.setA1(4));	  
+	}
+}

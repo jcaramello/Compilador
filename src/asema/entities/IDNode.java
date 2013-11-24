@@ -30,7 +30,7 @@ public class IDNode extends PrimaryNode {
 				CodeGenerator.gen(Instructions.LOAD, ev.Offset);
 			} else {
 				if(TS.getCurrentClass().getCurrentMethod().Modifier.equals("static"))
-					throw new SemanticErrorException("No se puede acceder a una variable de instancia desde un método static.");
+					throw new SemanticErrorException("Error(!). No se puede acceder a una variable de instancia desde un método static. Linea: "+Identifier.getLinea());
 				
 				CodeGenerator.gen(Instructions.LOAD, 3);
 				CodeGenerator.gen(Instructions.LOADREF, ev.Offset);
@@ -49,6 +49,8 @@ public class IDNode extends PrimaryNode {
 		
 		if(type == null)
 			throw new SemanticErrorException(String.format("Error (!). El identificador %s no puede ser resuelto. Linea $d", Identifier.getLexema(), Identifier.getLinea()));
+		
+		CodeGenerator.gen("# IDNode end");
 		return type;
 	}
 

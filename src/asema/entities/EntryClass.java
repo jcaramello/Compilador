@@ -34,7 +34,7 @@ public class EntryClass extends EntryBase{
 	
 	public boolean isInheritanceApplied;	
 	
-	public boolean OffsetCalculated;
+	public boolean OffsetCalculated;	
 	
 	/**
 	 * private Members
@@ -75,6 +75,7 @@ public class EntryClass extends EntryBase{
 		this.OrderedMethods = new ArrayList<EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
 		this.Constructor = new EntryMethod(String.format("DefaultCtor", name), ModifierMethodType.Dynamic, new ClassType(this), this);
+		this.Constructor.IsDefaultContructor = true;
 	}
 	
 	public void addAttribute(EntryVar a) throws SemanticErrorException{
@@ -151,8 +152,10 @@ public class EntryClass extends EntryBase{
 	}
 	
 	public void addConstructor(EntryMethod constructor){
-		if(constructor != null)
+		if(constructor != null){
 			this.Constructor = constructor;
+			constructor.IsDefaultContructor = false;
+		}
 	}
 	
 	public EntryMethod getConstructor(){
@@ -185,7 +188,7 @@ public class EntryClass extends EntryBase{
 		}
 		
 		for(int i = 0; i < totalDynamicMethods; i++) {					
-			CodeGenerator.gen(Instructions.DW, mets[i]);
+			CodeGenerator.gen(Instructions.DW, String.format("%s_%s", this.Name,mets[i]));
 		}
 		
 		CodeGenerator.gen(Instructions.CODE_SECTION, true);
@@ -255,7 +258,7 @@ public class EntryClass extends EntryBase{
 		}	
 	
 		for(EntryVar ev : this.getAttributes())
-			if(!CommonHelper.isPrimitiveType(ev.Type.Name) && TS.getClass(ev.Type.Name) == null)
+			if(!CommonHelper.isPrimitiveType(ev.Type) && TS.getClass(ev.Type.Name) == null)
 				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
 			else ev.Origin = OriginType.Inst;
 	

@@ -1,0 +1,11 @@
+class BloqueAnidadoTest{
+
+	static void main()
+	var int i;
+	{		 
+	  {	
+		i = 15;		
+		(System.printI(i));
+	  }	  
+	}
+}
