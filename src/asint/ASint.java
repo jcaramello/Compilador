@@ -885,9 +885,9 @@ public class ASint {
 		}
 		
 		EntryVar leftRigth = TS.findVar(curr.getLexema());
-		
+				
 		if(leftRigth == null) 
-			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido. Linea: %d", curr.getLexema(), curr.getLinea()));
+			leftRigth = new EntryVar(null, curr.getLexema());
 		
 		getToken();
 		if(curr.getTokenType() != TokenType.AssignOperator) {

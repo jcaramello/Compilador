@@ -22,8 +22,14 @@ public class AssignmentNode extends SentenceNode {
 	public Type check() throws SemanticErrorException {
 		
 		CodeGenerator.gen("# AssignmentNode Start");
-				
-		Type t = leftSide.Type;
+
+		EntryVar var = TS.findVar(leftSide.Name); 
+		if(var == null)
+			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido. Linea: %d", leftSide.Token.getLexema(), leftSide.Token.getLinea()));
+		leftSide.Type = var.Type;
+		leftSide.Origin = var.Origin;
+		
+		Type t = leftSide.Type;			
 		
 		if(!rigthSide.check().conforms(t))
 			throw new SemanticErrorException("El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo.");

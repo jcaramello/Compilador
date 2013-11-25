@@ -1,0 +1,25 @@
+class Clase1{
+
+	var int a1;
+
+	dynamic void setA1(int newValue){
+		a1 = newValue;
+		(System.printI(a1));
+	}	
+}
+
+class Clase2 extends Clase1{
+
+	dynamic void setA1(int newValue){
+		a1 = newValue + 1;
+		(System.printI(a1));
+	}	
+
+	static void main()
+	var Clase2 obj;	
+	{		 
+	  obj = new Clase2();
+	  (obj.setA1(4));	  
+	}
+	
+}
