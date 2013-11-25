@@ -2,6 +2,7 @@ package asema.entities;
 
 import common.CodeGenerator;
 import common.Instructions;
+import enums.ModifierMethodType;
 
 import asema.TS;
 import asema.exceptions.SemanticErrorException;
@@ -31,6 +32,8 @@ public class AssignmentNode extends SentenceNode {
 			CodeGenerator.gen(Instructions.STORE, ""+ leftSide.Offset);
 		}
 		else {
+			if(TS.getCurrentClass().getCurrentMethod().Modifier == ModifierMethodType.Static)
+				throw new SemanticErrorException("No se puede asignar un valor a una variable de instancia desde un método estático.");
 			CodeGenerator.gen(Instructions.LOAD, "3");
 			CodeGenerator.gen(Instructions.SWAP);
 			CodeGenerator.gen(Instructions.STOREREF, ""+ leftSide.Offset);

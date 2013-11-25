@@ -141,6 +141,13 @@ public class CodeGenerator {
 	}
 		
 	
+	public static void genDebug() {		
+		CodeGenerator.gen(Instructions.DUP);
+		CodeGenerator.gen("PUSH System_printIln");
+		CodeGenerator.gen("CALL");
+	}
+	
+	
 	/**
 	 * Close the buffer writer
 	 */
