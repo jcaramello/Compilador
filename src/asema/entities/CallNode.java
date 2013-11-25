@@ -73,12 +73,9 @@ public class CallNode extends PrimaryNode {
 				CodeGenerator.gen(Instructions.SWAP);
 			}
 			
-			CodeGenerator.gen(Instructions.DUP);			
-			CodeGenerator.genDebug();					
-			CodeGenerator.gen(Instructions.LOADREF, 0); // offset de la VTable
-			CodeGenerator.genDebug("VT: "); CodeGenerator.genDebug();			
-			CodeGenerator.gen(Instructions.LOADREF, met.Offset + 1); // Saltar el NOP
-			CodeGenerator.genDebug("Met off: " + met.Offset + " , i.e.:"); CodeGenerator.genDebug();
+			CodeGenerator.gen(Instructions.DUP);										
+			CodeGenerator.gen(Instructions.LOADREF, 0); // offset de la VTable					
+			CodeGenerator.gen(Instructions.LOADREF, met.Offset + 1); // Saltar el NOP			
 			CodeGenerator.gen(Instructions.CALL);		
 		}
 		

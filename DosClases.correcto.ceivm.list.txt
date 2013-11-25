@@ -1,0 +1,373 @@
+Información de ensamblado, linkeo y carga (generado por el CeIASMAssemblerLinkerAndLoader)
+
+----------- Límite de carga de las secciones ----------------------------------------------
+
+.CODE:  de locación          0 a locación        309
+.DATA:  de locación        310 a locación        315
+.HEAP:  de locación        316 a locación        315
+.STACK: de locación       8192 a locación       8191
+
+----------- Resolución de etiquetas -------------------------------------------------------
+Dirección   Etiqueta
+
+         6  lmalloc
+        24  clase2_seta1
+        52  clase2_defaultctor
+        63  clase1_seta1
+        91  main__method
+       131  clase1_defaultctor
+       142  system_printsln
+       157  system_printi
+       171  system_printiln
+       186  system_println
+       198  system_printcln
+       213  system_printc
+       227  system_read
+       244  system_printbln
+       259  system_printb
+       273  system_prints
+       287  system_defaultctor
+       298  object_defaultctor
+       310  vt_clase2
+       312  vt_clase1
+       314  vt_system
+       315  vt_object
+
+------------------------------------------------------------------------------------------
+----------- Contenido de la memoria ensamblada, linkeada y cargada -----------------------
+------------------------------------------------------------------------------------------
+
+----------- Sección .CODE ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+         0         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 2 columna: 4.
+         1           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 2 columna: 9.
+         2           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 3 columna: 4.
+         3          91  Main__method                            ; Archivo: DosClases.correcto.ceivm línea: 3 columna: 9.
+         4         100  CALL                                    ; Archivo: DosClases.correcto.ceivm línea: 4 columna: 4.
+         5         104  HALT                                    ; Archivo: DosClases.correcto.ceivm línea: 5 columna: 4.
+         6           0  LMALLOC: NOP                            ; Archivo: DosClases.correcto.ceivm línea: 7 columna: 10.
+         7         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 8 columna: 4.
+         8         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 9 columna: 4.
+         9         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 10 columna: 4.
+        10         128  LOADHL                                  ; Archivo: DosClases.correcto.ceivm línea: 11 columna: 4.
+        11          30  DUP                                     ; Archivo: DosClases.correcto.ceivm línea: 12 columna: 4.
+        12           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 13 columna: 4.
+        13           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 13 columna: 9.
+        14           2  ADD                                     ; Archivo: DosClases.correcto.ceivm línea: 14 columna: 4.
+        15          81  STORE                                   ; Archivo: DosClases.correcto.ceivm línea: 15 columna: 4.
+        16           4  4                                       ; Archivo: DosClases.correcto.ceivm línea: 15 columna: 10.
+        17          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 16 columna: 4.
+        18           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 16 columna: 9.
+        19           2  ADD                                     ; Archivo: DosClases.correcto.ceivm línea: 17 columna: 4.
+        20         129  STOREHL                                 ; Archivo: DosClases.correcto.ceivm línea: 18 columna: 4.
+        21         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 19 columna: 4.
+        22         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 20 columna: 4.
+        23           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 20 columna: 8.
+        24           0  Clase2_setA1: NOP                       ; Archivo: DosClases.correcto.ceivm línea: 25 columna: 15.
+        25         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 26 columna: 4.
+        26         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 27 columna: 4.
+        27         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 28 columna: 4.
+        28         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 29 columna: 4.
+        29           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 29 columna: 9.
+        30          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 32 columna: 4.
+        31           4  4                                       ; Archivo: DosClases.correcto.ceivm línea: 32 columna: 9.
+        32          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 34 columna: 4.
+        33           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 34 columna: 9.
+        34          32  SWAP                                    ; Archivo: DosClases.correcto.ceivm línea: 35 columna: 4.
+        35          83  STOREREF                                ; Archivo: DosClases.correcto.ceivm línea: 36 columna: 4.
+        36           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 36 columna: 13.
+        37           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 40 columna: 4.
+        38         314  VT_System                               ; Archivo: DosClases.correcto.ceivm línea: 40 columna: 9.
+        39          31  POP                                     ; Archivo: DosClases.correcto.ceivm línea: 42 columna: 4.
+        40          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 44 columna: 4.
+        41           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 44 columna: 9.
+        42          82  LOADREF                                 ; Archivo: DosClases.correcto.ceivm línea: 45 columna: 4.
+        43           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 45 columna: 12.
+        44           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 47 columna: 4.
+        45         157  System_printI                           ; Archivo: DosClases.correcto.ceivm línea: 47 columna: 9.
+        46         100  CALL                                    ; Archivo: DosClases.correcto.ceivm línea: 48 columna: 4.
+        47         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 50 columna: 4.
+        48           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 50 columna: 9.
+        49         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 51 columna: 4.
+        50         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 52 columna: 4.
+        51           2  2                                       ; Archivo: DosClases.correcto.ceivm línea: 52 columna: 8.
+        52           0  Clase2_DefaultCtor: NOP                 ; Archivo: DosClases.correcto.ceivm línea: 53 columna: 21.
+        53         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 54 columna: 4.
+        54         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 55 columna: 4.
+        55         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 56 columna: 4.
+        56         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 57 columna: 4.
+        57           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 57 columna: 9.
+        58         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 58 columna: 4.
+        59           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 58 columna: 9.
+        60         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 59 columna: 4.
+        61         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 60 columna: 4.
+        62           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 60 columna: 8.
+        63           0  Clase1_setA1: NOP                       ; Archivo: DosClases.correcto.ceivm línea: 65 columna: 15.
+        64         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 66 columna: 4.
+        65         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 67 columna: 4.
+        66         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 68 columna: 4.
+        67         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 69 columna: 4.
+        68           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 69 columna: 9.
+        69          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 72 columna: 4.
+        70           4  4                                       ; Archivo: DosClases.correcto.ceivm línea: 72 columna: 9.
+        71          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 74 columna: 4.
+        72           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 74 columna: 9.
+        73          32  SWAP                                    ; Archivo: DosClases.correcto.ceivm línea: 75 columna: 4.
+        74          83  STOREREF                                ; Archivo: DosClases.correcto.ceivm línea: 76 columna: 4.
+        75           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 76 columna: 13.
+        76           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 80 columna: 4.
+        77         314  VT_System                               ; Archivo: DosClases.correcto.ceivm línea: 80 columna: 9.
+        78          31  POP                                     ; Archivo: DosClases.correcto.ceivm línea: 82 columna: 4.
+        79          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 84 columna: 4.
+        80           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 84 columna: 9.
+        81          82  LOADREF                                 ; Archivo: DosClases.correcto.ceivm línea: 85 columna: 4.
+        82           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 85 columna: 12.
+        83           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 87 columna: 4.
+        84         157  System_printI                           ; Archivo: DosClases.correcto.ceivm línea: 87 columna: 9.
+        85         100  CALL                                    ; Archivo: DosClases.correcto.ceivm línea: 88 columna: 4.
+        86         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 90 columna: 4.
+        87           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 90 columna: 9.
+        88         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 91 columna: 4.
+        89         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 92 columna: 4.
+        90           2  2                                       ; Archivo: DosClases.correcto.ceivm línea: 92 columna: 8.
+        91           0  Main__method: NOP                       ; Archivo: DosClases.correcto.ceivm línea: 93 columna: 15.
+        92         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 94 columna: 4.
+        93         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 95 columna: 4.
+        94         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 96 columna: 4.
+        95         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 97 columna: 4.
+        96           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 97 columna: 9.
+        97         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 99 columna: 4.
+        98           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 99 columna: 9.
+        99           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 100 columna: 4.
+       100           2  2                                       ; Archivo: DosClases.correcto.ceivm línea: 100 columna: 9.
+       101           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 101 columna: 4.
+       102           6  LMALLOC                                 ; Archivo: DosClases.correcto.ceivm línea: 101 columna: 9.
+       103         100  CALL                                    ; Archivo: DosClases.correcto.ceivm línea: 102 columna: 4.
+       104          30  DUP                                     ; Archivo: DosClases.correcto.ceivm línea: 103 columna: 4.
+       105           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 104 columna: 4.
+       106         310  VT_Clase2                               ; Archivo: DosClases.correcto.ceivm línea: 104 columna: 9.
+       107          83  STOREREF                                ; Archivo: DosClases.correcto.ceivm línea: 105 columna: 4.
+       108           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 105 columna: 13.
+       109          30  DUP                                     ; Archivo: DosClases.correcto.ceivm línea: 106 columna: 4.
+       110           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 107 columna: 4.
+       111          52  Clase2_DefaultCtor                      ; Archivo: DosClases.correcto.ceivm línea: 107 columna: 9.
+       112         100  CALL                                    ; Archivo: DosClases.correcto.ceivm línea: 108 columna: 4.
+       113          81  STORE                                   ; Archivo: DosClases.correcto.ceivm línea: 109 columna: 4.
+       114           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 109 columna: 10.
+       115          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 113 columna: 4.
+       116           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 113 columna: 9.
+       117           1  PUSH                                    ; Archivo: DosClases.correcto.ceivm línea: 115 columna: 4.
+       118           4  4                                       ; Archivo: DosClases.correcto.ceivm línea: 115 columna: 9.
+       119          32  SWAP                                    ; Archivo: DosClases.correcto.ceivm línea: 116 columna: 4.
+       120          30  DUP                                     ; Archivo: DosClases.correcto.ceivm línea: 117 columna: 4.
+       121          82  LOADREF                                 ; Archivo: DosClases.correcto.ceivm línea: 118 columna: 4.
+       122           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 118 columna: 12.
+       123          82  LOADREF                                 ; Archivo: DosClases.correcto.ceivm línea: 119 columna: 4.
+       124           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 119 columna: 12.
+       125         100  CALL                                    ; Archivo: DosClases.correcto.ceivm línea: 120 columna: 4.
+       126         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 122 columna: 4.
+       127           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 122 columna: 9.
+       128         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 123 columna: 4.
+       129         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 124 columna: 4.
+       130           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 124 columna: 8.
+       131           0  Clase1_DefaultCtor: NOP                 ; Archivo: DosClases.correcto.ceivm línea: 125 columna: 21.
+       132         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 126 columna: 4.
+       133         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 127 columna: 4.
+       134         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 128 columna: 4.
+       135         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 129 columna: 4.
+       136           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 129 columna: 9.
+       137         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 130 columna: 4.
+       138           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 130 columna: 9.
+       139         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 131 columna: 4.
+       140         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 132 columna: 4.
+       141           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 132 columna: 8.
+       142           0  System_printSln: NOP                    ; Archivo: DosClases.correcto.ceivm línea: 136 columna: 18.
+       143         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 137 columna: 4.
+       144         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 138 columna: 4.
+       145         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 139 columna: 4.
+       146         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 140 columna: 4.
+       147           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 140 columna: 9.
+       148          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 141 columna: 4.
+       149           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 141 columna: 9.
+       150          64  SPRINT                                  ; Archivo: DosClases.correcto.ceivm línea: 142 columna: 4.
+       151          65  PRNLN                                   ; Archivo: DosClases.correcto.ceivm línea: 143 columna: 4.
+       152         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 144 columna: 4.
+       153           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 144 columna: 9.
+       154         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 145 columna: 4.
+       155         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 146 columna: 4.
+       156           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 146 columna: 8.
+       157           0  System_printI: NOP                      ; Archivo: DosClases.correcto.ceivm línea: 147 columna: 16.
+       158         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 148 columna: 4.
+       159         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 149 columna: 4.
+       160         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 150 columna: 4.
+       161         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 151 columna: 4.
+       162           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 151 columna: 9.
+       163          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 152 columna: 4.
+       164           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 152 columna: 9.
+       165          63  IPRINT                                  ; Archivo: DosClases.correcto.ceivm línea: 153 columna: 4.
+       166         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 154 columna: 4.
+       167           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 154 columna: 9.
+       168         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 155 columna: 4.
+       169         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 156 columna: 4.
+       170           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 156 columna: 8.
+       171           0  System_printIln: NOP                    ; Archivo: DosClases.correcto.ceivm línea: 157 columna: 18.
+       172         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 158 columna: 4.
+       173         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 159 columna: 4.
+       174         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 160 columna: 4.
+       175         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 161 columna: 4.
+       176           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 161 columna: 9.
+       177          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 162 columna: 4.
+       178           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 162 columna: 9.
+       179          63  IPRINT                                  ; Archivo: DosClases.correcto.ceivm línea: 163 columna: 4.
+       180          65  PRNLN                                   ; Archivo: DosClases.correcto.ceivm línea: 164 columna: 4.
+       181         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 165 columna: 4.
+       182           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 165 columna: 9.
+       183         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 166 columna: 4.
+       184         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 167 columna: 4.
+       185           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 167 columna: 8.
+       186           0  System_println: NOP                     ; Archivo: DosClases.correcto.ceivm línea: 168 columna: 17.
+       187         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 169 columna: 4.
+       188         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 170 columna: 4.
+       189         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 171 columna: 4.
+       190         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 172 columna: 4.
+       191           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 172 columna: 9.
+       192          65  PRNLN                                   ; Archivo: DosClases.correcto.ceivm línea: 173 columna: 4.
+       193         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 174 columna: 4.
+       194           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 174 columna: 9.
+       195         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 175 columna: 4.
+       196         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 176 columna: 4.
+       197           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 176 columna: 8.
+       198           0  System_printCln: NOP                    ; Archivo: DosClases.correcto.ceivm línea: 177 columna: 18.
+       199         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 178 columna: 4.
+       200         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 179 columna: 4.
+       201         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 180 columna: 4.
+       202         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 181 columna: 4.
+       203           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 181 columna: 9.
+       204          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 182 columna: 4.
+       205           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 182 columna: 9.
+       206          62  CPRINT                                  ; Archivo: DosClases.correcto.ceivm línea: 183 columna: 4.
+       207          65  PRNLN                                   ; Archivo: DosClases.correcto.ceivm línea: 184 columna: 4.
+       208         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 185 columna: 4.
+       209           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 185 columna: 9.
+       210         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 186 columna: 4.
+       211         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 187 columna: 4.
+       212           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 187 columna: 8.
+       213           0  System_printC: NOP                      ; Archivo: DosClases.correcto.ceivm línea: 188 columna: 16.
+       214         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 189 columna: 4.
+       215         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 190 columna: 4.
+       216         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 191 columna: 4.
+       217         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 192 columna: 4.
+       218           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 192 columna: 9.
+       219          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 193 columna: 4.
+       220           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 193 columna: 9.
+       221          62  CPRINT                                  ; Archivo: DosClases.correcto.ceivm línea: 194 columna: 4.
+       222         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 195 columna: 4.
+       223           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 195 columna: 9.
+       224         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 196 columna: 4.
+       225         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 197 columna: 4.
+       226           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 197 columna: 8.
+       227           0  System_read: NOP                        ; Archivo: DosClases.correcto.ceivm línea: 198 columna: 14.
+       228         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 199 columna: 4.
+       229         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 200 columna: 4.
+       230         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 201 columna: 4.
+       231         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 202 columna: 4.
+       232           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 202 columna: 9.
+       233          60  READ                                    ; Archivo: DosClases.correcto.ceivm línea: 203 columna: 4.
+       234          81  STORE                                   ; Archivo: DosClases.correcto.ceivm línea: 204 columna: 4.
+       235           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 204 columna: 10.
+       236         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 205 columna: 4.
+       237         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 206 columna: 4.
+       238           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 206 columna: 8.
+       239         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 207 columna: 4.
+       240           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 207 columna: 9.
+       241         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 208 columna: 4.
+       242         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 209 columna: 4.
+       243           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 209 columna: 8.
+       244           0  System_printBln: NOP                    ; Archivo: DosClases.correcto.ceivm línea: 210 columna: 18.
+       245         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 211 columna: 4.
+       246         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 212 columna: 4.
+       247         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 213 columna: 4.
+       248         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 214 columna: 4.
+       249           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 214 columna: 9.
+       250          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 215 columna: 4.
+       251           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 215 columna: 9.
+       252          61  BPRINT                                  ; Archivo: DosClases.correcto.ceivm línea: 216 columna: 4.
+       253          65  PRNLN                                   ; Archivo: DosClases.correcto.ceivm línea: 217 columna: 4.
+       254         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 218 columna: 4.
+       255           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 218 columna: 9.
+       256         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 219 columna: 4.
+       257         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 220 columna: 4.
+       258           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 220 columna: 8.
+       259           0  System_printB: NOP                      ; Archivo: DosClases.correcto.ceivm línea: 221 columna: 16.
+       260         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 222 columna: 4.
+       261         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 223 columna: 4.
+       262         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 224 columna: 4.
+       263         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 225 columna: 4.
+       264           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 225 columna: 9.
+       265          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 226 columna: 4.
+       266           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 226 columna: 9.
+       267          61  BPRINT                                  ; Archivo: DosClases.correcto.ceivm línea: 227 columna: 4.
+       268         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 228 columna: 4.
+       269           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 228 columna: 9.
+       270         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 229 columna: 4.
+       271         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 230 columna: 4.
+       272           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 230 columna: 8.
+       273           0  System_printS: NOP                      ; Archivo: DosClases.correcto.ceivm línea: 231 columna: 16.
+       274         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 232 columna: 4.
+       275         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 233 columna: 4.
+       276         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 234 columna: 4.
+       277         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 235 columna: 4.
+       278           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 235 columna: 9.
+       279          80  LOAD                                    ; Archivo: DosClases.correcto.ceivm línea: 236 columna: 4.
+       280           3  3                                       ; Archivo: DosClases.correcto.ceivm línea: 236 columna: 9.
+       281          64  SPRINT                                  ; Archivo: DosClases.correcto.ceivm línea: 237 columna: 4.
+       282         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 238 columna: 4.
+       283           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 238 columna: 9.
+       284         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 239 columna: 4.
+       285         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 240 columna: 4.
+       286           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 240 columna: 8.
+       287           0  System_DefaultCtor: NOP                 ; Archivo: DosClases.correcto.ceivm línea: 241 columna: 21.
+       288         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 242 columna: 4.
+       289         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 243 columna: 4.
+       290         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 244 columna: 4.
+       291         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 245 columna: 4.
+       292           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 245 columna: 9.
+       293         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 246 columna: 4.
+       294           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 246 columna: 9.
+       295         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 247 columna: 4.
+       296         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 248 columna: 4.
+       297           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 248 columna: 8.
+       298           0  Object_DefaultCtor: NOP                 ; Archivo: DosClases.correcto.ceivm línea: 252 columna: 21.
+       299         124  LOADFP                                  ; Archivo: DosClases.correcto.ceivm línea: 253 columna: 4.
+       300         122  LOADSP                                  ; Archivo: DosClases.correcto.ceivm línea: 254 columna: 4.
+       301         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 255 columna: 4.
+       302         101  RMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 256 columna: 4.
+       303           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 256 columna: 9.
+       304         102  FMEM                                    ; Archivo: DosClases.correcto.ceivm línea: 257 columna: 4.
+       305           0  0                                       ; Archivo: DosClases.correcto.ceivm línea: 257 columna: 9.
+       306         125  STOREFP                                 ; Archivo: DosClases.correcto.ceivm línea: 258 columna: 4.
+       307         103  RET                                     ; Archivo: DosClases.correcto.ceivm línea: 259 columna: 4.
+       308           1  1                                       ; Archivo: DosClases.correcto.ceivm línea: 259 columna: 8.
+       309         104  HALT                                    ; Archivo: DosClases.correcto.ceivm línea: 260 columna: 4.
+
+----------- Sección .DATA ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+       310           0  VT_Clase2: NOP                          ; Archivo: DosClases.correcto.ceivm línea: 22 columna: 12.
+       311          24  Clase2_setA1                            ; Archivo: DosClases.correcto.ceivm línea: 23 columna: 7.
+       312           0  VT_Clase1: NOP                          ; Archivo: DosClases.correcto.ceivm línea: 62 columna: 12.
+       313          63  Clase1_setA1                            ; Archivo: DosClases.correcto.ceivm línea: 63 columna: 7.
+       314           0  VT_System: NOP                          ; Archivo: DosClases.correcto.ceivm línea: 134 columna: 12.
+       315           0  VT_Object: NOP                          ; Archivo: DosClases.correcto.ceivm línea: 250 columna: 12.
+
+----------- Sección .HEAP ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+
+----------- Sección .STACK (decreciente) --------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+
+El volcado de la información de ensamblado, linkeo y carga se completó exitosamente...
+

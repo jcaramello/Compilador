@@ -19,10 +19,50 @@ LMALLOC: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
-VT_ClaseConAtributo: NOP
-		 DW ClaseConAtributo_setA1
+VT_Clase2: NOP
+		 DW Clase2_setA1
 .CODE 
-ClaseConAtributo_setA1: NOP
+Clase2_setA1: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # AssignmentNode Start 
+		 # IDNode start 
+		 LOAD 4
+		 # IDNode end 
+		 LOAD 3
+		 SWAP 
+		 STOREREF 0
+		 # AssignmentNode End 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # IDNode start 
+		 LOAD 3
+		 LOADREF 0
+		 # IDNode end 
+		 PUSH System_printI
+		 CALL 
+		 # CallNode end 
+		 FMEM 0
+		 STOREFP 
+		 RET 2
+Clase2_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_Clase1: NOP
+		 DW Clase1_setA1
+.CODE 
+Clase1_setA1: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
@@ -61,10 +101,10 @@ Main__method: NOP
 		 PUSH LMALLOC
 		 CALL 
 		 DUP 
-		 PUSH VT_ClaseConAtributo
+		 PUSH VT_Clase2
 		 STOREREF 0
 		 DUP 
-		 PUSH ClaseConAtributo_DefaultCtor
+		 PUSH Clase2_DefaultCtor
 		 CALL 
 		 STORE 0
 		 # AssignmentNode End 
@@ -75,107 +115,14 @@ Main__method: NOP
 		 PUSH 4
 		 SWAP 
 		 DUP 
-		 DUP 
-		 PUSH System_printIln 
-		 CALL 
 		 LOADREF 0
-		 RMEM 1
-		 PUSH 4
-		 PUSH LMALLOC
-		 CALL 
-		 DUP 
-		 PUSH 86
-		 STOREREF 0
-		 DUP 
-		 PUSH 84
-		 STOREREF 1
-		 DUP 
-		 PUSH 58
-		 STOREREF 2
-		 DUP 
-		 PUSH 32
-		 STOREREF 3
-		 DUP 
-		 PUSH 0
-		 STOREREF 4
-		 PUSH System_printSln 
-		 CALL 
-		 DUP 
-		 PUSH System_printIln 
-		 CALL 
 		 LOADREF 1
-		 RMEM 1
-		 PUSH 18
-		 PUSH LMALLOC
-		 CALL 
-		 DUP 
-		 PUSH 77
-		 STOREREF 0
-		 DUP 
-		 PUSH 101
-		 STOREREF 1
-		 DUP 
-		 PUSH 116
-		 STOREREF 2
-		 DUP 
-		 PUSH 32
-		 STOREREF 3
-		 DUP 
-		 PUSH 111
-		 STOREREF 4
-		 DUP 
-		 PUSH 102
-		 STOREREF 5
-		 DUP 
-		 PUSH 102
-		 STOREREF 6
-		 DUP 
-		 PUSH 58
-		 STOREREF 7
-		 DUP 
-		 PUSH 32
-		 STOREREF 8
-		 DUP 
-		 PUSH 48
-		 STOREREF 9
-		 DUP 
-		 PUSH 32
-		 STOREREF 10
-		 DUP 
-		 PUSH 44
-		 STOREREF 11
-		 DUP 
-		 PUSH 32
-		 STOREREF 12
-		 DUP 
-		 PUSH 105
-		 STOREREF 13
-		 DUP 
-		 PUSH 46
-		 STOREREF 14
-		 DUP 
-		 PUSH 101
-		 STOREREF 15
-		 DUP 
-		 PUSH 46
-		 STOREREF 16
-		 DUP 
-		 PUSH 58
-		 STOREREF 17
-		 DUP 
-		 PUSH 0
-		 STOREREF 18
-		 PUSH System_printSln 
-		 CALL 
-		 DUP 
-		 PUSH System_printIln 
-		 CALL 
 		 CALL 
 		 # CallNode end 
 		 FMEM 1
 		 STOREFP 
 		 RET 0
-ClaseConAtributo_DefaultCtor: NOP
+Clase1_DefaultCtor: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
