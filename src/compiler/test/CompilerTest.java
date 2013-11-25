@@ -64,7 +64,8 @@ public class CompilerTest {
 			   //{"ClaseCtorCustom.correcto", null},
 			   //{"ClaseCtorCustomYParams.correcto", null},
 			   //{"ClaseConAtributo.correcto", null},
-			   {"DosClases.correcto", null},
+			   //{"DosClases.correcto", null},
+			   {"ClaseConHerencia.correcto", null},
 			   //{"This.correcto", null}
 	   });
 	}

@@ -258,7 +258,7 @@ public class TS {
 	}
 
 	public static EntryVar findVar(String identificador) throws SemanticErrorException
-	{		
+	{			
 		EntryClass currentClass = TS.getCurrentClass();
 		EntryMethod currentMethod = currentClass.getCurrentMethod();
 		
@@ -268,6 +268,10 @@ public class TS {
 		if(var == null)
 			var = currentClass.getAttribute(identificador);
 		 
+		if(var == null && currentClass.fatherClass != null){
+			var = TS.findInheritedAttribute(identificador, currentClass.fatherClass); 
+		}
+		
 		// Se decidio que se el llamador quien debe verificar que si identificador no representa nada, entonces debe producirse un error semantico  		
 		// identificador podria ser alguna otra cosa, como por ej, un identificador de clase en una llamada calificada y yo desde aca no lo se
 		// el que llama a var tendra que seguir buscando y decidir cuando no se ha encontrado nada y corresponde disparar la excepcion
@@ -275,6 +279,15 @@ public class TS {
 		return var;	
 	}
 	
+	
+	public static EntryVar findInheritedAttribute(String name, EntryClass clase){
+		
+		EntryVar var = clase.getAttribute(name);
+		if(var == null && clase.fatherClass != null)
+			var = TS.findInheritedAttribute(name, clase.fatherClass);
+		
+		return var;
+	}
 	/*
 	 * Private Methods
 	 */

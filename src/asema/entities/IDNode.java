@@ -48,7 +48,7 @@ public class IDNode extends PrimaryNode {
 		}
 		
 		if(type == null)
-			throw new SemanticErrorException(String.format("Error (!). El identificador %s no puede ser resuelto. Linea $d", Identifier.getLexema(), Identifier.getLinea()));
+			throw new SemanticErrorException(String.format("Error (!). El identificador %s no puede ser resuelto. Linea %d", Identifier.getLexema(), Identifier.getLinea()));
 		
 		CodeGenerator.gen("# IDNode end");
 		return type;
