@@ -148,6 +148,28 @@ public class CodeGenerator {
 	}
 	
 	
+	public static void genDebug(String msg) {
+		
+		CodeGenerator.gen(Instructions.RMEM, 1);
+		CodeGenerator.gen(Instructions.PUSH, msg.length());
+		CodeGenerator.gen(Instructions.PUSH, "LMALLOC");
+		CodeGenerator.gen(Instructions.CALL);
+		
+		for(int i = 0; i < msg.length(); i++) {
+			CodeGenerator.gen(Instructions.DUP);
+			CodeGenerator.gen(Instructions.PUSH, msg.charAt(i));
+			CodeGenerator.gen(Instructions.STOREREF, i);
+		}
+		
+		CodeGenerator.gen(Instructions.DUP);
+		CodeGenerator.gen(Instructions.PUSH, 0);
+		CodeGenerator.gen(Instructions.STOREREF, msg.length());
+
+		CodeGenerator.gen("PUSH System_printSln");
+		CodeGenerator.gen("CALL");
+	}
+	
+	
 	/**
 	 * Close the buffer writer
 	 */
