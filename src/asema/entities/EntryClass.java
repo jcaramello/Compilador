@@ -176,25 +176,26 @@ public class EntryClass extends EntryBase{
 		CodeGenerator.gen(String.format(Instructions.VTLabel, this.Name), Instructions.NOP, true);
 		
 		TS.setCurrentClass(this.Name);		
-		String[] mets = new String[this.Methods.size()];
+		EntryMethod[] mets = new EntryMethod[this.Methods.size()];
 
 		int totalDynamicMethods = 0;
 		
 		for (EntryMethod em : Methods.values()) {
 			if(em.Modifier == ModifierMethodType.Dynamic){
-				mets[em.Offset] = em.Name;
+				mets[em.Offset] = em;
 				totalDynamicMethods++;
 			}
 		}
 		
-		for(int i = 0; i < totalDynamicMethods; i++) {					
-			CodeGenerator.gen(Instructions.DW, String.format("%s_%s", this.Name,mets[i]));
+		for(int i = 0; i < totalDynamicMethods; i++) {				
+			CodeGenerator.gen(Instructions.DW, mets[i].getLabelName());
 		}
 		
 		CodeGenerator.gen(Instructions.CODE_SECTION, true);
 		
 		for (EntryMethod em : Methods.values()) {
-			em.generate();
+			if(em.isDefinedIn(this))
+				em.generate();
 		}
 
 		this.Constructor.generate();

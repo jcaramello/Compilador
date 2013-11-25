@@ -369,4 +369,13 @@ public class EntryMethod extends EntryBase {
 
 
 	}
+	
+	public boolean isDefinedIn(EntryClass ec){
+		return this.ContainerClass == ec;
+	}
+	
+	public String getLabelName(){
+		return String.format("%s_%s", this.ContainerClass.Name, this.Name);
+	}
+	
 }
