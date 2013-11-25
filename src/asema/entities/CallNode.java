@@ -39,11 +39,12 @@ public class CallNode extends PrimaryNode {
 		
 		EntryClass clase;
 		
-		if(Context instanceof ThisNode) {  // !!!!!!
+		if(Context == null || Context.check() == null) {
 			clase = TS.getCurrentClass();
-			CodeGenerator.gen(Instructions.LOAD, 3);
-		}	
-		else clase = TS.getClass(Context.check().Name);
+			CodeGenerator.gen(Instructions.LOAD, 3);	
+		} else {
+			clase = TS.getClass(Context.check().Name);
+		}
 		
 		EntryMethod met = clase.getMethod(OperationName.Identifier.getLexema());
 		

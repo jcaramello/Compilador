@@ -20,6 +20,8 @@ public class AssignmentNode extends SentenceNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
+		CodeGenerator.gen("# AssignmentNode Start");
+				
 		Type t = leftSide.Type;
 		
 		if(!rigthSide.check().conforms(t))
@@ -31,9 +33,11 @@ public class AssignmentNode extends SentenceNode {
 		else {
 			CodeGenerator.gen(Instructions.LOAD, "3");
 			CodeGenerator.gen(Instructions.SWAP);
-			CodeGenerator.gen(Instructions.STORE, ""+ leftSide.Offset);
+			CodeGenerator.gen(Instructions.STOREREF, ""+ leftSide.Offset);
 		}
 			
+		CodeGenerator.gen("# AssignmentNode End");
+		
 		return t;
 	}
 
