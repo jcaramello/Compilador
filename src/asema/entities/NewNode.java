@@ -36,8 +36,6 @@ public class NewNode extends PrimaryNode {
 		CodeGenerator.gen(Instructions.STOREREF, "0");
 		CodeGenerator.gen(Instructions.DUP);
 		
-		CodeGenerator.genDebug();
-		
 		if(ActualsParameters.size() != cl.getConstructor().getFormalArgsCant())
 			throw new SemanticErrorException("Error(!). La cantidad de parámetros actuales del constructor debe coincidir con la cantidad de parámetros formales. Linea: "+ ClassName.getLinea());
 		
@@ -49,7 +47,7 @@ public class NewNode extends PrimaryNode {
 		
 		CodeGenerator.gen(Instructions.PUSH, cl.Name + "_" + cl.getConstructor().Name);
 		CodeGenerator.gen(Instructions.CALL);
-		
+
 		return new ClassType(cl);
 	}
 

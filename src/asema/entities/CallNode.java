@@ -41,7 +41,7 @@ public class CallNode extends PrimaryNode {
 			Context = new ThisNode();
 		
 		EntryClass clase =  TS.getClass(Context.check().Name);
-		
+
 		EntryMethod met = clase.getMethod(OperationName.Identifier.getLexema());
 		
 		if(ActualsParameters.size() != met.getFormalArgsCant())
@@ -73,9 +73,12 @@ public class CallNode extends PrimaryNode {
 				CodeGenerator.gen(Instructions.SWAP);
 			}
 			
-			CodeGenerator.gen(Instructions.DUP);
+			CodeGenerator.gen(Instructions.DUP);			
+			CodeGenerator.genDebug();					
 			CodeGenerator.gen(Instructions.LOADREF, 0); // offset de la VTable
-			CodeGenerator.gen(Instructions.LOADREF, met.Offset);
+			CodeGenerator.genDebug("VT: "); CodeGenerator.genDebug();			
+			CodeGenerator.gen(Instructions.LOADREF, met.Offset + 1); // Saltar el NOP
+			CodeGenerator.genDebug("Met off: " + met.Offset + " , i.e.:"); CodeGenerator.genDebug();
 			CodeGenerator.gen(Instructions.CALL);		
 		}
 		

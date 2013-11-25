@@ -1,0 +1,21 @@
+class M {
+
+	var int a, b, c;
+	var string s;
+	
+	static void main()
+	var M m1, m2;
+	{	
+		m2 = new M();	
+		(m2.test());
+		(System.printSln("Saliendo de test"));
+	}
+
+	dynamic void test()
+	{
+		s = "Asd";
+		(System.printSln(s));
+	}
+	
+}
+	
