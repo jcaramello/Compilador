@@ -37,10 +37,13 @@ public class CallNode extends PrimaryNode {
 		
 		CodeGenerator.gen("# CallNode start");
 		
-		if(Context == null)
-			Context = new ThisNode();
+		EntryClass clase;
 		
-		EntryClass clase =  TS.getClass(Context.check().Name);
+		if(Context instanceof ThisNode) {  // !!!!!!
+			clase = TS.getCurrentClass();
+			CodeGenerator.gen(Instructions.LOAD, 3);
+		}	
+		else clase = TS.getClass(Context.check().Name);
 		
 		EntryMethod met = clase.getMethod(OperationName.Identifier.getLexema());
 		
