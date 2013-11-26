@@ -79,7 +79,7 @@ Dirección   Cont.Mem.   Código CeIASM                           Referencia
         36           3  3                                       ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 36 columna: 9.
         37          32  SWAP                                    ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 37 columna: 4.
         38          83  STOREREF                                ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 38 columna: 4.
-        39          -1  -1                                      ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 38 columna: 13.
+        39           0  0                                       ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 38 columna: 13.
         40           1  PUSH                                    ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 42 columna: 4.
         41         317  VT_System                               ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 42 columna: 9.
         42          31  POP                                     ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 44 columna: 4.
@@ -88,7 +88,7 @@ Dirección   Cont.Mem.   Código CeIASM                           Referencia
         45          82  LOADREF                                 ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 47 columna: 4.
         46           0  0                                       ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 47 columna: 12.
         47           1  PUSH                                    ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 49 columna: 4.
-        48         160  System_printI                           ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 49 columna: 9.
+        48         174  System_printIln                         ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 49 columna: 9.
         49         100  CALL                                    ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 50 columna: 4.
         50         102  FMEM                                    ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 52 columna: 4.
         51           0  0                                       ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 52 columna: 9.
@@ -167,7 +167,7 @@ Dirección   Cont.Mem.   Código CeIASM                           Referencia
        124          82  LOADREF                                 ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 119 columna: 4.
        125           0  0                                       ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 119 columna: 12.
        126           1  PUSH                                    ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 121 columna: 4.
-       127         160  System_printI                           ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 121 columna: 9.
+       127         174  System_printIln                         ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 121 columna: 9.
        128         100  CALL                                    ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 122 columna: 4.
        129         102  FMEM                                    ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 124 columna: 4.
        130           0  0                                       ; Archivo: ClaseConMetodoRedefinido.correcto.ceivm línea: 124 columna: 9.

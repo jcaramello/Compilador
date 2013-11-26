@@ -35,7 +35,7 @@ Clase2_setA1: NOP
 		 ADD 
 		 LOAD 3
 		 SWAP 
-		 STOREREF -1
+		 STOREREF 0
 		 # AssignmentNode End 
 		 # CallNode start 
 		 # IDNode start 
@@ -46,7 +46,7 @@ Clase2_setA1: NOP
 		 LOAD 3
 		 LOADREF 0
 		 # IDNode end 
-		 PUSH System_printI
+		 PUSH System_printIln
 		 CALL 
 		 # CallNode end 
 		 FMEM 0
@@ -118,7 +118,7 @@ Clase1_setA1: NOP
 		 LOAD 3
 		 LOADREF 0
 		 # IDNode end 
-		 PUSH System_printI
+		 PUSH System_printIln
 		 CALL 
 		 # CallNode end 
 		 FMEM 0

@@ -17,5 +17,10 @@ class M {
 		(System.printSln(s));
 	}
 	
+	dynamic void thisTest()
+	{
+		(System.printSln("This funciona!));
+	}
+	
 }
 	

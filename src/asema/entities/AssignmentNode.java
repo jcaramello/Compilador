@@ -23,12 +23,10 @@ public class AssignmentNode extends SentenceNode {
 		
 		CodeGenerator.gen("# AssignmentNode Start");
 
-		EntryVar var = TS.findVar(leftSide.Name); 
-		if(var == null)
+		leftSide = TS.findVar(leftSide.Name); 
+		if(leftSide == null)
 			throw new SemanticErrorException(String.format("Error(!). %s no es un identificador valido. Linea: %d", leftSide.Token.getLexema(), leftSide.Token.getLinea()));
-		leftSide.Type = var.Type;
-		leftSide.Origin = var.Origin;
-		
+
 		Type t = leftSide.Type;			
 		
 		if(!rigthSide.check().conforms(t))

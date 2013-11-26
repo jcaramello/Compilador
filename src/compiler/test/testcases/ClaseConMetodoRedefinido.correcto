@@ -4,7 +4,7 @@ class Clase1{
 
 	dynamic void setA1(int newValue){
 		a1 = newValue;
-		(System.printI(a1));
+		(System.printIln(a1));
 	}	
 }
 
@@ -12,7 +12,7 @@ class Clase2 extends Clase1{
 
 	dynamic void setA1(int newValue){
 		a1 = newValue + 1;
-		(System.printI(a1));
+		(System.printIln(a1));
 	}	
 
 	static void main()
