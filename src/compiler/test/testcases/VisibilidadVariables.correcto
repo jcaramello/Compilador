@@ -1,0 +1,33 @@
+// Checkea que se acceda a la variable local con prioridad por sobre el atributo de clase del mismo nombre.
+// Resultado esperado: 4 3
+
+class ClaseConAtributos{
+
+	var int a1;
+
+	dynamic void newA1(int newValue)
+	var int a1;
+	{
+		a1 = newValue;
+		(System.printI(a1));
+	}
+	
+	dynamic void setA1()
+	{
+		a1 = 3;
+	}
+	
+	dynamic void getA1()
+	{
+		(System.printI(a1));
+	}
+
+	static void main()
+	var ClaseConAtributos obj;
+	{		 
+	  obj = new ClaseConAtributos();
+	  (obj.setA1());
+	  (obj.newA1(4));
+	  (obj.getA1());
+	}
+}
