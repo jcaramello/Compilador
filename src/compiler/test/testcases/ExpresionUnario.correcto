@@ -1,0 +1,15 @@
+// Test de operador unario "-". Resultados esperados: 1, -1, 1.
+
+class Test{
+
+	static void main()
+	var int i;
+	{		
+		i = 1;
+		(System.printIln(i));
+		i = -i;
+		(System.printIln(i));
+		i = -i;
+		(System.printIln(i));
+	}
+}

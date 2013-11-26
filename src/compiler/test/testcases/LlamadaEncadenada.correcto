@@ -1,0 +1,29 @@
+// Llamada encadenada: se llama a un método que devuelve un objeto al que se le invoca otro método.
+// Resultado esperado: true.
+
+class M {
+
+	var string s;
+	
+	static void main()
+	var M m;
+	{	
+		m = new M();	
+		(System.printBln((m.test().test2())));
+	}
+
+	dynamic X test()
+	{
+		return (new X());
+	}
+	
+}
+
+class X {
+
+	dynamic boolean test2()
+	{
+		return true;
+	}
+}
+	

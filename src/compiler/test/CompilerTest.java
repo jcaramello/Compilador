@@ -76,10 +76,13 @@ public class CompilerTest {
 			   //{"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
 			   //{"ExpresionIgualdadDesigualdadClase.correcto", null}
 			   //{"LlamadaConRetorno.correcto", null},
+			   //{"LlamadaConNew.correcto", null},
+			   {"LlamadaEncadenada.correcto", null}
 			   //{"SentenciaVacia.correcto", null},
 			   //{"ExpresionOr.correcto", null},
 			   //{"ExpresionAnd.correcto", null},
-			   {"ExpresionBoolean.correcto", null}
+			   //{"ExpresionBoolean.correcto", null}
+			   //{"ExpresionUnario.correcto", null}
 	   });
 	}
 	

@@ -1,13 +1,12 @@
+// Llamada a método aplicada directamente sobre un objeto anónimo.
+
 class M {
 
-	var int a, b, c;
 	var string s;
 	
 	static void main()
-	var M m1, m2;
 	{	
-		m2 = new M();	
-		(m2.test());
+		((new M()).test());
 	}
 
 	dynamic void test()
