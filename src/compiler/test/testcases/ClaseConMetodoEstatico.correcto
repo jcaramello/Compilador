@@ -1,0 +1,11 @@
+class ClaseConMetodoEstatico{	
+
+	static void metodoEstatico(){		
+		(System.printS("Clase con Metodo Estatico"));
+	}
+
+	static void main()	
+	{		 
+	  (ClaseConMetodoEstatico.metodoEstatico());	  
+	}
+}
