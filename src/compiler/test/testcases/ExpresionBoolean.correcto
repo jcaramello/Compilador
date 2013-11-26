@@ -1,0 +1,29 @@
+// Test complejo de expresiones booleanas. Involucra "!". Resultados esperados: true, false
+
+class Test{
+
+	static void main()
+	var Test t;
+	var boolean res;
+	{		
+		t = new Test();
+
+		res = (true && !false) && ((t.retornaTrue()) || (t.retornaFalse())) && 4 > 2;
+		(System.printBln(res));
+		
+		res = !res;
+		(System.printBln(res));
+	}
+	
+	dynamic boolean retornaTrue() 
+	{
+		return 1 == 1;
+	}
+	
+	dynamic boolean retornaFalse()
+	var boolean toRet;
+	{
+		toRet = false;
+		return toRet;
+	}
+}

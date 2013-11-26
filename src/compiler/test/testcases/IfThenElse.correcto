@@ -1,8 +1,14 @@
+// Test de if-then-else, primero yendo por la rama true y luego por false. Resultados esperados: 5, 3.
+
 class ifThenElseTest{
 
 	static void main(){
 		if(3 > 5)
-			(System.printI(3));
-		else (System.printI(4));
+			(System.printIln(3));
+		else (System.printIln(5));
+		
+		if(3 < 5)
+			(System.printIln(3));
+		else (System.printIln(5));
 	}
 }

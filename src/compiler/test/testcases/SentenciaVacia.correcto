@@ -1,0 +1,13 @@
+// Se muestra el uso de una sentencia vacía y el hecho de que la pila no queda en un estado inconsistente después.
+
+class ifThenElseTest{
+
+	static void main(){
+		if(6 > 5)
+			;
+		else ;
+		
+		(System.printSln("Exito"));
+		
+	}
+}

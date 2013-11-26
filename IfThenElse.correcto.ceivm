@@ -21,7 +21,7 @@ LMALLOC: NOP
 .DATA 
 VT_ifThenElseTest: NOP
 .CODE 
-		 Main__method: NOP 
+Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
@@ -33,20 +33,49 @@ VT_ifThenElseTest: NOP
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 PUSH 3
-		 PUSH System_printI
+		 PUSH System_printIln
 		 CALL 
+		 # CallNode end 
 		 JUMP L2
 L1: NOP 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
-		 PUSH 4
-		 PUSH System_printI
+		 PUSH 5
+		 PUSH System_printIln
 		 CALL 
+		 # CallNode end 
 L2: NOP 
+		 PUSH 3
+		 PUSH 5
+		 LT 
+		 BF L3
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 PUSH 3
+		 PUSH System_printIln
+		 CALL 
+		 # CallNode end 
+		 JUMP L4
+L3: NOP 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 PUSH 5
+		 PUSH System_printIln
+		 CALL 
+		 # CallNode end 
+L4: NOP 
 		 FMEM 0
 		 STOREFP 
 		 RET 0

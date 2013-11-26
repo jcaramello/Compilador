@@ -75,7 +75,11 @@ public class CompilerTest {
 			   //{"ExpresionComparaciones.correcto", null},
 			   //{"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
 			   //{"ExpresionIgualdadDesigualdadClase.correcto", null}
-			   {"LlamadaConRetorno.correcto", null}
+			   //{"LlamadaConRetorno.correcto", null},
+			   //{"SentenciaVacia.correcto", null},
+			   //{"ExpresionOr.correcto", null},
+			   //{"ExpresionAnd.correcto", null},
+			   {"ExpresionBoolean.correcto", null}
 	   });
 	}
 	

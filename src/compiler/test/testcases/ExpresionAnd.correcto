@@ -1,0 +1,32 @@
+// Test exhaustivo de && en expresiones booleanas.
+
+class Test{
+
+	static void main()
+	var boolean res;
+	{		
+		(System.printSln("true && false"));
+		res = true && false;	
+		(System.printBln(res));
+	
+		(System.printSln("false && true"));
+		res = false && true;	
+		(System.printBln(res));	
+		
+		(System.printSln("true && true"));
+		res = true && true;	
+		(System.printBln(res));
+		
+		(System.printSln("false && false"));
+		res = false && false;	
+		(System.printBln(res));
+		
+		(System.printSln("true && 3 > 1"));
+		res = true && 3 > 1;	
+		(System.printBln(res));
+		
+		(System.printSln("2 == 3 && true"));
+		res = 2 == 3 && true;	
+		(System.printBln(res));
+	}
+}

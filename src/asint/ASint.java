@@ -1196,11 +1196,12 @@ public class ASint {
 	
 		ExpressionNode factor = null;
 		getToken();
-		
+
+		Token clone = new Token(curr.getTokenType(), curr.getLexema(), curr.getLinea());
 		if(curr.getTokenType() == TokenType.NotOperator ||
 		   curr.getTokenType() == TokenType.PlusOperator ||
 		   curr.getTokenType() == TokenType.RestOperator){			
-			factor = new UnaryExpressionNode(factor(), curr);
+			factor = new UnaryExpressionNode(factor(), clone);
 			
 		}else {
 			reuseToken();
