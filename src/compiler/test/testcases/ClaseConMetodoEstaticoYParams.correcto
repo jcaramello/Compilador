@@ -1,0 +1,11 @@
+class ClaseConMetodoEstaticoYParams{	
+
+	static void metodoEstatico(string p1){		
+		(System.printS(p1));
+	}
+
+	static void main()	
+	{		 
+	  (ClaseConMetodoEstaticoYParams.metodoEstatico("Clase con Metodo Estatico"));	  
+	}
+}
