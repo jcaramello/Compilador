@@ -52,7 +52,7 @@ public class CallNode extends PrimaryNode {
 			
 			for(int i = 0; i < ActualsParameters.size(); i++) {
 				if(!ActualsParameters.get(i).check().conforms(met.getFormalArgByIndex(i).Type))
-						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales.");
+						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro " + i);
 			}
 			
 			if(!met.ReturnType.equals(VoidType.VoidType))
@@ -69,7 +69,7 @@ public class CallNode extends PrimaryNode {
 			
 			for(int i = 0; i < ActualsParameters.size(); i++) {
 				if(!ActualsParameters.get(i).check().conforms(met.getFormalArgByIndex(i).Type))
-						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales.");				
+						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro " + i);				
 				CodeGenerator.gen(Instructions.SWAP);
 			}
 			
