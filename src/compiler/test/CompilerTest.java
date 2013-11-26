@@ -1,9 +1,5 @@
 package compiler.test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,7 +10,6 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.rules.ExpectedException;
 import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
@@ -28,7 +23,6 @@ import common.CodeGenerator;
 import common.Logger;
 
 import enums.LogType;
-import enums.TokenType;
 
 
 @RunWith(Parameterized.class)
@@ -46,41 +40,48 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   //{"ClaseVaciaTest.correcto", null},
-			   //{"ClaseHelloWordTest.correcto", null},
-			   //{"PrintB.correcto", null},
-			   //{"PrintC.correcto", null},
-			   //{"PrintI.correcto", null},
-			   //{"PrintS.correcto", null},
-			   //{"PrintSln.correcto", null},
-			   //{"Read.correcto", null}			  
-			   //{"IfThen.correcto", null},
-			   //{"IfThenElse.correcto", null},
-			   //{"For.correcto", null},
-			   //{"While.correcto", null},
-			   //{"Asignacion.correcto", null},
-			   //{"BloqueAnidado.correcto", null},
-			   //{"ClaseCtorDefault.correcto", null},
-			   //{"ClaseCtorCustom.correcto", null},
-			   //{"ClaseCtorCustomYParams.correcto", null},
-			   //{"ClaseConAtributo.correcto", null},
-			   //{"DosClases.correcto", null},
-			   //{"ClaseConHerencia.correcto", null},
-			   //{"ClaseConMetodoRedefinido.correcto", null},
-			   //{"ClaseConMetodoEstatico.correcto", null},
-			   //{"ClaseConMetodoEstaticoYParams.correcto", null},
-			   //{"ClaseConMetodoDinamico.correcto", null},
+			   {"ClaseVaciaTest.correcto", null},
+			   {"ClaseHelloWordTest.correcto", null},
+			   {"PrintB.correcto", null},
+			   {"PrintC.correcto", null},
+			   {"PrintI.correcto", null},
+			   {"PrintS.correcto", null},
+			   {"PrintSln.correcto", null},
+			   {"Read.correcto", null},	  
+			   {"IfThen.correcto", null},
+			   {"IfThenElse.correcto", null},
+			   {"For.correcto", null},
+			   {"While.correcto", null},
+			   {"Asignacion.correcto", null},
+			   {"BloqueAnidado.correcto", null},
+			   {"ClaseCtorDefault.correcto", null},
+			   {"ClaseCtorCustom.correcto", null},
+			   {"ClaseCtorCustomYParams.correcto", null},
+			   {"ClaseConAtributo.correcto", null},
+			   {"DosClases.correcto", null},
+			   {"ClaseConHerencia.correcto", null},
+			   {"ClaseConMetodoRedefinido.correcto", null},
+			   {"ClaseConMetodoEstatico.correcto", null},
+			   {"ClaseConMetodoEstaticoYParams.correcto", null},
+			   {"ClaseConMetodoDinamico.correcto", null},
 			   {"ClaseConMetodoDinamicoYParams.correcto", null},
-			   //{"This.correcto", null},
-			   //{"ClaseConMultiplesAtributos.correcto", null},
-			   //{"AsignacionTipoClase.correcto", null}
-			   //{"ExpresionSR.correcto", null},
-			   //{"ExpresionMulDivMod.correcto", null},
-			   //{"ExpresionComparaciones.correcto", null},
-			   //{"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
-			   //{"ExpresionIgualdadDesigualdadClase.correcto", null}
-			   //{"LlamadaConRetorno.correcto", null},
+			   {"This.correcto", null},
+			   {"ClaseConMultiplesAtributos.correcto", null},
+			   {"AsignacionTipoClase.correcto", null},
+			   {"ExpresionSR.correcto", null},
+			   {"ExpresionMulDivMod.correcto", null},
+			   {"ExpresionComparaciones.correcto", null},
+			   {"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
+			   {"ExpresionIgualdadDesigualdadClase.correcto", null},
+			   {"LlamadaConRetorno.correcto", null},
 			   //{"LlamadaConNew.correcto", null},
+
+			   //{"LlamadaEncadenada.correcto", null},
+			   {"SentenciaVacia.correcto", null},
+			   {"ExpresionOr.correcto", null},
+			   {"ExpresionAnd.correcto", null},
+			   {"ExpresionBoolean.correcto", null},
+			   //{"ExpresionUnario.correcto", null},
 			   //{"LlamadaEncadenada.correcto", null}
 			   //{"LlamadaConParams.correcto", null}
 			   //{"SentenciaVacia.correcto", null},
@@ -94,12 +95,14 @@ public class CompilerTest {
     @Before
     public void setUp() {
         Application.isTesting = false; // i.e. no estamos testeando el ALex
-        Application.logType = LogType.Console;     
+        Application.logType = LogType.Console;  
+        CodeGenerator.refresh();
     }
 
     @After
     public void tearDown() {
-        
+    	Logger.close();
+    	CodeGenerator.close();    		
     }
     
     @Rule
@@ -123,12 +126,8 @@ public class CompilerTest {
 			} catch (SemanticErrorException e) {
 				Logger.log(e.getMessage());
 				assertEquals(e.getMessage(), expected);
-			}finally{
-				Logger.close();
-				CodeGenerator.close();
-			}
-			
-					
+			}						
 	}
 	
 }
+

@@ -185,4 +185,9 @@ public class CodeGenerator {
 		}
 	}
 	
+	public static void refresh(){
+		
+		CodeGenerator.current = null;
+	}
+	
 }
