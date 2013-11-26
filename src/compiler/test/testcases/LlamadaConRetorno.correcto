@@ -1,0 +1,24 @@
+// Llamada a método con un tipo de retorno, almacenando su valor y usado como parámetro de otro método.
+
+class M {
+
+	static void main()
+	var M m1;
+	var int res;
+	{	
+		m1 = new M();	
+		res = m1.test();
+		(System.printS("Almacenando el valor en res: "));
+		(System.printIln(res));
+		(System.printS("Imprimiendo de forma directa: "));
+		(System.printIln((m1.test())));	
+	}
+
+	dynamic int test()
+	{
+		return 1 + 1;
+	}
+	
+	
+}
+	

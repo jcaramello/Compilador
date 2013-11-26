@@ -1,0 +1,15 @@
+// Multiplicación, división y módulo de expresiones. Resultados esperados: 8, 4, 1
+
+class Test{
+
+	static void main()
+	var int i;
+	{		
+		i = 2 * 4;	
+		(System.printIln(i));
+		i = i / 2;
+		(System.printIln(i));
+		i = i % 3;
+		(System.printIln(i));
+	}
+}

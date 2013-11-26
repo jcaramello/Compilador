@@ -1,0 +1,46 @@
+// Tests de operadores ==, != con tipos clase.
+
+class Test{
+
+	static void main()
+	var ObjA a1, a2;
+	var ObjB b1;
+	var boolean res;
+	{		
+		a1 = new ObjA();
+		a2 = new ObjA();
+		b1 = new ObjB();
+		
+		(System.printSln("a1 == a1"));
+		res = a1 == a1;	
+		(System.printBln(res));
+		
+		(System.printSln("a1 == a2"));
+		res = a1 == a2;	
+		(System.printBln(res));
+		
+		(System.printSln("a1 == b1"));
+		res = a1 == b1;	
+		(System.printBln(res));
+		
+		(System.printSln("a1 != a1"));
+		res = a1 != a1;	
+		(System.printBln(res));
+		
+		(System.printSln("a1 != b1"));
+		res = a1 != b1;	
+		(System.printBln(res));
+		
+		(System.printSln("a1 != a2"));
+		res = a1 != a2;	
+		(System.printBln(res));
+	}
+}
+
+class ObjA {
+
+}
+
+class ObjB extends ObjA {
+
+}

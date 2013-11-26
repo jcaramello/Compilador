@@ -1,0 +1,26 @@
+// Se espera que funcione this.setS() y que por lo tanto se imprima "Exito".
+
+class M {
+
+	var string s;
+	
+	static void main()
+	var M m1, m2;
+	{	
+		m2 = new M();	
+		(m2.test());
+	}
+
+	dynamic void test()
+	{
+		((this).setS());
+		(System.printSln(s));
+	}
+	
+	dynamic void setS()
+	{
+		s = "Exito";
+	}
+	
+}
+	

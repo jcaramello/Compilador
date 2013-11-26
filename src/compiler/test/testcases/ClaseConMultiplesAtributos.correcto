@@ -1,0 +1,27 @@
+// Correcto funcionamiento de varios atributos y sus offsets. Debería mostrar los valores de los atributos (1, 2, 3) y su suma.
+
+class ClaseConAtributos{
+
+	var int a1, a2, a3;
+	var string s;
+
+	dynamic void show(){
+		a1 = 1;
+		(System.printIln(a1));
+		a2 = 2;
+		(System.printIln(a2));
+		a3 = 3;
+		(System.printIln(a3));
+		s = "Suma de los atributos con valor 1, 2 y 3: ";
+		(System.printSln(s));
+		a1 = a1 + a2 + a3;
+		(System.printIln(a1));
+	}
+
+	static void main()
+	var ClaseConAtributos obj;	
+	{		 
+	  obj = new ClaseConAtributos();
+	  (obj.show());	  
+	}
+}

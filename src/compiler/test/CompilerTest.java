@@ -66,8 +66,16 @@ public class CompilerTest {
 			   //{"ClaseConAtributo.correcto", null},
 			   //{"DosClases.correcto", null},
 			   //{"ClaseConHerencia.correcto", null},
-			   {"ClaseConMetodoRedefinido.correcto", null},
-			   //{"This.correcto", null}
+			   //{"ClaseConMetodoRedefinido.correcto", null},
+			   //{"This.correcto", null},
+			   //{"ClaseConMultiplesAtributos.correcto", null},
+			   //{"AsignacionTipoClase.correcto", null}
+			   //{"ExpresionSR.correcto", null},
+			   //{"ExpresionMulDivMod.correcto", null},
+			   //{"ExpresionComparaciones.correcto", null},
+			   //{"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
+			   //{"ExpresionIgualdadDesigualdadClase.correcto", null}
+			   {"LlamadaConRetorno.correcto", null}
 	   });
 	}
 	
