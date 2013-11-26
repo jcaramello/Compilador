@@ -25,7 +25,7 @@ public class ReturnNode extends SentenceNode {
 			if(!Expression.check().conforms(met.ReturnType))
 				throw new SemanticErrorException("El tipo de la expresión de retorno de un método debe conformar al tipo del método.");
 			
-			CodeGenerator.gen(Instructions.STORE, met.getFormalArgsCant() + 3); // esto está bien?
+			CodeGenerator.gen(Instructions.STORE, met.getFormalArgsCant() + 4); // esto está bien?
 		}	
 		
 		int toFree = met.getFormalArgsCant();
