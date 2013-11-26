@@ -6,6 +6,6 @@ class ClaseConMetodoEstaticoYParams{
 
 	static void main()	
 	{		 
-	  (ClaseConMetodoEstaticoYParams.metodoEstatico("Clase con Metodo Estatico"));	  
+	  (ClaseConMetodoEstaticoYParams.metodoEstatico("Clase con Metodo Estatico y params"));	  
 	}
 }

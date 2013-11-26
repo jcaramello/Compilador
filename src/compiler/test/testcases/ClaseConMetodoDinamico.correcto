@@ -1,0 +1,13 @@
+class ClaseConMetodoDinamico{	
+
+	dynamic void metodoDinamico(){		
+		(System.printS("Clase con metodo dinamico"));
+	}
+
+	static void main()	
+	var ClaseConMetodoDinamico obj;
+	{		 
+	  obj = new ClaseConMetodoDinamico();
+	  (obj.metodoDinamico());	  
+	}
+}
