@@ -19,37 +19,8 @@ LMALLOC: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
-VT_ClaseConAtributo: NOP
-		 DW ClaseConAtributo_setA1
+VT_ClaseCtorDefaultTest: NOP
 .CODE 
-ClaseConAtributo_setA1: NOP
-		 LOADFP 
-		 LOADSP 
-		 STOREFP 
-		 RMEM 0
-		 # AssignmentNode Start 
-		 # IDNode start 
-		 LOAD 4
-		 # IDNode end 
-		 LOAD 3
-		 SWAP 
-		 STOREREF 0
-		 # AssignmentNode End 
-		 # CallNode start 
-		 # IDNode start 
-		 PUSH VT_System
-		 # IDNode end 
-		 POP 
-		 # IDNode start 
-		 LOAD 3
-		 LOADREF 0
-		 # IDNode end 
-		 PUSH System_printI
-		 CALL 
-		 # CallNode end 
-		 FMEM 0
-		 STOREFP 
-		 RET 2
 Main__method: NOP
 		 LOADFP 
 		 LOADSP 
@@ -57,32 +28,21 @@ Main__method: NOP
 		 RMEM 1
 		 # AssignmentNode Start 
 		 RMEM 1
-		 PUSH 2
+		 PUSH 1
 		 PUSH LMALLOC
 		 CALL 
 		 DUP 
-		 PUSH VT_ClaseConAtributo
+		 PUSH VT_ClaseCtorDefaultTest
 		 STOREREF 0
 		 DUP 
-		 PUSH ClaseConAtributo_DefaultCtor
+		 PUSH ClaseCtorDefaultTest_DefaultCtor
 		 CALL 
 		 STORE 0
 		 # AssignmentNode End 
-		 # CallNode start 
-		 # IDNode start 
-		 LOAD 0
-		 # IDNode end 
-		 PUSH 4
-		 SWAP 
-		 DUP 
-		 LOADREF 0
-		 LOADREF 1
-		 CALL 
-		 # CallNode end 
 		 FMEM 1
 		 STOREFP 
 		 RET 0
-ClaseConAtributo_DefaultCtor: NOP
+ClaseCtorDefaultTest_DefaultCtor: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 

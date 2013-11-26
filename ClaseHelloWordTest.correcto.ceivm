@@ -88,11 +88,13 @@ System_read: NOP
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 FMEM 1
 		 READ 
+		 STORE 3
+		 STOREFP 
+		 RET 0
 		 FMEM 0
 		 STOREFP 
-		 RET 1
+		 RET 0
 System_printBln: NOP
 		 LOADFP 
 		 LOADSP 
@@ -131,11 +133,11 @@ System_DefaultCtor: NOP
 		 RMEM 0
 		 FMEM 0
 		 STOREFP 
-		 RET 2
+		 RET 1
 .DATA 
 VT_ClaseHelloWordTest: NOP
 .CODE 
-		 Main__method: NOP 
+Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
@@ -143,58 +145,51 @@ VT_ClaseHelloWordTest: NOP
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 RMEM 1
-		 PUSH 15
+		 PUSH 14
 		 PUSH LMALLOC
 		 CALL 
 		 DUP 
-		 PUSH 34
+		 PUSH 72
 		 STOREREF 0
 		 DUP 
-		 PUSH 72
+		 PUSH 101
 		 STOREREF 1
 		 DUP 
-		 PUSH 101
+		 PUSH 108
 		 STOREREF 2
 		 DUP 
 		 PUSH 108
 		 STOREREF 3
 		 DUP 
-		 PUSH 108
+		 PUSH 111
 		 STOREREF 4
 		 DUP 
-		 PUSH 111
+		 PUSH 32
 		 STOREREF 5
 		 DUP 
-		 PUSH 32
+		 PUSH 119
 		 STOREREF 6
 		 DUP 
-		 PUSH 119
+		 PUSH 111
 		 STOREREF 7
 		 DUP 
-		 PUSH 111
+		 PUSH 114
 		 STOREREF 8
 		 DUP 
-		 PUSH 114
+		 PUSH 100
 		 STOREREF 9
 		 DUP 
-		 PUSH 100
+		 PUSH 33
 		 STOREREF 10
 		 DUP 
-		 PUSH 33
-		 STOREREF 11
-		 DUP 
-		 PUSH 33
-		 STOREREF 12
-		 DUP 
-		 PUSH 34
-		 STOREREF 13
-		 DUP 
 		 PUSH 0
-		 STOREREF 14
+		 STOREREF 11
 		 PUSH System_printS
 		 CALL 
+		 # CallNode end 
 		 FMEM 0
 		 STOREFP 
 		 RET 0
@@ -205,7 +200,7 @@ ClaseHelloWordTest_DefaultCtor: NOP
 		 RMEM 0
 		 FMEM 0
 		 STOREFP 
-		 RET 2
+		 RET 1
 .DATA 
 VT_Object: NOP
 .CODE 
@@ -216,5 +211,5 @@ Object_DefaultCtor: NOP
 		 RMEM 0
 		 FMEM 0
 		 STOREFP 
-		 RET 2
+		 RET 1
 		 HALT 

@@ -21,11 +21,12 @@ LMALLOC: NOP
 .DATA 
 VT_ClaseCtorCustomYParamsTest: NOP
 .CODE 
-		 Main__method: NOP 
+Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
 		 RMEM 1
+		 # AssignmentNode Start 
 		 RMEM 1
 		 PUSH 1
 		 PUSH LMALLOC
@@ -84,6 +85,7 @@ VT_ClaseCtorCustomYParamsTest: NOP
 		 PUSH ClaseCtorCustomYParamsTest_ClaseCtorCustomYParamsTest
 		 CALL 
 		 STORE 0
+		 # AssignmentNode End 
 		 FMEM 1
 		 STOREFP 
 		 RET 0
@@ -95,53 +97,71 @@ ClaseCtorCustomYParamsTest_ClaseCtorCustomYParamsTest: NOP
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 # IDNode start 
 		 LOAD 7
+		 # IDNode end 
 		 PUSH System_printI
 		 CALL 
+		 # CallNode end 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 PUSH System_println
 		 CALL 
+		 # CallNode end 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 # IDNode start 
 		 LOAD 6
+		 # IDNode end 
 		 PUSH System_printC
 		 CALL 
+		 # CallNode end 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 PUSH System_println
 		 CALL 
+		 # CallNode end 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 # IDNode start 
 		 LOAD 5
+		 # IDNode end 
 		 PUSH System_printS
 		 CALL 
+		 # CallNode end 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 PUSH System_println
 		 CALL 
+		 # CallNode end 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 # IDNode start 
 		 LOAD 4
+		 # IDNode end 
 		 PUSH System_printB
 		 CALL 
+		 # CallNode end 
 		 FMEM 0
 		 STOREFP 
 		 RET 5

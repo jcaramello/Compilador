@@ -21,32 +21,41 @@ LMALLOC: NOP
 .DATA 
 VT_WhileTest: NOP
 .CODE 
-		 Main__method: NOP 
+Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
 		 RMEM 1
+		 # AssignmentNode Start 
 		 PUSH 0
 		 STORE 0
+		 # AssignmentNode End 
 L1: NOP 
 		 # IDNode start 
 		 LOAD 0
+		 # IDNode end 
 		 PUSH 10
 		 LT 
 		 BF L2
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 # IDNode start 
 		 LOAD 0
+		 # IDNode end 
 		 PUSH System_printI
 		 CALL 
+		 # CallNode end 
+		 # AssignmentNode Start 
 		 # IDNode start 
 		 LOAD 0
+		 # IDNode end 
 		 PUSH 1
 		 ADD 
 		 STORE 0
+		 # AssignmentNode End 
 		 JUMP L1
 L2: NOP 
 		 FMEM 1

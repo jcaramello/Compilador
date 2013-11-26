@@ -19,24 +19,21 @@ LMALLOC: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
-VT_ClaseConMetodoEstaticoYParams: NOP
+VT_M: NOP
+		 DW M_test
 .CODE 
-ClaseConMetodoEstaticoYParams_metodoEstatico: NOP
+M_test: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 # CallNode start 
-		 # IDNode start 
-		 PUSH VT_System
-		 # IDNode end 
-		 POP 
-		 # IDNode start 
-		 LOAD 3
-		 # IDNode end 
-		 PUSH System_printS
-		 CALL 
-		 # CallNode end 
+		 PUSH 1
+		 PUSH 1
+		 ADD 
+		 STORE 4
+		 FMEM 0
+		 STOREFP 
+		 RET 1
 		 FMEM 0
 		 STOREFP 
 		 RET 1
@@ -44,128 +41,275 @@ Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
-		 RMEM 0
-		 # CallNode start 
-		 # IDNode start 
-		 PUSH VT_ClaseConMetodoEstaticoYParams
-		 # IDNode end 
-		 POP 
+		 RMEM 2
+		 # AssignmentNode Start 
 		 RMEM 1
-		 PUSH 37
+		 PUSH 1
 		 PUSH LMALLOC
 		 CALL 
 		 DUP 
-		 PUSH 67
+		 PUSH VT_M
+		 STOREREF 0
+		 DUP 
+		 PUSH M_DefaultCtor
+		 CALL 
+		 STORE 0
+		 # AssignmentNode End 
+		 # AssignmentNode Start 
+		 # CallNode start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 RMEM 1
+		 SWAP 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 1
+		 CALL 
+		 # CallNode end 
+		 STORE -1
+		 # AssignmentNode End 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 RMEM 1
+		 PUSH 32
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH 65
 		 STOREREF 0
 		 DUP 
 		 PUSH 108
 		 STOREREF 1
 		 DUP 
-		 PUSH 97
+		 PUSH 109
 		 STOREREF 2
 		 DUP 
-		 PUSH 115
+		 PUSH 97
 		 STOREREF 3
 		 DUP 
-		 PUSH 101
+		 PUSH 99
 		 STOREREF 4
 		 DUP 
-		 PUSH 32
+		 PUSH 101
 		 STOREREF 5
 		 DUP 
-		 PUSH 99
+		 PUSH 110
 		 STOREREF 6
 		 DUP 
-		 PUSH 111
+		 PUSH 97
 		 STOREREF 7
 		 DUP 
 		 PUSH 110
 		 STOREREF 8
 		 DUP 
-		 PUSH 32
+		 PUSH 100
 		 STOREREF 9
 		 DUP 
-		 PUSH 77
+		 PUSH 111
 		 STOREREF 10
 		 DUP 
-		 PUSH 101
+		 PUSH 32
 		 STOREREF 11
 		 DUP 
-		 PUSH 116
+		 PUSH 101
 		 STOREREF 12
 		 DUP 
-		 PUSH 111
+		 PUSH 108
 		 STOREREF 13
 		 DUP 
-		 PUSH 100
+		 PUSH 32
 		 STOREREF 14
 		 DUP 
-		 PUSH 111
+		 PUSH 118
 		 STOREREF 15
 		 DUP 
-		 PUSH 32
+		 PUSH 97
 		 STOREREF 16
 		 DUP 
-		 PUSH 69
+		 PUSH 108
 		 STOREREF 17
 		 DUP 
-		 PUSH 115
+		 PUSH 111
 		 STOREREF 18
 		 DUP 
-		 PUSH 116
+		 PUSH 114
 		 STOREREF 19
 		 DUP 
-		 PUSH 97
+		 PUSH 32
 		 STOREREF 20
 		 DUP 
-		 PUSH 116
+		 PUSH 101
+		 STOREREF 21
+		 DUP 
+		 PUSH 110
+		 STOREREF 22
+		 DUP 
+		 PUSH 32
+		 STOREREF 23
+		 DUP 
+		 PUSH 114
+		 STOREREF 24
+		 DUP 
+		 PUSH 101
+		 STOREREF 25
+		 DUP 
+		 PUSH 115
+		 STOREREF 26
+		 DUP 
+		 PUSH 58
+		 STOREREF 27
+		 DUP 
+		 PUSH 32
+		 STOREREF 28
+		 DUP 
+		 PUSH 0
+		 STOREREF 29
+		 PUSH System_printS
+		 CALL 
+		 # CallNode end 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # IDNode start 
+		 LOAD -1
+		 # IDNode end 
+		 PUSH System_printIln
+		 CALL 
+		 # CallNode end 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 RMEM 1
+		 PUSH 33
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH 73
+		 STOREREF 0
+		 DUP 
+		 PUSH 109
+		 STOREREF 1
+		 DUP 
+		 PUSH 112
+		 STOREREF 2
+		 DUP 
+		 PUSH 114
+		 STOREREF 3
+		 DUP 
+		 PUSH 105
+		 STOREREF 4
+		 DUP 
+		 PUSH 109
+		 STOREREF 5
+		 DUP 
+		 PUSH 105
+		 STOREREF 6
+		 DUP 
+		 PUSH 101
+		 STOREREF 7
+		 DUP 
+		 PUSH 110
+		 STOREREF 8
+		 DUP 
+		 PUSH 100
+		 STOREREF 9
+		 DUP 
+		 PUSH 111
+		 STOREREF 10
+		 DUP 
+		 PUSH 32
+		 STOREREF 11
+		 DUP 
+		 PUSH 100
+		 STOREREF 12
+		 DUP 
+		 PUSH 101
+		 STOREREF 13
+		 DUP 
+		 PUSH 32
+		 STOREREF 14
+		 DUP 
+		 PUSH 102
+		 STOREREF 15
+		 DUP 
+		 PUSH 111
+		 STOREREF 16
+		 DUP 
+		 PUSH 114
+		 STOREREF 17
+		 DUP 
+		 PUSH 109
+		 STOREREF 18
+		 DUP 
+		 PUSH 97
+		 STOREREF 19
+		 DUP 
+		 PUSH 32
+		 STOREREF 20
+		 DUP 
+		 PUSH 100
 		 STOREREF 21
 		 DUP 
 		 PUSH 105
 		 STOREREF 22
 		 DUP 
-		 PUSH 99
+		 PUSH 114
 		 STOREREF 23
 		 DUP 
-		 PUSH 111
+		 PUSH 101
 		 STOREREF 24
 		 DUP 
-		 PUSH 32
+		 PUSH 99
 		 STOREREF 25
 		 DUP 
-		 PUSH 121
+		 PUSH 116
 		 STOREREF 26
 		 DUP 
-		 PUSH 32
+		 PUSH 97
 		 STOREREF 27
 		 DUP 
-		 PUSH 112
+		 PUSH 58
 		 STOREREF 28
 		 DUP 
-		 PUSH 97
+		 PUSH 32
 		 STOREREF 29
 		 DUP 
-		 PUSH 114
-		 STOREREF 30
-		 DUP 
-		 PUSH 97
-		 STOREREF 31
-		 DUP 
-		 PUSH 109
-		 STOREREF 32
-		 DUP 
-		 PUSH 115
-		 STOREREF 33
-		 DUP 
 		 PUSH 0
-		 STOREREF 34
-		 PUSH ClaseConMetodoEstaticoYParams_metodoEstatico
+		 STOREREF 30
+		 PUSH System_printS
 		 CALL 
 		 # CallNode end 
-		 FMEM 0
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # CallNode start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 RMEM 1
+		 SWAP 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 1
+		 CALL 
+		 # CallNode end 
+		 PUSH System_printIln
+		 CALL 
+		 # CallNode end 
+		 FMEM 2
 		 STOREFP 
 		 RET 0
-ClaseConMetodoEstaticoYParams_DefaultCtor: NOP
+M_DefaultCtor: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 

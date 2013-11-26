@@ -21,11 +21,12 @@ LMALLOC: NOP
 .DATA 
 VT_ClaseCtorCustomTest: NOP
 .CODE 
-		 Main__method: NOP 
+Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
 		 RMEM 1
+		 # AssignmentNode Start 
 		 RMEM 1
 		 PUSH 1
 		 PUSH LMALLOC
@@ -37,6 +38,7 @@ VT_ClaseCtorCustomTest: NOP
 		 PUSH ClaseCtorCustomTest_ClaseCtorCustomTest
 		 CALL 
 		 STORE 0
+		 # AssignmentNode End 
 		 FMEM 1
 		 STOREFP 
 		 RET 0
@@ -48,6 +50,7 @@ ClaseCtorCustomTest_ClaseCtorCustomTest: NOP
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 RMEM 1
 		 PUSH 14
@@ -91,6 +94,7 @@ ClaseCtorCustomTest_ClaseCtorCustomTest: NOP
 		 STOREREF 11
 		 PUSH System_printS
 		 CALL 
+		 # CallNode end 
 		 FMEM 0
 		 STOREFP 
 		 RET 1

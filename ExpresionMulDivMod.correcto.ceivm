@@ -19,21 +19,18 @@ LMALLOC: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
-VT_ClaseConAtributo: NOP
-		 DW ClaseConAtributo_setA1
+VT_Test: NOP
 .CODE 
-ClaseConAtributo_setA1: NOP
+Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
-		 RMEM 0
+		 RMEM 1
 		 # AssignmentNode Start 
-		 # IDNode start 
-		 LOAD 4
-		 # IDNode end 
-		 LOAD 3
-		 SWAP 
-		 STOREREF 0
+		 PUSH 2
+		 PUSH 4
+		 MUL 
+		 STORE 0
 		 # AssignmentNode End 
 		 # CallNode start 
 		 # IDNode start 
@@ -41,48 +38,53 @@ ClaseConAtributo_setA1: NOP
 		 # IDNode end 
 		 POP 
 		 # IDNode start 
-		 LOAD 3
-		 LOADREF 0
+		 LOAD 0
 		 # IDNode end 
-		 PUSH System_printI
+		 PUSH System_printIln
 		 CALL 
 		 # CallNode end 
-		 FMEM 0
-		 STOREFP 
-		 RET 2
-Main__method: NOP
-		 LOADFP 
-		 LOADSP 
-		 STOREFP 
-		 RMEM 1
 		 # AssignmentNode Start 
-		 RMEM 1
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
 		 PUSH 2
-		 PUSH LMALLOC
-		 CALL 
-		 DUP 
-		 PUSH VT_ClaseConAtributo
-		 STOREREF 0
-		 DUP 
-		 PUSH ClaseConAtributo_DefaultCtor
-		 CALL 
+		 DIV 
 		 STORE 0
 		 # AssignmentNode End 
 		 # CallNode start 
 		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # IDNode start 
 		 LOAD 0
 		 # IDNode end 
-		 PUSH 4
-		 SWAP 
-		 DUP 
-		 LOADREF 0
-		 LOADREF 1
+		 PUSH System_printIln
+		 CALL 
+		 # CallNode end 
+		 # AssignmentNode Start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 PUSH 3
+		 MOD 
+		 STORE 0
+		 # AssignmentNode End 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 PUSH System_printIln
 		 CALL 
 		 # CallNode end 
 		 FMEM 1
 		 STOREFP 
 		 RET 0
-ClaseConAtributo_DefaultCtor: NOP
+Test_DefaultCtor: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 

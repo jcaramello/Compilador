@@ -148,25 +148,11 @@ Object_DefaultCtor: NOP
 .DATA 
 VT_ifThenTest: NOP
 .CODE 
-		 Main__method: NOP 
+Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-<<<<<<< HEAD
-		 PUSH 3
-		 PUSH 5
-		 GT 
-		 BF 1
-		 # CallNode start 
-		 # IDNode start 
-		 PUSH VT_System
-		 POP 
-		 PUSH 3
-		 PUSH System_printI
-		 CALL 
-		 JUMP 2
-=======
 		 PUSH 6
 		 PUSH 5
 		 GT 
@@ -174,12 +160,13 @@ VT_ifThenTest: NOP
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
+		 # IDNode end 
 		 POP 
 		 PUSH 3
 		 PUSH System_printI
 		 CALL 
+		 # CallNode end 
 		 JUMP L2
->>>>>>> refs/remotes/origin/master
 L1: NOP 
 L2: NOP 
 		 FMEM 0

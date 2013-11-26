@@ -19,22 +19,22 @@ LMALLOC: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
-VT_ClaseConAtributo: NOP
-		 DW ClaseConAtributo_setA1
+VT_M: NOP
+		 DW M_test
+		 DW M_setS
 .CODE 
-ClaseConAtributo_setA1: NOP
+M_test: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
-		 # AssignmentNode Start 
-		 # IDNode start 
-		 LOAD 4
-		 # IDNode end 
+		 # CallNode start 
 		 LOAD 3
-		 SWAP 
-		 STOREREF 0
-		 # AssignmentNode End 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 2
+		 CALL 
+		 # CallNode end 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
@@ -44,45 +44,78 @@ ClaseConAtributo_setA1: NOP
 		 LOAD 3
 		 LOADREF 0
 		 # IDNode end 
-		 PUSH System_printI
+		 PUSH System_printSln
 		 CALL 
 		 # CallNode end 
 		 FMEM 0
 		 STOREFP 
-		 RET 2
+		 RET 1
+M_setS: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # AssignmentNode Start 
+		 RMEM 1
+		 PUSH 8
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH 69
+		 STOREREF 0
+		 DUP 
+		 PUSH 120
+		 STOREREF 1
+		 DUP 
+		 PUSH 105
+		 STOREREF 2
+		 DUP 
+		 PUSH 116
+		 STOREREF 3
+		 DUP 
+		 PUSH 111
+		 STOREREF 4
+		 DUP 
+		 PUSH 0
+		 STOREREF 5
+		 LOAD 3
+		 SWAP 
+		 STOREREF 0
+		 # AssignmentNode End 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
 Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
-		 RMEM 1
+		 RMEM 2
 		 # AssignmentNode Start 
 		 RMEM 1
 		 PUSH 2
 		 PUSH LMALLOC
 		 CALL 
 		 DUP 
-		 PUSH VT_ClaseConAtributo
+		 PUSH VT_M
 		 STOREREF 0
 		 DUP 
-		 PUSH ClaseConAtributo_DefaultCtor
+		 PUSH M_DefaultCtor
 		 CALL 
-		 STORE 0
+		 STORE -1
 		 # AssignmentNode End 
 		 # CallNode start 
 		 # IDNode start 
-		 LOAD 0
+		 LOAD -1
 		 # IDNode end 
-		 PUSH 4
-		 SWAP 
 		 DUP 
 		 LOADREF 0
 		 LOADREF 1
 		 CALL 
 		 # CallNode end 
-		 FMEM 1
+		 FMEM 2
 		 STOREFP 
 		 RET 0
-ClaseConAtributo_DefaultCtor: NOP
+M_DefaultCtor: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
