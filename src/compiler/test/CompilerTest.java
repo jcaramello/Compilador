@@ -67,6 +67,10 @@ public class CompilerTest {
 			   //{"DosClases.correcto", null},
 			   //{"ClaseConHerencia.correcto", null},
 			   //{"ClaseConMetodoRedefinido.correcto", null},
+			   //{"ClaseConMetodoEstatico.correcto", null},
+			   //{"ClaseConMetodoEstaticoYParams.correcto", null},
+			   //{"ClaseConMetodoDinamico.correcto", null},
+			   {"ClaseConMetodoDinamicoYParams.correcto", null},
 			   //{"This.correcto", null},
 			   //{"ClaseConMultiplesAtributos.correcto", null},
 			   //{"AsignacionTipoClase.correcto", null}
@@ -78,7 +82,7 @@ public class CompilerTest {
 			   //{"LlamadaConRetorno.correcto", null},
 			   //{"LlamadaConNew.correcto", null},
 			   //{"LlamadaEncadenada.correcto", null}
-			   {"LlamadaConParams.correcto", null}
+			   //{"LlamadaConParams.correcto", null}
 			   //{"SentenciaVacia.correcto", null},
 			   //{"ExpresionOr.correcto", null},
 			   //{"ExpresionAnd.correcto", null},

@@ -1,0 +1,13 @@
+class ClaseConMetodoDinamicoYParams{	
+
+	dynamic void metodoDinamico(string p1){		
+		(System.printS(p1));
+	}
+
+	static void main()	
+	var ClaseConMetodoDinamicoYParams obj;
+	{		 
+	  obj = new ClaseConMetodoDinamicoYParams();
+	  (obj.metodoDinamico("Clase con metodo dinamico y params"));	  
+	}
+}
