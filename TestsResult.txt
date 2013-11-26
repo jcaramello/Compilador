@@ -1,1 +1,0 @@
-C:\Users\jcaramello\Documents\GitHub\Compilador\VisibilidadVariables.correcto.ceivm "\n"; java -jar CeIVM-cei2011.jar C:\Users\jcaramello\Documents\GitHub\Compilador\VisibilidadVariables.correcto.ceivm 

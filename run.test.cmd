@@ -1,2 +1,4 @@
-for /r %%i in (*.ceivm) do  java -jar CeIVM-cei2011.jar %%i > TestsResult.txt
+for /r %%f in (*.ceivm) do (	
+	java -jar CeIVM-cei2011.jar %%f > TestsResults/%%~nxf.TestResult.txt
+	)
 
