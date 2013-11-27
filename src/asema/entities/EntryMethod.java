@@ -108,7 +108,7 @@ public class EntryMethod extends EntryBase {
 	public void addLocalVars(List<EntryVar> vars) throws SemanticErrorException{
 		for (EntryVar var : vars) {
 			if(this.LocalVars.containsKey(var.Name))
-				throw new SemanticErrorException(String.format("Error(!) - La variable local %s se encuentra repetida dentro de la lista de variables locales", var.Name));
+				throw new SemanticErrorException(String.format("Error(!) - La variable local %s se encuentra repetida dentro de la lista de variables locales. Linea %d", var.Name, var.Token.getLinea()));
 			else{
 				this.LocalVars.put(var.Name, var);
 				this.LocalVarsByIndex.add(var);

@@ -1,0 +1,13 @@
+class MetodoDinamicoConVarLocalRepetida{	
+
+	dynamic void met()
+	var int v1;
+	var char v1;
+	{				
+	}
+
+	static void main()		
+	{		 
+	    
+	}
+}

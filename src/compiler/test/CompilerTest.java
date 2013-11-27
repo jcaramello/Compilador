@@ -89,8 +89,9 @@ public class CompilerTest {
 			   
 			   {"ClaseConSobreCargaDeMetodos.incorrecto", "Error(!) - La clase ClaseConSobreCargaDeMetodos ya que contiene un metodo met1. Linea 7"},
 			   {"ClaseRepetida.incorrecto", "Error! - La clase ClaseRepetida ya existe en la TS. Linea 9"},
-			   {"MetodoDinamicoConParamRepetido.incorrecto", "Error(!) - El nombre del argumento esta repetido. Linea 3"},*/
-			   {"ClaseConAtributoRepetido.incorrecto", "Error(!) - La clase ClaseConAtributoRepetido ya contiene un atributo a1. Linea 4"},
+			   {"MetodoDinamicoConParamRepetido.incorrecto", "Error(!) - El nombre del argumento esta repetido. Linea 3"},			   
+			   {"ClaseConAtributoRepetido.incorrecto", "Error(!) - La clase ClaseConAtributoRepetido ya contiene un atributo a1. Linea 4"},*/
+			   {"MetodoDinamicoConVarLocalRepetida.incorrecto", "Error(!) - La variable local v1 se encuentra repetida dentro de la lista de variables locales. Linea 5"},
 	   });
 	}
 	
