@@ -108,7 +108,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador en línea " + curr.getLinea());
 		}			
 		
-		TS.addClass(curr.getLexema());
+		TS.addClass(curr);
 		TS.setCurrentClass(curr.getLexema());
 		
 		herenciaQ();

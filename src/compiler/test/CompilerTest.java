@@ -85,8 +85,10 @@ public class CompilerTest {
 			   {"LlamadaConParams.correcto", null},
 			   {"VisibilidadVariables.correcto", null},
 			   {"LlamadaMultiple.correcto", null},
-			   {"ClaseConMetodoPolimorfico.correcto", null}*/
-			   {"ClaseConSobreCargaDeMetodos.incorrecto", "Error! - La clase ClaseConSobreCargaDeMetodos ya que contiene un metodo met1. Linea 7"}
+			   {"ClaseConMetodoPolimorfico.correcto", null}
+			   
+			   {"ClaseConSobreCargaDeMetodos.incorrecto", "Error! - La clase ClaseConSobreCargaDeMetodos ya que contiene un metodo met1. Linea 7"},*/
+			   {"ClaseRepetida.incorrecto", "Error! - La clase ClaseRepetida ya existe en la TS. Linea 9"}
 	   });
 	}
 	
