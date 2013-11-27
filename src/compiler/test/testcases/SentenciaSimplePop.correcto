@@ -1,0 +1,11 @@
+// Chequea que se mantenga la consistencia del stack cuando la expresión de una sentencia simple
+// retorna algo que no se usará.
+
+class Test{
+
+	static void main()
+	{		
+		(1 + 2 + 3 + 4 - 5);		
+		(System.printSln("No se rompio nada"));
+	}
+}
