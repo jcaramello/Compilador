@@ -1,0 +1,16 @@
+// Se espera que falle this en el método estático. 
+
+class M {
+
+	static void main()
+	{	
+		((this).test());
+	}
+
+	dynamic void test()
+	{
+		(System.printSln("OK"));
+	}
+	
+}
+	
