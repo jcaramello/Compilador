@@ -1,0 +1,9 @@
+// El identificador a no es variable local, parámetro o atributo de la clase.
+
+class ClaseConAtributo{
+
+	static void main()
+	{		
+		a = 3; 	  
+	}
+}

@@ -30,13 +30,13 @@ public class BinaryExpressionNode extends ExpressionNode {
 				|| Operator.getTokenType() == TokenType.ModOperator)
 		{
 			if(!ti.equals(PrimitiveType.Int) || !td.equals(PrimitiveType.Int))
-				throw new SemanticErrorException("El tipo de los operandos +, -, *, / o % debe ser entero.");
+				throw new SemanticErrorException("El tipo de los operandos +, -, *, / o % debe ser entero, en línea " + Operator.getLinea());
 			else toRet = PrimitiveType.Int;	
 		}
 		
 		if(Operator.getTokenType() == TokenType.AndOperator || Operator.getTokenType() == TokenType.OrOperator) {
 			if(!ti.equals(PrimitiveType.Boolean) || !td.equals(PrimitiveType.Boolean))
-				throw new SemanticErrorException("El tipo de los operandos && o || debe ser boolean.");
+				throw new SemanticErrorException("El tipo de los operandos && o || debe ser boolean, en línea " + Operator.getLinea());
 			else toRet = PrimitiveType.Boolean;		
 		}
 				
@@ -44,7 +44,7 @@ public class BinaryExpressionNode extends ExpressionNode {
 				|| Operator.getTokenType() == TokenType.GratherOperator || Operator.getTokenType() == TokenType.GratherOrEqualOperator)
 		{
 			if(!ti.equals(PrimitiveType.Int) || !td.equals(PrimitiveType.Int))
-				throw new SemanticErrorException("El tipo de los operandos >, >=, <, <= debe ser entero.");
+				throw new SemanticErrorException("El tipo de los operandos >, >=, <, <= debe ser entero, en línea " + Operator.getLinea());
 			else toRet = PrimitiveType.Boolean;	
 		}
 		

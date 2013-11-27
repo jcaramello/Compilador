@@ -1,0 +1,13 @@
+// Test de || con un primario int.
+
+class Test{
+
+	static void main()
+	var boolean res;
+	{		
+		(System.printSln("true || 3"));
+		res = true || 3;
+		(System.printBln(res));
+	
+	}
+}
