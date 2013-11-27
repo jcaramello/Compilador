@@ -93,6 +93,7 @@ public class CompilerTest {
 			   {"Fib.correcto", null},
 			   {"HerenciaMetodosEstaticosYDinamicos.correcto", null},
 			   {"LlamadaConParamClaseQueConforma.correcto", null},
+			   {"LlamadaEncadenadaCompleja.correcto", null},
 			   
 			   
 			   // Test Incorrectos (Se espera Error)

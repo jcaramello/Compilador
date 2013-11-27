@@ -1,0 +1,46 @@
+// Llamada encadenada: se llama a un método que devuelve un objeto al que se le invoca otro método.
+// En este ejemplo dicho objeto varía según un boolean pasado como parámetro.
+// Resultado esperado: False... True!
+
+class M {
+
+	var string s;
+	
+	static void main()
+	var M m;
+	{	
+		m = new M();	
+		(System.printSln((m.test(false).get())));
+		(System.printSln((m.test(true).get())));
+	}
+
+	dynamic Cont test(boolean b)
+	{
+		if (b == true)
+			return (new ContainerTrue());
+		else 
+			return (new ContainerFalse());
+	}
+	
+}
+
+class Cont 
+{ 
+	dynamic string get() { }
+}
+
+class ContainerTrue extends Cont {
+
+	dynamic string get()
+	{
+		return "True!";
+	}
+}
+
+class ContainerFalse extends Cont {
+
+	dynamic string get()
+	{
+		return "False... ";
+	}
+}

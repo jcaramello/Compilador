@@ -23,7 +23,7 @@ public class ReturnNode extends SentenceNode {
 		
 		if(!met.ReturnType.equals(VoidType.VoidType) && !met.IsDefaultContructor) {
 			if(!Expression.check().conforms(met.ReturnType))
-				throw new SemanticErrorException("El tipo de la expresión de retorno de un método debe conformar al tipo del método.");
+				throw new SemanticErrorException("El tipo de la expresión de retorno de un método debe conformar al tipo del método");
 			
 			CodeGenerator.gen(Instructions.STORE, met.getFormalArgsCant() + 4); // esto está bien?
 		}	
