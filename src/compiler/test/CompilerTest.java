@@ -109,6 +109,7 @@ public class CompilerTest {
     public void setUp() {
         Application.isTesting = false; // i.e. no estamos testeando el ALex
         Application.logType = LogType.Console;  
+        CodeGenerator.setPrefix("Tests");
         CodeGenerator.refresh();
     }
 

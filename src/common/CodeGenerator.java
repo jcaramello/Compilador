@@ -27,7 +27,7 @@ import java.io.IOException;
  */
 public class CodeGenerator {
 
-	
+	private static String prefix = null;
 	private static final String NEW_LINE = "\n"; 
 	private FileWriter fstream;
 	private BufferedWriter bufferedWriter;
@@ -49,7 +49,11 @@ public class CodeGenerator {
 	private CodeGenerator() throws IOException
 	{
 		String currentDir = System.getProperty("user.dir").replace("\\", System.getProperty("file.separator"));
-		String filePath = String.format("%s%s%s.%s",currentDir, System.getProperty("file.separator"), Application.Name, Application.CompiledFileExtension);
+		
+		String filePath = null;
+		if(this.prefix == null)
+			filePath = String.format("%s%s%s.%s",currentDir, System.getProperty("file.separator"), Application.Name, Application.CompiledFileExtension);
+		else filePath = String.format("%s%s%s%s%s.%s",currentDir, System.getProperty("file.separator"),this.prefix, System.getProperty("file.separator"), Application.Name, Application.CompiledFileExtension);
 		File logFile = new File(filePath);			
 		fstream = new FileWriter(logFile, false);
 		bufferedWriter = new BufferedWriter(fstream);	
@@ -188,6 +192,10 @@ public class CodeGenerator {
 	public static void refresh(){
 		
 		CodeGenerator.current = null;
+	}
+	
+	public static void setPrefix(String prefix){
+		CodeGenerator.prefix = prefix;
 	}
 	
 }
