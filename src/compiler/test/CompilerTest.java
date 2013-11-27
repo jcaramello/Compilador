@@ -40,7 +40,7 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   /*{"ClaseVaciaTest.correcto", null},
+			   {"ClaseVaciaTest.correcto", null},
 			   {"ClaseHelloWordTest.correcto", null},
 			   {"PrintB.correcto", null},
 			   {"PrintC.correcto", null},
@@ -75,6 +75,7 @@ public class CompilerTest {
 			   {"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
 			   {"ExpresionIgualdadDesigualdadClase.correcto", null},
 			   {"LlamadaConRetorno.correcto", null},
+			   {"LlamadaAMetodoVoidYConRetornoVacio.correcto", null},
 			   {"LlamadaConNew.correcto", null},
 			   {"LlamadaEncadenada.correcto", null},
 			   {"SentenciaVacia.correcto", null},
@@ -131,8 +132,9 @@ public class CompilerTest {
 			   {"ClaseConMetodoMalRedefinidoPorTipoRetorno.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
 			   {"ClaseConMetodoMalRedefinidoPorModificador.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
 			   {"ThisEnEstatico.incorrecto", "No se puede acceder a this desde un método estático."},
-			   {"MetodoConTipoDeRetornoVoidYSentReturn.incorrecto", "Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea 10"},*/
-			   {"FileConMasDeUnMetodoMain.incorrecto", "Error(!). No puede haber mas de un metodo main."}
+			   {"MetodoConTipoDeRetornoVoidYSentReturnNoVacia.incorrecto", "Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea 10"},
+			   {"FileConMasDeUnMetodoMain.incorrecto", "Error(!). No puede haber mas de un metodo main."},
+			   {"ClaseConDosVariablesDeInstanciaConElMismoNbre.incorrecto", "Error(!). No puede haber mas de un metodo main."}
 	   });
 	}
 	

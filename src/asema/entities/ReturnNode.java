@@ -11,9 +11,15 @@ public class ReturnNode extends SentenceNode {
 	
 	public alex.Token Token;
 	public ExpressionNode Expression;
+	public EmptySentenceNode EmptyReturn;
 	
 	public ReturnNode(ExpressionNode exp, alex.Token tkn){
 		this.Expression = exp;
+		this.Token = tkn;
+	}
+	
+	public ReturnNode(EmptySentenceNode exp, alex.Token tkn){
+		this.EmptyReturn = exp;
 		this.Token = tkn;
 	}
 	
@@ -23,7 +29,7 @@ public class ReturnNode extends SentenceNode {
 		EntryMethod met = TS.getCurrentClass().getCurrentMethod();
 		Type t = met.ReturnType;
 		
-		if(met.ReturnType == VoidType.VoidType)
+		if(met.ReturnType == VoidType.VoidType && this.Expression != null && this.EmptyReturn == null) 
 			throw new SemanticErrorException(String.format("Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea %d", this.Token.getLinea()));
 		
 		if(!met.ReturnType.equals(VoidType.VoidType) && !met.IsDefaultContructor) {

@@ -47,8 +47,6 @@ public class EntryClass extends EntryBase{
 	private Map<String, EntryMethod> Methods;
 	
 	private List<EntryMethod> OrderedMethods;
-		
-	private Map<String, EntryVar> InstancesVariables;
 	
 	private EntryMethod CurrentMethod;
 	
@@ -73,8 +71,7 @@ public class EntryClass extends EntryBase{
 		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
 		this.OrderedAttributes = new ArrayList<EntryVar>();
-		this.OrderedMethods = new ArrayList<EntryMethod>();
-		this.InstancesVariables = new HashMap<String, EntryVar>();
+		this.OrderedMethods = new ArrayList<EntryMethod>();		
 		this.Constructor = new EntryMethod(new Token(String.format("DefaultCtor", this.Name)), ModifierMethodType.Dynamic, new ClassType(this), this);
 		this.Constructor.IsDefaultContructor = true;
 	}
@@ -100,26 +97,7 @@ public class EntryClass extends EntryBase{
 	
 	public int getCantAttributes() {
 		return this.Attributes.size() + cantInheritedAttributes;
-	}
-	
-	public void addInstanceVariable(Token tkn) throws SemanticErrorException{
-		String name = tkn.getLexema();
-		if(this.InstancesVariables.containsKey(name))
-			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene una variable de instancia con ese nombre, en línea %d", this.Name, tkn.getLinea()));
-		if(this.Methods.containsKey(name) || name.equals(this.Name))
-			throw new SemanticErrorException(tkn.getLexema() + ": ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos, en línea " + tkn.getLinea());
-		else this.InstancesVariables.put(name, new EntryVar(new ClassType(this), tkn));		
-	}
-	
-	public EntryVar getInstanceVariable(String name){
-		if(!CommonHelper.isNullOrEmpty(name))
-			return this.InstancesVariables.get(name);
-		else return null;
-	}
-	
-	public Iterable<EntryVar> getInstances(){
-		return this.InstancesVariables.values();
-	}
+	}		
 	
 	public boolean containsAttribute(String name){	
 		return this.Attributes.containsKey(name);

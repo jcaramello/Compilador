@@ -3,6 +3,7 @@ package asema;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import common.CodeGenerator;
 import common.CommonHelper;
@@ -32,6 +33,8 @@ public class TS {
 	private static EntryClass CurrentClass;
 
 	private static Map<String, EntryClass> Classes;
+	
+	private static Map<UUID, EntryVar> InstancesVariables;
 
 	private static int controlLabel;
 	
@@ -219,6 +222,7 @@ public class TS {
 	 */
 	public static void initialize() throws SemanticErrorException{
 		TS.Classes = new HashMap<String, EntryClass>();
+		TS.InstancesVariables = new HashMap<UUID, EntryVar>();
 		// Object class debe inicializarse antes que System
 		TS.jumpToMain();
 		TS.initializePredefRoutines();
