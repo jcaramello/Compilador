@@ -1,8 +1,7 @@
 // Prueba de una incorrecta asignación de un objeto de tipo clase. 
-// Los tipos no conforman por no estar relacionados de ninguna manera.
+// Los tipos no conforman por tener la herencia en el sentido inverso al necesario.
 
 class AsignacionTest{
-
 	static void main()
 	var AsignacionTest a1;
 	var NoConforma a2;
@@ -13,8 +12,10 @@ class AsignacionTest{
 	}
 }
 
-class NoConforma {
+class NoConforma extends AsignacionTest {
 
+
+	
 	dynamic void test() {
 		(System.printSln("Conforma erroneamente."));
 	}

@@ -235,8 +235,13 @@ public class EntryClass extends EntryBase{
 				this.getMethod(em.Name).Offset = em.Offset;
 		}
 
-		// Agrego los nuevos a partir de ahí
-		int cantMetodosAncestro = this.fatherClass.getMethods().size();
+		// Debo saber cuántos espacios dejar
+		int cantMetodosAncestro = 0;	
+		for (EntryMethod em : this.fatherClass.getMethods())
+			if(em.Modifier == ModifierMethodType.Dynamic)
+				cantMetodosAncestro++;
+		
+		// Agrego los nuevos a partir de ahí 
 		int cantMetodos = this.getMethods().size();
 		int off = 0;
 		for(int i = 0; i < cantMetodos; i++) {
