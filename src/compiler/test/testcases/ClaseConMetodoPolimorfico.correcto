@@ -1,0 +1,27 @@
+class Clase1{
+
+	var int a1;
+
+	dynamic void met(){		
+		(System.printS("Metodo met de Clase1"));
+	}	
+}
+
+class Clase2 extends Clase1{
+
+	dynamic void met(){		
+		(System.printS("Metodo met de Clase2"));
+	}	
+
+	static void main()
+	var Clase1 obj1;
+	var Clase1 obj2;	
+	{		 
+	  obj1 = new Clase1();
+	  (obj1.met());	  
+	  (System.println());
+	  obj2 = new Clase2();
+	  (obj2.met());	  
+	}
+	
+}

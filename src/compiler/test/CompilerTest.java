@@ -40,7 +40,7 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   {"ClaseVaciaTest.correcto", null},
+			  /* {"ClaseVaciaTest.correcto", null},
 			   {"ClaseHelloWordTest.correcto", null},
 			   {"PrintB.correcto", null},
 			   {"PrintC.correcto", null},
@@ -84,7 +84,8 @@ public class CompilerTest {
 			   {"ExpresionUnario.correcto", null},
 			   {"LlamadaConParams.correcto", null},
 			   {"VisibilidadVariables.correcto", null},
-			   {"LlamadaMultiple.correcto", null},
+			   {"LlamadaMultiple.correcto", null},*/
+			   {"ClaseConMetodoPolimorfico.correcto", null}
 	   });
 	}
 	

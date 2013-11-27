@@ -1,0 +1,604 @@
+Información de ensamblado, linkeo y carga (generado por el CeIASMAssemblerLinkerAndLoader)
+
+----------- Límite de carga de las secciones ----------------------------------------------
+
+.CODE:  de locación          0 a locación        540
+.DATA:  de locación        541 a locación        546
+.HEAP:  de locación        547 a locación        546
+.STACK: de locación       8192 a locación       8191
+
+----------- Resolución de etiquetas -------------------------------------------------------
+Dirección   Etiqueta
+
+         6  lmalloc
+        24  clase2_met
+       153  main__method
+       222  clase2_defaultctor
+       233  clase1_met
+       362  clase1_defaultctor
+       373  system_printsln
+       388  system_printi
+       402  system_printiln
+       417  system_println
+       429  system_printcln
+       444  system_printc
+       458  system_read
+       475  system_printbln
+       490  system_printb
+       504  system_prints
+       518  system_defaultctor
+       529  object_defaultctor
+       541  vt_clase2
+       543  vt_clase1
+       545  vt_system
+       546  vt_object
+
+------------------------------------------------------------------------------------------
+----------- Contenido de la memoria ensamblada, linkeada y cargada -----------------------
+------------------------------------------------------------------------------------------
+
+----------- Sección .CODE ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+         0         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 2 columna: 4.
+         1           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 2 columna: 9.
+         2           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 3 columna: 4.
+         3         153  Main__method                            ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 3 columna: 9.
+         4         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 4 columna: 4.
+         5         104  HALT                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 5 columna: 4.
+         6           0  LMALLOC: NOP                            ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 7 columna: 10.
+         7         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 8 columna: 4.
+         8         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 9 columna: 4.
+         9         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 10 columna: 4.
+        10         128  LOADHL                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 11 columna: 4.
+        11          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 12 columna: 4.
+        12           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 13 columna: 4.
+        13           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 13 columna: 9.
+        14           2  ADD                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 14 columna: 4.
+        15          81  STORE                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 15 columna: 4.
+        16           4  4                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 15 columna: 10.
+        17          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 16 columna: 4.
+        18           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 16 columna: 9.
+        19           2  ADD                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 17 columna: 4.
+        20         129  STOREHL                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 18 columna: 4.
+        21         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 19 columna: 4.
+        22         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 20 columna: 4.
+        23           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 20 columna: 8.
+        24           0  Clase2_met: NOP                         ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 25 columna: 13.
+        25         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 26 columna: 4.
+        26         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 27 columna: 4.
+        27         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 28 columna: 4.
+        28         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 29 columna: 4.
+        29           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 29 columna: 9.
+        30           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 32 columna: 4.
+        31         545  VT_System                               ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 32 columna: 9.
+        32          31  POP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 34 columna: 4.
+        33         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 35 columna: 4.
+        34           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 35 columna: 9.
+        35           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 36 columna: 4.
+        36          23  23                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 36 columna: 9.
+        37           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 37 columna: 4.
+        38           6  LMALLOC                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 37 columna: 9.
+        39         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 38 columna: 4.
+        40          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 39 columna: 4.
+        41           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 40 columna: 4.
+        42          77  77                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 40 columna: 9.
+        43          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 41 columna: 4.
+        44           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 41 columna: 13.
+        45          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 42 columna: 4.
+        46           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 43 columna: 4.
+        47         101  101                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 43 columna: 9.
+        48          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 44 columna: 4.
+        49           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 44 columna: 13.
+        50          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 45 columna: 4.
+        51           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 46 columna: 4.
+        52         116  116                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 46 columna: 9.
+        53          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 47 columna: 4.
+        54           2  2                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 47 columna: 13.
+        55          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 48 columna: 4.
+        56           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 49 columna: 4.
+        57         111  111                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 49 columna: 9.
+        58          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 50 columna: 4.
+        59           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 50 columna: 13.
+        60          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 51 columna: 4.
+        61           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 52 columna: 4.
+        62         100  100                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 52 columna: 9.
+        63          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 53 columna: 4.
+        64           4  4                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 53 columna: 13.
+        65          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 54 columna: 4.
+        66           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 55 columna: 4.
+        67         111  111                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 55 columna: 9.
+        68          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 56 columna: 4.
+        69           5  5                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 56 columna: 13.
+        70          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 57 columna: 4.
+        71           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 58 columna: 4.
+        72          32  32                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 58 columna: 9.
+        73          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 59 columna: 4.
+        74           6  6                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 59 columna: 13.
+        75          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 60 columna: 4.
+        76           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 61 columna: 4.
+        77         109  109                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 61 columna: 9.
+        78          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 62 columna: 4.
+        79           7  7                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 62 columna: 13.
+        80          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 63 columna: 4.
+        81           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 64 columna: 4.
+        82         101  101                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 64 columna: 9.
+        83          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 65 columna: 4.
+        84           8  8                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 65 columna: 13.
+        85          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 66 columna: 4.
+        86           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 67 columna: 4.
+        87         116  116                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 67 columna: 9.
+        88          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 68 columna: 4.
+        89           9  9                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 68 columna: 13.
+        90          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 69 columna: 4.
+        91           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 70 columna: 4.
+        92          32  32                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 70 columna: 9.
+        93          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 71 columna: 4.
+        94          10  10                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 71 columna: 13.
+        95          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 72 columna: 4.
+        96           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 73 columna: 4.
+        97         100  100                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 73 columna: 9.
+        98          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 74 columna: 4.
+        99          11  11                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 74 columna: 13.
+       100          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 75 columna: 4.
+       101           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 76 columna: 4.
+       102         101  101                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 76 columna: 9.
+       103          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 77 columna: 4.
+       104          12  12                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 77 columna: 13.
+       105          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 78 columna: 4.
+       106           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 79 columna: 4.
+       107          32  32                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 79 columna: 9.
+       108          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 80 columna: 4.
+       109          13  13                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 80 columna: 13.
+       110          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 81 columna: 4.
+       111           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 82 columna: 4.
+       112          67  67                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 82 columna: 9.
+       113          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 83 columna: 4.
+       114          14  14                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 83 columna: 13.
+       115          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 84 columna: 4.
+       116           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 85 columna: 4.
+       117         108  108                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 85 columna: 9.
+       118          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 86 columna: 4.
+       119          15  15                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 86 columna: 13.
+       120          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 87 columna: 4.
+       121           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 88 columna: 4.
+       122          97  97                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 88 columna: 9.
+       123          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 89 columna: 4.
+       124          16  16                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 89 columna: 13.
+       125          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 90 columna: 4.
+       126           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 91 columna: 4.
+       127         115  115                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 91 columna: 9.
+       128          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 92 columna: 4.
+       129          17  17                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 92 columna: 13.
+       130          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 93 columna: 4.
+       131           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 94 columna: 4.
+       132         101  101                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 94 columna: 9.
+       133          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 95 columna: 4.
+       134          18  18                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 95 columna: 13.
+       135          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 96 columna: 4.
+       136           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 97 columna: 4.
+       137          50  50                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 97 columna: 9.
+       138          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 98 columna: 4.
+       139          19  19                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 98 columna: 13.
+       140          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 99 columna: 4.
+       141           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 100 columna: 4.
+       142           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 100 columna: 9.
+       143          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 101 columna: 4.
+       144          20  20                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 101 columna: 13.
+       145           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 102 columna: 4.
+       146         504  System_printS                           ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 102 columna: 9.
+       147         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 103 columna: 4.
+       148         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 105 columna: 4.
+       149           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 105 columna: 9.
+       150         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 106 columna: 4.
+       151         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 107 columna: 4.
+       152           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 107 columna: 8.
+       153           0  Main__method: NOP                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 108 columna: 15.
+       154         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 109 columna: 4.
+       155         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 110 columna: 4.
+       156         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 111 columna: 4.
+       157         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 112 columna: 4.
+       158           2  2                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 112 columna: 9.
+       159         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 114 columna: 4.
+       160           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 114 columna: 9.
+       161           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 115 columna: 4.
+       162           2  2                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 115 columna: 9.
+       163           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 116 columna: 4.
+       164           6  LMALLOC                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 116 columna: 9.
+       165         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 117 columna: 4.
+       166          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 118 columna: 4.
+       167           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 119 columna: 4.
+       168         543  VT_Clase1                               ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 119 columna: 9.
+       169          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 120 columna: 4.
+       170           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 120 columna: 13.
+       171          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 121 columna: 4.
+       172           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 122 columna: 4.
+       173         362  Clase1_DefaultCtor                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 122 columna: 9.
+       174         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 123 columna: 4.
+       175          81  STORE                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 124 columna: 4.
+       176           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 124 columna: 10.
+       177          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 128 columna: 4.
+       178           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 128 columna: 9.
+       179          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 130 columna: 4.
+       180          82  LOADREF                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 131 columna: 4.
+       181           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 131 columna: 12.
+       182          82  LOADREF                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 132 columna: 4.
+       183           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 132 columna: 12.
+       184         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 133 columna: 4.
+       185           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 137 columna: 4.
+       186         545  VT_System                               ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 137 columna: 9.
+       187          31  POP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 139 columna: 4.
+       188           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 140 columna: 4.
+       189         417  System_println                          ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 140 columna: 9.
+       190         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 141 columna: 4.
+       191         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 144 columna: 4.
+       192           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 144 columna: 9.
+       193           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 145 columna: 4.
+       194           2  2                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 145 columna: 9.
+       195           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 146 columna: 4.
+       196           6  LMALLOC                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 146 columna: 9.
+       197         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 147 columna: 4.
+       198          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 148 columna: 4.
+       199           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 149 columna: 4.
+       200         541  VT_Clase2                               ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 149 columna: 9.
+       201          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 150 columna: 4.
+       202           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 150 columna: 13.
+       203          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 151 columna: 4.
+       204           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 152 columna: 4.
+       205         222  Clase2_DefaultCtor                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 152 columna: 9.
+       206         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 153 columna: 4.
+       207          81  STORE                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 154 columna: 4.
+       208          -1  -1                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 154 columna: 10.
+       209          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 158 columna: 4.
+       210          -1  -1                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 158 columna: 9.
+       211          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 160 columna: 4.
+       212          82  LOADREF                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 161 columna: 4.
+       213           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 161 columna: 12.
+       214          82  LOADREF                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 162 columna: 4.
+       215           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 162 columna: 12.
+       216         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 163 columna: 4.
+       217         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 165 columna: 4.
+       218           2  2                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 165 columna: 9.
+       219         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 166 columna: 4.
+       220         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 167 columna: 4.
+       221           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 167 columna: 8.
+       222           0  Clase2_DefaultCtor: NOP                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 168 columna: 21.
+       223         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 169 columna: 4.
+       224         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 170 columna: 4.
+       225         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 171 columna: 4.
+       226         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 172 columna: 4.
+       227           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 172 columna: 9.
+       228         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 173 columna: 4.
+       229           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 173 columna: 9.
+       230         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 174 columna: 4.
+       231         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 175 columna: 4.
+       232           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 175 columna: 8.
+       233           0  Clase1_met: NOP                         ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 180 columna: 13.
+       234         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 181 columna: 4.
+       235         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 182 columna: 4.
+       236         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 183 columna: 4.
+       237         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 184 columna: 4.
+       238           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 184 columna: 9.
+       239           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 187 columna: 4.
+       240         545  VT_System                               ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 187 columna: 9.
+       241          31  POP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 189 columna: 4.
+       242         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 190 columna: 4.
+       243           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 190 columna: 9.
+       244           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 191 columna: 4.
+       245          23  23                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 191 columna: 9.
+       246           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 192 columna: 4.
+       247           6  LMALLOC                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 192 columna: 9.
+       248         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 193 columna: 4.
+       249          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 194 columna: 4.
+       250           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 195 columna: 4.
+       251          77  77                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 195 columna: 9.
+       252          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 196 columna: 4.
+       253           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 196 columna: 13.
+       254          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 197 columna: 4.
+       255           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 198 columna: 4.
+       256         101  101                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 198 columna: 9.
+       257          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 199 columna: 4.
+       258           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 199 columna: 13.
+       259          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 200 columna: 4.
+       260           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 201 columna: 4.
+       261         116  116                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 201 columna: 9.
+       262          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 202 columna: 4.
+       263           2  2                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 202 columna: 13.
+       264          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 203 columna: 4.
+       265           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 204 columna: 4.
+       266         111  111                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 204 columna: 9.
+       267          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 205 columna: 4.
+       268           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 205 columna: 13.
+       269          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 206 columna: 4.
+       270           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 207 columna: 4.
+       271         100  100                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 207 columna: 9.
+       272          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 208 columna: 4.
+       273           4  4                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 208 columna: 13.
+       274          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 209 columna: 4.
+       275           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 210 columna: 4.
+       276         111  111                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 210 columna: 9.
+       277          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 211 columna: 4.
+       278           5  5                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 211 columna: 13.
+       279          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 212 columna: 4.
+       280           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 213 columna: 4.
+       281          32  32                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 213 columna: 9.
+       282          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 214 columna: 4.
+       283           6  6                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 214 columna: 13.
+       284          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 215 columna: 4.
+       285           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 216 columna: 4.
+       286         109  109                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 216 columna: 9.
+       287          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 217 columna: 4.
+       288           7  7                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 217 columna: 13.
+       289          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 218 columna: 4.
+       290           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 219 columna: 4.
+       291         101  101                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 219 columna: 9.
+       292          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 220 columna: 4.
+       293           8  8                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 220 columna: 13.
+       294          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 221 columna: 4.
+       295           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 222 columna: 4.
+       296         116  116                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 222 columna: 9.
+       297          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 223 columna: 4.
+       298           9  9                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 223 columna: 13.
+       299          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 224 columna: 4.
+       300           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 225 columna: 4.
+       301          32  32                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 225 columna: 9.
+       302          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 226 columna: 4.
+       303          10  10                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 226 columna: 13.
+       304          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 227 columna: 4.
+       305           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 228 columna: 4.
+       306         100  100                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 228 columna: 9.
+       307          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 229 columna: 4.
+       308          11  11                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 229 columna: 13.
+       309          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 230 columna: 4.
+       310           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 231 columna: 4.
+       311         101  101                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 231 columna: 9.
+       312          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 232 columna: 4.
+       313          12  12                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 232 columna: 13.
+       314          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 233 columna: 4.
+       315           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 234 columna: 4.
+       316          32  32                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 234 columna: 9.
+       317          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 235 columna: 4.
+       318          13  13                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 235 columna: 13.
+       319          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 236 columna: 4.
+       320           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 237 columna: 4.
+       321          67  67                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 237 columna: 9.
+       322          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 238 columna: 4.
+       323          14  14                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 238 columna: 13.
+       324          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 239 columna: 4.
+       325           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 240 columna: 4.
+       326         108  108                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 240 columna: 9.
+       327          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 241 columna: 4.
+       328          15  15                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 241 columna: 13.
+       329          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 242 columna: 4.
+       330           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 243 columna: 4.
+       331          97  97                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 243 columna: 9.
+       332          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 244 columna: 4.
+       333          16  16                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 244 columna: 13.
+       334          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 245 columna: 4.
+       335           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 246 columna: 4.
+       336         115  115                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 246 columna: 9.
+       337          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 247 columna: 4.
+       338          17  17                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 247 columna: 13.
+       339          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 248 columna: 4.
+       340           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 249 columna: 4.
+       341         101  101                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 249 columna: 9.
+       342          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 250 columna: 4.
+       343          18  18                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 250 columna: 13.
+       344          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 251 columna: 4.
+       345           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 252 columna: 4.
+       346          49  49                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 252 columna: 9.
+       347          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 253 columna: 4.
+       348          19  19                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 253 columna: 13.
+       349          30  DUP                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 254 columna: 4.
+       350           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 255 columna: 4.
+       351           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 255 columna: 9.
+       352          83  STOREREF                                ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 256 columna: 4.
+       353          20  20                                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 256 columna: 13.
+       354           1  PUSH                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 257 columna: 4.
+       355         504  System_printS                           ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 257 columna: 9.
+       356         100  CALL                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 258 columna: 4.
+       357         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 260 columna: 4.
+       358           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 260 columna: 9.
+       359         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 261 columna: 4.
+       360         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 262 columna: 4.
+       361           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 262 columna: 8.
+       362           0  Clase1_DefaultCtor: NOP                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 263 columna: 21.
+       363         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 264 columna: 4.
+       364         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 265 columna: 4.
+       365         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 266 columna: 4.
+       366         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 267 columna: 4.
+       367           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 267 columna: 9.
+       368         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 268 columna: 4.
+       369           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 268 columna: 9.
+       370         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 269 columna: 4.
+       371         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 270 columna: 4.
+       372           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 270 columna: 8.
+       373           0  System_printSln: NOP                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 274 columna: 18.
+       374         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 275 columna: 4.
+       375         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 276 columna: 4.
+       376         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 277 columna: 4.
+       377         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 278 columna: 4.
+       378           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 278 columna: 9.
+       379          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 279 columna: 4.
+       380           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 279 columna: 9.
+       381          64  SPRINT                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 280 columna: 4.
+       382          65  PRNLN                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 281 columna: 4.
+       383         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 282 columna: 4.
+       384           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 282 columna: 9.
+       385         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 283 columna: 4.
+       386         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 284 columna: 4.
+       387           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 284 columna: 8.
+       388           0  System_printI: NOP                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 285 columna: 16.
+       389         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 286 columna: 4.
+       390         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 287 columna: 4.
+       391         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 288 columna: 4.
+       392         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 289 columna: 4.
+       393           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 289 columna: 9.
+       394          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 290 columna: 4.
+       395           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 290 columna: 9.
+       396          63  IPRINT                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 291 columna: 4.
+       397         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 292 columna: 4.
+       398           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 292 columna: 9.
+       399         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 293 columna: 4.
+       400         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 294 columna: 4.
+       401           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 294 columna: 8.
+       402           0  System_printIln: NOP                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 295 columna: 18.
+       403         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 296 columna: 4.
+       404         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 297 columna: 4.
+       405         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 298 columna: 4.
+       406         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 299 columna: 4.
+       407           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 299 columna: 9.
+       408          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 300 columna: 4.
+       409           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 300 columna: 9.
+       410          63  IPRINT                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 301 columna: 4.
+       411          65  PRNLN                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 302 columna: 4.
+       412         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 303 columna: 4.
+       413           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 303 columna: 9.
+       414         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 304 columna: 4.
+       415         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 305 columna: 4.
+       416           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 305 columna: 8.
+       417           0  System_println: NOP                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 306 columna: 17.
+       418         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 307 columna: 4.
+       419         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 308 columna: 4.
+       420         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 309 columna: 4.
+       421         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 310 columna: 4.
+       422           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 310 columna: 9.
+       423          65  PRNLN                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 311 columna: 4.
+       424         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 312 columna: 4.
+       425           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 312 columna: 9.
+       426         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 313 columna: 4.
+       427         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 314 columna: 4.
+       428           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 314 columna: 8.
+       429           0  System_printCln: NOP                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 315 columna: 18.
+       430         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 316 columna: 4.
+       431         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 317 columna: 4.
+       432         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 318 columna: 4.
+       433         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 319 columna: 4.
+       434           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 319 columna: 9.
+       435          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 320 columna: 4.
+       436           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 320 columna: 9.
+       437          62  CPRINT                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 321 columna: 4.
+       438          65  PRNLN                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 322 columna: 4.
+       439         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 323 columna: 4.
+       440           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 323 columna: 9.
+       441         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 324 columna: 4.
+       442         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 325 columna: 4.
+       443           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 325 columna: 8.
+       444           0  System_printC: NOP                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 326 columna: 16.
+       445         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 327 columna: 4.
+       446         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 328 columna: 4.
+       447         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 329 columna: 4.
+       448         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 330 columna: 4.
+       449           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 330 columna: 9.
+       450          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 331 columna: 4.
+       451           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 331 columna: 9.
+       452          62  CPRINT                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 332 columna: 4.
+       453         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 333 columna: 4.
+       454           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 333 columna: 9.
+       455         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 334 columna: 4.
+       456         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 335 columna: 4.
+       457           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 335 columna: 8.
+       458           0  System_read: NOP                        ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 336 columna: 14.
+       459         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 337 columna: 4.
+       460         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 338 columna: 4.
+       461         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 339 columna: 4.
+       462         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 340 columna: 4.
+       463           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 340 columna: 9.
+       464          60  READ                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 341 columna: 4.
+       465          81  STORE                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 342 columna: 4.
+       466           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 342 columna: 10.
+       467         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 343 columna: 4.
+       468         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 344 columna: 4.
+       469           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 344 columna: 8.
+       470         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 345 columna: 4.
+       471           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 345 columna: 9.
+       472         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 346 columna: 4.
+       473         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 347 columna: 4.
+       474           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 347 columna: 8.
+       475           0  System_printBln: NOP                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 348 columna: 18.
+       476         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 349 columna: 4.
+       477         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 350 columna: 4.
+       478         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 351 columna: 4.
+       479         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 352 columna: 4.
+       480           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 352 columna: 9.
+       481          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 353 columna: 4.
+       482           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 353 columna: 9.
+       483          61  BPRINT                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 354 columna: 4.
+       484          65  PRNLN                                   ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 355 columna: 4.
+       485         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 356 columna: 4.
+       486           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 356 columna: 9.
+       487         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 357 columna: 4.
+       488         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 358 columna: 4.
+       489           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 358 columna: 8.
+       490           0  System_printB: NOP                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 359 columna: 16.
+       491         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 360 columna: 4.
+       492         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 361 columna: 4.
+       493         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 362 columna: 4.
+       494         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 363 columna: 4.
+       495           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 363 columna: 9.
+       496          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 364 columna: 4.
+       497           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 364 columna: 9.
+       498          61  BPRINT                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 365 columna: 4.
+       499         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 366 columna: 4.
+       500           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 366 columna: 9.
+       501         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 367 columna: 4.
+       502         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 368 columna: 4.
+       503           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 368 columna: 8.
+       504           0  System_printS: NOP                      ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 369 columna: 16.
+       505         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 370 columna: 4.
+       506         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 371 columna: 4.
+       507         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 372 columna: 4.
+       508         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 373 columna: 4.
+       509           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 373 columna: 9.
+       510          80  LOAD                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 374 columna: 4.
+       511           3  3                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 374 columna: 9.
+       512          64  SPRINT                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 375 columna: 4.
+       513         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 376 columna: 4.
+       514           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 376 columna: 9.
+       515         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 377 columna: 4.
+       516         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 378 columna: 4.
+       517           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 378 columna: 8.
+       518           0  System_DefaultCtor: NOP                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 379 columna: 21.
+       519         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 380 columna: 4.
+       520         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 381 columna: 4.
+       521         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 382 columna: 4.
+       522         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 383 columna: 4.
+       523           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 383 columna: 9.
+       524         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 384 columna: 4.
+       525           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 384 columna: 9.
+       526         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 385 columna: 4.
+       527         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 386 columna: 4.
+       528           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 386 columna: 8.
+       529           0  Object_DefaultCtor: NOP                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 390 columna: 21.
+       530         124  LOADFP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 391 columna: 4.
+       531         122  LOADSP                                  ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 392 columna: 4.
+       532         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 393 columna: 4.
+       533         101  RMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 394 columna: 4.
+       534           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 394 columna: 9.
+       535         102  FMEM                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 395 columna: 4.
+       536           0  0                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 395 columna: 9.
+       537         125  STOREFP                                 ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 396 columna: 4.
+       538         103  RET                                     ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 397 columna: 4.
+       539           1  1                                       ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 397 columna: 8.
+       540         104  HALT                                    ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 398 columna: 4.
+
+----------- Sección .DATA ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+       541           0  VT_Clase2: NOP                          ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 22 columna: 12.
+       542          24  Clase2_met                              ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 23 columna: 7.
+       543           0  VT_Clase1: NOP                          ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 177 columna: 12.
+       544         233  Clase1_met                              ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 178 columna: 7.
+       545           0  VT_System: NOP                          ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 272 columna: 12.
+       546           0  VT_Object: NOP                          ; Archivo: ClaseConMetodoPolimorfico.correcto.ceivm línea: 388 columna: 12.
+
+----------- Sección .HEAP ----------------------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+
+----------- Sección .STACK (decreciente) --------------------------------------------------
+Dirección   Cont.Mem.   Código CeIASM                           Referencia
+
+
+El volcado de la información de ensamblado, linkeo y carga se completó exitosamente...
+
