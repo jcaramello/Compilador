@@ -13,11 +13,12 @@ public class EntryVar extends EntryBase{
 	public OriginType Origin; 
 	public int Offset;	
 	
-	public EntryVar(Type t, String id){
+	public EntryVar(Type t, Token tkn){
 		
 		this.Offset = -1;
 		this.Type = t;
-		this.Name = id;
+		this.Name = tkn.getLexema();
+		this.Token = tkn;
 	}
 	
 public EntryVar(Token tkn){

@@ -80,7 +80,7 @@ public class EntryClass extends EntryBase{
 	
 	public void addAttribute(EntryVar a) throws SemanticErrorException{
 		if(this.Attributes.containsKey(a.Name))
-			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene un atributo %s.", this.Name, a.Name));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya contiene un atributo %s. Linea %d", this.Name, a.Name, a.Token.getLinea()));
 		else {
 			this.Attributes.put(a.Name, a);
 			this.OrderedAttributes.add(a);
@@ -99,12 +99,13 @@ public class EntryClass extends EntryBase{
 		return this.Attributes.size() + cantInheritedAttributes;
 	}
 	
-	public void addInstanceVariable(String name) throws SemanticErrorException{
+	public void addInstanceVariable(Token tkn) throws SemanticErrorException{
+		String name = tkn.getLexema();
 		if(this.InstancesVariables.containsKey(name))
 			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene una variable de instancia %s.", this.Name, name));
 		if(this.Methods.containsKey(name) || name.equals(this.Name))
 			throw new SemanticErrorException("Ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos.");
-		else this.InstancesVariables.put(name, new EntryVar(new ClassType(this), name));		
+		else this.InstancesVariables.put(name, new EntryVar(new ClassType(this), tkn));		
 	}
 	
 	public EntryVar getInstanceVariable(String name){

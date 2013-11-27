@@ -1,6 +1,7 @@
 package asema.entities;
 
 import java.util.HashMap;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,8 @@ import java.util.Map;
 import common.CodeGenerator;
 import common.CommonHelper;
 import common.Instructions;
+
+import alex.Token;
 
 import asema.TS;
 import asema.exceptions.SemanticErrorException;
@@ -87,7 +90,8 @@ public class EntryMethod extends EntryBase {
 	 */
 	public void addFormalArgs(Type t, String name) throws SemanticErrorException{		
 		
-		EntryVar var = new EntryVar(t, name);
+		Token tkn = new Token(name);
+		EntryVar var = new EntryVar(t, tkn);
 		if(this.FormalArgs.containsKey(var.Name))
 			throw new SemanticErrorException(String.format("Error(!) - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
 		else {
