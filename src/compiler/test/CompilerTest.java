@@ -96,8 +96,9 @@ public class CompilerTest {
 			   {"MetodoDinamicoConVarLocalRepetida.incorrecto", "Error(!) - La variable local v1 se encuentra repetida dentro de la lista de variables locales. Linea 5"},
 			   {"FileSinMetodoMain.incorrecto", "Error(!). Alguna clase debe contener al menos un metodo main sin parametros"},
 			   {"FileConMetodoMainConParam.incorrecto", "Error(!) - El metodo Main no puede contener parametros formales."},
-			   {"ClaseConMasDeUnCtor.incorrecto", "Error(!) - La clase ClaseConMasDeUnCtor ya posee un constructor declarado. Linea 6"},*/
-			   {"MetodoConNbreDeVarLocalIgualAParam.incorrecto", "Error(!) - El parametro formal p1 es ambiguo. intente renombralo. Linea 4"}
+			   {"ClaseConMasDeUnCtor.incorrecto", "Error(!) - La clase ClaseConMasDeUnCtor ya posee un constructor declarado. Linea 6"},
+			   {"MetodoConNbreDeVarLocalIgualAParam.incorrecto", "Error(!) - El parametro formal p1 es ambiguo. intente renombralo. Linea 4"},*/
+			   {"MetodoConParamDeTipoInvalido.incorrecto", "Error(!). Tipo indefinido: tipoInvalido. Linea 3"}
 			   
 	   });
 	}

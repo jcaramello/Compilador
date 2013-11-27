@@ -260,12 +260,12 @@ public class EntryClass extends EntryBase{
 		else{
 			this.fatherClass = TS.getClass(this.inheritsFrom);
 			if(this.fatherClass == null)
-				throw new SemanticErrorException(String.format("Error(!). La clase %s no existe.", this.inheritsFrom));
+				throw new SemanticErrorException(String.format("Error(!). La clase %s no existe. Linea %d", this.inheritsFrom, this.Token.getLinea()));
 		}	
 	
 		for(EntryVar ev : this.getAttributes())
 			if(!CommonHelper.isPrimitiveType(ev.Type) && TS.getClass(ev.Type.Name) == null)
-				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
+				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido: %s. Linea %d", ev.Type.Name, ev.Token.getLinea()));
 			else ev.Origin = OriginType.Inst;
 	
 		for(EntryMethod em : this.getMethods())
