@@ -1,4 +1,4 @@
-// Correcto funcionamiento de varios atributos y sus offsets. Debería mostrar los valores de los atributos (1, 2, 3) y su suma.
+// Correcto funcionamiento de varios atributos y sus offsets. Resultado esperado: los valores de los atributos (1, 2, 3) y su suma.
 
 class ClaseConAtributos{
 

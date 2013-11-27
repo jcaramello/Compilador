@@ -1,3 +1,5 @@
+// Dos clases que usan nombres de variables y de métodos idénticos, para mostrar que no hay conflicto.
+
 class Clase1{
 
 	var int a1;

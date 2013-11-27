@@ -1,3 +1,5 @@
+// Caso simple de herencia. Se accede a un método heredado de la clase padre.
+
 class Clase1{
 
 	var int a1;

@@ -1,3 +1,5 @@
+// Se setea un atributo de clase y se imprime su valor.
+
 class ClaseConAtributo{
 
 	var int a1;

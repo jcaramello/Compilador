@@ -47,14 +47,14 @@ public class CallNode extends PrimaryNode {
 		if(met == null) throw new SemanticErrorException("Error(!). El método " + OperationName.Identifier.getLexema() + " no existe en la clase " + clase.Name + ".");
 		
 		if(ActualsParameters.size() != met.getFormalArgsCant())
-			throw new SemanticErrorException("La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales.");
+			throw new SemanticErrorException("Error(!). La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales en línea " + OperationName.Identifier.getLinea() + "." );
 		
 		if(met.Modifier == ModifierMethodType.Static) {
 			CodeGenerator.gen("POP");  // elimino el this apilado
 			
 			for(int i = 0; i < ActualsParameters.size(); i++) {
 				if(!ActualsParameters.get(i).check().conforms(met.getFormalArgByIndex(i).Type))
-						throw new SemanticErrorException("Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro " + i);
+						throw new SemanticErrorException("Error(!). Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro " + i + ", en línea "+ OperationName.Identifier.getLinea() + ".");
 			}
 			
 			if(!met.ReturnType.equals(VoidType.VoidType))

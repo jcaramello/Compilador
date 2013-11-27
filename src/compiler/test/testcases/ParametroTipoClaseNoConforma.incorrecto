@@ -1,0 +1,24 @@
+// El método test pide un parámetro de clase C2.
+// El parámetro actual es de clase C1, que no conforma. Se espera error.
+
+class ConformsTest{
+
+	static void main()
+	var C1 c;
+	{	
+		c = new C1();	
+		(ConformsTest.test(1, c));
+	}
+	
+	static void test(int i, C2 c) {
+	
+	}
+}
+
+class C1 {
+
+}
+
+class C2 {
+
+}

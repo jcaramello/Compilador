@@ -83,9 +83,17 @@ public class CompilerTest {
 			   {"ExpresionBoolean.correcto", null},
 			   {"ExpresionUnario.correcto", null},
 			   {"LlamadaConParams.correcto", null},
+			   {"LlamadaConParamClase.correcto", null},
 			   {"VisibilidadVariables.correcto", null},
 			   {"LlamadaMultiple.correcto", null},
 			   {"ClaseConMetodoPolimorfico.correcto", null},
+			   {"LlamadaConHerencia.correcto", null},
+			   {"SentenciaSimplePop.correcto", null},
+			   {"SentenciaSimpleNoPopOnVoid.correcto", null},
+			   {"Fib.correcto", null},
+			   {"HerenciaMetodosEstaticosYDinamicos.correcto", null},
+			   {"LlamadaConParamClaseQueConforma.correcto", null},
+			   
 			   
 			   // Test Incorrectos (Se espera Error)
 			   
@@ -100,8 +108,13 @@ public class CompilerTest {
 			   {"MetodoConNbreDeVarLocalIgualAParam.incorrecto", "Error(!) - El parametro formal p1 es ambiguo. intente renombralo. Linea 4"},
 			   {"MetodoConParamDeTipoInvalido.incorrecto", "Error(!). Tipo indefinido: tipoInvalido. Linea 3"}, 
 			   {"ClaseConSuperClaseInvalida.incorrecto", "Error(!). La clase: Clase1, no existe. Linea 1"}, 
-			   
-			   
+			   {"LlamadaConHerencia.incorrecto", "Error(!). El método test no existe en la clase M1."},
+			   {"AsignacionTipoClaseNoConforma.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 8."},
+			   {"AsignacionTipoClaseNoConforma2.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 7."},
+			   {"AsignacionTipoPrimitivoNoConforma.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 4."},
+			   {"ParametroTipoPrimitivoNoConforma.incorrecto", "Error(!). Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro 0, en línea 9."},
+			   {"ParametroTipoClaseNoConforma.incorrecto", "Error(!). Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro 1, en línea 10."},
+
 	   });
 	}
 	

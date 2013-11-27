@@ -135,7 +135,7 @@ System_DefaultCtor: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
-VT_ClaseHelloWordTest: NOP
+VT_ClaseHelloWorldTest: NOP
 .CODE 
 Main__method: NOP
 		 LOADFP 
@@ -148,7 +148,7 @@ Main__method: NOP
 		 # IDNode end 
 		 POP 
 		 RMEM 1
-		 PUSH 14
+		 PUSH 15
 		 PUSH LMALLOC
 		 CALL 
 		 DUP 
@@ -179,21 +179,24 @@ Main__method: NOP
 		 PUSH 114
 		 STOREREF 8
 		 DUP 
-		 PUSH 100
+		 PUSH 108
 		 STOREREF 9
 		 DUP 
-		 PUSH 33
+		 PUSH 100
 		 STOREREF 10
 		 DUP 
-		 PUSH 0
+		 PUSH 33
 		 STOREREF 11
+		 DUP 
+		 PUSH 0
+		 STOREREF 12
 		 PUSH System_printS
 		 CALL 
 		 # CallNode end 
 		 FMEM 0
 		 STOREFP 
 		 RET 0
-ClaseHelloWordTest_DefaultCtor: NOP
+ClaseHelloWorldTest_DefaultCtor: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 

@@ -1,0 +1,11 @@
+// El parámetro actual es de tipo entero y se espera uno de tipo string. 
+
+class AsignacionTest{
+
+	static void main()
+	var int i;
+	{		
+		i = 15;		
+		(System.printS(i));
+	}
+}

@@ -1,3 +1,5 @@
+// Llamada simple a un método.
+
 class M {
 
 	var int a, b, c;

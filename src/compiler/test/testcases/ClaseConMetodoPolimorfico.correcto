@@ -1,3 +1,5 @@
+// Se llama a un método desde un objeto de tipo estático Clase1 y tipo dinámico Clase2 (que extiende a T1), esperando que se utilice la segunda versión del método.
+
 class Clase1{
 
 	var int a1;

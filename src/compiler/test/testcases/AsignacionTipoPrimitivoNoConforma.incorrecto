@@ -1,0 +1,8 @@
+class AsignacionTest{
+
+	static void main()
+	var string s;
+	{		
+		s = 15;		
+	}
+}

@@ -1,3 +1,5 @@
+// Múltiples llamadas al mismo método, para demostrar que la pila se mantiene consistente al invocarlo y al retornar del mismo. Resultado esperado: números del 1 al 10.
+
 class M {
 
 	var int a;

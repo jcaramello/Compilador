@@ -20,7 +20,8 @@ LMALLOC: NOP
 		 RET 1
 .DATA 
 VT_ClaseConAtributos: NOP
-		 DW ClaseConAtributos_newA1
+		 DW ClaseConAtributos_newA1Var
+		 DW ClaseConAtributos_newA1Param
 		 DW ClaseConAtributos_setA1
 		 DW ClaseConAtributos_getA1
 .CODE 
@@ -58,7 +59,26 @@ ClaseConAtributos_setA1: NOP
 		 FMEM 0
 		 STOREFP 
 		 RET 1
-ClaseConAtributos_newA1: NOP
+ClaseConAtributos_newA1Param: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # IDNode start 
+		 LOAD 4
+		 # IDNode end 
+		 PUSH System_printIln
+		 CALL 
+		 # CallNode end 
+		 FMEM 0
+		 STOREFP 
+		 RET 2
+ClaseConAtributos_newA1Var: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
@@ -107,6 +127,28 @@ Main__method: NOP
 		 # IDNode end 
 		 DUP 
 		 LOADREF 0
+		 LOADREF 3
+		 CALL 
+		 # CallNode end 
+		 # CallNode start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 PUSH 5
+		 SWAP 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 1
+		 CALL 
+		 # CallNode end 
+		 # CallNode start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 PUSH 4
+		 SWAP 
+		 DUP 
+		 LOADREF 0
 		 LOADREF 2
 		 CALL 
 		 # CallNode end 
@@ -116,7 +158,7 @@ Main__method: NOP
 		 # IDNode end 
 		 DUP 
 		 LOADREF 0
-		 LOADREF 3
+		 LOADREF 4
 		 CALL 
 		 # CallNode end 
 		 FMEM 1

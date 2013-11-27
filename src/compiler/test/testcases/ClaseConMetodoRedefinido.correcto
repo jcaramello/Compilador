@@ -1,3 +1,6 @@
+// Se redefine un método en la clase hija y se muestra que se accede a la nueva versión de él.
+// Resultado esperado: 5.
+
 class Clase1{
 
 	var int a1;

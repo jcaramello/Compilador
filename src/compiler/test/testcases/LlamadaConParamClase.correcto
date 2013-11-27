@@ -1,0 +1,23 @@
+// Llamada con parámetro de tipo clase. Resultado esperado: OK
+
+class M {
+	
+	static void main()
+	var M m;
+	{	
+		m = new M();	
+		(m.test(new M()));
+	}
+
+	dynamic void test(M mAlt)
+	{
+		(mAlt.test2());
+	}
+	
+	dynamic void test2()
+	{
+		(System.printSln("Llamado desde parámetro"));
+	}
+	
+}
+	
