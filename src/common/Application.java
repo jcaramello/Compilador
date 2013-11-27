@@ -40,12 +40,12 @@ public class Application {
 	/**
 	 * Log Type
 	 */
-	public static LogType logType;
+	public static LogType logType;	
 	
 	/**
-	 * Log File Path 
+	 * OutputFile
 	 */
-	public static String logFilePath;
+	public static String OutputFile;
 	
 	
 	/**
@@ -57,12 +57,14 @@ public class Application {
 	 * Initialize global application's variables
 	 * @param args
 	 */
-	public static void Initialize(String args[]){
-		Application.Name = (new File(args[0])).getName();
-		Application.isTesting = isTestingEnabled(args);
-		Application.isVerbose = isVerboseEnabled(args);
-		Application.logType = (args.length > 1 && !args[1].equals(Application.VERBOSE_PARAMETER) && !args[1].equals(Application.TESTING_PARAMETER)) ? LogType.File : LogType.Console;
-		Application.logFilePath = (Application.logType == LogType.File) ? args[1] : null;
+	public static void Initialize(String args[]){		
+		if(args.length > 1){
+			Application.Name = "MiniJavaCompiler";
+			Application.isTesting = isTestingEnabled(args);
+			Application.isVerbose = isVerboseEnabled(args);
+			Application.OutputFile = (args.length > 1) ? (new File(args[1])).getName() : (new File(args[0])).getName();
+			Application.logType = LogType.File;
+		}		
 	}
 	
 	private static boolean isTestingEnabled(String args[]){
