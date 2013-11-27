@@ -23,7 +23,7 @@ public class UnaryExpressionNode extends ExpressionNode {
 		if(Operator.getTokenType() == TokenType.PlusOperator || Operator.getTokenType() == TokenType.RestOperator)
 		{
 			if(!Operand.check().equals(PrimitiveType.Int))
-				throw new SemanticErrorException("El tipo del operando de + o - debe ser un entero.");
+				throw new SemanticErrorException("El tipo del operando de + o - debe ser un entero, en línea " + Operator.getLinea()) ;
 			else
 			{
 				if(Operator.getTokenType() == TokenType.RestOperator)
@@ -36,7 +36,7 @@ public class UnaryExpressionNode extends ExpressionNode {
 		
 		if(Operator.getTokenType() == TokenType.NotOperator) {
 			if(!Operand.check().equals(PrimitiveType.Boolean))
-				throw new SemanticErrorException("El tipo del operando de ! debe ser un boolean.");
+				throw new SemanticErrorException("El tipo del operando de ! debe ser un boolean, en línea " + Operator.getLinea());
 			else {
 				CodeGenerator.gen(Instructions.NOT);
 				return PrimitiveType.Boolean;

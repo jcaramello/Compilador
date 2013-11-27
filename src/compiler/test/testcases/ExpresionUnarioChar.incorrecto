@@ -1,0 +1,11 @@
+// Test de operador unario "-" aplicado a un char.
+
+class Test{
+
+	static void main()
+	var char a;
+	{		
+		a = 'a';
+		a = !a;
+	}
+}
