@@ -77,7 +77,7 @@ Clase1_setA1: NOP
 		 # IDNode end 
 		 LOAD 3
 		 SWAP 
-		 STOREREF 0
+		 STOREREF 1
 		 # AssignmentNode End 
 		 # CallNode start 
 		 # IDNode start 
@@ -86,7 +86,7 @@ Clase1_setA1: NOP
 		 POP 
 		 # IDNode start 
 		 LOAD 3
-		 LOADREF 0
+		 LOADREF 1
 		 # IDNode end 
 		 PUSH System_printI
 		 CALL 

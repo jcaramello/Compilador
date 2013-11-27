@@ -58,7 +58,7 @@ public class CompilerTest {
 			   {"ClaseCtorCustom.correcto", null},
 			   {"ClaseCtorCustomYParams.correcto", null},
 			   {"ClaseConAtributo.correcto", null},
-			   //{"ClaseConAtributo2.correcto", null},
+			   {"ClaseConAtributo2.correcto", null},
 			   {"DosClases.correcto", null},
 			   {"ClaseConHerencia.correcto", null},
 			   {"ClaseConMetodoRedefinido.correcto", null},
@@ -84,7 +84,7 @@ public class CompilerTest {
 			   {"ExpresionUnario.correcto", null},
 			   {"LlamadaConParams.correcto", null},
 			   {"VisibilidadVariables.correcto", null},
-			   //{"LlamadaMultiple.correcto", null},
+			   {"LlamadaMultiple.correcto", null},
 	   });
 	}
 	

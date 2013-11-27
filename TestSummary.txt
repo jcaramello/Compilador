@@ -1,3 +1,1 @@
 Test Fallidos:  
-Test ClaseConAtributo2.correcto.ceivm 
-Test LlamadaMultiple.correcto.ceivm 
