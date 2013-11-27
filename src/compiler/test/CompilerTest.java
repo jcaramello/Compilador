@@ -40,7 +40,7 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   {"ClaseVaciaTest.correcto", null},
+			   /*{"ClaseVaciaTest.correcto", null},
 			   {"ClaseHelloWordTest.correcto", null},
 			   {"PrintB.correcto", null},
 			   {"PrintC.correcto", null},
@@ -130,8 +130,8 @@ public class CompilerTest {
 			   {"ClaseConMetodoMalRedefinidoPorTipoParam.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
 			   {"ClaseConMetodoMalRedefinidoPorTipoRetorno.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
 			   {"ClaseConMetodoMalRedefinidoPorModificador.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
-			   {"ThisEnEstatico.incorrecto", "No se puede acceder a this desde un método estático."},
-			   
+			   {"ThisEnEstatico.incorrecto", "No se puede acceder a this desde un método estático."},*/
+			   {"MetodoConTipoDeRetornoVoidYSentReturn.incorrecto", "Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea 10"},
 			   
 	   });
 	}

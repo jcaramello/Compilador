@@ -8,11 +8,13 @@ import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 public class ReturnNode extends SentenceNode {
-
+	
+	public alex.Token Token;
 	public ExpressionNode Expression;
 	
-	public ReturnNode(ExpressionNode exp){
+	public ReturnNode(ExpressionNode exp, alex.Token tkn){
 		this.Expression = exp;
+		this.Token = tkn;
 	}
 	
 	@Override
@@ -20,6 +22,9 @@ public class ReturnNode extends SentenceNode {
 		
 		EntryMethod met = TS.getCurrentClass().getCurrentMethod();
 		Type t = met.ReturnType;
+		
+		if(met.ReturnType == VoidType.VoidType)
+			throw new SemanticErrorException(String.format("Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea %d", this.Token.getLinea()));
 		
 		if(!met.ReturnType.equals(VoidType.VoidType) && !met.IsDefaultContructor) {
 			if(!Expression.check().conforms(met.ReturnType))

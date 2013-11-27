@@ -838,11 +838,11 @@ public class ASint {
 			}
 		}
 		else if(curr.getTokenType() == TokenType.ReturnKeyword) {
-			
+			Token returnTkn = curr;
 			ExpressionNode returnExp = expressionQ();
 			if(returnExp == null)
 				throw new SemanticErrorException(String.format("Error(!). La expression de retorno no puede ser vacia. Linea %s", Integer.toString(curr.getLinea())));
-			sentence = new ReturnNode(returnExp);
+			sentence = new ReturnNode(returnExp, returnTkn);
 			
 			getToken();
 			if(curr.getTokenType() != TokenType.SemicolonSymbol) {

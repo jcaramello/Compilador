@@ -1,0 +1,15 @@
+class MetodoConTipoDeRetornoVoidYSentReturn {
+
+	static void main()	
+	{	
+		
+	}
+
+	dynamic void test()
+	{
+		return 1;
+	}
+	
+	
+}
+	
