@@ -1,0 +1,23 @@
+// Prueba de la correcta asignación de un objeto de tipo clase. Se espera que se pueda acceder a show() desde a2.
+
+class AsignacionTest{
+
+	static void main()
+	var AsignacionTest a;
+	{		
+		a = new AsignacionTest();
+		(a.test());
+	}
+	
+	dynamic void test() 
+	var AsignacionTest t;
+	{
+		t = this;
+		(t.show());
+	}
+	
+	dynamic void show()
+	{
+		(System.printSln("Exito"));
+	}
+}

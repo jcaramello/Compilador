@@ -94,7 +94,9 @@ public class CompilerTest {
 			   {"HerenciaMetodosEstaticosYDinamicos.correcto", null},
 			   {"LlamadaConParamClaseQueConforma.correcto", null},
 			   {"LlamadaEncadenadaCompleja.correcto", null},
-			   
+			   {"AsignacionLiteralNull.correcto", null},
+			   {"AsignacionLiteralNull2.correcto", null},
+			   {"AsignacionTipoClaseConThis.correcto", null},
 			   
 			   // Test Incorrectos (Se espera Error)
 			   
@@ -115,7 +117,9 @@ public class CompilerTest {
 			   {"AsignacionTipoPrimitivoNoConforma.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 4."},
 			   {"ParametroTipoPrimitivoNoConforma.incorrecto", "Error(!). Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro 0, en línea 9."},
 			   {"ParametroTipoClaseNoConforma.incorrecto", "Error(!). Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro 1, en línea 10."},
-
+			   {"MetodoTipoRetornoInexistente.incorrecto", "Error(!). Tipo indefinido: X. Linea 3"},
+			   {"AsignacionLiteralNullNoConforma.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 7."},
+			   
 	   });
 	}
 	

@@ -1,9 +1,13 @@
 package asema.entities;
 
+import java.util.LinkedList;
+
 import common.CodeGenerator;
 import common.Instructions;
+import enums.TokenType;
 
 import alex.Token;
+import asema.TS;
 import asema.exceptions.SemanticErrorException;
 
 public class LiteralNode extends PrimaryNode {
@@ -22,7 +26,12 @@ public class LiteralNode extends PrimaryNode {
 		
 		//CodeGenerator.gen("# LiteralNode start");
 		
-		if(Type.equals(PrimitiveType.Boolean)) {
+		if(Type == null) { // Tomo esto como convención para nombrar al tipo null (que será C(Object)) para evitar tocar ASint.
+			// Esto es C(Object)
+			NewNode nw = new NewNode(this.Value, new LinkedList<ExpressionNode>());
+			Type = nw.check();
+		}
+		else if(Type.equals(PrimitiveType.Boolean)) {
 			if(Value.getLexema().equals("true")) CodeGenerator.gen(Instructions.PUSH, 1);
 			if(Value.getLexema().equals("false")) CodeGenerator.gen(Instructions.PUSH, 0);			
 		}
@@ -42,9 +51,6 @@ public class LiteralNode extends PrimaryNode {
 			CodeGenerator.gen(Instructions.DUP);
 			CodeGenerator.gen(Instructions.PUSH, 0);
 			CodeGenerator.gen(Instructions.STOREREF, Value.getLexema().length() - 2);
-		}
-		else if(Type.equals("null")) {
-			// Qué hacer en este caso? Esto es C(Object)
 		}
 		else CodeGenerator.gen(Instructions.PUSH, Value.getLexema());
 		

@@ -1,0 +1,16 @@
+// Se intenta asignar un literal null a un objeto de una clase distinta a Object.
+// Esto debe fallar, ya que null es C(Object) y esto no puede conformar a dicha clase.
+
+class AsignacionTest{
+
+	static void main()
+	var A a;
+	{		
+		a = new A(); 
+		a = null;
+	}
+}
+
+class A {
+
+}

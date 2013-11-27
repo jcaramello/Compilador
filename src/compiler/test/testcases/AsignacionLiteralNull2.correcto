@@ -1,0 +1,11 @@
+// Prueba de la correcta asignación de un literal null, que según la semántica debe ser de tipo C(Object) a un objeto de dicha clase.
+
+class AsignacionTest{
+
+	static void main()
+	var Object o;
+	{		
+		o = null;
+		(System.printSln("Exito"));
+	}
+}

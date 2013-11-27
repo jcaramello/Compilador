@@ -4,6 +4,7 @@ import java.util.List;
 
 import common.CodeGenerator;
 import common.Instructions;
+import enums.TokenType;
 
 import alex.Token;
 import asema.TS;
@@ -15,7 +16,9 @@ public class NewNode extends PrimaryNode {
 	public List<ExpressionNode> ActualsParameters;	
 	
 	public NewNode(Token tkn, List<ExpressionNode> args){	
-		this.ClassName = tkn;
+		if(tkn.getLexema().equals("null"))
+			this.ClassName = new Token(tkn.getTokenType(), "Object", tkn.getLinea());
+		else this.ClassName = tkn;
 		this.ActualsParameters = args;
 	}
 	
