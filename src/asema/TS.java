@@ -317,16 +317,16 @@ public class TS {
 		systemClass.isInheritanceApplied = true;
 		systemClass.fatherClass = objectClass;					
 	
-		systemClass.addMethod("read", PrimitiveType.Int, ModifierMethodType.Static);
-		systemClass.addMethod("printB", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Boolean, "b");
-		systemClass.addMethod("printC", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Char, "c");
-		systemClass.addMethod("printI", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Int, "i");
-		systemClass.addMethod("printS", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.String, "s");
-		systemClass.addMethod("println", VoidType.VoidType, ModifierMethodType.Static);
-		systemClass.addMethod("printBln", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Boolean, "b");
-		systemClass.addMethod("printCln", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Char, "c");
-		systemClass.addMethod("printIln", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Int, "i");
-		systemClass.addMethod("printSln", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.String, "s");		
+		systemClass.addMethod(new Token("read"), PrimitiveType.Int, ModifierMethodType.Static);
+		systemClass.addMethod(new Token("printB"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Boolean, "b");
+		systemClass.addMethod(new Token("printC"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Char, "c");
+		systemClass.addMethod(new Token("printI"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Int, "i");
+		systemClass.addMethod(new Token("printS"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.String, "s");
+		systemClass.addMethod(new Token("println"), VoidType.VoidType, ModifierMethodType.Static);
+		systemClass.addMethod(new Token("printBln"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Boolean, "b");
+		systemClass.addMethod(new Token("printCln"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Char, "c");
+		systemClass.addMethod(new Token("printIln"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Int, "i");
+		systemClass.addMethod(new Token("printSln"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.String, "s");		
 		
 		TS.Classes.put("System", systemClass);
 	}	

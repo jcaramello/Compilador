@@ -84,8 +84,9 @@ public class CompilerTest {
 			   {"ExpresionUnario.correcto", null},
 			   {"LlamadaConParams.correcto", null},
 			   {"VisibilidadVariables.correcto", null},
-			   {"LlamadaMultiple.correcto", null},*/
-			   {"ClaseConMetodoPolimorfico.correcto", null}
+			   {"LlamadaMultiple.correcto", null},
+			   {"ClaseConMetodoPolimorfico.correcto", null}*/
+			   {"ClaseConSobreCargaDeMetodos.incorrecto", "Error! - La clase ClaseConSobreCargaDeMetodos ya que contiene un metodo met1. Linea 7"}
 	   });
 	}
 	

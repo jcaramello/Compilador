@@ -121,11 +121,12 @@ public class EntryClass extends EntryBase{
 		return this.Attributes.containsKey(name);
 	}
 	
-	public EntryMethod addMethod(String name, Type returnType, ModifierMethodType modifierType) throws SemanticErrorException{
+	public EntryMethod addMethod(Token tkn, Type returnType, ModifierMethodType modifierType) throws SemanticErrorException{
 		// ver como hacer para controlar repetidos. Hay que mirar modificadores tipo de retornos o solo name?
 		EntryMethod entryMethod = null;
+		String name = tkn.getLexema();
 		if(this.Methods.containsKey(name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un metodo %s.", this.Name, name));
+			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un metodo %s. Linea %d", this.Name, name, tkn.getLinea()));
 		else{
 			entryMethod = new EntryMethod(name, modifierType, returnType, this);
 			this.Methods.put(name, entryMethod);

@@ -271,7 +271,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador (nombre de método), en línea " + curr.getLinea());
 		}
 						
-		EntryMethod entryMethod = TS.getCurrentClass().addMethod(curr.getLexema(), returnType, modifierType);
+		EntryMethod entryMethod = TS.getCurrentClass().addMethod(curr, returnType, modifierType);
 		TS.getCurrentClass().setCurrentMethod(entryMethod);
 				
 		List<EntryVar> args = argsFormales(); 				
