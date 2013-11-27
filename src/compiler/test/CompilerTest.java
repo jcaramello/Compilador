@@ -144,6 +144,10 @@ public class CompilerTest {
 			   {"ExpresionIgualdadClaseNoConforma.incorrecto", "El tipo de los operandos == o != debe conformar, en línea 14"},
 			   {"ExpresionUnarioChar.incorrecto", "El tipo del operando de ! debe ser un boolean, en línea 9"},
 			   {"ExpresionUnarioString.incorrecto", "El tipo del operando de + o - debe ser un entero, en línea 9"},
+			   {"ExpresionOrMalFormada.incorrecto", "El tipo de los operandos && o || debe ser boolean, en línea 9"},
+			   {"ExpresionComparacionesMalFormada.incorrecto", "El tipo de los operandos >, >=, <, <= debe ser entero, en línea 9"},
+			   {"ExpresionSRMalFormada.incorrecto", "El tipo de los operandos +, -, *, / o % debe ser entero, en línea 8"},
+			   {"IdentificadorNoEncontrado.incorrecto", "Error(!). a no es un identificador valido, en línea 7"},
 				
 	   });
 	}

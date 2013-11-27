@@ -1,0 +1,13 @@
+// Suma y resta de expresiones. Involucra un char, se espera error.
+
+class Test{
+
+	static void main()
+	var int i;
+	{		
+		i = 1 + 2 + 'b' + 4 - 5;		
+		(System.printIln(i));
+		i = (10 + 20) - (45 - 25);
+		(System.printIln(i));
+	}
+}
