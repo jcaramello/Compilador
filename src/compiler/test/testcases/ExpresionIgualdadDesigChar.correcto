@@ -1,0 +1,25 @@
+// Tests de igualdad y desigualdad de char
+
+
+class Test{
+
+	static void main()
+	var boolean res;
+	{		
+		(System.printSln("'a' == 'a'"));
+		res = 'a' == 'a';	
+		(System.printBln(res));
+		
+		(System.printSln("'a' == 'b'"));
+		res = 'a' == 'b';	
+		(System.printBln(res));
+
+		(System.printSln("'a' != 'a'"));
+		res = 'a' != 'a';	
+		(System.printBln(res));
+		
+		(System.printSln("'a' != 'b'"));
+		res = 'a' != 'b';	
+		(System.printBln(res));
+	}
+}

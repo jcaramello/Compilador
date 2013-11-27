@@ -1,0 +1,31 @@
+// Comparaciones por nulo. Resultado esperado: Exito, Exito, Exito.
+
+class AsignacionTest{
+
+	static void main()
+	var Object o;
+	{		
+		o = new A(); // Esto funciona porque A extiende a Object por defecto.
+		o = null;
+		
+		if(o == null) {
+			(System.printSln("Exito"));
+		}
+		else (System.printSln("Fallo"));
+		
+		if(null == o) {
+			(System.printSln("Exito"));
+		}
+		else (System.printSln("Fallo"));
+		
+		if(null == null) {
+			(System.printSln("Exito"));
+		}
+		else (System.printSln("Fallo"));
+
+	}
+}
+
+class A {
+
+}

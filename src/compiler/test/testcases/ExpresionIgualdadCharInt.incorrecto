@@ -1,0 +1,13 @@
+// Test de igualdad entre un char y un entero
+
+
+class Test{
+
+	static void main()
+	var boolean res;
+	{		
+		(System.printSln("'a' == 1"));
+		res = 'a' == 1;	
+		(System.printBln(res));
+	}
+}

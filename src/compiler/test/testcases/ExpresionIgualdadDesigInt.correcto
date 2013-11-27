@@ -1,0 +1,25 @@
+// Tests de operadores ==, != con tipos enteros.
+
+class Test{
+
+	static void main()
+	var boolean res;
+	{		
+		(System.printSln("1 == 1"));
+		res = 1 == 1;	
+		(System.printBln(res));
+		
+		(System.printSln("1 == 2"));
+		res = 1 == 2;	
+		(System.printBln(res));
+		
+		(System.printSln("1 != 1"));
+		res = 1 != 1;	
+		(System.printBln(res));
+		
+		(System.printSln("1 != 2"));
+		res = 1 != 2;	
+		(System.printBln(res));
+
+	}
+}

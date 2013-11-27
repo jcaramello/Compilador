@@ -50,7 +50,7 @@ public class BinaryExpressionNode extends ExpressionNode {
 		
 		if(Operator.getTokenType() == TokenType.EqualOperator || Operator.getTokenType() == TokenType.DistinctOperator) {
 			if(!ti.conforms(td) && !td.conforms(ti))
-				throw new SemanticErrorException("El tipo de los operandos == o != debe conformar.");
+				throw new SemanticErrorException("El tipo de los operandos == o != debe conformar, en línea " + Operator.getLinea());
 			else toRet = PrimitiveType.Boolean;	
 		}
 		

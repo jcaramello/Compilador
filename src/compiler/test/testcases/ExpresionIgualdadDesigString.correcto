@@ -1,0 +1,32 @@
+// Tests de igualdad y desigualdad de string. Nótese que es el caso equivalente a usar == en vez de equals en Java.
+
+
+class Test{
+
+	static void main()
+	var boolean res;
+	var string s;
+	{		
+		s = "asdfg";
+		
+		(System.printSln("asd == asd"));
+		res = "asd" == "asd";	
+		(System.printBln(res));
+		
+		(System.printSln("asd != asd"));
+		res = "asd" != "asd";	
+		(System.printBln(res));
+		
+		(System.printSln("asd == asdf"));
+		res = "asd" == "asdf";	
+		(System.printBln(res));
+		
+		(System.printSln("asd != asdf"));
+		res = "asd" != "asdf";	
+		(System.printBln(res));
+		
+		(System.printSln("Comparación por punteros: "));
+		res = s == s;
+		(System.printBln(res));
+	}
+}

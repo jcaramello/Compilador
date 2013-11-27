@@ -72,7 +72,9 @@ public class CompilerTest {
 			   {"ExpresionSR.correcto", null},
 			   {"ExpresionMulDivMod.correcto", null},
 			   {"ExpresionComparaciones.correcto", null},
-			   {"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
+			   {"ExpresionIgualdadDesigInt.correcto", null},
+			   {"ExpresionIgualdadDesigChar.correcto", null},		  
+			   {"ExpresionIgualdadDesigString.correcto", null},				  
 			   {"ExpresionIgualdadDesigualdadClase.correcto", null},
 			   {"LlamadaConRetorno.correcto", null},
 			   {"LlamadaAMetodoVoidYConRetornoVacio.correcto", null},
@@ -100,6 +102,7 @@ public class CompilerTest {
 			   {"AsignacionTipoClaseConThis.correcto", null},
 			   {"AsignacionTipoClaseConforma.correcto", null},
 			   {"MetodoConTipoDeRetornoVoidYSentReturnVacia.correcto", null},
+			   {"ComparacionLiteralesNull.correcto", null},
 			   
 			   // Test Incorrectos (Se espera Error)
 			   
@@ -135,6 +138,11 @@ public class CompilerTest {
 			   {"ThisEnEstatico.incorrecto", "No se puede acceder a this desde un método estático."},
 			   {"MetodoConTipoDeRetornoVoidYSentReturnNoVacia.incorrecto", "Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea 11"},
 			   {"FileConMasDeUnMetodoMain.incorrecto", "Error(!). No puede haber mas de un metodo main."},
+			   {"ExpresionIgualdadCharInt.incorrecto", "El tipo de los operandos == o != debe conformar, en línea 10"},
+			   {"ExpresionIgualdadCharString.incorrecto", "El tipo de los operandos == o != debe conformar, en línea 10"},
+			   {"ExpresionDesigualdadIntString.incorrecto", "El tipo de los operandos == o != debe conformar, en línea 10"},
+			   {"ExpresionIgualdadClaseNoConforma.incorrecto", "El tipo de los operandos == o != debe conformar, en línea 14"},
+				
 	   });
 	}
 	
