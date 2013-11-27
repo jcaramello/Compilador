@@ -33,8 +33,10 @@ public class ReturnNode extends SentenceNode {
 			throw new SemanticErrorException(String.format("Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea %d", this.Token.getLinea()));
 		
 		if(!met.ReturnType.equals(VoidType.VoidType) && !met.IsDefaultContructor) {
+			if(Expression == null)
+				throw new SemanticErrorException("El tipo de la expresión de retorno de un método no-void debe existir, en línea " + this.Token.getLinea());
 			if(!Expression.check().conforms(met.ReturnType))
-				throw new SemanticErrorException("El tipo de la expresión de retorno de un método debe conformar al tipo del método");
+				throw new SemanticErrorException("El tipo de la expresión de retorno de un método debe conformar al tipo del método, en línea " + this.Token.getLinea());
 			
 			CodeGenerator.gen(Instructions.STORE, met.getFormalArgsCant() + 4); // esto está bien?
 		}	

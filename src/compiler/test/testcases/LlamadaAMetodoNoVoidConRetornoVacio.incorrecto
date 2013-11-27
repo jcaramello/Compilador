@@ -1,0 +1,20 @@
+// Llamada a método con un tipo de retorno NO void, y return de sentencia vacia
+
+class LlamadaAMetodoVoid{
+
+	static void main()
+	var LlamadaAMetodoVoid m1;	
+	{	
+		m1 = new LlamadaAMetodoVoid();	
+		(m1.test());		
+		(System.printS("Exito."));	
+	}
+
+	dynamic int test()
+	{
+		return;
+	}
+	
+	
+}
+	

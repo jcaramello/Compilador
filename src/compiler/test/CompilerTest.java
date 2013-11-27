@@ -77,7 +77,6 @@ public class CompilerTest {
 			   {"ExpresionIgualdadDesigString.correcto", null},				  
 			   {"ExpresionIgualdadDesigualdadClase.correcto", null},
 			   {"LlamadaConRetorno.correcto", null},
-			   {"LlamadaAMetodoVoidYConRetornoVacio.correcto", null},
 			   {"LlamadaConNew.correcto", null},
 			   {"LlamadaEncadenada.correcto", null},
 			   {"SentenciaVacia.correcto", null},
@@ -152,7 +151,13 @@ public class CompilerTest {
 			   {"IdentificadorNoEncontrado.incorrecto", "Error(!). a no es un identificador valido, en línea 7"},
 			   {"IfThenCondicionMal.incorrecto", "El tipo de la expresión condicional del if debe ser boolean."},
 			   {"LlamadaACtor.incorrecto", "Error(!). El método M no existe en la clase M."},
-			   	
+			   {"WhileCondicionMal.incorrecto", "El tipo de la expresión condicional del while debe ser boolean."},
+			   {"ForCondicionMal.incorrecto", "El tipo de la expresión condicional del for debe ser boolean."},
+			   {"ForIncrementoNoConforma.incorrecto", "El tipo de la expresión de incremento en el for debe conformar con el de la variable de iteración."},
+			   {"AsignacionClaseATipoPrimitivo.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 8."},
+			   {"AsignacionPrimitivoATipoClase.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 7."},
+			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
+			   
 	   });
 	}
 	

@@ -1,0 +1,14 @@
+// Prueba de una asignación incorrecta.
+// Los tipos no conforman por ser uno de tipo clase y el otro de tipo primitivo.
+
+class AsignacionTest{
+
+	static void main()
+	var AsignacionTest a1;
+	var int a2;
+	{		
+		a2 = 1;
+		a1 = a2;
+	}
+}
+
