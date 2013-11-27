@@ -66,15 +66,16 @@ public class EntryClass extends EntryBase{
 	/**
 	 * Constructor
 	 */
-	public EntryClass(String name, EntryClass father){
+	public EntryClass(Token tkn, EntryClass father){
 		this.cantInheritedAttributes = 0;
-		this.Name = name;
+		this.Name = tkn.getLexema();
+		this.Token = tkn;
 		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
 		this.OrderedAttributes = new ArrayList<EntryVar>();
 		this.OrderedMethods = new ArrayList<EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
-		this.Constructor = new EntryMethod(new Token(String.format("DefaultCtor", name)), ModifierMethodType.Dynamic, new ClassType(this), this);
+		this.Constructor = new EntryMethod(new Token(String.format("DefaultCtor", this.Name)), ModifierMethodType.Dynamic, new ClassType(this), this);
 		this.Constructor.IsDefaultContructor = true;
 	}
 	
@@ -260,7 +261,7 @@ public class EntryClass extends EntryBase{
 		else{
 			this.fatherClass = TS.getClass(this.inheritsFrom);
 			if(this.fatherClass == null)
-				throw new SemanticErrorException(String.format("Error(!). La clase %s no existe. Linea %d", this.inheritsFrom, this.Token.getLinea()));
+				throw new SemanticErrorException(String.format("Error(!). La clase: %s, no existe. Linea %d", this.inheritsFrom, this.Token.getLinea()));
 		}	
 	
 		for(EntryVar ev : this.getAttributes())

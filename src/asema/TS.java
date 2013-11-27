@@ -50,7 +50,7 @@ public class TS {
 		String classIdentifier = tkn.getLexema();
 		if(TS.containsClass(classIdentifier))
 			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
-		EntryClass newClass = new EntryClass(classIdentifier, TS.getClass("Object"));
+		EntryClass newClass = new EntryClass(tkn, TS.getClass("Object"));
 		TS.Classes.put(classIdentifier, newClass);
 	}
 	
@@ -66,7 +66,7 @@ public class TS {
 			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
 		if(!TS.containsClass(father.Name))
 			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
-		EntryClass newClass = new EntryClass(classIdentifier, father);
+		EntryClass newClass = new EntryClass(tkn, father);
 		TS.Classes.put(classIdentifier, newClass);
 		return newClass;
 	}
@@ -299,7 +299,7 @@ public class TS {
 	 */
 	private static void initializeObjectClass()
 	{		
-		EntryClass objectClass = new EntryClass("Object", null);
+		EntryClass objectClass = new EntryClass(new Token("Object"), null);
 		objectClass.inheritsFrom = null;
 		objectClass.isInheritanceApplied = true;
 		objectClass.fatherClass = null;			
@@ -313,7 +313,7 @@ public class TS {
 	 */
 	private static void initializeSystemClass() throws SemanticErrorException
 	{		
-		EntryClass systemClass = new EntryClass("System", TS.getClass("Object"));
+		EntryClass systemClass = new EntryClass(new Token("System"), TS.getClass("Object"));
 		EntryClass objectClass = TS.Classes.get("Object");
 		systemClass.inheritsFrom = objectClass.Name;
 		systemClass.isInheritanceApplied = true;
