@@ -1,0 +1,11 @@
+class MetodoConParamDeTipoInvalido{	
+
+	dynamic void metodoDinamico(tipoInvalido p1){		
+		
+	}
+
+	static void main()		
+	{		 
+ 
+	}
+}

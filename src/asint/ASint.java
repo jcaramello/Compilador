@@ -108,7 +108,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador en línea " + curr.getLinea());
 		}			
 		
-		TS.addClass(curr.getLexema());
+		TS.addClass(curr);
 		TS.setCurrentClass(curr.getLexema());
 		
 		herenciaQ();
@@ -271,7 +271,7 @@ public class ASint {
 			throw new UnexpectedTokenException("(!) Error, se esperaba identificador (nombre de método), en línea " + curr.getLinea());
 		}
 						
-		EntryMethod entryMethod = TS.getCurrentClass().addMethod(curr.getLexema(), returnType, modifierType);
+		EntryMethod entryMethod = TS.getCurrentClass().addMethod(curr, returnType, modifierType);
 		TS.getCurrentClass().setCurrentMethod(entryMethod);
 				
 		List<EntryVar> args = argsFormales(); 				
@@ -385,7 +385,7 @@ public class ASint {
 		
 		for (EntryVar entryVar : listaArgsFormalesFact) {
 			if(entryVar.Name.equals(arg.Name))
-				throw new SemanticErrorException(String.format("El nombre del argumento esta repetido. Linea %s", Integer.toString(curr.getLinea())));
+				throw new SemanticErrorException(String.format("Error(!) - El nombre del argumento esta repetido. Linea %s", Integer.toString(curr.getLinea())));
 		}
 		
 		//Inserto al principio para que al final de la recursion la lista quede ordenada
@@ -449,7 +449,7 @@ public class ASint {
 		Logger.verbose("<-" + depth + " Fin <ArgFormal>");
 		depth--;
 		
-		return new EntryVar(type, curr.getLexema());
+		return new EntryVar(type, curr);
 	}
 
 
@@ -520,7 +520,7 @@ public class ASint {
 			throw new SemanticErrorException(String.format("El nombre del constructor debe coincidir con el nombre de la clase. Linea %s.", Integer.toString(curr.getLinea())));
 		
 		EntryMethod ctor = 
-				new EntryMethod(curr.getLexema(), ModifierMethodType.Dynamic, new ClassType(TS.getCurrentClass()), TS.getCurrentClass());
+				new EntryMethod(curr, ModifierMethodType.Dynamic, new ClassType(TS.getCurrentClass()), TS.getCurrentClass());
 		
 		List<EntryVar> args = argsFormales();					
 		ctor.addFormalArgs(args);
@@ -665,7 +665,7 @@ public class ASint {
 		Logger.verbose(depth + "-> Iniciando <ListaDecVars>");
 				
 		getToken(); // identifier
-		String lex = curr.getLexema();
+		Token tkn = curr;
 		
 		if(curr.getTokenType() != TokenType.Identifier)
 		{
@@ -679,7 +679,7 @@ public class ASint {
 				throw new SemanticErrorException(String.format("Error(!). La variable %s esta repetida. Linea %s", curr.getLexema(), Integer.toString(curr.getLinea())));
 		}
 		
-		variables.add(0, new EntryVar(expectedType, lex));
+		variables.add(0, new EntryVar(expectedType, tkn));
 		
 		Logger.verbose("<-" + depth + " Fin <ListaDecVars>");	
 	    depth--;	
@@ -887,7 +887,7 @@ public class ASint {
 		EntryVar leftRigth = TS.findVar(curr.getLexema());
 				
 		if(leftRigth == null) 
-			leftRigth = new EntryVar(null, curr.getLexema());
+			leftRigth = new EntryVar(null, curr);
 		
 		getToken();
 		if(curr.getTokenType() != TokenType.AssignOperator) {

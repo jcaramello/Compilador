@@ -1,0 +1,12 @@
+class ClaseConMasDeUnCtor{
+	
+	ClaseConMasDeUnCtor(){		
+	}
+	
+	ClaseConMasDeUnCtor(int p1){		
+	}
+
+	static void main()
+	{		 	  
+	}
+}

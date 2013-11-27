@@ -1,6 +1,7 @@
 package asema.entities;
 
 import java.util.HashMap;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,8 @@ import java.util.Map;
 import common.CodeGenerator;
 import common.CommonHelper;
 import common.Instructions;
+
+import alex.Token;
 
 import asema.TS;
 import asema.exceptions.SemanticErrorException;
@@ -46,9 +49,10 @@ public class EntryMethod extends EntryBase {
 	/*
 	 * Contructor
 	 */			
-	public EntryMethod(String _name, ModifierMethodType _modifier, Type _returnType, EntryClass containerClass){
+	public EntryMethod(Token tkn, ModifierMethodType _modifier, Type _returnType, EntryClass containerClass){
 		
-		this.Name = _name;
+		this.Name = tkn.getLexema();
+		this.Token = tkn;
 		this.Modifier = _modifier;
 		this.ReturnType = _returnType;
 		this.LocalVars = new HashMap<String, EntryVar>();
@@ -72,7 +76,7 @@ public class EntryMethod extends EntryBase {
 	public void addFormalArgs(List<EntryVar> args) throws SemanticErrorException{
 		for (EntryVar var : args) {
 			if(this.FormalArgs.containsKey(var.Name))
-				throw new SemanticErrorException(String.format("Error! - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
+				throw new SemanticErrorException(String.format("Error(!) - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
 			else {
 				this.FormalArgs.put(var.Name, var);
 				this.FormalArgsByIndex.add(var);
@@ -87,9 +91,10 @@ public class EntryMethod extends EntryBase {
 	 */
 	public void addFormalArgs(Type t, String name) throws SemanticErrorException{		
 		
-		EntryVar var = new EntryVar(t, name);
+		Token tkn = new Token(name);
+		EntryVar var = new EntryVar(t, tkn);
 		if(this.FormalArgs.containsKey(var.Name))
-			throw new SemanticErrorException(String.format("Error! - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
+			throw new SemanticErrorException(String.format("Error(!) - El parametro formal %s se encuentra repetido dentro de la lista de parametros formales", var.Name));
 		else {
 			this.FormalArgs.put(var.Name, var);
 			this.FormalArgsByIndex.add(var);
@@ -104,7 +109,7 @@ public class EntryMethod extends EntryBase {
 	public void addLocalVars(List<EntryVar> vars) throws SemanticErrorException{
 		for (EntryVar var : vars) {
 			if(this.LocalVars.containsKey(var.Name))
-				throw new SemanticErrorException(String.format("Error! - La variable local %s se encuentra repetida dentro de la lista de variables locales", var.Name));
+				throw new SemanticErrorException(String.format("Error(!) - La variable local %s se encuentra repetida dentro de la lista de variables locales. Linea %d", var.Name, var.Token.getLinea()));
 			else{
 				this.LocalVars.put(var.Name, var);
 				this.LocalVarsByIndex.add(var);
@@ -180,8 +185,10 @@ public class EntryMethod extends EntryBase {
 	 */
 	public void validateNames() throws SemanticErrorException{
 		for (EntryVar fa : this.FormalArgs.values()) {
-			if(this.LocalVars.containsKey(fa.Name))
-				throw new SemanticErrorException(String.format("Error! - El parametro formal %s es ambiguo. intente renombralo", fa.Name));
+			if(this.LocalVars.containsKey(fa.Name)){
+				EntryVar localVar = LocalVars.get(fa.Name);
+				throw new SemanticErrorException(String.format("Error(!) - El parametro formal %s es ambiguo. intente renombralo. Linea %d", fa.Name, localVar.Token.getLinea()));
+			}
 		}
 	}
 	
@@ -195,7 +202,7 @@ public class EntryMethod extends EntryBase {
 		{
 			isMain = true;
 			if(!this.FormalArgs.values().isEmpty())
-				throw new SemanticErrorException("Error! - El metodo Main no puede contener parametros formales.");
+				throw new SemanticErrorException("Error(!) - El metodo Main no puede contener parametros formales.");
 		}
 		
 		return isMain;
@@ -355,17 +362,17 @@ public class EntryMethod extends EntryBase {
 	public void checkDeclarations() throws SemanticErrorException{
 		for(EntryVar ev : this.LocalVars.values())
 			if(!CommonHelper.isPrimitiveType(ev.Type) && TS.getClass(ev.Type.Name) == null)
-				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
+				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido: %s. Linea %d", ev.Type.Name, ev.Token.getLinea()));
 			else ev.Origin = OriginType.Local;
 	
 		for(EntryVar ev : this.FormalArgs.values())
 			if(!CommonHelper.isPrimitiveType(ev.Type) && TS.getClass(ev.Type.Name) == null)
-				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
+				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido: %s. Linea %d", ev.Type.Name, ev.Token.getLinea()));
 			else ev.Origin = OriginType.Param;
 	
 		// Para el tipo de retorno
 		if(!CommonHelper.isPrimitiveType(this.ReturnType) && TS.getClass(this.ReturnType.Name) == null)
-			throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", this.ReturnType.Name));		
+			throw new SemanticErrorException(String.format("Error(!). Tipo indefinido: %s. Linea %d", this.ReturnType.Name, this.Token.getLinea()));		
 
 
 	}

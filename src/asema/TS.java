@@ -46,10 +46,11 @@ public class TS {
 	 * @param classIdentifier
 	 * @throws SemanticErrorException
 	 */
-	public static void addClass(String classIdentifier) throws SemanticErrorException{				
+	public static void addClass(Token tkn) throws SemanticErrorException{				
+		String classIdentifier = tkn.getLexema();
 		if(TS.containsClass(classIdentifier))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS", classIdentifier));
-		EntryClass newClass = new EntryClass(classIdentifier, TS.getClass("Object"));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
+		EntryClass newClass = new EntryClass(tkn, TS.getClass("Object"));
 		TS.Classes.put(classIdentifier, newClass);
 	}
 	
@@ -59,12 +60,13 @@ public class TS {
 	 * @param father
 	 * @throws SemanticErrorException
 	 */
-	public static EntryClass addClass(String classIdentifier, EntryClass father)throws SemanticErrorException{				
+	public static EntryClass addClass(Token tkn, EntryClass father)throws SemanticErrorException{				
+		String classIdentifier = tkn.getLexema();
 		if(TS.containsClass(classIdentifier))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS", classIdentifier));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
 		if(!TS.containsClass(father.Name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS", classIdentifier));
-		EntryClass newClass = new EntryClass(classIdentifier, father);
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
+		EntryClass newClass = new EntryClass(tkn, father);
 		TS.Classes.put(classIdentifier, newClass);
 		return newClass;
 	}
@@ -297,7 +299,7 @@ public class TS {
 	 */
 	private static void initializeObjectClass()
 	{		
-		EntryClass objectClass = new EntryClass("Object", null);
+		EntryClass objectClass = new EntryClass(new Token("Object"), null);
 		objectClass.inheritsFrom = null;
 		objectClass.isInheritanceApplied = true;
 		objectClass.fatherClass = null;			
@@ -311,22 +313,22 @@ public class TS {
 	 */
 	private static void initializeSystemClass() throws SemanticErrorException
 	{		
-		EntryClass systemClass = new EntryClass("System", TS.getClass("Object"));
+		EntryClass systemClass = new EntryClass(new Token("System"), TS.getClass("Object"));
 		EntryClass objectClass = TS.Classes.get("Object");
 		systemClass.inheritsFrom = objectClass.Name;
 		systemClass.isInheritanceApplied = true;
 		systemClass.fatherClass = objectClass;					
 	
-		systemClass.addMethod("read", PrimitiveType.Int, ModifierMethodType.Static);
-		systemClass.addMethod("printB", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Boolean, "b");
-		systemClass.addMethod("printC", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Char, "c");
-		systemClass.addMethod("printI", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Int, "i");
-		systemClass.addMethod("printS", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.String, "s");
-		systemClass.addMethod("println", VoidType.VoidType, ModifierMethodType.Static);
-		systemClass.addMethod("printBln", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Boolean, "b");
-		systemClass.addMethod("printCln", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Char, "c");
-		systemClass.addMethod("printIln", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Int, "i");
-		systemClass.addMethod("printSln", VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.String, "s");		
+		systemClass.addMethod(new Token("read"), PrimitiveType.Int, ModifierMethodType.Static);
+		systemClass.addMethod(new Token("printB"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Boolean, "b");
+		systemClass.addMethod(new Token("printC"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Char, "c");
+		systemClass.addMethod(new Token("printI"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Int, "i");
+		systemClass.addMethod(new Token("printS"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.String, "s");
+		systemClass.addMethod(new Token("println"), VoidType.VoidType, ModifierMethodType.Static);
+		systemClass.addMethod(new Token("printBln"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Boolean, "b");
+		systemClass.addMethod(new Token("printCln"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Char, "c");
+		systemClass.addMethod(new Token("printIln"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.Int, "i");
+		systemClass.addMethod(new Token("printSln"), VoidType.VoidType, ModifierMethodType.Static).addFormalArgs(PrimitiveType.String, "s");		
 		
 		TS.Classes.put("System", systemClass);
 	}	

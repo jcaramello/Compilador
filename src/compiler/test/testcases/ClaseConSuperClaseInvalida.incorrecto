@@ -1,0 +1,10 @@
+class Clase2 extends Clase1{
+
+	static void main()
+	var Clase2 obj;	
+	{		 
+	  obj = new Clase2();
+	  (obj.setA1(4));	  
+	}
+	
+}

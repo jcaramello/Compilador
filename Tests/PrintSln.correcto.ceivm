@@ -19,112 +19,68 @@ LMALLOC: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
-VT_Clase2: NOP
-		 DW Clase2_setA1
+VT_ClaseTest: NOP
 .CODE 
-Clase2_setA1: NOP
-		 LOADFP 
-		 LOADSP 
-		 STOREFP 
-		 RMEM 0
-		 # AssignmentNode Start 
-		 # IDNode start 
-		 LOAD 4
-		 # IDNode end 
-		 PUSH 1
-		 ADD 
-		 LOAD 3
-		 SWAP 
-		 STOREREF 0
-		 # AssignmentNode End 
-		 # CallNode start 
-		 # IDNode start 
-		 PUSH VT_System
-		 # IDNode end 
-		 POP 
-		 # IDNode start 
-		 LOAD 3
-		 LOADREF 0
-		 # IDNode end 
-		 PUSH System_printIln
-		 CALL 
-		 # CallNode end 
-		 FMEM 0
-		 STOREFP 
-		 RET 2
 Main__method: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
-		 RMEM 1
-		 # AssignmentNode Start 
-		 RMEM 1
-		 PUSH 2
-		 PUSH LMALLOC
-		 CALL 
-		 DUP 
-		 PUSH VT_Clase2
-		 STOREREF 0
-		 DUP 
-		 PUSH Clase2_DefaultCtor
-		 CALL 
-		 STORE 0
-		 # AssignmentNode End 
-		 # CallNode start 
-		 # IDNode start 
-		 LOAD 0
-		 # IDNode end 
-		 PUSH 4
-		 SWAP 
-		 DUP 
-		 LOADREF 0
-		 LOADREF 1
-		 CALL 
-		 # CallNode end 
-		 FMEM 1
-		 STOREFP 
-		 RET 0
-Clase2_DefaultCtor: NOP
-		 LOADFP 
-		 LOADSP 
-		 STOREFP 
 		 RMEM 0
-		 FMEM 0
-		 STOREFP 
-		 RET 1
-.DATA 
-VT_Clase1: NOP
-		 DW Clase1_setA1
-.CODE 
-Clase1_setA1: NOP
-		 LOADFP 
-		 LOADSP 
-		 STOREFP 
-		 RMEM 0
-		 # AssignmentNode Start 
-		 # IDNode start 
-		 LOAD 4
-		 # IDNode end 
-		 LOAD 3
-		 SWAP 
-		 STOREREF 0
-		 # AssignmentNode End 
 		 # CallNode start 
 		 # IDNode start 
 		 PUSH VT_System
 		 # IDNode end 
 		 POP 
-		 # IDNode start 
-		 LOAD 3
-		 LOADREF 0
-		 # IDNode end 
-		 PUSH System_printIln
+		 RMEM 1
+		 PUSH 15
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH 72
+		 STOREREF 0
+		 DUP 
+		 PUSH 101
+		 STOREREF 1
+		 DUP 
+		 PUSH 108
+		 STOREREF 2
+		 DUP 
+		 PUSH 108
+		 STOREREF 3
+		 DUP 
+		 PUSH 111
+		 STOREREF 4
+		 DUP 
+		 PUSH 32
+		 STOREREF 5
+		 DUP 
+		 PUSH 119
+		 STOREREF 6
+		 DUP 
+		 PUSH 111
+		 STOREREF 7
+		 DUP 
+		 PUSH 114
+		 STOREREF 8
+		 DUP 
+		 PUSH 108
+		 STOREREF 9
+		 DUP 
+		 PUSH 100
+		 STOREREF 10
+		 DUP 
+		 PUSH 33
+		 STOREREF 11
+		 DUP 
+		 PUSH 0
+		 STOREREF 12
+		 PUSH System_printSln
 		 CALL 
 		 # CallNode end 
 		 FMEM 0
 		 STOREFP 
-		 RET 2
-Clase1_DefaultCtor: NOP
+		 RET 0
+ClaseTest_DefaultCtor: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 

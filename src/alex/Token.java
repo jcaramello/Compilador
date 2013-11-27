@@ -9,6 +9,14 @@ import enums.TokenType;
  */
 public class Token {
 	
+	public Token(){}
+	
+	public Token(String lex){
+		this.lexema = lex;
+		this.tokenType = TokenType.NotSet;
+		this.linea = -1;
+	}
+	
 	/**
 	 * Token Type
 	 */

@@ -66,21 +66,22 @@ public class EntryClass extends EntryBase{
 	/**
 	 * Constructor
 	 */
-	public EntryClass(String name, EntryClass father){
+	public EntryClass(Token tkn, EntryClass father){
 		this.cantInheritedAttributes = 0;
-		this.Name = name;
+		this.Name = tkn.getLexema();
+		this.Token = tkn;
 		this.Attributes = new HashMap<String, EntryVar>();		
 		this.Methods = new HashMap<String, EntryMethod>();
 		this.OrderedAttributes = new ArrayList<EntryVar>();
 		this.OrderedMethods = new ArrayList<EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
-		this.Constructor = new EntryMethod(String.format("DefaultCtor", name), ModifierMethodType.Dynamic, new ClassType(this), this);
+		this.Constructor = new EntryMethod(new Token(String.format("DefaultCtor", this.Name)), ModifierMethodType.Dynamic, new ClassType(this), this);
 		this.Constructor.IsDefaultContructor = true;
 	}
 	
 	public void addAttribute(EntryVar a) throws SemanticErrorException{
 		if(this.Attributes.containsKey(a.Name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un atributo %s.", this.Name, a.Name));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya contiene un atributo %s. Linea %d", this.Name, a.Name, a.Token.getLinea()));
 		else {
 			this.Attributes.put(a.Name, a);
 			this.OrderedAttributes.add(a);
@@ -99,12 +100,13 @@ public class EntryClass extends EntryBase{
 		return this.Attributes.size() + cantInheritedAttributes;
 	}
 	
-	public void addInstanceVariable(String name) throws SemanticErrorException{
+	public void addInstanceVariable(Token tkn) throws SemanticErrorException{
+		String name = tkn.getLexema();
 		if(this.InstancesVariables.containsKey(name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene una variable de instancia %s.", this.Name, name));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene una variable de instancia %s.", this.Name, name));
 		if(this.Methods.containsKey(name) || name.equals(this.Name))
 			throw new SemanticErrorException("Ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos.");
-		else this.InstancesVariables.put(name, new EntryVar(new ClassType(this), name));		
+		else this.InstancesVariables.put(name, new EntryVar(new ClassType(this), tkn));		
 	}
 	
 	public EntryVar getInstanceVariable(String name){
@@ -121,13 +123,14 @@ public class EntryClass extends EntryBase{
 		return this.Attributes.containsKey(name);
 	}
 	
-	public EntryMethod addMethod(String name, Type returnType, ModifierMethodType modifierType) throws SemanticErrorException{
+	public EntryMethod addMethod(Token tkn, Type returnType, ModifierMethodType modifierType) throws SemanticErrorException{
 		// ver como hacer para controlar repetidos. Hay que mirar modificadores tipo de retornos o solo name?
 		EntryMethod entryMethod = null;
+		String name = tkn.getLexema();
 		if(this.Methods.containsKey(name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un metodo %s.", this.Name, name));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene un metodo %s. Linea %d", this.Name, name, tkn.getLinea()));
 		else{
-			entryMethod = new EntryMethod(name, modifierType, returnType, this);
+			entryMethod = new EntryMethod(tkn, modifierType, returnType, this);
 			this.Methods.put(name, entryMethod);
 			this.OrderedMethods.add(entryMethod);
 		}
@@ -151,10 +154,13 @@ public class EntryClass extends EntryBase{
 		return this.Methods.containsKey(name);
 	}
 	
-	public void addConstructor(EntryMethod constructor){
+	public void addConstructor(EntryMethod constructor) throws SemanticErrorException{
 		if(constructor != null){
-			this.Constructor = constructor;
-			constructor.IsDefaultContructor = false;
+			if(this.Constructor.IsDefaultContructor){
+				this.Constructor = constructor;
+				constructor.IsDefaultContructor = false;
+			}
+			else throw new SemanticErrorException(String.format("Error(!) - La clase %s ya posee un constructor declarado. Linea %d", this.Name, constructor.Token.getLinea()));
 		}
 	}
 	
@@ -255,12 +261,12 @@ public class EntryClass extends EntryBase{
 		else{
 			this.fatherClass = TS.getClass(this.inheritsFrom);
 			if(this.fatherClass == null)
-				throw new SemanticErrorException(String.format("Error(!). La clase %s no existe.", this.inheritsFrom));
+				throw new SemanticErrorException(String.format("Error(!). La clase: %s, no existe. Linea %d", this.inheritsFrom, this.Token.getLinea()));
 		}	
 	
 		for(EntryVar ev : this.getAttributes())
 			if(!CommonHelper.isPrimitiveType(ev.Type) && TS.getClass(ev.Type.Name) == null)
-				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido %s", ev.Type.Name));
+				throw new SemanticErrorException(String.format("Error(!). Tipo indefinido: %s. Linea %d", ev.Type.Name, ev.Token.getLinea()));
 			else ev.Origin = OriginType.Inst;
 	
 		for(EntryMethod em : this.getMethods())

@@ -1,0 +1,10 @@
+class ClaseConAtributoRepetido{
+
+	var int a1;
+	var char a1;
+	
+	static void main()
+	{		 
+	 
+	}
+}

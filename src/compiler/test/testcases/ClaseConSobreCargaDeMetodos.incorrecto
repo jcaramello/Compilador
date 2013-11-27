@@ -1,0 +1,19 @@
+class ClaseConSobreCargaDeMetodos{	
+
+	dynamic void met1(){		
+		(System.printS("metodo met1 sin parametro"));
+	}
+	
+	dynamic void met1(int p1){		
+		(System.printS("metodo met1 con parametro p1 = : "));
+		(System.printI(p1));
+	}
+
+	static void main()	
+	var ClaseConSobreCargaDeMetodos obj;
+	{		 
+	  obj = new ClaseConSobreCargaDeMetodos();
+	  (obj.met1());
+	  (obj.met1(4));	  
+	}
+}
