@@ -185,8 +185,10 @@ public class EntryMethod extends EntryBase {
 	 */
 	public void validateNames() throws SemanticErrorException{
 		for (EntryVar fa : this.FormalArgs.values()) {
-			if(this.LocalVars.containsKey(fa.Name))
-				throw new SemanticErrorException(String.format("Error(!) - El parametro formal %s es ambiguo. intente renombralo", fa.Name));
+			if(this.LocalVars.containsKey(fa.Name)){
+				EntryVar localVar = LocalVars.get(fa.Name);
+				throw new SemanticErrorException(String.format("Error(!) - El parametro formal %s es ambiguo. intente renombralo. Linea %d", fa.Name, localVar.Token.getLinea()));
+			}
 		}
 	}
 	
