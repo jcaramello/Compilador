@@ -1,0 +1,12 @@
+class C {
+
+	static void main()
+	{		 
+	 
+	}
+		
+	var int asd;
+	
+	dynamic void asd() { }
+	
+}

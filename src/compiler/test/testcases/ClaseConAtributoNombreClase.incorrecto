@@ -1,0 +1,9 @@
+class C {
+
+	var int C;
+	
+	static void main()
+	{		 
+	 
+	}
+}

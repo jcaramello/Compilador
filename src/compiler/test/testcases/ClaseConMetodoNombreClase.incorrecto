@@ -1,0 +1,11 @@
+class C {
+
+	static void main()
+	{		 
+	 
+	}
+
+	
+	dynamic void C() { }
+	
+}

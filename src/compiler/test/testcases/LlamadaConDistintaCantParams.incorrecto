@@ -1,0 +1,25 @@
+// Llamada con una cantidad errónea de parámetros.
+
+class M {
+	
+	static void main()
+	var M m;
+	var int x;
+	{	
+		x = 1;
+		m = new M();	
+		(m.test(x, 2, 3));
+	}
+
+	dynamic string retOK()
+	{
+		return "OK";
+	}
+	
+	dynamic void test(int i)
+	{
+		(System.printIln(i));
+	}
+	
+}
+	

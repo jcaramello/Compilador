@@ -97,6 +97,7 @@ public class CompilerTest {
 			   {"AsignacionLiteralNull.correcto", null},
 			   {"AsignacionLiteralNull2.correcto", null},
 			   {"AsignacionTipoClaseConThis.correcto", null},
+			   {"AsignacionTipoClaseConforma.correcto", null},
 			   
 			   // Test Incorrectos (Se espera Error)
 			   
@@ -119,6 +120,17 @@ public class CompilerTest {
 			   {"ParametroTipoClaseNoConforma.incorrecto", "Error(!). Los tipos de los parámetros actuales deben conformar a los tipos de los parámetros formales en parámetro 1, en línea 10."},
 			   {"MetodoTipoRetornoInexistente.incorrecto", "Error(!). Tipo indefinido: X. Linea 3"},
 			   {"AsignacionLiteralNullNoConforma.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 7."},
+			   {"LlamadaConDistintaCantParams.incorrecto", "Error(!). La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales en línea 11."},
+			   {"ClasesConHerenciaCircular.incorrecto", "Existe herencia circular en Clase2"},
+			   {"ClaseConAtributoNombreClase.incorrecto", "C: ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos, en línea 3"},
+			   {"ClaseConAtributoNombreMetodo.incorrecto", "asd: ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos, en línea 10"},
+			   {"ClaseConMetodoNombreAtributo.incorrecto", "asd: ninguna clase puede definir métodos con el mismo nombre que ella o que alguna de sus variables de instancia, en línea 10"},
+			   {"ClaseConMetodoNombreClase.incorrecto", "Error(!) - El método se llama igual a la clase a la que pertenece: C, en línea 9"},
+			   {"ClaseConMetodoMalRedefinidoPorCantParams.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
+			   {"ClaseConMetodoMalRedefinidoPorTipoParam.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
+			   {"ClaseConMetodoMalRedefinidoPorTipoRetorno.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
+			   {"ClaseConMetodoMalRedefinidoPorModificador.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
+			   
 			   
 	   });
 	}

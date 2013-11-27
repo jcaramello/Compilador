@@ -14,8 +14,6 @@ class AsignacionTest{
 
 class NoConforma extends AsignacionTest {
 
-
-	
 	dynamic void test() {
 		(System.printSln("Conforma erroneamente."));
 	}

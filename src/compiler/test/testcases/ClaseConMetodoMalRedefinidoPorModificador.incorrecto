@@ -1,0 +1,25 @@
+// Se redefine un método en la clase hija con el tipo retorno erróneo.
+
+class Clase1{
+
+	var int a1;
+
+	dynamic void setA1(int newValue){
+		a1 = newValue;
+		(System.printIln(a1));
+	}	
+}
+
+class Clase2 extends Clase1{
+
+	static void setA1(int newValue){
+		a1 = newValue + 1;
+		(System.printIln(a1));
+	}	
+
+	static void main()
+	{		 
+	  (Clase2.setA1(4));	  
+	}
+	
+}

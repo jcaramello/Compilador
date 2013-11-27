@@ -1,0 +1,26 @@
+// Prueba de una correcta asignación de un objeto de tipo clase. 
+// Los tipos conforman por tener una relación de herencia en el sentido necesario.
+
+
+class AsignacionTest extends Padre{
+	static void main()
+	var AsignacionTest a1;
+	var Padre a2;
+	{		
+		a1 = new AsignacionTest();
+		a2 = (a1.getAsignacionTest());
+		(a2.test());
+	}
+	
+	dynamic AsignacionTest getAsignacionTest()
+	{
+		return new AsignacionTest();
+	}
+}
+
+class Padre {
+	
+	dynamic void test() {
+		(System.printSln("Conforma correctamente."));
+	}
+}

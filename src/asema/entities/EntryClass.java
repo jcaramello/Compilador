@@ -82,6 +82,8 @@ public class EntryClass extends EntryBase{
 	public void addAttribute(EntryVar a) throws SemanticErrorException{
 		if(this.Attributes.containsKey(a.Name))
 			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya contiene un atributo %s. Linea %d", this.Name, a.Name, a.Token.getLinea()));
+		if(this.Methods.containsKey(a.Name) || a.Name.equals(this.Name))
+			throw new SemanticErrorException(String.format(a.Name + ": ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos, en línea " + a.Token.getLinea()));
 		else {
 			this.Attributes.put(a.Name, a);
 			this.OrderedAttributes.add(a);
@@ -103,9 +105,9 @@ public class EntryClass extends EntryBase{
 	public void addInstanceVariable(Token tkn) throws SemanticErrorException{
 		String name = tkn.getLexema();
 		if(this.InstancesVariables.containsKey(name))
-			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene una variable de instancia %s.", this.Name, name));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene una variable de instancia con ese nombre, en línea %d", this.Name, tkn.getLinea()));
 		if(this.Methods.containsKey(name) || name.equals(this.Name))
-			throw new SemanticErrorException("Ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos.");
+			throw new SemanticErrorException(tkn.getLexema() + ": ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos, en línea " + tkn.getLinea());
 		else this.InstancesVariables.put(name, new EntryVar(new ClassType(this), tkn));		
 	}
 	
@@ -124,6 +126,12 @@ public class EntryClass extends EntryBase{
 	}
 	
 	public EntryMethod addMethod(Token tkn, Type returnType, ModifierMethodType modifierType) throws SemanticErrorException{
+		
+		if(this.Name.equals(tkn.getLexema()))
+			throw new SemanticErrorException(String.format("Error(!) - El método se llama igual a la clase a la que pertenece: %s, en línea %d", this.Name, tkn.getLinea()));
+		if(this.Attributes.containsKey(tkn.getLexema()) || tkn.getLexema().equals(this.Name))
+			throw new SemanticErrorException(tkn.getLexema() + ": ninguna clase puede definir métodos con el mismo nombre que ella o que alguna de sus variables de instancia, en línea " + tkn.getLinea());
+		
 		// ver como hacer para controlar repetidos. Hay que mirar modificadores tipo de retornos o solo name?
 		EntryMethod entryMethod = null;
 		String name = tkn.getLexema();
@@ -291,12 +299,12 @@ public class EntryClass extends EntryBase{
 				EntryMethod overrideMethod = this.getMethod(em.Name);	
 				if(overrideMethod != null)
 					if(em.Modifier == overrideMethod.Modifier && 
-					   em.ReturnType.Name == em.ReturnType.Name &&
+					   em.ReturnType.Name.equals(overrideMethod.ReturnType.Name) &&
 					   CommonHelper.validFormalArgs(em.getFormalArgs(), overrideMethod.getFormalArgs()))
 						// El metodo ya esta. no hace falta agregarlo.						
 						{ // this.Methods.put(overrideMethod.Name, overrideMethod);
 						}
-					else throw new SemanticErrorException(String.format("Error(!). El metodo $s.%s debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno.", this.Name, overrideMethod.Name));
+					else throw new SemanticErrorException(String.format("Error(!). El metodo %s.%s debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno.", this.Name, overrideMethod.Name));
 				else // Esta linea no me cierra, el metodo ya esta. no hace falta agregarlo
 					this.Methods.put(em.Name, em);
 			}
