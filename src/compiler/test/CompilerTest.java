@@ -151,6 +151,7 @@ public class CompilerTest {
 			   {"ExpresionSRMalFormada.incorrecto", "El tipo de los operandos +, -, *, / o % debe ser entero, en línea 8"},
 			   {"IdentificadorNoEncontrado.incorrecto", "Error(!). a no es un identificador valido, en línea 7"},
 			   {"IfThenCondicionMal.incorrecto", "El tipo de la expresión condicional del if debe ser boolean."},
+			   {"LlamadaACtor.incorrecto", "Error(!). El método M no existe en la clase M."},
 			   	
 	   });
 	}

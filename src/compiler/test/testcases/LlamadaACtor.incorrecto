@@ -1,0 +1,18 @@
+// Llamada a un constructor fuera de new.
+
+class M {
+
+	static void main()
+	var M m1, m2;
+	{	
+		m2 = new M();	
+		(m2.M());
+	}
+
+	M() {
+		(System.printSln("Ctor"));
+	}
+	
+	
+}
+	
