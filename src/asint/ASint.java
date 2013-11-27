@@ -385,7 +385,7 @@ public class ASint {
 		
 		for (EntryVar entryVar : listaArgsFormalesFact) {
 			if(entryVar.Name.equals(arg.Name))
-				throw new SemanticErrorException(String.format("El nombre del argumento esta repetido. Linea %s", Integer.toString(curr.getLinea())));
+				throw new SemanticErrorException(String.format("Error(!) - El nombre del argumento esta repetido. Linea %s", Integer.toString(curr.getLinea())));
 		}
 		
 		//Inserto al principio para que al final de la recursion la lista quede ordenada

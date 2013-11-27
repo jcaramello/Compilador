@@ -49,7 +49,7 @@ public class TS {
 	public static void addClass(Token tkn) throws SemanticErrorException{				
 		String classIdentifier = tkn.getLexema();
 		if(TS.containsClass(classIdentifier))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
 		EntryClass newClass = new EntryClass(classIdentifier, TS.getClass("Object"));
 		TS.Classes.put(classIdentifier, newClass);
 	}
@@ -63,9 +63,9 @@ public class TS {
 	public static EntryClass addClass(Token tkn, EntryClass father)throws SemanticErrorException{				
 		String classIdentifier = tkn.getLexema();
 		if(TS.containsClass(classIdentifier))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
 		if(!TS.containsClass(father.Name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya existe en la TS. Linea %d", classIdentifier, tkn.getLinea()));
 		EntryClass newClass = new EntryClass(classIdentifier, father);
 		TS.Classes.put(classIdentifier, newClass);
 		return newClass;

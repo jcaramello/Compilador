@@ -80,7 +80,7 @@ public class EntryClass extends EntryBase{
 	
 	public void addAttribute(EntryVar a) throws SemanticErrorException{
 		if(this.Attributes.containsKey(a.Name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un atributo %s.", this.Name, a.Name));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene un atributo %s.", this.Name, a.Name));
 		else {
 			this.Attributes.put(a.Name, a);
 			this.OrderedAttributes.add(a);
@@ -101,7 +101,7 @@ public class EntryClass extends EntryBase{
 	
 	public void addInstanceVariable(String name) throws SemanticErrorException{
 		if(this.InstancesVariables.containsKey(name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene una variable de instancia %s.", this.Name, name));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene una variable de instancia %s.", this.Name, name));
 		if(this.Methods.containsKey(name) || name.equals(this.Name))
 			throw new SemanticErrorException("Ninguna clase puede definir variables de instancia con el mismo nombre que ella o que alguno de sus metodos.");
 		else this.InstancesVariables.put(name, new EntryVar(new ClassType(this), name));		
@@ -126,7 +126,7 @@ public class EntryClass extends EntryBase{
 		EntryMethod entryMethod = null;
 		String name = tkn.getLexema();
 		if(this.Methods.containsKey(name))
-			throw new SemanticErrorException(String.format("Error! - La clase %s ya que contiene un metodo %s. Linea %d", this.Name, name, tkn.getLinea()));
+			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene un metodo %s. Linea %d", this.Name, name, tkn.getLinea()));
 		else{
 			entryMethod = new EntryMethod(name, modifierType, returnType, this);
 			this.Methods.put(name, entryMethod);

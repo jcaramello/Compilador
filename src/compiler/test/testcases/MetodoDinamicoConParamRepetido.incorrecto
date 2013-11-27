@@ -1,0 +1,11 @@
+class MetodoDinamicoConParamRepetido{	
+
+	dynamic void met(string p1, int p1){		
+		(System.printS(p1));
+	}
+
+	static void main()		
+	{		 
+	    
+	}
+}
