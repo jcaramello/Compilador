@@ -220,7 +220,7 @@ public class EntryClass extends EntryBase{
 		int cantVars = this.getAttributes().size();
 		for(int i = 0; i < cantVars; i++) {
 			if(this.getAttributes().get(i).Offset == -1) 
-				this.getAttributes().get(i).Offset = cantVarsAncestro + i;
+				this.getAttributes().get(i).Offset = cantVarsAncestro + i + 1; // Espacio para la VT!
 		}
 
 		// Preservo los offsets del padre de métodos en la VT (ilustrativo, sólo necesario para los redefinidos)

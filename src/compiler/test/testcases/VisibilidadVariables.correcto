@@ -9,7 +9,7 @@ class ClaseConAtributos{
 	var int a1;
 	{
 		a1 = newValue;
-		(System.printI(a1));
+		(System.printIln(a1));
 	}
 	
 	dynamic void setA1()
@@ -19,7 +19,7 @@ class ClaseConAtributos{
 	
 	dynamic void getA1()
 	{
-		(System.printI(a1));
+		(System.printIln(a1));
 	}
 
 	static void main()
@@ -27,7 +27,7 @@ class ClaseConAtributos{
 	{		 
 	  obj = new ClaseConAtributos();
 	  (obj.setA1());
-	  (obj.newA1(4));
+	  //(obj.newA1(4));
 	  (obj.getA1());
 	}
 }

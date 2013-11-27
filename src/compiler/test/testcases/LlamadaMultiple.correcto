@@ -1,0 +1,29 @@
+class M {
+
+	var int a;
+	
+	static void main()
+	var M m;
+	var int i;
+	{	
+		(System.printSln("Main"));
+		m = new M();
+		(m.init());
+		
+		for(i=0; i < 10; i+1) {
+			(m.test());
+		}
+	}
+	
+	dynamic void init() {
+		a = 0;
+	}
+		
+	dynamic void test()
+	{
+		a = a + 1;
+		(System.printIln(a));
+	}
+	
+}
+	

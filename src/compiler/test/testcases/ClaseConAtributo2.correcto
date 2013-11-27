@@ -1,0 +1,23 @@
+// Similar a ClaseConAtributo.correcto, pero el valor se imprime en otro método.
+
+class ClaseConAtributo{
+
+	var int a1;
+
+	dynamic void setA1(int newValue){
+		a1 = newValue;
+	}
+	
+	dynamic void printA1() {
+		(System.printI(a1));
+	}
+
+	static void main()
+	var ClaseConAtributo obj;	
+	{		 
+	  (System.printS("Main"));
+	  obj = new ClaseConAtributo();
+	  (obj.setA1(4));	
+	  (obj.printA1());
+	}
+}

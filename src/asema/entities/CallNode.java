@@ -44,6 +44,8 @@ public class CallNode extends PrimaryNode {
 
 		EntryMethod met = clase.getMethod(OperationName.Identifier.getLexema());
 		
+		if(met == null) throw new SemanticErrorException("El método " + OperationName.Identifier.getLexema() + " no existe en la clase " + clase.Name);
+		
 		if(ActualsParameters.size() != met.getFormalArgsCant())
 			throw new SemanticErrorException("La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales.");
 		
@@ -73,8 +75,8 @@ public class CallNode extends PrimaryNode {
 				CodeGenerator.gen(Instructions.SWAP);
 			}
 			
-			CodeGenerator.gen(Instructions.DUP);										
-			CodeGenerator.gen(Instructions.LOADREF, 0); // offset de la VTable					
+			CodeGenerator.gen(Instructions.DUP);
+			CodeGenerator.gen(Instructions.LOADREF, 0); // offset de la VTable
 			CodeGenerator.gen(Instructions.LOADREF, met.Offset + 1); // Saltar el NOP			
 			CodeGenerator.gen(Instructions.CALL);		
 		}

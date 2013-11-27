@@ -31,8 +31,11 @@ public class NewNode extends PrimaryNode {
 		CodeGenerator.gen(Instructions.PUSH, cl.getCantAttributes() + 1);
 		CodeGenerator.gen(Instructions.PUSH, "LMALLOC");
 		CodeGenerator.gen(Instructions.CALL);
+
+		//CodeGenerator.genDebug();
+		
 		CodeGenerator.gen(Instructions.DUP);
-		CodeGenerator.gen(Instructions.PUSH, "VT_" + cl.Name);
+		CodeGenerator.gen(Instructions.PUSH, "VT_" + cl.Name);		
 		CodeGenerator.gen(Instructions.STOREREF, "0");
 		CodeGenerator.gen(Instructions.DUP);
 		
