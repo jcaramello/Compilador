@@ -16,39 +16,36 @@ public class Compiler {
 	 * @param args
 	 */
 	public static void main(String args[])
-	{					
-		Application.Initialize(args);
-		
-		try {				
+	{		
+		if (validateInput(args)) {			
+			Application.Initialize(args);
 			
-			if (validateInput(args)) {
+			try {									
 				TS.initialize();
 				ASint asint = new ASint(args[0]);	
 				TS.execute();
-				Logger.log("Se compiló exitosamente");
+				Logger.log("Se compiló exitosamente");						
 			}
-			
+			catch(UnexpectedTokenException u){
+				Logger.log(u.getMessage());			
+			}catch(SemanticErrorException u){
+				Logger.log(u.getMessage());				
+			}catch (Exception e) {
+				Logger.log("Error!!");
+				Logger.verbose(e);									
+			}
+			finally{		
+				Logger.close();
+				CodeGenerator.close();
+			}
 		}
-		catch(UnexpectedTokenException u){
-			Logger.log(u.getMessage());			
-		}catch(SemanticErrorException u){
-			Logger.log(u.getMessage());				
-		}catch (Exception e) {
-			Logger.log("Error!!");
-			Logger.verbose(e);									
-		}
-		finally{		
-			Logger.close();
-			CodeGenerator.close();
-		}
-	
 	}
 
 	private static boolean validateInput(String args[]){
 		
 		boolean valid = true;
-		if (args.length == 0) {
-			 Logger.log("Debe ingresarse al menos un parámetro.\nModo de uso: cie <Archivo_fuente> [<Archivo_destino>] [-options] \n\ndonde options: \n\t v: Enable verbose mode \n\t t: Enable testing Mode");
+		if (args.length == 0) {			 
+			 System.out.print("Debe ingresarse al menos un parámetro.\nModo de uso: java -jar minijava.jar <IN_FILE> [<OUT_FILE>] [-options] \n\ndonde options: \n\t v: Enable verbose mode \n\t t: Enable testing Mode");
 				valid = false;
 			}
 		return valid;

@@ -32,7 +32,7 @@ public class Logger {
 		if(Application.logType == LogType.File)
 		{
 			String currentDir = System.getProperty("user.dir").replace("\\", System.getProperty("file.separator"));
-			String filePath = Application.logFilePath != null ? Application.logFilePath : (currentDir + Application.Name+".log");
+			String filePath = Application.InputFile + ".log";			
 			File logFile = new File(filePath);			
 			fstream = new FileWriter(logFile, false);
 			bufferedWriter = new BufferedWriter(fstream);
@@ -65,7 +65,7 @@ public class Logger {
 		try {
 			if(Application.logType == LogType.Console)
 				System.out.println(msg);
-			else {
+			else {								
 				getCurrentLogger().bufferedWriter.write(msg);
 				getCurrentLogger().bufferedWriter.write(NEW_LINE);
 			}
