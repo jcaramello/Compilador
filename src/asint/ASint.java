@@ -520,7 +520,7 @@ public class ASint {
 			throw new SemanticErrorException(String.format("El nombre del constructor debe coincidir con el nombre de la clase. Linea %s.", Integer.toString(curr.getLinea())));
 		
 		EntryMethod ctor = 
-				new EntryMethod(curr.getLexema(), ModifierMethodType.Dynamic, new ClassType(TS.getCurrentClass()), TS.getCurrentClass());
+				new EntryMethod(curr, ModifierMethodType.Dynamic, new ClassType(TS.getCurrentClass()), TS.getCurrentClass());
 		
 		List<EntryVar> args = argsFormales();					
 		ctor.addFormalArgs(args);

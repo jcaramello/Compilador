@@ -49,9 +49,10 @@ public class EntryMethod extends EntryBase {
 	/*
 	 * Contructor
 	 */			
-	public EntryMethod(String _name, ModifierMethodType _modifier, Type _returnType, EntryClass containerClass){
+	public EntryMethod(Token tkn, ModifierMethodType _modifier, Type _returnType, EntryClass containerClass){
 		
-		this.Name = _name;
+		this.Name = tkn.getLexema();
+		this.Token = tkn;
 		this.Modifier = _modifier;
 		this.ReturnType = _returnType;
 		this.LocalVars = new HashMap<String, EntryVar>();

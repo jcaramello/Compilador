@@ -74,7 +74,7 @@ public class EntryClass extends EntryBase{
 		this.OrderedAttributes = new ArrayList<EntryVar>();
 		this.OrderedMethods = new ArrayList<EntryMethod>();
 		this.InstancesVariables = new HashMap<String, EntryVar>();
-		this.Constructor = new EntryMethod(String.format("DefaultCtor", name), ModifierMethodType.Dynamic, new ClassType(this), this);
+		this.Constructor = new EntryMethod(new Token(String.format("DefaultCtor", name)), ModifierMethodType.Dynamic, new ClassType(this), this);
 		this.Constructor.IsDefaultContructor = true;
 	}
 	
@@ -129,7 +129,7 @@ public class EntryClass extends EntryBase{
 		if(this.Methods.containsKey(name))
 			throw new SemanticErrorException(String.format("Error(!) - La clase %s ya que contiene un metodo %s. Linea %d", this.Name, name, tkn.getLinea()));
 		else{
-			entryMethod = new EntryMethod(name, modifierType, returnType, this);
+			entryMethod = new EntryMethod(tkn, modifierType, returnType, this);
 			this.Methods.put(name, entryMethod);
 			this.OrderedMethods.add(entryMethod);
 		}
@@ -153,10 +153,13 @@ public class EntryClass extends EntryBase{
 		return this.Methods.containsKey(name);
 	}
 	
-	public void addConstructor(EntryMethod constructor){
+	public void addConstructor(EntryMethod constructor) throws SemanticErrorException{
 		if(constructor != null){
-			this.Constructor = constructor;
-			constructor.IsDefaultContructor = false;
+			if(this.Constructor.IsDefaultContructor){
+				this.Constructor = constructor;
+				constructor.IsDefaultContructor = false;
+			}
+			else throw new SemanticErrorException(String.format("Error(!) - La clase %s ya posee un constructor declarado. Linea %d", this.Name, constructor.Token.getLinea()));
 		}
 	}
 	
