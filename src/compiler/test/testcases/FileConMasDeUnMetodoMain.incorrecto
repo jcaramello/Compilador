@@ -1,0 +1,17 @@
+// Dos clases con metodo main
+
+class Clase1{
+	
+	static void main()	
+	{		 
+	    
+	}
+}
+
+class Clase2{
+
+	static void main()	
+	{		 
+	    
+	}
+}

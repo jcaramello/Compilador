@@ -191,16 +191,22 @@ public class TS {
 	 */
 	public static void validate() throws SemanticErrorException{
 		boolean existsMain = false;
+		int totalNumberOfMainMethods = 0;
 		for (EntryClass ec : TS.getClasses()) {
 			for (EntryMethod em : ec.getMethods()) {
 				em.validateNames();
-				existsMain = existsMain || em.isValidMain();
+				boolean isValidMain = em.isValidMain();
+				if(isValidMain)
+					totalNumberOfMainMethods++;
+				existsMain = existsMain || isValidMain;
 			}			
 			ec.getConstructor().validateNames();			
 		}
 		
 		if(!existsMain)
 			throw new SemanticErrorException("Error(!). Alguna clase debe contener al menos un metodo main sin parametros"); 
+		if(totalNumberOfMainMethods > 1)
+			throw new SemanticErrorException("Error(!). No puede haber mas de un metodo main.");
 	}
 	
 	/**
