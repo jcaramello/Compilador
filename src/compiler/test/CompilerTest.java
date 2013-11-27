@@ -40,7 +40,7 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			  /* {"ClaseVaciaTest.correcto", null},
+			   {"ClaseVaciaTest.correcto", null},
 			   {"ClaseHelloWordTest.correcto", null},
 			   {"PrintB.correcto", null},
 			   {"PrintC.correcto", null},
@@ -85,12 +85,12 @@ public class CompilerTest {
 			   {"LlamadaConParams.correcto", null},
 			   {"VisibilidadVariables.correcto", null},
 			   {"LlamadaMultiple.correcto", null},
-			   {"ClaseConMetodoPolimorfico.correcto", null}
+			   {"ClaseConMetodoPolimorfico.correcto", null},
 			   
 			   // Test Incorrectos (Se espera Error)
 			   
 			   {"ClaseConSobreCargaDeMetodos.incorrecto", "Error(!) - La clase ClaseConSobreCargaDeMetodos ya que contiene un metodo met1. Linea 7"},
-			   {"ClaseRepetida.incorrecto", "Error! - La clase ClaseRepetida ya existe en la TS. Linea 9"},
+			   {"ClaseRepetida.incorrecto", "Error(!) - La clase ClaseRepetida ya existe en la TS. Linea 9"},
 			   {"MetodoDinamicoConParamRepetido.incorrecto", "Error(!) - El nombre del argumento esta repetido. Linea 3"},			   
 			   {"ClaseConAtributoRepetido.incorrecto", "Error(!) - La clase ClaseConAtributoRepetido ya contiene un atributo a1. Linea 4"},
 			   {"MetodoDinamicoConVarLocalRepetida.incorrecto", "Error(!) - La variable local v1 se encuentra repetida dentro de la lista de variables locales. Linea 5"},
@@ -98,7 +98,7 @@ public class CompilerTest {
 			   {"FileConMetodoMainConParam.incorrecto", "Error(!) - El metodo Main no puede contener parametros formales."},
 			   {"ClaseConMasDeUnCtor.incorrecto", "Error(!) - La clase ClaseConMasDeUnCtor ya posee un constructor declarado. Linea 6"},
 			   {"MetodoConNbreDeVarLocalIgualAParam.incorrecto", "Error(!) - El parametro formal p1 es ambiguo. intente renombralo. Linea 4"},
-			   {"MetodoConParamDeTipoInvalido.incorrecto", "Error(!). Tipo indefinido: tipoInvalido. Linea 3"}, */
+			   {"MetodoConParamDeTipoInvalido.incorrecto", "Error(!). Tipo indefinido: tipoInvalido. Linea 3"}, 
 			   {"ClaseConSuperClaseInvalida.incorrecto", "Error(!). La clase: Clase1, no existe. Linea 1"}, 
 			   
 			   
