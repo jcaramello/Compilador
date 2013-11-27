@@ -1,0 +1,16 @@
+// Chequea que se mantenga la consistencia del stack cuando la expresión de una sentencia simple
+// NO retorna algo (i.e. no hacer pop de más).
+
+class Test{
+
+	static void main()
+	{		
+		(Test.test());		
+		(System.printSln("No se rompio nada"));
+	}
+	
+	static void test()
+	{
+		(System.printSln("Inside test"));
+	}
+}
