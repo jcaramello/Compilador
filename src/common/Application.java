@@ -47,6 +47,11 @@ public class Application {
 	 */
 	public static String OutputFile;
 	
+	/**
+	 * OutputFile
+	 */
+	public static String InputFile;
+	
 	
 	/**
 	 * Compiled file Extension 
@@ -58,12 +63,15 @@ public class Application {
 	 * @param args
 	 */
 	public static void Initialize(String args[]){		
-		if(args.length > 1){
+		if(args.length > 0){
 			Application.Name = "MiniJavaCompiler";
 			Application.isTesting = isTestingEnabled(args);
 			Application.isVerbose = isVerboseEnabled(args);
-			Application.OutputFile = (args.length > 1) ? (new File(args[1])).getName() : (new File(args[0])).getName();
-			Application.logType = LogType.File;
+			if(args.length > 1) 
+				Application.OutputFile = (new File(args[1])).getName();
+			else Application.OutputFile = (new File(args[0])).getName();
+			Application.InputFile = (new File(args[0])).getName();
+			Application.logType = LogType.File;				
 		}		
 	}
 	

@@ -52,8 +52,8 @@ public class CodeGenerator {
 		
 		String filePath = null;
 		if(this.prefix == null)
-			filePath = String.format("%s%s%s.%s",currentDir, System.getProperty("file.separator"), Application.Name, Application.CompiledFileExtension);
-		else filePath = String.format("%s%s%s%s%s.%s",currentDir, System.getProperty("file.separator"),this.prefix, System.getProperty("file.separator"), Application.Name, Application.CompiledFileExtension);
+			filePath = String.format("%s%s%s.%s",currentDir, System.getProperty("file.separator"), Application.OutputFile, Application.CompiledFileExtension);
+		else filePath = String.format("%s%s%s%s%s.%s",currentDir, System.getProperty("file.separator"),this.prefix, System.getProperty("file.separator"), Application.OutputFile, Application.CompiledFileExtension);
 		File logFile = new File(filePath);			
 		fstream = new FileWriter(logFile, false);
 		bufferedWriter = new BufferedWriter(fstream);	
