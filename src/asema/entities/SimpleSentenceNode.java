@@ -16,9 +16,11 @@ public class SimpleSentenceNode extends SentenceNode {
 	@Override
 	public Type check() throws SemanticErrorException {
 		
-		//CodeGenerator.gen("# SimpleSentenceNode start");
-		return Expression.check();
+		Type toRet = Expression.check();
+		if(toRet != VoidType.VoidType)
+			CodeGenerator.gen("POP");
 		
+		return toRet;
 	}
 
 }

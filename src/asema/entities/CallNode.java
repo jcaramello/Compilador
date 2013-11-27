@@ -77,7 +77,7 @@ public class CallNode extends PrimaryNode {
 			
 			CodeGenerator.gen(Instructions.DUP);
 			CodeGenerator.gen(Instructions.LOADREF, 0); // offset de la VTable
-			CodeGenerator.gen(Instructions.LOADREF, met.Offset + 1); // Saltar el NOP			
+			CodeGenerator.gen(Instructions.LOADREF, met.Offset + 1); // Saltar el NOP
 			CodeGenerator.gen(Instructions.CALL);		
 		}
 		

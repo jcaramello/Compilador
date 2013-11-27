@@ -6,7 +6,7 @@ class M2 extends M1 {
 	var M1 m;
 	{	
 		m = new M2();
-		(m.test());
+		(System.printBln(m.test()));
 	}
 
 	dynamic boolean test()
