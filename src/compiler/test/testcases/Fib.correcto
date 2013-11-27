@@ -1,0 +1,25 @@
+// Los veinte primeros números de Fibonacci.
+
+class FibTest{
+
+	static void main()
+	var FibTest f;
+	var int i;
+	{		
+		f = new FibTest();
+		
+		for(i = 0; i < 20; i+1) {
+			(System.printIln(f.fib(i)));
+		}
+	}
+	
+	dynamic int fib(int x)
+	{
+		if(x==0 || x==1)
+			return 1;
+		else
+		{
+			return fib(x-1)+fib(x-2);
+		}
+	}
+}
