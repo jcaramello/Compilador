@@ -1,0 +1,11 @@
+// Test de operador unario "-" aplicado a un String.
+
+class Test{
+
+	static void main()
+	var string a;
+	{		
+		a = "asd";
+		a = -a;
+	}
+}

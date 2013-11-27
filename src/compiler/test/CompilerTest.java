@@ -143,6 +143,7 @@ public class CompilerTest {
 			   {"ExpresionDesigualdadIntString.incorrecto", "El tipo de los operandos == o != debe conformar, en línea 10"},
 			   {"ExpresionIgualdadClaseNoConforma.incorrecto", "El tipo de los operandos == o != debe conformar, en línea 14"},
 			   {"ExpresionUnarioChar.incorrecto", "El tipo del operando de ! debe ser un boolean, en línea 9"},
+			   {"ExpresionUnarioString.incorrecto", "El tipo del operando de + o - debe ser un entero, en línea 9"},
 				
 	   });
 	}
