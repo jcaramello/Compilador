@@ -1,0 +1,38 @@
+// Prueba de métodos estáticos y dinámicos de dos clases relacionadas por herencia, para comprobar
+// el correcto funcionamiento de los offsets.
+
+class C1{
+
+	static void m1() {
+		(System.printIln(1));
+	}
+	
+	dynamic void m2() {
+		(System.printIln(2));
+	}	
+}
+
+class C2 extends C1 {
+
+	static void main()
+	var C2 c;
+	{		
+		c = new C2();
+		(System.printSln("Estático y dinámico heredados de C1: "));
+		(C2.m1());
+		(c.m2());
+		(System.printSln("Estático y dinámico de C2: "));
+		(C2.m3());
+		(c.m4());
+		(System.printSln("Estático directamente desde C1: "));
+		(C1.m1());
+	}
+	
+	static void m3() {
+		(System.printIln(3));
+	}
+	
+	dynamic void m4() {
+		(System.printIln(4));
+	}	
+}
