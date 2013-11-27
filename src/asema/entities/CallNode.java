@@ -44,7 +44,7 @@ public class CallNode extends PrimaryNode {
 
 		EntryMethod met = clase.getMethod(OperationName.Identifier.getLexema());
 		
-		if(met == null) throw new SemanticErrorException("El método " + OperationName.Identifier.getLexema() + " no existe en la clase " + clase.Name);
+		if(met == null) throw new SemanticErrorException("Error(!). El método " + OperationName.Identifier.getLexema() + " no existe en la clase " + clase.Name + ".");
 		
 		if(ActualsParameters.size() != met.getFormalArgsCant())
 			throw new SemanticErrorException("La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales.");

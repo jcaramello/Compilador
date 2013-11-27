@@ -1,0 +1,26 @@
+// Llamada con herencia: se llama a un método desde un objeto de tipo 
+// estático T1 y tipo dinámico T2 (que extiende a T1), esperando que 
+// se utilice la segunda versión del método. Sin embargo, en este caso
+// M1 no tiene a test() como método. Resultado esperado: excepción
+// detallando ese error.
+
+class M2 extends M1 {
+
+	static void main()
+	var M1 m;
+	{	
+		m = new M2();
+		(System.printBln(m.test()));
+	}
+	
+	dynamic boolean test()
+	{
+		return true;
+	}
+}
+
+class M1 {
+
+
+}
+	
