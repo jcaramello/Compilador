@@ -1,0 +1,11 @@
+// Esto chequea que el uso de paréntesis no cambie el tipo de una expresión.
+
+class AsignacionTest{
+
+	static void main()
+	var int i;
+	{		
+		i = (((15)));		
+		(System.printI(i));
+	}
+}

@@ -1,0 +1,15 @@
+class AsignacionTest{
+
+	static void main()
+	var AsignacionTest a;
+	{		
+		a = new AsignacionTest();
+		(a.test(10));
+	}
+	
+	dynamic void test(int i) 
+	{
+		i = 15;
+		(System.printI(i));
+	}
+}
