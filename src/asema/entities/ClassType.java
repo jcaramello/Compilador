@@ -31,7 +31,7 @@ public class ClassType extends Type {
 
 	@Override
 	public boolean conforms(Type t) {
-		EntryClass c = TS.getClass(t.Name);
+		EntryClass c = TS.getClass(this.Name);
 		
 		while(c!= null) {
 			if(c.Name.equals(t.Name))

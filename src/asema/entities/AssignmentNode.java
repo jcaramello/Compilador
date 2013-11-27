@@ -30,14 +30,14 @@ public class AssignmentNode extends SentenceNode {
 		Type t = leftSide.Type;			
 		
 		if(!rigthSide.check().conforms(t))
-			throw new SemanticErrorException("El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo.");
+			throw new SemanticErrorException("Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea " + leftSide.Token.getLinea() + ".");
 		
 		if(leftSide.esParametroLocal() || leftSide.esVariableLocal()) {
 			CodeGenerator.gen(Instructions.STORE, ""+ leftSide.Offset);
 		}
 		else {
 			if(TS.getCurrentClass().getCurrentMethod().Modifier == ModifierMethodType.Static)
-				throw new SemanticErrorException("No se puede asignar un valor a una variable de instancia desde un método estático.");
+				throw new SemanticErrorException("Error(!). No se puede asignar un valor a una variable de instancia desde un método estático, en línea " + leftSide.Token.getLinea() + ".");
 			CodeGenerator.gen(Instructions.LOAD, "3");
 			CodeGenerator.gen(Instructions.SWAP);
 			CodeGenerator.gen(Instructions.STOREREF, ""+ leftSide.Offset);

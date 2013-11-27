@@ -1,0 +1,21 @@
+// Prueba de una incorrecta asignación de un objeto de tipo clase. 
+// Los tipos no conforman.
+
+class AsignacionTest{
+
+	static void main()
+	var AsignacionTest a1;
+	var NoConforma a2;
+	{		
+		a1 = new AsignacionTest();
+		a2 = a1;
+		(a2.test());
+	}
+}
+
+class NoConforma {
+
+	dynamic void test() {
+		(System.printSln("Conforma erroneamente."));
+	}
+}
