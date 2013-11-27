@@ -1,0 +1,26 @@
+// Llamada con herencia: se llama a un método desde un objeto de tipo estático T1 y tipo dinámico T2 (que extiende a T1), esperando que se utilice la segunda versión del método. Resultado esperado: true.
+
+class M2 extends M1 {
+
+	static void main()
+	var M1 m;
+	{	
+		m = new M2();
+		(m.test());
+	}
+
+	dynamic boolean test()
+	{
+		return true;
+	}
+	
+}
+
+class M1 {
+
+	dynamic boolean test()
+	{
+		return false;
+	}
+}
+	
