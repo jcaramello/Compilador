@@ -16,9 +16,10 @@ public class NewNode extends PrimaryNode {
 	public List<ExpressionNode> ActualsParameters;	
 	
 	public NewNode(Token tkn, List<ExpressionNode> args){	
-		if(tkn.getLexema().equals("null"))
-			this.ClassName = new Token(tkn.getTokenType(), "Object", tkn.getLinea());
-		else this.ClassName = tkn;
+		//if(tkn.getLexema().equals("null"))
+		//	this.ClassName = new Token(tkn.getTokenType(), "Object", tkn.getLinea());
+		//else 
+			this.ClassName = tkn;
 		this.ActualsParameters = args;
 	}
 	

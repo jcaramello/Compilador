@@ -99,6 +99,7 @@ public class CompilerTest {
 			   {"AsignacionLiteralNull2.correcto", null},
 			   {"AsignacionTipoClaseConThis.correcto", null},
 			   {"AsignacionTipoClaseConforma.correcto", null},
+			   {"MetodoConTipoDeRetornoVoidYSentReturnVacia.correcto", null},
 			   
 			   // Test Incorrectos (Se espera Error)
 			   
@@ -132,9 +133,8 @@ public class CompilerTest {
 			   {"ClaseConMetodoMalRedefinidoPorTipoRetorno.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
 			   {"ClaseConMetodoMalRedefinidoPorModificador.incorrecto", "Error(!). El metodo Clase2.setA1 debe tener el mismo número y tipo de parametros que en la superclase, así como también el mismo modificador y tipo de retorno."},
 			   {"ThisEnEstatico.incorrecto", "No se puede acceder a this desde un método estático."},
-			   {"MetodoConTipoDeRetornoVoidYSentReturnNoVacia.incorrecto", "Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea 10"},
+			   {"MetodoConTipoDeRetornoVoidYSentReturnNoVacia.incorrecto", "Error(!) - Sentencia return invalida. El tipo de retorno del metodo es void. Linea 11"},
 			   {"FileConMasDeUnMetodoMain.incorrecto", "Error(!). No puede haber mas de un metodo main."},
-			   {"ClaseConDosVariablesDeInstanciaConElMismoNbre.incorrecto", "Error(!). No puede haber mas de un metodo main."}
 	   });
 	}
 	

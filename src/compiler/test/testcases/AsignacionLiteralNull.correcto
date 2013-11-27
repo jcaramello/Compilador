@@ -7,7 +7,11 @@ class AsignacionTest{
 	{		
 		o = new A(); // Esto funciona porque A extiende a Object por defecto.
 		o = null;
-		(System.printSln("Exito"));
+		
+		if(o == null) {
+			(System.printSln("Exito"));
+		}
+		else (System.printSln("Fallo"));
 	}
 }
 

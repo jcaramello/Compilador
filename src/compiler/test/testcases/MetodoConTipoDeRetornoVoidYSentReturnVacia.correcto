@@ -1,0 +1,18 @@
+class MetodoConTipoDeRetornoVoidYSentReturn {
+
+	static void main()	
+	{	
+		(MetodoConTipoDeRetornoVoidYSentReturn.test());
+	}
+
+	static void test()
+	{
+		(System.printSln("OK"));
+		
+		return;
+		
+		(System.printSln("No deberia llegar aca"));
+	}
+	
+	
+}

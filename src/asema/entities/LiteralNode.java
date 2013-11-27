@@ -28,8 +28,11 @@ public class LiteralNode extends PrimaryNode {
 		
 		if(Type == null) { // Tomo esto como convención para nombrar al tipo null (que será C(Object)) para evitar tocar ASint.
 			// Esto es C(Object)
-			NewNode nw = new NewNode(this.Value, new LinkedList<ExpressionNode>());
-			Type = nw.check();
+			//NewNode nw = new NewNode(this.Value, new LinkedList<ExpressionNode>());
+			//Type = nw.check();
+			EntryClass obj = TS.getClass("Object");
+			Type = new ClassType(obj);
+			CodeGenerator.gen(Instructions.PUSH, 0);
 		}
 		else if(Type.equals(PrimitiveType.Boolean)) {
 			if(Value.getLexema().equals("true")) CodeGenerator.gen(Instructions.PUSH, 1);
