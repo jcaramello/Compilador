@@ -35,7 +35,7 @@ public class CallNode extends PrimaryNode {
 		boolean staticCall = false;
 		
 		String name = Context.check().Name;
-		if(name.startsWith("C_")) {
+		if(name.startsWith("C%")) {
 			name = name.substring(2);
 			staticCall = true;
 		}

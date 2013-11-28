@@ -47,7 +47,8 @@ public class IDNode extends PrimaryNode {
 			
 			// Esto modela el hecho de que es un LITERAL Clase, pero no es tipo clase.
 			// i.e. A a = A; va a fallar porque no conforma, pero vamos a mantener la información del nombre para las llamadas estáticas.
-			type = new PrimitiveType("C_" + ec.Name); 
+			// "C%" no puede ser parte del nombre de una clase, así que no puede haber conflictos.
+			type = new PrimitiveType("C%" + ec.Name); 
 		}
 		
 		if(type == null)
