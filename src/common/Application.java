@@ -71,7 +71,7 @@ public class Application {
 				Application.OutputFile = (new File(args[1])).getName();
 			else Application.OutputFile = (new File(args[0])).getName();
 			Application.InputFile = (new File(args[0])).getName();
-			Application.logType = LogType.File;				
+			Application.logType = LogType.Console;				
 		}		
 	}
 	

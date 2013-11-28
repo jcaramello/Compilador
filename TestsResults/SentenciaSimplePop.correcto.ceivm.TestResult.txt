@@ -3,7 +3,8 @@ CeI Virtual Machine (CeIVM) - v1.1.0. Por: Sebastián Escarza.
 Compiladores e Intérpretes - 2º Cuatrimestre de 2011 - DCIC - UNS.
 ------------------------------------------------------------------
 
-131313
+No se rompio nada
+
 
 La ejecución del programa finalizó exitosamente.
 

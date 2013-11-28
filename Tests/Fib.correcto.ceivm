@@ -1,0 +1,286 @@
+.CODE 
+		 RMEM 1
+		 PUSH Main__method
+		 CALL 
+		 HALT 
+.CODE 
+LMALLOC: NOP 
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 LOADHL 
+		 DUP 
+		 PUSH 1
+		 ADD 
+		 STORE 4
+		 LOAD 3
+		 ADD 
+		 STOREHL 
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_System: NOP
+.CODE 
+System_printSln: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 SPRINT 
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printI: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 IPRINT 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printIln: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 IPRINT 
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_println: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 0
+System_printCln: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 CPRINT 
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printC: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 CPRINT 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_read: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 READ 
+		 STORE 3
+		 STOREFP 
+		 RET 0
+		 FMEM 0
+		 STOREFP 
+		 RET 0
+System_printBln: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 BPRINT 
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printB: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 BPRINT 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printS: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 SPRINT 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_FibTest: NOP
+		 DW FibTest_fib
+.CODE 
+FibTest_fib: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # IDNode start 
+		 LOAD 4
+		 # IDNode end 
+		 PUSH 0
+		 EQ 
+		 # IDNode start 
+		 LOAD 4
+		 # IDNode end 
+		 PUSH 1
+		 EQ 
+		 OR 
+		 BF L1
+		 PUSH 1
+		 STORE 5
+		 FMEM 0
+		 STOREFP 
+		 RET 2
+		 JUMP L2
+L1: NOP 
+		 # CallNode start 
+		 LOAD 3
+		 RMEM 1
+		 SWAP 
+		 # IDNode start 
+		 LOAD 4
+		 # IDNode end 
+		 PUSH 1
+		 SUB 
+		 SWAP 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 1
+		 CALL 
+		 # CallNode end 
+		 # CallNode start 
+		 LOAD 3
+		 RMEM 1
+		 SWAP 
+		 # IDNode start 
+		 LOAD 4
+		 # IDNode end 
+		 PUSH 2
+		 SUB 
+		 SWAP 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 1
+		 CALL 
+		 # CallNode end 
+		 ADD 
+		 STORE 5
+		 FMEM 0
+		 STOREFP 
+		 RET 2
+L2: NOP 
+		 FMEM 0
+		 STOREFP 
+		 RET 2
+Main__method: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 2
+		 # AssignmentNode Start 
+		 RMEM 1
+		 PUSH 1
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH VT_FibTest
+		 STOREREF 0
+		 DUP 
+		 PUSH FibTest_DefaultCtor
+		 CALL 
+		 STORE 0
+		 # AssignmentNode End 
+		 # AssignmentNode Start 
+		 PUSH 0
+		 STORE -1
+		 # AssignmentNode End 
+L3: NOP 
+		 # IDNode start 
+		 LOAD -1
+		 # IDNode end 
+		 PUSH 20
+		 LT 
+		 BF L4
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # CallNode start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 RMEM 1
+		 SWAP 
+		 # IDNode start 
+		 LOAD -1
+		 # IDNode end 
+		 SWAP 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 1
+		 CALL 
+		 # CallNode end 
+		 PUSH System_printIln
+		 CALL 
+		 # CallNode end 
+		 # IDNode start 
+		 LOAD -1
+		 # IDNode end 
+		 PUSH 1
+		 ADD 
+		 STORE -1
+		 JUMP L3
+		 L4: NOP 
+		 FMEM 2
+		 STOREFP 
+		 RET 0
+FibTest_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_Object: NOP
+.CODE 
+Object_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+		 HALT 

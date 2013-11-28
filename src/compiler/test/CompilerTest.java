@@ -32,7 +32,7 @@ public class CompilerTest {
 	private String expected; // Mensaje de excepción esperado, o null si se espera que tenga éxito
 	
 	public CompilerTest(String testFile, String exp) {
-		Application.Name = testFile;
+		Application.OutputFile = testFile;
 		this.testFile =  testFile;
 		this.expected = exp;
 	}
@@ -161,7 +161,8 @@ public class CompilerTest {
 			   {"AsignacionPrimitivoATipoClase.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 7."},
 			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
 			   {"LlamadaEstaticoConDistintaCantParams.incorrecto", "Error(!). La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales en línea 8."},
-			   
+			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 15"},
+  
 	   });
 	}
 	
