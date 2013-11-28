@@ -18,3 +18,34 @@ LMALLOC: NOP
 		 STOREHL 
 		 STOREFP 
 		 RET 1
+.DATA 
+VT_M: NOP
+.CODE 
+M_test: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # IDNode start 
+		 LOAD 3
+		 # IDNode end 
+		 PUSH System_printIln
+		 CALL 
+		 # CallNode end 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+Main__method: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_M
+		 # IDNode end 

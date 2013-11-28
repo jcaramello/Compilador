@@ -40,7 +40,7 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			  /* {"ClaseVaciaTest.correcto", null},
+			   {"ClaseVaciaTest.correcto", null},
 			   {"ClaseHelloWordTest.correcto", null},
 			   {"PrintB.correcto", null},
 			   {"PrintC.correcto", null},
@@ -163,8 +163,10 @@ public class CompilerTest {
 			   {"LlamadaEstaticoConDistintaCantParams.incorrecto", "Error(!). La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales en línea 8."},
 			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
 			   {"ClasesConHerenciaCircularDirecta.incorrecto", "Existe herencia circular en Clase1"},
-			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},*/
-			   {"AsignacionDeClase.incorrecto", ""}
+			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
+			   {"AsignacionDeClase.incorrecto", ""},
+			   {"LlamadaEncadenadaMetodoNoExistente.incorrecto", "Error(!). El método test2 no existe en la clase X."}
+			   
 	   });
 	}
 	
