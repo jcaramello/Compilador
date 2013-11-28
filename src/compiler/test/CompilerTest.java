@@ -40,7 +40,7 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   {"ClaseVaciaTest.correcto", null},
+			  /* {"ClaseVaciaTest.correcto", null},
 			   {"ClaseHelloWordTest.correcto", null},
 			   {"PrintB.correcto", null},
 			   {"PrintC.correcto", null},
@@ -161,8 +161,8 @@ public class CompilerTest {
 			   {"AsignacionPrimitivoATipoClase.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 7."},
 			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
 			   {"LlamadaEstaticoConDistintaCantParams.incorrecto", "Error(!). La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales en línea 8."},
-			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
-  
+			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},*/
+			   {"AsignacionDeClase.incorrecto", ""}
 	   });
 	}
 	

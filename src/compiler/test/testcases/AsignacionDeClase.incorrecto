@@ -1,0 +1,10 @@
+// Esto chequea que el no se pueda asignar la clase 
+
+class AsignacionDeClase{
+
+	static void main()
+	var AsignacionDeClase i;
+	{		
+		i = AsignacionDeClase;
+	}
+}
