@@ -1,0 +1,12 @@
+// Caso de herencia circular directa.
+
+class Clase1 extends Clase1{
+
+	var int a1;
+	
+	static void main()
+	{		 
+  
+	}
+	
+}
