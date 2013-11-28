@@ -10,24 +10,28 @@ class VTablesTest{
 		(a1.met1());
 		(a1.met2());
 		(a1.met3());
+		(A.metS());
 		
 		a2 = new B();
 		(System.printSln("B: "));
 		(a2.met1());
 		(a2.met2());
 		(a2.met3());
+		(B.metS());
 		
 		a3 = new C();
 		(System.printSln("C: "));
 		(a3.met1());
 		(a3.met2());
 		(a3.met3());
+		(C.metS());
 		
 		a4 = new D();
 		(System.printSln("D: "));
 		(a4.met1());
 		(a4.met2());
 		(a4.met3());
+		(D.metS());
 	}
 }
 
@@ -52,6 +56,11 @@ class A {
 	dynamic void metAux() // nunca llamado directamente
 	{
 		(System.printSln("A.met4"));
+	}
+	
+	static void metS() 
+	{
+		(System.printSln("A.metS"));
 	}
 }
 
@@ -96,6 +105,11 @@ class D extends B {
 		(System.printSln("D.met3"));
 		(met2());
 		(metAux());
+	}
+	
+	static void metS() 
+	{
+		(System.printSln("D.metS"));
 	}
 }
 
