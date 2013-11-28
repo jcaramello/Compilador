@@ -1,0 +1,11 @@
+class BloqueTest{
+
+	static void main()
+	{		 
+			
+		(System.printS("Sentencia 1"));  
+		(System.printS("Sentencia 2"));  	
+		(System.printS("Sentencia 3"));  
+	
+	}
+}

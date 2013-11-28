@@ -1,0 +1,26 @@
+// Llamada a un método local.
+
+class M {
+
+	var int a, b, c;
+	var string s;
+	
+	static void main()
+	var M m1, m2;
+	{	
+		m2 = new M();	
+		(m2.test());
+	}
+
+	dynamic void test()
+	{
+		test2()
+	}
+
+	dynamic void test2()
+	{
+		s = "Exito";
+		(System.printSln(s));
+	}	
+}
+	

@@ -1,0 +1,17 @@
+// Llamada con una cantidad errónea de parámetros.
+
+class M {
+	
+	static void main()
+
+	{		
+		(M.test(1, 2));
+	}
+	
+	static void test(int i)
+	{
+		(System.printIln(i));
+	}
+	
+}
+	

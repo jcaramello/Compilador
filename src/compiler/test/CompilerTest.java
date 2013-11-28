@@ -104,6 +104,9 @@ public class CompilerTest {
 			   {"ComparacionLiteralesNull.correcto", null},
 			   {"AsignacionConParentesis.correcto", null},
 			   {"AsignacionAParam.correcto", null},
+			   {"BloqueOrdenSentencias.correcto", null},
+			   {"LlamadaLocal.correcto", null},
+			   
 			   
 			   // Test Incorrectos (Se espera Error)
 			   
@@ -157,6 +160,7 @@ public class CompilerTest {
 			   {"AsignacionClaseATipoPrimitivo.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 8."},
 			   {"AsignacionPrimitivoATipoClase.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 7."},
 			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
+			   {"LlamadaEstaticoConDistintaCantParams.incorrecto", "Error(!). La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales en línea 8."},
 			   
 	   });
 	}
