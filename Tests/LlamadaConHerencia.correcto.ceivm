@@ -135,6 +135,71 @@ System_DefaultCtor: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
+VT_M2: NOP
+		 DW M2_test
+.CODE 
+M2_test: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 PUSH 1
+		 STORE 4
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+Main__method: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 1
+		 # AssignmentNode Start 
+		 RMEM 1
+		 PUSH 1
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH VT_M2
+		 STOREREF 0
+		 DUP 
+		 PUSH M2_DefaultCtor
+		 CALL 
+		 STORE 0
+		 # AssignmentNode End 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # CallNode start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 RMEM 1
+		 SWAP 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 1
+		 CALL 
+		 # CallNode end 
+		 PUSH System_printBln
+		 CALL 
+		 # CallNode end 
+		 FMEM 1
+		 STOREFP 
+		 RET 0
+M2_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
 VT_Object: NOP
 .CODE 
 Object_DefaultCtor: NOP
@@ -146,11 +211,28 @@ Object_DefaultCtor: NOP
 		 STOREFP 
 		 RET 1
 .DATA 
-VT_MetodoConTipoDeRetornoVoidYSentReturn: NOP
-		 DW MetodoConTipoDeRetornoVoidYSentReturn_test
+VT_M1: NOP
+		 DW M1_test
 .CODE 
-MetodoConTipoDeRetornoVoidYSentReturn_test: NOP
+M1_test: NOP
 		 LOADFP 
 		 LOADSP 
 		 STOREFP 
 		 RMEM 0
+		 PUSH 0
+		 STORE 4
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+M1_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+		 HALT 

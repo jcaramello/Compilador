@@ -1,0 +1,58 @@
+.CODE 
+		 RMEM 1
+		 PUSH Main__method
+		 CALL 
+		 HALT 
+.CODE 
+LMALLOC: NOP 
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 LOADHL 
+		 DUP 
+		 PUSH 1
+		 ADD 
+		 STORE 4
+		 LOAD 3
+		 ADD 
+		 STOREHL 
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_ConformsTest: NOP
+.CODE 
+ConformsTest_test: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 2
+Main__method: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 1
+		 # AssignmentNode Start 
+		 RMEM 1
+		 PUSH 1
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH VT_C1
+		 STOREREF 0
+		 DUP 
+		 PUSH C1_DefaultCtor
+		 CALL 
+		 STORE 0
+		 # AssignmentNode End 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_ConformsTest
+		 # IDNode end 
+		 POP 
+		 PUSH 1
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 

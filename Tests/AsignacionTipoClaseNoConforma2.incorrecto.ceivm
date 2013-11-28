@@ -1,0 +1,146 @@
+.CODE 
+		 RMEM 1
+		 PUSH Main__method
+		 CALL 
+		 HALT 
+.CODE 
+LMALLOC: NOP 
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 LOADHL 
+		 DUP 
+		 PUSH 1
+		 ADD 
+		 STORE 4
+		 LOAD 3
+		 ADD 
+		 STOREHL 
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_NoConforma: NOP
+		 DW NoConforma_test
+.CODE 
+NoConforma_test: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 RMEM 1
+		 PUSH 25
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH 67
+		 STOREREF 0
+		 DUP 
+		 PUSH 111
+		 STOREREF 1
+		 DUP 
+		 PUSH 110
+		 STOREREF 2
+		 DUP 
+		 PUSH 102
+		 STOREREF 3
+		 DUP 
+		 PUSH 111
+		 STOREREF 4
+		 DUP 
+		 PUSH 114
+		 STOREREF 5
+		 DUP 
+		 PUSH 109
+		 STOREREF 6
+		 DUP 
+		 PUSH 97
+		 STOREREF 7
+		 DUP 
+		 PUSH 32
+		 STOREREF 8
+		 DUP 
+		 PUSH 101
+		 STOREREF 9
+		 DUP 
+		 PUSH 114
+		 STOREREF 10
+		 DUP 
+		 PUSH 114
+		 STOREREF 11
+		 DUP 
+		 PUSH 111
+		 STOREREF 12
+		 DUP 
+		 PUSH 110
+		 STOREREF 13
+		 DUP 
+		 PUSH 101
+		 STOREREF 14
+		 DUP 
+		 PUSH 97
+		 STOREREF 15
+		 DUP 
+		 PUSH 109
+		 STOREREF 16
+		 DUP 
+		 PUSH 101
+		 STOREREF 17
+		 DUP 
+		 PUSH 110
+		 STOREREF 18
+		 DUP 
+		 PUSH 116
+		 STOREREF 19
+		 DUP 
+		 PUSH 101
+		 STOREREF 20
+		 DUP 
+		 PUSH 46
+		 STOREREF 21
+		 DUP 
+		 PUSH 0
+		 STOREREF 22
+		 PUSH System_printSln
+		 CALL 
+		 # CallNode end 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+NoConforma_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_AsignacionTest: NOP
+.CODE 
+Main__method: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 2
+		 # AssignmentNode Start 
+		 RMEM 1
+		 PUSH 1
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH VT_AsignacionTest
+		 STOREREF 0
+		 DUP 
+		 PUSH AsignacionTest_DefaultCtor
+		 CALL 
+		 STORE 0
+		 # AssignmentNode End 
+		 # AssignmentNode Start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
