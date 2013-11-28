@@ -1,4 +1,4 @@
-// Llamada con parámetro de tipo clase. Resultado esperado: OK
+// Llamada con parámetro de tipo clase. Resultado esperado: Llamado desde parámetro
 
 class M {
 	

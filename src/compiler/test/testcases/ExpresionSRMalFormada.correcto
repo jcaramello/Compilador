@@ -1,4 +1,4 @@
-// Suma y resta de expresiones. Involucra un char, se espera error.
+/ Suma y resta de expresiones. Involucra un char, se espera error.
 
 class Test{
 

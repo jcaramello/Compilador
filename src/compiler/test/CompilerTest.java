@@ -108,6 +108,8 @@ public class CompilerTest {
 			   {"LlamadaLocal.correcto", null},
 			   {"VTables.correcto", null},
 			   {"VisibilidadVariablesConHerencia.correcto", null},
+			   {"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
+			   {"Llamada.correcto", null},
 			   
 			   
 			   // Test Incorrectos (Se espera Error)
@@ -171,6 +173,7 @@ public class CompilerTest {
 			   {"VisibilidadVariableOcultaConHerencia.incorrecto", "Error(!). a1 no es un identificador valido, en línea 39"},
 			   {"LlamadaEstaticoDesdeVariable.incorrecto", "Error(!). No se puede llamar a un método estático desde una variable de tipo clase, en línea 9."},
 			   {"LlamadaDinamicoDesdeClase.incorrecto", "Error(!). No se puede llamar a un método dinámico desde una clase sin instanciar, en línea 7."},
+			   {"AsignacionClaseATipoPrimitivo.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 8."},
 			   
 	   });
 	}
