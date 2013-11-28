@@ -126,10 +126,7 @@ public class EntryClass extends EntryBase{
 	}
 	
 	public EntryMethod getMethod(String name){
-		
-		// habria que ver si puede haaber 2 metodos con el mismo nombre pero con distinto modificador
-		// no recuerdo si eso era valido, en caso de ser asi habria q agregar un parametro mas
-		
+
 		return this.Methods.get(name);
 	}
 	

@@ -107,6 +107,7 @@ public class CompilerTest {
 			   {"BloqueOrdenSentencias.correcto", null},
 			   {"LlamadaLocal.correcto", null},
 			   {"VTables.correcto", null},
+			   {"VisibilidadVariablesConHerencia.correcto", null},
 			   
 			   
 			   // Test Incorrectos (Se espera Error)
@@ -166,7 +167,8 @@ public class CompilerTest {
 			   {"ClasesConHerenciaCircularDirecta.incorrecto", "Existe herencia circular en Clase1"},
 			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
 			   {"AsignacionDeClase.incorrecto", ""},
-			   {"LlamadaEncadenadaMetodoNoExistente.incorrecto", "Error(!). El método test2 no existe en la clase X."}
+			   {"LlamadaEncadenadaMetodoNoExistente.incorrecto", "Error(!). El método test2 no existe en la clase X."},
+			   {"VisibilidadVariableOcultaConHerencia.incorrecto", "Error(!). a1 no es un identificador valido, en línea 39"},
 			   
 	   });
 	}

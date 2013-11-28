@@ -1,5 +1,5 @@
 // Se redefine un método en la clase hija y se muestra que se accede a la nueva versión de él.
-// Resultado esperado: 5.
+// Resultado esperado: Redefinido.
 
 class Clase1{
 
@@ -14,8 +14,7 @@ class Clase1{
 class Clase2 extends Clase1{
 
 	dynamic void setA1(int newValue){
-		a1 = newValue + 1;
-		(System.printIln(a1));
+		(System.printSln("Redefinido"));
 	}	
 
 	static void main()

@@ -272,8 +272,14 @@ public class EntryMethod extends EntryBase {
 		CodeGenerator.gen(Instructions.RMEM, cantVars);
 		
 		this.ContainerClass.setCurrentMethod(this);
-		if(this.AST != null)
+		if(this.AST != null) 
+		{
+			// Esto es para que el método activo sólo pueda utilizar variables de su clase original.
+			EntryClass temp = TS.getCurrentClass();
+			TS.setCurrentClass(ContainerClass.Name);
 			this.AST.check();
+			TS.setCurrentClass(temp.Name);		
+		}
 		else generateBodyPredef();
 		
 		// Return por default

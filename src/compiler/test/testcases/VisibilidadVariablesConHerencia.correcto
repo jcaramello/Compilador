@@ -1,0 +1,71 @@
+// Test complejo de visibilidad de variables en clases relacionadas por herencia.
+// Resultado esperado: A: 10 11 20, B: 15 20, C: 15 20.
+
+class M
+{
+	static void main() 
+	var A x, y, z;
+	{
+		(System.printSln("A: "));
+		x = new A();
+		(x.setA1(10));
+		(System.printIln(x.getA1()));
+		(x.setA1(11));
+		(System.printIln(x.getA1()));
+		(x.setA2(20));
+		(System.printIln(x.getA2()));
+		
+		(System.printSln("B: "));
+		y = new B();
+		(y.setA1(10));
+		(System.printIln(y.getA1()));
+		(y.setA2(20));
+		(System.printIln(y.getA2()));
+		
+		(System.printSln("C: "));
+		z = new C();
+		(z.setA1(10));
+		(System.printIln(z.getA1()));
+		(z.setA2(20));
+		(System.printIln(z.getA2()));
+	}
+}
+
+
+class A
+{
+	var int a1, a2, a3;
+
+	dynamic void setA1(int v) {
+		a1 = v;
+	}
+	
+	dynamic int getA1() {
+		return a1;
+	}
+	
+	dynamic void setA2(int v) {
+		a2 = v;
+	}
+	
+	dynamic int getA2() {
+		return a2;
+	}
+}
+
+class B extends A {
+	
+	var int a1;
+	
+	dynamic void setA1(int v) {
+		a1 = v + 5;
+	}
+	
+	dynamic int getA1() {
+		return a1;
+	}
+}
+
+class C extends B {
+
+}

@@ -1,0 +1,46 @@
+// Test complejo de visibilidad de variables en clases relacionadas por herencia.
+// Se intenta acceder a la variable a1 de A desde B.
+
+class M
+{
+	static void main() 
+	var A x;
+	{
+		x = new B();
+		(x.setA1(10));
+	}
+}
+
+
+class A
+{
+	var int a1, a2, a3;
+
+	dynamic void setA1(int v) {
+		a1 = v;
+	}
+	
+	dynamic int getA1() {
+		return a1;
+	}
+	
+	dynamic void setA2(int v) {
+		a2 = v;
+	}
+	
+	dynamic int getA2() {
+		return a2;
+	}
+}
+
+class B extends A {
+
+	dynamic void setA1(int v) {
+		a1 = v + 5; 	// Esto debe fallar.
+	}
+	
+}
+
+class C extends B {
+
+}
