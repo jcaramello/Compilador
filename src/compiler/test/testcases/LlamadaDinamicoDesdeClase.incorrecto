@@ -1,0 +1,18 @@
+// Llamada a un método dinamico directamente desde una clase.
+
+class M {
+	
+	static void main()
+	{	
+		(M.test());
+	}
+
+	dynamic void test()
+	var string s;
+	{
+		s = "Exito";
+		(System.printSln(s));
+	}
+	
+}
+	

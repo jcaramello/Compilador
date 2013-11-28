@@ -32,7 +32,15 @@ public class CallNode extends PrimaryNode {
 		if(Context == null)
 			Context = new ThisNode();
 		
-		EntryClass clase =  TS.getClass(Context.check().Name);
+		boolean staticCall = false;
+		
+		String name = Context.check().Name;
+		if(name.startsWith("C_")) {
+			name = name.substring(2);
+			staticCall = true;
+		}
+		
+		EntryClass clase =  TS.getClass(name);
 
 		EntryMethod met = clase.getMethod(OperationName.Identifier.getLexema());
 		
@@ -41,7 +49,10 @@ public class CallNode extends PrimaryNode {
 		if(ActualsParameters.size() != met.getFormalArgsCant())
 			throw new SemanticErrorException("Error(!). La cantidad de parámetros actuales debe coincidir con la cantidad de parámetros formales en línea " + OperationName.Identifier.getLinea() + "." );
 		
-		if(met.Modifier == ModifierMethodType.Static) {
+		if(met.Modifier == ModifierMethodType.Static) {			
+			if(!staticCall)
+				throw new SemanticErrorException("Error(!). No se puede llamar a un método estático desde una variable de tipo clase, en línea "+ OperationName.Identifier.getLinea() + ".");
+			
 			CodeGenerator.gen("POP");  // elimino el this apilado
 			
 			for(int i = 0; i < ActualsParameters.size(); i++) {
@@ -56,6 +67,9 @@ public class CallNode extends PrimaryNode {
 			CodeGenerator.gen(Instructions.CALL);
 		}
 		else {
+			if(staticCall)
+				throw new SemanticErrorException("Error(!). No se puede llamar a un método dinámico desde una clase sin instanciar, en línea "+ OperationName.Identifier.getLinea() + ".");
+			
 			if(!met.ReturnType.equals(VoidType.VoidType)) {
 				CodeGenerator.gen(Instructions.RMEM, 1);
 				CodeGenerator.gen(Instructions.SWAP);

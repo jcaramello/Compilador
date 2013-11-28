@@ -166,9 +166,11 @@ public class CompilerTest {
 			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
 			   {"ClasesConHerenciaCircularDirecta.incorrecto", "Existe herencia circular en Clase1"},
 			   {"LlamadaAMetodoNoVoidConRetornoVacio.incorrecto", "El tipo de la expresión de retorno de un método no-void debe existir, en línea 16"},
-			   {"AsignacionDeClase.incorrecto", ""},
+			   {"AsignacionDeClase.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 6."},
 			   {"LlamadaEncadenadaMetodoNoExistente.incorrecto", "Error(!). El método test2 no existe en la clase X."},
 			   {"VisibilidadVariableOcultaConHerencia.incorrecto", "Error(!). a1 no es un identificador valido, en línea 39"},
+			   {"LlamadaEstaticoDesdeVariable.incorrecto", "Error(!). No se puede llamar a un método estático desde una variable de tipo clase, en línea 9."},
+			   {"LlamadaDinamicoDesdeClase.incorrecto", "Error(!). No se puede llamar a un método dinámico desde una clase sin instanciar, en línea 7."},
 			   
 	   });
 	}

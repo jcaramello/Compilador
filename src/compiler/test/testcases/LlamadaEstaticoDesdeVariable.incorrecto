@@ -1,0 +1,20 @@
+// Llamada a un método estático desde una variable que instancia a una clase.
+
+class M {
+	
+	static void main()
+	var M m1;
+	{	
+		m1 = new M();	
+		(m1.test());
+	}
+
+	static void test()
+	var string s;
+	{
+		s = "Exito";
+		(System.printSln(s));
+	}
+	
+}
+	

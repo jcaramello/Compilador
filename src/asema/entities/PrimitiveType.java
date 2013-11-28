@@ -10,7 +10,7 @@ public class PrimitiveType extends Type {
 	public static PrimitiveType Boolean = new PrimitiveType("boolean");
 	public static PrimitiveType Char = new PrimitiveType("char");	
 	
-	private PrimitiveType(String name)
+	public PrimitiveType(String name)
 	{
 		this.Name = name;
 	}
