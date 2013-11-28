@@ -106,6 +106,7 @@ public class CompilerTest {
 			   {"AsignacionAParam.correcto", null},
 			   {"BloqueOrdenSentencias.correcto", null},
 			   {"LlamadaLocal.correcto", null},
+			   {"VTables.correcto", null},
 			   
 			   
 			   // Test Incorrectos (Se espera Error)

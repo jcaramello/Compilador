@@ -1,0 +1,101 @@
+// Test complejo para probar las VTables.
+
+class VTablesTest{
+
+	static void main()
+	var A a1, a2, a3, a4;
+	{		
+		a1 = new A();
+		(System.printSln("A: "));
+		(a1.met1());
+		(a1.met2());
+		(a1.met3());
+		
+		a2 = new B();
+		(System.printSln("B: "));
+		(a2.met1());
+		(a2.met2());
+		(a2.met3());
+		
+		a3 = new C();
+		(System.printSln("C: "));
+		(a3.met1());
+		(a3.met2());
+		(a3.met3());
+		
+		a4 = new D();
+		(System.printSln("D: "));
+		(a4.met1());
+		(a4.met2());
+		(a4.met3());
+	}
+}
+
+
+class A {
+	
+	dynamic void met1() 
+	{
+		(System.printSln("A.met1"));
+	}
+	
+	dynamic void met2() 
+	{
+		(System.printSln("A.met2"));
+	}
+	
+	dynamic void met3() 
+	{
+		(System.printSln("A.met3"));
+	}
+	
+	dynamic void metAux() // nunca llamado directamente
+	{
+		(System.printSln("A.met4"));
+	}
+}
+
+class B extends A {
+
+	dynamic void met1()
+	{
+		(System.printSln("B.met1"));
+	}
+	
+	dynamic void met2() 
+	{
+		(System.printSln("B.met2"));
+		(met1());
+	}
+}
+
+class C extends B {
+	
+	dynamic void met2() 
+	{
+		(System.printSln("C.met2"));
+	}
+	
+	dynamic void met3()
+	{
+		(System.printSln("C.met3"));
+		(met1());
+		(met2());
+	}
+}
+
+class D extends B {
+	
+	dynamic void met1()
+	{
+		(System.printSln("D.met1"));
+	}
+	
+	dynamic void met3()
+	{
+		(System.printSln("D.met3"));
+		(met2());
+		(metAux());
+	}
+}
+

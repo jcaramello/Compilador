@@ -1,6 +1,7 @@
 package asema.entities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,6 +135,11 @@ public class EntryClass extends EntryBase{
 	
 	public List<EntryMethod> getMethods(){
 		return this.OrderedMethods;
+	}
+	
+	// Esto devuelve también los heredados
+	public Collection<EntryMethod> getAllMethods(){
+		return this.Methods.values();
 	}
 	
 	public boolean containsMethod(String name){		
@@ -273,7 +279,7 @@ public class EntryClass extends EntryBase{
 			this.fatherClass.applyInheritance();
 			this.isInheritanceApplied = true;
 			
-			for (EntryMethod em : this.fatherClass.getMethods()) {
+			for (EntryMethod em : this.fatherClass.getAllMethods()) {
 				EntryMethod overrideMethod = this.getMethod(em.Name);	
 				if(overrideMethod != null)
 					if(em.Modifier == overrideMethod.Modifier && 
