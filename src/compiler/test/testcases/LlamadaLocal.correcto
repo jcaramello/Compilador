@@ -14,7 +14,7 @@ class M {
 
 	dynamic void test()
 	{
-		test2()
+		(test2());
 	}
 
 	dynamic void test2()
