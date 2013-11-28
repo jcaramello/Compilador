@@ -1,0 +1,206 @@
+.CODE 
+		 RMEM 1
+		 PUSH Main__method
+		 CALL 
+		 HALT 
+.CODE 
+LMALLOC: NOP 
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 LOADHL 
+		 DUP 
+		 PUSH 1
+		 ADD 
+		 STORE 4
+		 LOAD 3
+		 ADD 
+		 STOREHL 
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_ifThenElseTest: NOP
+.CODE 
+Main__method: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 PUSH 6
+		 PUSH 5
+		 GT 
+		 BF L1
+		 NOP 
+		 JUMP L2
+L1: NOP 
+		 NOP 
+L2: NOP 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 RMEM 1
+		 PUSH 8
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH 69
+		 STOREREF 0
+		 DUP 
+		 PUSH 120
+		 STOREREF 1
+		 DUP 
+		 PUSH 105
+		 STOREREF 2
+		 DUP 
+		 PUSH 116
+		 STOREREF 3
+		 DUP 
+		 PUSH 111
+		 STOREREF 4
+		 DUP 
+		 PUSH 0
+		 STOREREF 5
+		 PUSH System_printSln
+		 CALL 
+		 # CallNode end 
+		 FMEM 0
+		 STOREFP 
+		 RET 0
+ifThenElseTest_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_System: NOP
+.CODE 
+System_printSln: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 SPRINT 
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printI: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 IPRINT 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printIln: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 IPRINT 
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_println: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 0
+System_printCln: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 CPRINT 
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printC: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 CPRINT 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_read: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 READ 
+		 STORE 3
+		 STOREFP 
+		 RET 0
+		 FMEM 0
+		 STOREFP 
+		 RET 0
+System_printBln: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 BPRINT 
+		 PRNLN 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printB: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 BPRINT 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_printS: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 LOAD 3
+		 SPRINT 
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+System_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_Object: NOP
+.CODE 
+Object_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+		 HALT 
