@@ -1,0 +1,81 @@
+.CODE 
+		 RMEM 1
+		 PUSH Main__method
+		 CALL 
+		 HALT 
+.CODE 
+LMALLOC: NOP 
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 LOADHL 
+		 DUP 
+		 PUSH 1
+		 ADD 
+		 STORE 4
+		 LOAD 3
+		 ADD 
+		 STOREHL 
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_M: NOP
+		 DW M_test
+.CODE 
+M_test: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 RMEM 1
+		 PUSH 1
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH VT_X
+		 STOREREF 0
+		 DUP 
+		 PUSH X_DefaultCtor
+		 CALL 
+		 STORE 4
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+Main__method: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 1
+		 # AssignmentNode Start 
+		 RMEM 1
+		 PUSH 2
+		 PUSH LMALLOC
+		 CALL 
+		 DUP 
+		 PUSH VT_M
+		 STOREREF 0
+		 DUP 
+		 PUSH M_DefaultCtor
+		 CALL 
+		 STORE 0
+		 # AssignmentNode End 
+		 # CallNode start 
+		 # IDNode start 
+		 PUSH VT_System
+		 # IDNode end 
+		 POP 
+		 # CallNode start 
+		 # CallNode start 
+		 # IDNode start 
+		 LOAD 0
+		 # IDNode end 
+		 RMEM 1
+		 SWAP 
+		 DUP 
+		 LOADREF 0
+		 LOADREF 1
+		 CALL 
+		 # CallNode end 

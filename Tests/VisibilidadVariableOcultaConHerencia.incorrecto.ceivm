@@ -1,0 +1,112 @@
+.CODE 
+		 RMEM 1
+		 PUSH Main__method
+		 CALL 
+		 HALT 
+.CODE 
+LMALLOC: NOP 
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 LOADHL 
+		 DUP 
+		 PUSH 1
+		 ADD 
+		 STORE 4
+		 LOAD 3
+		 ADD 
+		 STOREHL 
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_A: NOP
+		 DW A_setA1
+		 DW A_getA1
+		 DW A_setA2
+		 DW A_getA2
+.CODE 
+A_setA2: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # AssignmentNode Start 
+		 # IDNode start 
+		 LOAD 4
+		 # IDNode end 
+		 LOAD 3
+		 SWAP 
+		 STOREREF 2
+		 # AssignmentNode End 
+		 FMEM 0
+		 STOREFP 
+		 RET 2
+A_getA1: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # IDNode start 
+		 LOAD 3
+		 LOADREF 1
+		 # IDNode end 
+		 STORE 4
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+A_getA2: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # IDNode start 
+		 LOAD 3
+		 LOADREF 2
+		 # IDNode end 
+		 STORE 4
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+A_setA1: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # AssignmentNode Start 
+		 # IDNode start 
+		 LOAD 4
+		 # IDNode end 
+		 LOAD 3
+		 SWAP 
+		 STOREREF 1
+		 # AssignmentNode End 
+		 FMEM 0
+		 STOREFP 
+		 RET 2
+A_DefaultCtor: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 FMEM 0
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_B: NOP
+		 DW B_setA1
+		 DW A_getA1
+		 DW A_setA2
+		 DW A_getA2
+.CODE 
+B_setA1: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 0
+		 # AssignmentNode Start 

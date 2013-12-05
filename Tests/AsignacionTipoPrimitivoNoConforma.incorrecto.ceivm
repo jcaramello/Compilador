@@ -1,0 +1,30 @@
+.CODE 
+		 RMEM 1
+		 PUSH Main__method
+		 CALL 
+		 HALT 
+.CODE 
+LMALLOC: NOP 
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 LOADHL 
+		 DUP 
+		 PUSH 1
+		 ADD 
+		 STORE 4
+		 LOAD 3
+		 ADD 
+		 STOREHL 
+		 STOREFP 
+		 RET 1
+.DATA 
+VT_AsignacionTest: NOP
+.CODE 
+Main__method: NOP
+		 LOADFP 
+		 LOADSP 
+		 STOREFP 
+		 RMEM 1
+		 # AssignmentNode Start 
+		 PUSH 15

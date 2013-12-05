@@ -40,7 +40,7 @@ public class CompilerTest {
 	@Parameterized.Parameters(name= "{0}")
 	public static Collection testCases() {
 	   return Arrays.asList(new String[][] {
-			   {"ClaseVaciaTest.correcto", null},
+			  /* {"ClaseVaciaTest.correcto", null},
 			   {"ClaseHelloWordTest.correcto", null},
 			   {"PrintB.correcto", null},
 			   {"PrintC.correcto", null},
@@ -109,12 +109,12 @@ public class CompilerTest {
 			   {"VTables.correcto", null},
 			   {"VisibilidadVariablesConHerencia.correcto", null},
 			   {"ExpresionIgualdadDesigualdadPrimitivos.correcto", null},
-			   {"Llamada.correcto", null},
-			   
+			   {"Llamada.correcto", null},*/
+			   {"MetodoConReturnNull.correcto", null},
 			   
 			   // Test Incorrectos (Se espera Error)
 			   
-			   {"ClaseConSobreCargaDeMetodos.incorrecto", "Error(!) - La clase ClaseConSobreCargaDeMetodos ya que contiene un metodo met1. Linea 7"},
+			  /* {"ClaseConSobreCargaDeMetodos.incorrecto", "Error(!) - La clase ClaseConSobreCargaDeMetodos ya que contiene un metodo met1. Linea 7"},
 			   {"ClaseRepetida.incorrecto", "Error(!) - La clase ClaseRepetida ya existe en la TS. Linea 9"},
 			   {"MetodoDinamicoConParamRepetido.incorrecto", "Error(!) - El nombre del argumento esta repetido. Linea 3"},			   
 			   {"ClaseConAtributoRepetido.incorrecto", "Error(!) - La clase ClaseConAtributoRepetido ya contiene un atributo a1. Linea 4"},
@@ -174,7 +174,7 @@ public class CompilerTest {
 			   {"LlamadaEstaticoDesdeVariable.incorrecto", "Error(!). No se puede llamar a un método estático desde una variable de tipo clase, en línea 9."},
 			   {"LlamadaDinamicoDesdeClase.incorrecto", "Error(!). No se puede llamar a un método dinámico desde una clase sin instanciar, en línea 7."},
 			   {"AsignacionClaseATipoPrimitivo.incorrecto", "Error(!). El tipo del lado derecho de una asignación debe conformar al tipo del lado izquierdo, en línea 8."},
-			   
+			   */
 	   });
 	}
 	

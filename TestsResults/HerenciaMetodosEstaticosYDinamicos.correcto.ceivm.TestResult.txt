@@ -1,0 +1,18 @@
+------------------------------------------------------------------
+CeI Virtual Machine (CeIVM) - v1.1.0. Por: Sebastián Escarza.
+Compiladores e Intérpretes - 2º Cuatrimestre de 2011 - DCIC - UNS.
+------------------------------------------------------------------
+
+Estático y dinámico heredados de C1: 
+1
+2
+Estático y dinámico de C2: 
+3
+4
+Estático directamente desde C1: 
+1
+
+
+La ejecución del programa finalizó exitosamente.
+
+

@@ -1,0 +1,19 @@
+class MetodoConReturnNull{	
+
+	dynamic Object metodoDinamico(){		
+		return null;
+	}
+
+	static void main()		
+	var Object o;
+	var MetodoConReturnNull m;
+	{		 
+		m = new MetodoConReturnNull();
+ 		o = (m.metodoDinamico());
+ 		if(o == null) {
+			(System.printSln("Exito"));
+		}
+		else (System.printSln("Fallo"));
+ 		
+	}
+}
